@@ -1,0 +1,14 @@
+cmd		# start command prompt
+cd		# change directory
+cls		# clear screen
+dir		# list directory content
+mkdir		# create a new directory
+rmdir / rd	# delete directory
+rm		# removes file
+prompt		# change command prompt
+
+more at:
+https://www.hanselman.com/blog/a-better-prompt-for-cmdexe-or-cool-prompt-environment-variables-and-a-nice-transparent-multiprompt
+https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prompt
+
+command /? for help
