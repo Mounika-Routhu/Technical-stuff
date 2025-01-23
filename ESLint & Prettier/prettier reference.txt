@@ -1,0 +1,29 @@
+---------------what is prettier-------------
+
+Prettier is formatter which deals with indents, spacing, semicolons etc.
+
+eg: spacing around curly brackets
+
+import {useState} from 'react'; ==> import { useState } from 'react';
+
+------------config------------------
+
+we can config most off them in settings. Open settings.json(ctrl+shift+P => search for settings.JSON)
+
+add below to make prettier as default formatter(there are many ways) 
+
+"[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+ 
+below is for auto format on save only for JS files 
+
+"[javascript]": {
+    "editor.formatOnSave": true
+  }
+
+or just for auto format on save
+
+"editor.formatOnSave": true
+
+----------------------------------

@@ -1,0 +1,84 @@
+--------------what is ESLint---------------
+
+It's a popular linter for JS.
+
+a linter will analyze static code and marks syntax that break rules(like bugs, using variable before defining, importing from non existing files, etc).
+
+here, static means which is actually written not what happens after code gets excecuted.
+
+create-react-app comes with "ESLint" for react-app and react-app/jest.
+
+this react-app extention marks cases like "importing from non existing files" etc.
+
+-----------------not just a formatter--------------------------
+
+Eslint is like format + code style
+
+code style meaning, it can give a preffered assertion method using eslint plugin for jest-dom
+
+eg: expect(checkbox).toHaveAttribute(checked); ==> expect(checkbox).toBeChecked();
+
+----------------plugins----------------
+
+plugin will extend ESLint rules. And are highly customizable. 
+
+we have plugins for TestingLibrary and jest-dom which will help to follow best practices anticipate common mistakes when writing tests.
+
+https://github.com/testing-library/eslint-plugin-testing-library
+https://github.com/testing-library/eslint-plugin-jest-dom
+
+-----------------to download and config plugins-------------------------
+
+watch Testing React with Jest and Testing Library @ udemy section 3
+
+install ESLint extension
+
+npm install eslint-plugin-testing-library eslint-plugin-jest-dom
+
+to config plugins we have 2 ways:
+
+==>1) we can directly add plugins to uder eslintconfig=>extends in package.json 
+
+this will Enforces recommended rules for React Testing Library, jest-dom.
+
+"eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:testing-library/react",
+      "plugin:jest-dom/recommended"
+    ]
+  }
+
+==>2) or remove eslintConfig property(as above) in package.json to make our own config
+
+create eslintrc.json file at root level(in project folder) & add below for standard ESLint config  
+
+{
+    "extends": [
+        "react-app",
+        "react-app/jest",
+        "plugin:testing-library/react", 
+        "plugin:jest-dom/recommended"
+    ]
+}
+
+
+later we need to configure in settings.json file in .vscode folder at root level(in project folder).
+
+{
+    "eslint.options":{
+     "configFile": ".eslintrc.json"
+    }
+}
+  
+we can also eslint auto fix on save in editor settings.json or settings.json file we created in .vscode
+to open editor settings.json ==> ctrl+shift+p(cmd palatte) => search JSON => open settings(JSON)
+
+
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+}
+
+finally add .vscode to .gitignore to avoid commiting this file to repo
+------------------------------------------------------------------
