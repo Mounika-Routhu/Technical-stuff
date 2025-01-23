@@ -1,0 +1,16 @@
+1. accessibility
+2. SASS
+3. lighthouse
+4. why alt is used => 1. accessibility, 2. when image is not loaded ==> alternative
+5. how to add method to a prototype of an obj.
+6. audio, video tags.
+7. cloning, destructuring
+8. aync, await
+9. cookies, SS, LS
+10. authentication
+11. const [a,b,c] = [1,2,3,4,5]// a=1, b=2, c=3 also let [a,b,...c] = [1,2,3,4,5]; ==> a=1, b=2, c=[3,4,5]
+12. flex, grid
+13. mobile first or device first ? mobile because it reduces styling patterns if we do mobile first
+14. SEO
+15. PWS applications
+16. validations in CSS

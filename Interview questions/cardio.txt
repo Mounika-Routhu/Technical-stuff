@@ -1,0 +1,138 @@
+const d = document.createElement('div')
+d.classList.add("wrapper");
+document.body.appendChild(d)
+
+const ul = document.createElement('ul');
+
+const li1 = document.createElement('li');
+li1.textContent = "one";
+ul.appendChild(li1);
+
+const li2 = document.createElement('li');
+li2.textContent = "two";
+ul.appendChild(li2);
+
+const li3 = document.createElement('li');
+li3.textContent = "three";
+ul.appendChild(li3);
+
+const wrapEl = document.querySelector('.wrapper');
+wrapEl.appendChild(ul);
+
+const img1 = document.createElement('img');
+img1.src="https://picsum.photos/536";
+img1.setAttribute('atl', 'cute puppy');
+img1.classList.add('cute');
+img1.width="250";
+
+wrapEl.appendChild(img);
+
+const d2 = `
+  <div>
+    <div></div>
+    <div></div>
+  </div>
+`;
+
+ulEl = document.querySelector('.wrapper ul');
+
+ulEl.insertAdjacentHTML('beforebegin', d2);
+
+const divEl = document.querySelectorAll('.wrapper div div');
+
+divEl[1].classList.add('warning'); 
+
+divEl[0].remove();
+
+function generatePlayerCard(name, age, height){
+  return(`
+    <div class='playerCard'>
+      <h1>${name}-${age}</h1>
+      <p>They are ${height} and ${age} years old. In dog years this person would be AGEINDOGYEARS. That would be a tall dog!</p>
+    </div>
+  `)
+}
+
+const cardsDiv = document.createElement('div');
+cardsDiv.classList.add('cards');
+
+const cardDiv1 = document.createRange().createContextualFragment(generatePlayerCard('Mouni', '21', '5.6'));
+const cardDiv2 = document.createRange().createContextualFragment(generatePlayerCard('Chaithu', '23', '5.4'));
+const cardDiv3 = document.createRange().createContextualFragment(generatePlayerCard('Rohith', '21', '5.8'));
+const cardDiv4 = document.createRange().createContextualFragment(generatePlayerCard('Samran', '23', '5.7'));
+
+cardsDiv.appendChild(cardDiv1);
+cardsDiv.appendChild(cardDiv2);
+cardsDiv.appendChild(cardDiv3);
+cardsDiv.appendChild(cardDiv4);
+
+wrapEl.insertAdjacentElement('beforebegin', cardsDiv);
+
+const removeEl = (el) => {
+  console.log(el);
+  el.remove();
+}
+
+const button = document.createElement('button');
+button.onclick = "removeEl(this)";
+button.classList.add('warning');
+button.textContent="Remove ME";
+
+const playerCards = document.querySelectorAll('.playerCard');
+
+for (card of playerCards){
+  console.log(card);
+  card.append(button);
+}
+
+
+===================================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>CARDIO</title>
+</head>
+<body>
+
+</body>
+</html>
+======================
+body{
+  background-color: blue;
+}
+
+.wrapper{
+  background-color:white;
+}
+
+.cute{
+  border-radius:50px;
+}
+
+.warning{
+  background-color:red;
+  border-radius: 20px;
+  color:white;
+}
+
+.cards{
+  display: flex;
+  background-color: white;
+  box-shadow: 15px 5px 50px black;
+  justify-content:space-evenly;
+  border-radius:50px;
+  padding: 16px;
+}
+
+.playerCard{
+  border-radius:50px;
+  background-color:pink;
+  padding: 10px;
+  margin:16px;
+  box-sizing: border-box;
+  align-self:center;
+}
+
