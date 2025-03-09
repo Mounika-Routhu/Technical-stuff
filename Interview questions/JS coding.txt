@@ -312,4 +312,48 @@ for (let n of genFunc()) {
     console.log(n); //1,2
 }
 
+------------------
+const input=
+{
+   test:123,
+   test1:{
+      test2:456,
+      test3:{
+        test4:678,
+        test5:{
+            test6: 1678
+        }
+      }
+   },
+   test7:[1,2,3,5]
+}
+
+Output:
+{
+    test:123,
+    test1_test2:456,
+    test1_test2_test3_test4:678,
+    test5:[1,2,3,5]
+}
+
+const flatten = (obj, prefix = []) => {
+    let res = {}
+    for(let k in obj) {
+        if(typeof obj[k] === 'object' && obj !== null && !Array.isArray(obj[k])){
+            const nestedFlat = flatten(obj[k], [...prefix, k])
+            res = {...res, ...nestedFlat}
+        }else{
+            if(prefix.length){
+                res[[...prefix, k].join('_')] = obj[k]
+                prefix.push(k)
+            }else{
+                res[k] = obj[k]
+            }
+            
+        }
+    }
+    return res;
+}
+
+console.log(flatten(input));
 
