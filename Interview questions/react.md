@@ -127,6 +127,36 @@ const UseCallbackExample = () => {
     );
   }
 ```
+## Example for useMemo
+```JS
+import React, { useState, useMemo } from 'react';
+
+    function MyComponent() {
+      const [count, setCount] = useState(0);
+
+      // Define a function that returns a computed value
+      const expensiveValue = useMemo(() => {
+        console.log('Computing expensive value...');
+        let result = 0;
+        for (let i = 0; i < 1000000000; i++) {
+          result += i;
+        }
+        return result;
+      }, []);
+
+      return (
+        <div>
+          <p>Count: {count}</p>
+          <p>Expensive Value: {expensiveValue}</p>
+          <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+      );
+    }
+```
+**Note:** when useMemo not used then expensiveValue will become a fuction when we have to invoke function(add ()) in line 
+```
+<p>Expensive Value: {expensiveValue**()**}</p>
+```
 
 ## Behavior of Hooks with and without Dependency Array
 
