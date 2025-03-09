@@ -153,7 +153,7 @@ import React, { useState, useMemo } from 'react';
       );
     }
 ```
-**Note:** when useMemo not used then expensiveValue will become a fuction when we have to invoke function(add ()) in line 
+**Note:** when useMemo not used then expensiveValue will become a fuction then we have to invoke function(add ()) in line 
 ```
 <p>Expensive Value: {expensiveValue()}</p>
 ```
