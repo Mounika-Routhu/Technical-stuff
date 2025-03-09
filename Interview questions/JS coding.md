@@ -1,5 +1,5 @@
 ## Group anagrams from given array 
-```
+```javascript
 const input = ["eat", "ate", "army", "mary", "hello", "tea"]
 //expected output = [ [ 'eat', 'ate', 'tea' ], [ 'army', 'mary' ], [ 'hello' ] ];
 
@@ -21,7 +21,7 @@ console.log(groupAnagrams(input))
 ```
 
 ## flatten object with prefix
-```
+```javascript
 const input = {
   test: 123,
   test1: { test2: 456, test3: { test4: 678, test5: { test6: 1678 } } },
