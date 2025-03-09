@@ -1,0 +1,1 @@
+Write a component to create a textbox & button on button click should add items to the list. List should be displayed below text box with delete icon. it should be deleted from list if clicked on icon
