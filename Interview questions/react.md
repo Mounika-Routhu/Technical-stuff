@@ -68,6 +68,13 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 - **Class Components** require `this` for state management and lifecycle methods, whereas **Functional Components** use hooks to manage state and side effects in a more concise manner.
 - **Functional Components** are generally preferred in modern React because of their simpler syntax and performance benefits, especially with the introduction of hooks.
 
+## Why we shouldn't update state directly?
+- Directly **mutating the state** in React **will not throw an error**, but it will **prevent React from detecting the change**, which leads to **UI inconsistencies**.
+- To **properly update the state** and ensure the UI reflects the changes, you should always use:
+  - `setState` in **class components**.
+  - The **state update function** (`setCount`, `setState`, etc.) in **functional components**.
+
+
 
 
 
