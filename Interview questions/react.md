@@ -113,6 +113,7 @@ function MyComponent() {
 In above example we want the increament to be created only when once so we gave setCount(**bcz on render useState won't get trigger**) as dependency or simple empty array also will do
 
 **Note**
+
 **Recomputes every render:** functions, variables, and JSX code inside the component.
 **Does not recompute every render:** state values (useState), props, and memoized values (useMemo, useCallback if [] passed or based on dependencies).
 
