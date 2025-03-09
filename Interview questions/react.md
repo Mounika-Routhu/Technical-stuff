@@ -205,6 +205,22 @@ Also, when hook not used, expensiveValue will get computed on every render
 - Even though **memory usage** is generally low, but it can grow if you are using these hooks on **large datasets** or many memoized functions.
 - **Best practice** is to use these hooks **only when necessary** (e.g., for expensive calculations or functions passed down to child components) and
 - **Avoid using them for every small value or function** for more redability, keep the code clean & to avaoid unnecessary code complexity.
+- Another issue is **Reference equality issue**
+
+## React.memo
+
+- **Purpose**: It is a higher-order component (HOC) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
+
+- **Usage**: `React.memo(Component)` is used to wrap a component to ensure that the component only re-renders when its props change.
+
+```javascript
+const MyComponent = React.memo((props) => {
+  // Your component logic
+  return <div>{props.name}</div>;
+});
+```
+- **When to use:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
+
 
 
 
