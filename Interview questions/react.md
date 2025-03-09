@@ -205,7 +205,39 @@ Also, when hook not used, expensiveValue will get computed on every render
 - Even though **memory usage** is generally low, but it can grow if you are using these hooks on **large datasets** or many memoized functions.
 - **Best practice** is to use these hooks **only when necessary** (e.g., for expensive calculations or functions passed down to child components) and
 - **Avoid using them for every small value or function** for more redability, keep the code clean & to avaoid unnecessary code complexity.
-- Another issue is **Reference equality issue**
+- Another issue is **Reference equality issue** - Reference equality refers to the concept of comparing the memory references of objects, arrays, functions, or other non-primitive data types, rather than comparing their contents.
+- React uses reference equality for re-rendering(which got changed)
+- This issue arises when we don't use dependency array properly & pass unnecssary values to it.
+- Meaning, when I'm using React.emo & using this calllback function as prop & gave [count] then child component will render everytime on change of count. This will make React.memo useless
+- here we don't need count to be added as a dependency
+- Including count in the dependency array of useCallback can make sense when:
+  -The function relies on the latest state (as it does in this case), meaning the function needs to update its behavior based on the updated count value.
+  -You want the function to always reflect the latest value of count whenever it is executed.
+
+  ```JS 
+// Child component using React.memo to prevent unnecessary re-renders
+const ChildComponent = React.memo(({ onClick }) => {
+  console.log('Child rendered');
+  return <button onClick={onClick}>Click me</button>;
+});
+
+const ParentComponent = () => {
+  const [count, setCount] = useState(0);
+
+  // Memoized callback with count as a dependency
+  // The function is recreated every time `count` changes
+  const memoizedIncrement = useCallback(() => {
+    setCount(prevCount => prevCount + 1);
+  }, [count]); // `memoizedIncrement` is recreated every time `count` changes
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={memoizedIncrement} />
+    </>
+  );
+};
+  ```
 
 ## React.memo
 
