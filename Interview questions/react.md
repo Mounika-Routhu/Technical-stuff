@@ -254,7 +254,7 @@ const MyComponent = React.memo((props) => {
 - **When to use:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
 
 ## useState - setState - access prev state
-  1. ```this.setState(updater, [callback]);```
+  1. ```set[State](updater);```
   2. **updater:** Can either be an object or a function.
        - **value/expression:** Directly update state.
        - **Function:** (prevState) => prevState + 1
