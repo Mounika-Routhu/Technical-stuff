@@ -214,7 +214,8 @@ Also, when hook not used, expensiveValue will get computed on every render
   -The function relies on the latest state (as it does in this case), meaning the function needs to update its behavior based on the updated count value.
   -You want the function to always reflect the latest value of count whenever it is executed.
 
-  ```JS 
+```
+JS 
 // Child component using React.memo to prevent unnecessary re-renders
 const ChildComponent = React.memo(({ onClick }) => {
   console.log('Child rendered');
@@ -237,7 +238,7 @@ const ParentComponent = () => {
     </>
   );
 };
-  ```
+```
 
 ## React.memo
 
