@@ -22,8 +22,10 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 React uses the **Virtual DOM** to compare changes and efficiently update the UI. When a component returns a single root element, React can quickly determine what changed and apply the update. If there were multiple root elements, React would have to deal with more complexity during the reconciliation process, slowing down the rendering.
 
 **2. HTML Structure Consistency**:
-- **Error When No Root Element**: In HTML, every valid structure must have a single parent element. React follows this rule to ensure the structure is valid. If you try to return multiple elements without a single parent, React will throw an error like:
-  
+- In HTML, every valid structure must have a single parent element. React follows this rule to ensure the structure is valid.
+- React still ultimately uses React.createElement() behind the scenes to create the Virtual DOM representation of those elements.
+  ```React.createElement(tag, props, ...children)```
+- If you try to return multiple elements without a single parent, react won't be able to create html element & will throw an error like:
   ```Adjacent JSX elements must be wrapped in an enclosing tag.```
 - **Solution (React Fragments)**: React Fragments allow you to return multiple elements without introducing an extra wrapper element(hence light weight) in the DOM. This avoids unnecessary extra nodes like `<div>` and keeps the DOM clean.
 - **Shorthand Syntax**: You can use the shorthand `<>` and `</>` to wrap multiple elements without adding extra tags, making the code more concise:
