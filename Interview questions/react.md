@@ -36,6 +36,19 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
     <p>This is a paragraph</p>
   </>
   ```
+  
+## Unidirectional Data Flow in React
+
+**Unidirectional data flow** is a core principle of React. It means that data flows in one direction in a React application: from **parent components** to **child components**. This predictable flow of data makes it easier to understand and manage the state of an application, especially as it grows larger.
+
+**1. Data Flow from Parent to Child:**
+- In React, a parent component passes data to its child components via props.
+- A child component can only receive data from its parent and cannot directly modify it. Instead, it can only display it or send back events to the parent to handle any changes.
+**2. Children Communicate Back to Parent:**
+- If a child component needs to update data, it can't directly modify the parent's state. Instead, the child calls functions that the parent passes down as props, and the parent updates its state based on the child’s request.
+- This ensures that the parent maintains control over the data and that the application’s state remains predictable.
+
+
 
 
 
