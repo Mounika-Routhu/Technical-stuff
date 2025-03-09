@@ -1,6 +1,7 @@
 ## Group anagrams from given array 
 ```
 const input = ["eat", "ate", "army", "mary", "hello", "tea"]
+//expected output = [ [ 'eat', 'ate', 'tea' ], [ 'army', 'mary' ], [ 'hello' ] ];
 
 const groupAnagrams = (input) => {
     const tempInput = [...input]
