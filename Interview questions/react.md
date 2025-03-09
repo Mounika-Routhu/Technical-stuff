@@ -154,6 +154,7 @@ import React, { useState, useMemo } from 'react';
     }
 ```
 **Note:** when useMemo not used then expensiveValue will become a fuction then we have to invoke function(add ()) in line 
+Also, when hook not used, expensiveValue will get computed on every render
 ```
 <p>Expensive Value: {expensiveValue()}</p>
 ```
