@@ -261,8 +261,7 @@ const MyComponent = React.memo((props) => {
   3. It's recommended to use prevState when new state value depends on prevState (eg:increment count)
   4. Detailed explanation abt why to use prevState:
      - State updates are asynchronous, and React may batch multiple setState calls together. When this happens, React doesn't immediately apply each state update, which can cause issues if the new state depends on the previous state.
-
-- For instance, when you call setCount(count + 1) multiple times, React batches these updates, but it doesn't have the latest state value in each call, so it may apply each setCount with the old state value.
+     - For instance, when you call setCount(count + 1) multiple times, React batches these updates, but it doesn't have the latest state value in each call, so it may apply each setCount with the old state value.
     
   ```JS
 const [count, setCount] = useState(0);
