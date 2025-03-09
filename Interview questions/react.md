@@ -72,7 +72,7 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 - Directly **mutating the state** in React **will not throw an error**, but it will **prevent React from detecting the change**, which leads to **UI inconsistencies**.
 - To **properly update the state** and ensure the UI reflects the changes, you should always use:
   - `setState` in **class components**.
-  - The **state update function** (`setCount`, `setState`, etc.) in **functional components**.
+  - The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
 
 
 
