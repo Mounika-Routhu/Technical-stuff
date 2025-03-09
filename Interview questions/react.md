@@ -87,6 +87,35 @@ In React, component names must be capitalized to distinguish them from regular H
 
 ## Example for useCallback
 
+```JS
+function MyComponent() {
+        const [count, setCount] = useState(0);
+
+        // Define a function that increments the count state
+        const incrementCount = useCallback(() => {
+          setCount(prevCount => prevCount + 1);
+        }, []
+        // }, [setCount]
+)
+    useEffect(() => {
+        console.log("created")
+    }, [incrementCount])
+
+        return (
+          <div>
+            <p>Count: {count}</p>
+            <button onClick={incrementCount}>Increment</button>
+          </div>
+        );
+      }
+```
+
+In above example we want the increament to be created only when once so we gave setCount(**bcz on render useState won't get trigger**) as dependency or simple empty array also will do
+
+**Note**
+**Recomputes every render:** functions, variables, and JSX code inside the component.
+**Does not recompute every render:** state values (useState), props, and memoized values (useMemo, useCallback if [] passed or based on dependencies).
+
 ```javascript
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
