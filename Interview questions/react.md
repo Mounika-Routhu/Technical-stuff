@@ -8,5 +8,14 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 
 - **Does React have SSR?:** React by itself doesn't have built-in SSR, but it can be implemented using ReactDOMServer. Frameworks like Next.js provide SSR support out of the box for React.
 
+## How Shallow comparision sufficient in VDOM
+- diffing is an alogirithn in the Virtual DOM typically involves shallow comparison(i.e comparing only top level elements) of components or elements in React
+- **How Shallow Comparison Works:**
+  - For DOM elements: React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM.
+
+  - For components: React compares the props and state of the component. If the shallow comparison detects a change, React will re-render the component and apply the changes.
+- If no top-level properties have changed, there is no need for deep level comparision
+- Also, deep level comparision is expensive especially for complex websites.
+
 
 
