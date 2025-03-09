@@ -74,6 +74,17 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
   - `setState` in **class components**.
   - The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
 
+## Why React Component Names Should Be Capitalized
+
+In React, component names must be capitalized to distinguish them from regular HTML elements. Here's why:
+
+1. **React differentiates between HTML elements and components**:  
+   React treats lowercase names (e.g., `<button>`, `<div>`) as standard HTML tags. If you use a lowercase name for a component (e.g., `<useCallbackExample />`), React will assume it's a built-in HTML element, not a custom component.
+
+2. **What happens if not capitalized**:  
+   If you don’t capitalize a component name (e.g., `<useCallbackExample />`), React will treat it as a string (or HTML element) and won't render it as a React component. This results in an error or unexpected behavior.
+
+
 
 
 
