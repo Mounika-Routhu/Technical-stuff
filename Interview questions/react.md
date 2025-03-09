@@ -84,8 +84,46 @@ In React, component names must be capitalized to distinguish them from regular H
 2. **What happens if not capitalized**:  
    If you don’t capitalize a component name (e.g., `<useCallbackExample />`), React will treat it as a string (or HTML element) and won't render it as a React component. This results in an error or unexpected behavior.
 
+## Example for useCallback
+```javascript
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
+const UseCallbackExample = () => {
+    const [count, setCount] = useState(0);
+    const [count2, setCount2] = useState(0);
+    
+    // useCallback hook to memoize the increment function
+    const increment = useCallback(() => {
+        console.log("called");
+        setCount(count + 1);
+    }, [count]); // depend on count to recreate function when count changes
 
+    // Regular increment function without useCallback
+    // Since we don't used callback here this fucntion will get created even if count2 changes
+    const increment2 = () => {
+        console.log("called 2");
+        setCount2(count2 + 1);
+    }
+
+    // useEffect hook to log when 'increment' function is created/recreated
+    useEffect(() => {
+        console.log("created again increment");
+    }, [increment]);
+
+    // useEffect hook to log when 'increment2' function is created/recreated
+    useEffect(() => {
+        console.log("created again increment2");
+    }, [increment2]);
+
+    return (
+        <>
+            <p>Count: {count}</p>
+            <p>Count2: {count2}</p>
+            <button onClick={increment}>Click</button>
+            <button onClick={increment2}>Click2</button>
+        </>
+    );
+}```
 
 
 
