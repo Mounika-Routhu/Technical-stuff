@@ -4,7 +4,6 @@ const input = ["eat", "ate", "army", "mary", "hello", "tea"]
 //expected output = [ [ 'eat', 'ate', 'tea' ], [ 'army', 'mary' ], [ 'hello' ] ];
 
 const groupAnagrams = (input) => {
-    const tempInput = [...input]
     const res = {};
     input.forEach((el, idx) =>{
         let sortedKey = el.split("").sort().join("")
