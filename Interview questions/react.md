@@ -125,8 +125,14 @@ const UseCallbackExample = () => {
     );
 }```
 
+## Behavior of Hooks with and without Dependency Array
 
+- **No Dependency Array (`[]`)**:
+  - **`useEffect`** runs after **every render**.
+  - **`useMemo`** and **`useCallback`** trigger **recomputations** or **re-creations** on **every render** without optimizations
+  - Note: React **warns** in development mode if the dependency array is omitted.
 
-
-
+- **Empty Dependency Array (`[]`)**:
+  - **`useEffect`** runs only **once**, after the **first render** (similar to `componentDidMount`).
+  - **`useMemo`** and **`useCallback`** **memoize** the value or function and **do not recompute** or **recreate** unless the component is remounted.
 
