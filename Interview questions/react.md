@@ -198,6 +198,14 @@ Also, when hook not used, expensiveValue will get computed on every render
 - **Empty Dependency Array (`[]`)**:
   - **`useEffect`** runs only **once**, after the **first render** (similar to `componentDidMount`).
   - **`useMemo`** and **`useCallback`** **memoize** the value or function and **do not recompute** or **recreate** unless the component is remounted.
+ 
+### Is it good to use `useMemo` and `useCallback` everywhere - NO
+
+- `useMemo` and `useCallback` can increase **memory consumption** because they **store memoized values or functions**.
+- Even though **memory usage** is generally low, but it can grow if you are using these hooks on **large datasets** or many memoized functions.
+- **Best practice** is to use these hooks **only when necessary** (e.g., for expensive calculations or functions passed down to child components) and
+- **Avoid using them for every small value or function** for more redability & keep the code clean.
+
 
 
 
