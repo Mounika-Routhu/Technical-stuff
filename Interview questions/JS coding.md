@@ -22,11 +22,16 @@ console.log(groupAnagrams(input))
 
 ## flatten object with prefix
 ```javascript
-const input = {
-  test: 123,
-  test1: { test2: 456, test3: { test4: 678, test5: { test6: 1678 } } },
-  test7: [1, 2, 3, 5],
-};
+const Input = {
+   test:123,
+   test1:{
+      test2:456,
+      test3:{
+        test4:678
+      }
+   },
+   test5:[1,2,3,5]
+}
 
 /*Output = {
   test: 123,
