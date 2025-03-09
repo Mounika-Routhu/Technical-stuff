@@ -204,7 +204,7 @@ Also, when hook not used, expensiveValue will get computed on every render
 - `useMemo` and `useCallback` can increase **memory consumption** because they **store memoized values or functions**.
 - Even though **memory usage** is generally low, but it can grow if you are using these hooks on **large datasets** or many memoized functions.
 - **Best practice** is to use these hooks **only when necessary** (e.g., for expensive calculations or functions passed down to child components) and
-- **Avoid using them for every small value or function** for more redability & keep the code clean.
+- **Avoid using them for every small value or function** for more redability, keep the code clean & to avaoid unnecessary code complexity.
 
 
 
