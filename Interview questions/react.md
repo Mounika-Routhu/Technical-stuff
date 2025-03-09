@@ -258,6 +258,11 @@ const MyComponent = React.memo((props) => {
   2. **updater:** Can either be an object or a function.
        - **value/expression:** Directly update state.
        - **Function:** (prevState) => prevState + 1
+  3. It's recommended to use prevState when new state value depends on prevState (eg:increment count)
+  4. Detailed explanation abt why to use prevState:
+     - State updates are asynchronous, and React may batch multiple setState calls together. When this happens, React doesn't immediately apply each state update, which can cause issues if the new state depends on the previous state.
+
+- For instance, when you call setCount(count + 1) multiple times, React batches these updates, but it doesn't have the latest state value in each call, so it may apply each setCount with the old state value.
     
   ```JS
 const [count, setCount] = useState(0);
@@ -268,6 +273,7 @@ setCount(prevCount => prevCount + 1);  // Increment state based on previous stat
 1. in class based componenets setState also gets an optional second component callback - to excecute some logic after state update
    ```this.setState(updater, [callback]) ```
 2. in functional based we can use ```useEffect``` for such requirement
+
 
 
 
