@@ -22,4 +22,4 @@ for(let x = 1; x < 6; x++){
     }, 1000)
 }
 ```
-if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates a gloabl variable & by the time all setTimeout async function run global var x will be come 6
+if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates a gloabl variable & by the time all setTimeout async function run global var x will be come 6 hence 6 will be printed for 5 times
