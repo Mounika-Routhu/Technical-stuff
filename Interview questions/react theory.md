@@ -495,10 +495,9 @@ export default Users;
 
 | Feature              | **Custom Hooks**                         | **Higher-Order Components (HOCs)**                             |
 |----------------------|------------------------------------------|---------------------------------------------------------------|
-| **Wrapper Component** | No additional wrapper component required | Requires a wrapper component around the original component    |
-| **Reusability**       | Simple, can be used directly in multiple components | Requires passing props down the component tree    |
-| **Complexity**        | Less complex, focused on logic           | More abstract and can lead to increased complexity            |
-| **Prop Drilling**     | No need for prop drilling                | May result in prop drilling across layers when more than 1 HOC used                   |
-| **usage**       | When only logic   | logic + UI        |
+| **Wrapper Component** | No additional wrapper component required | Requires a wrapper component around the original component, additional layer in UI    |
+| **Integration**       | Simple, can be used directly in multiple components | Requires passing additional props down the component tree    |
+| **Complexity & usage**        | Less complex, focused on logic           | More abstract, logic + UI            |
+| **Prop Drilling & composition**     | No need for prop drilling                | May result in prop drilling across layers when more than 1 HOC used                   |
 | **Testability**       | Easier to test in isolation   | Testing can be more complex due to component wrapping        |
 
