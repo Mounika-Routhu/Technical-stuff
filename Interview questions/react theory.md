@@ -419,6 +419,14 @@ Use ```useReducer``` when:
 2. All built-in book have `use` prefix. It's react way of indenfying hooks & apply hook rules
 
 **What are hook rules?**
+1. **Call Hooks at the Top Level**: Always use hooks at the top level of your component, not inside loops, conditions, or nested functions.
+2.  **Only Call Hooks from React Functions:** Hooks should only be used in React function components or custom hooks, not in regular JavaScript functions or class components.
 
+**Why these rules are imp/neccessary?**
+1. React needs to track hook calls in a predictable order, so calling hooks in loops or conditions can disrupt this order, leading to bugs.
+  - Eg: hooks like `useState` and `useEffect` rely on a specific order to maintain component state and side effects correctly. What if we run `useState` conditionally & `useEffect` is expecting it in dependency array?
+2. Hooks should only be used within React function components or custom hooks to align with React's component lifecycle.
+  - like using hooks outside of these places (e.g., in regular JavaScript functions or class components) would disconnect them from React’s lifecycle, leading to unpredictable behavior.
 
+## Custom hooks
 
