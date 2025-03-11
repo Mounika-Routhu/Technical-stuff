@@ -435,6 +435,7 @@ Use ```useReducer``` when:
 **Custom hooks follow a naming convention**: the name of a custom hook should start with the word use (e.g., `useFetch`, `useForm`) to make so that react identify them as hooks & make them follows the rules of hooks.
 
 example: useFetch - extract fetching logic seperately & reuse in multiple files
+
 **useFetch.js (Custom Hook)**
 ```js
 import { useState, useEffect } from 'react';
@@ -488,4 +489,16 @@ const Users = () => {
 export default Users;
 
 ```
+**Why Custom Hooks Instead of Regular Functions?** - To access to React’s State and Effects:
+
+**Custom Hooks vs Higher-Order Components (HOCs)**
+
+| Feature              | **Custom Hooks**                         | **Higher-Order Components (HOCs)**                             |
+|----------------------|------------------------------------------|---------------------------------------------------------------|
+| **Wrapper Component** | No additional wrapper component required | Requires a wrapper component around the original component    |
+| **Reusability**       | Simple, can be used directly in multiple components | Requires passing props down the component tree    |
+| **Complexity**        | Less complex, focused on logic           | More abstract and can lead to increased complexity            |
+| **Prop Drilling**     | No need for prop drilling                | May result in prop drilling across layers when more than 1 HOC used                   |
+| **usage**       | When only logic   | logic + UI        |
+| **Testability**       | Easier to test in isolation   | Testing can be more complex due to component wrapping        |
 
