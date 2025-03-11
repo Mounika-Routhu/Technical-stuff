@@ -360,6 +360,7 @@ export default Counter;
 ```
 
 **When to Use ```useReducer``` vs ```useState```:**
+
 Use ```useState``` when:
 - You have simple state logic that doesn’t require multiple state updates based on previous states.
 - The state is simple (e.g., a boolean, string, number) and doesn’t need complex transitions.
