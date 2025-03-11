@@ -314,6 +314,18 @@ setCount(prevCount => prevCount + 1);  // Increment state based on previous stat
    ```this.setState(updater, [callback]) ```
 2. in functional based we can use ```useEffect``` for such requirement
 
+## useReducer
+1. useReducer is a hook introduced in React 16.8 & used as an alternative to ```useState```
+2. It is used for managing state in a more predictable and structured way, especially when the state logic is complex.
+
+```JS
+const [state, dispatch] = useReducer(reducer, initialState);
+```
+  - **reducer**: A function that takes the current state and an action as arguments. It defines how state should change based on different action types and returns the new state.
+  - **initialState**: The initial state value, which can be any type (e.g., object, array, etc.).
+  - **state**: The current state.
+  - **dispatch**: A function that you call to dispatch actions that will be handled by the reducer.
+
 
 
 
