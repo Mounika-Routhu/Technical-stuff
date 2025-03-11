@@ -317,6 +317,7 @@ setCount(prevCount => prevCount + 1);  // Increment state based on previous stat
 ## useReducer
 1. useReducer is a hook introduced in React 16.8 & used as an alternative to ```useState```
 2. It is used for managing state in a more predictable and structured way, especially when the state logic is complex.
+3. It allows you to manage state in a way similar to Redux, where state transitions are handled by dispatching actions to a reducer function. A reducer function takes the current state and an action, and returns a new state.
 
 ```JS
 const [state, dispatch] = useReducer(reducer, initialState);
@@ -357,6 +358,17 @@ function Counter() {
 
 export default Counter;
 ```
+
+**When to Use ```useReducer``` vs ```useState```:**
+Use ```useState``` when:
+- You have simple state logic that doesn’t require multiple state updates based on previous states.
+- The state is simple (e.g., a boolean, string, number) and doesn’t need complex transitions.
+  
+Use ```useReducer``` when:
+- Your state logic is more complex, and you need to handle multiple different actions to update state.
+- You need to perform state updates based on the previous state.
+- You have complex interactions or need to manage a state object with multiple properties.
+- You want a more predictable, centralized way of managing state transitions (similar to how state is managed in Redux).
 
 
 
