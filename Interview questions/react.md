@@ -252,7 +252,7 @@ const MyComponent = React.memo((props) => {
 });
 ```
 - **When to use:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
-- eg: a component receives a list to display in a certain way no user interaction read-only purpose
+- eg: a component receives a list as a prop to display in a certain way, no user interaction, read-only purpose
 
 ## useState - setState - access prev state
   1. ```set[State](updater);```
