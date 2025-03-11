@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children }) => {
 export default ThemeContext;
 ```
 
-## App.js
+**App.js**
 ```
 import React from 'react';
 import { ThemeProvider } from './ThemeContext';
@@ -109,4 +109,9 @@ const Content = () => {
 
 export default Content;
 ```
+
+**Summary:**
+1. `ThemeContext`: Provides the theme and a toggle function.
+2. `ThemeProvider`: Wraps the app to provide the theme context to all child components.
+3. `useContext(ThemeContext)`: Consumed in components to apply theme-specific styles.
 
