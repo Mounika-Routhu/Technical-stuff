@@ -323,6 +323,17 @@ setCount(prevCount => prevCount + 1);  // Increment state based on previous stat
 const [state, dispatch] = useReducer(reducer, initialState);
 ```
   - **reducer**: A function that takes the current state and an action as arguments. It defines how state should change based on different action types and returns the new state.
+    - just like in redux, we can pass multiple aruguments to action. Standard format is
+      - type: A constant to identify which logic to run
+      - payload: optional arguments used for state updation logic. Obj & primitive Eg: {name: ,age:} / 5
+        ```js
+        const action = {
+  type: 'SET_USER',  // The action type
+  payload: { name: 'John', age: 30 }  // The data to be used by the reducer
+  // name : 'John'
+  // age: 5
+};
+```
   - **initialState**: The initial state value, which can be any type (e.g., object, array, etc.).
   - **state**: The current state.
   - **dispatch**: A function that you call to dispatch actions that will be handled by the reducer.
