@@ -400,6 +400,10 @@ Use ```useReducer``` when:
 - You want a more predictable, centralized way of managing state transitions (similar to how state is managed in Redux).
 
 
+## Is `type` required in `useReducer` and `Redux`?
+
+1. **In `useReducer`** : **`type` is not strictly required** by the API, but it is a **common convention** and **recommended** for predictable state management.
+2. **In `Redux`** : **`type` is required** in every action. `type` is a core part of Redux and tells the reducer what action is being performed and how to update the state.
 
 
 
