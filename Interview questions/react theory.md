@@ -328,11 +328,11 @@ const [state, dispatch] = useReducer(reducer, initialState);
       - payload: optional arguments used for state updation logic. Obj & primitive Eg: {name: ,age:} / 5
         ```js
         const action = {
-  type: 'SET_USER',  // The action type
-  payload: { name: 'John', age: 30 }  // The data to be used by the reducer
-  // name : 'John'
-  // age: 5
-};
+          type: 'SET_USER',  // The action type
+          payload: { name: 'John', age: 30 }  // The data to be used by the reducer
+          // name : 'John'
+          // age: 5
+        };
 ```
   - **initialState**: The initial state value, which can be any type (e.g., object, array, etc.).
   - **state**: The current state.
