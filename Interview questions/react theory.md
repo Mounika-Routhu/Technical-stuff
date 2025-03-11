@@ -333,7 +333,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
           // name : 'John'
           // age: 5
         };
-```
+        ```
   - **initialState**: The initial state value, which can be any type (e.g., object, array, etc.).
   - **state**: The current state.
   - **dispatch**: A function that you call to dispatch actions that will be handled by the reducer.
