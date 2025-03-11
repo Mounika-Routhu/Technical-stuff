@@ -487,8 +487,12 @@ const Users = () => {
 };
 
 export default Users;
-
 ```
+
+**How re-render trigger with custom hook?**
+1. When you use a custom hook inside a component, React will track the state or values that the custom hook returns.
+2. If the state inside the custom hook changes (for example, via a setState or dispatch call), it will trigger a rerender of the component using that hook.
+   
 **Why Custom Hooks Instead of Regular Functions?** - To access to React’s State and Effects:
 
 **Custom Hooks vs Higher-Order Components (HOCs)**
