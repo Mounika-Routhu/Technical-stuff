@@ -327,6 +327,38 @@ const [state, dispatch] = useReducer(reducer, initialState);
   - **dispatch**: A function that you call to dispatch actions that will be handled by the reducer.
 
 
+```JS
+import React, { useReducer } from 'react';
+
+// Reducer function
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+// Component using useReducer
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+
 
 
 
