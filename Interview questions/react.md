@@ -291,8 +291,8 @@ function App() {
 }
 
 export default App;
-
 ```
+Note: In above example, withAuth is used like a function that's why withAuth(lower case 'w') is valid.
 
 ## useState - setState - access prev state
   1. ```set[State](updater);```
