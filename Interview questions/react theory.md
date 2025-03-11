@@ -332,31 +332,48 @@ const [state, dispatch] = useReducer(reducer, initialState);
 import React, { useReducer } from 'react';
 
 // Reducer function
+import React, { useReducer } from 'react';
+
+// Initial state
+const initialState = {
+  count: 0,
+  user: { name: '', age: 0 }
+};
+
+// Reducer function
 function reducer(state, action) {
   switch (action.type) {
     case 'increment':
-      return { count: state.count + 1 };
+      return { ...state, count: state.count + 1 };
     case 'decrement':
-      return { count: state.count - 1 };
+      return { ...state, count: state.count - 1 };
+    case 'setName':
+      return { ...state, user: { ...state.user, name: action.name } };
+    case 'setAge':
+      return { ...state, user: { ...state.user, age: action.age } };
     default:
       return state;
   }
 }
 
-// Component using useReducer
-function Counter() {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
+// Component
+function UserProfile() {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div>
       <p>Count: {state.count}</p>
+      <p>Name: {state.user.name}</p>
+      <p>Age: {state.user.age}</p>
       <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
       <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+      <button onClick={() => dispatch({ type: 'setName', name: 'John' })}>Set Name to John</button>
+      <button onClick={() => dispatch({ type: 'setAge', age: 30 })}>Set Age to 30</button>
     </div>
   );
 }
 
-export default Counter;
+export default UserProfile;
 ```
 
 **When to Use ```useReducer``` vs ```useState```:**
