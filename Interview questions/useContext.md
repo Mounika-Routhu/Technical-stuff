@@ -100,7 +100,7 @@ const Content = () => {
   const { isDarkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`content ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+    <div className={['content', [isDarkMode ? 'dark-mode' : 'light-mode']].join(' ')}>
       <p>This is some content.</p>
       <p>The current theme is {isDarkMode ? 'Dark' : 'Light'} Mode.</p>
     </div>
@@ -111,7 +111,22 @@ export default Content;
 ```
 
 **Summary:**
-1. `ThemeContext`: Provides the theme and a toggle function.
-2. `ThemeProvider`: Wraps the app to provide the theme context to all child components.
+1. `ThemeContext`: context object created using `createContext`.
+2. `ThemeProvider`:
+   - component provides the theme and a toggle function & uses <ThemContext.Provider value={{ isDarkMode, toggleTheme }}> tag to wrap children in return
+   - Component wraps the app to provide the theme context to all child components.
 3. `useContext(ThemeContext)`: Consumed in components to apply theme-specific styles.
+    - Before `useContext <ThemeContext.Consumer>` is used to consume values
+
+  ```js
+  <ThemeContext.Consumer>
+      {({ isDarkMode }) => (
+        <div className={`content ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+          <p>This is some content.</p>
+          <p>The current theme is {isDarkMode ? 'Dark' : 'Light'} Mode.</p>
+        </div>
+      )}
+  ```
+
+**Note**: **createContext is not a hook**. It is a standard function to create context obj hence it can be called outside functional component unlike hooks. 
 
