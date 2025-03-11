@@ -407,7 +407,18 @@ Use ```useReducer``` when:
 
 ## `useContext` practical example - refer useContext.md file
 
-## built-in hooks vs Custom hooks
+## built-in hooks
+1. Hooks are built in functions which allow us to do as follows
+   - `useState`: manage state
+   - `useEffect`: perform side effects
+   - `useContext`: share data between components(avoid prop drilling)
+   - `useReducer`: predictive way to manage complex state
+   - `useCallback`, `useMemo`: optimize performance
+   - `useRef`: work with DOM elements(when no need re-rendering on change of values) 
+   - and many more.
+2. All built-in book have `use` prefix. It's react way of indenfying hooks & apply hook rules
+
+**What are hook rules?**
 
 
 
