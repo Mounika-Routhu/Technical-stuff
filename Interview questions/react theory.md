@@ -405,7 +405,9 @@ Use ```useReducer``` when:
 1. **In `useReducer`** : **`type` is not strictly required** by the API, but it is a **common convention** and **recommended** for predictable state management.
 2. **In `Redux`** : **`type` is required** in every action. `type` is a core part of Redux and tells the reducer what action is being performed and how to update the state.
 
+## `useContext` practical example - refer useContext.md file
 
+## built-in hooks vs Custom hooks
 
 
 
