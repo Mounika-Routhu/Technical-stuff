@@ -5,7 +5,7 @@
 2. In other words, HOFs deal with functions as first-class citizens, meaning they can accept them as arguments or return them as values.
 3. **What is first-class citizen?** In a given programming language design, a first-class citizen is an entity which supports all the operations generally available to other entities. These operations typically include being **passed as an argument, returned from a function, and assigned to a variable**
 4. Eg of HOF:
-  - Built in fuuncions in JS: map(), filter(), reduce(), forEach(). These methods work with arrays and accept callback functions, making them higher-order functions.
+  - Built in funcions in JS: map(), filter(), reduce(), forEach(). These methods work with arrays and accept callback functions, making them higher-order functions.
   - Currying, a function is return from parent function
   - Any custom function which accepts and/or return a function
 
