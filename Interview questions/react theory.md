@@ -257,7 +257,7 @@ const MyComponent = React.memo((props) => {
 ## HOC - higher order component
 - A HOC is a function that takes a **component as an argument and returns a new component**.
 - HOCs **don’t modify the original component** but create a **new enhanced version** of it.
-- They are used to **share logic between components** (e.g., adding authentication, loading spinner, data fetching, theming, etc.)
+- They are used to **share logic between components** (e.g., adding authentication, loading spinner, logging, data fetching, theming, etc.)
 
 ```JS
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
