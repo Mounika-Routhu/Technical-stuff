@@ -254,6 +254,46 @@ const MyComponent = React.memo((props) => {
 - **When to use:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
 - eg: a component receives a list as a prop to display in a certain way, no user interaction, read-only purpose
 
+## HOC - higher order component
+- A HOC is a function that takes a **component as an argument and returns a new component**.
+- HOCs **don’t modify the original component** but create a **new enhanced version** of it.
+- They are used to **share logic between components** (e.g., adding authentication, data fetching, theming, etc.)
+
+```JS
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
+```
+example:
+
+```JS
+import React from 'react';
+
+function withAuth(Component) {
+  return function AuthHOC(props) {
+    const isAuthenticated = false; // Simulating authentication logic
+
+    if (!isAuthenticated) {
+      return <div>Please log in to view this content.</div>;
+    }
+
+    return <Component {...props} />;
+  };
+}
+
+function Dashboard() {
+  return <div>Welcome to the dashboard!</div>;
+}
+
+const DashboardWithAuth = withAuth(Dashboard);
+
+// Usage
+function App() {
+  return <DashboardWithAuth />;
+}
+
+export default App;
+
+```
+
 ## useState - setState - access prev state
   1. ```set[State](updater);```
   2. **updater:** Can either be an object or a function.
