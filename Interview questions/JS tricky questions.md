@@ -30,6 +30,7 @@ if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates 
 ```
 o/p: '1 2 1,2,3,4'
 
+//accenture hackerrack test
 ```JS
 var greet = "hi";
 if(true){
@@ -42,6 +43,7 @@ o/p:
 "hellow"
 "hellow"
 
+//accenture hackerrack test
 ```JS
 var obj = {
     a : 1, b:2, c:3
@@ -53,6 +55,7 @@ console.log({...obj, obj2})
 ```
 o/p: ```{a:1, b:2, c:3, d:1, e:2, c:5}```
 
+//accenture hackerrack test
 ```js
 var employee = {
     name : "mounika"
