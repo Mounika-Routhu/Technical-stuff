@@ -34,4 +34,4 @@ export default function App() {
   return <myComponent team="red bull"><myComponent/>
 }
 ```
-**Error:** Uncaught SyntaxError: Adjacent JSX elements must be wrapped in an enclosing tag
+**Error:** SyntaxError: /App.js: **Unterminated JSX contents.**
