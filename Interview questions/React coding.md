@@ -19,3 +19,19 @@ ReactDom.render(<component/>, mountNode);
 ```
 
 **Error**: as only **1 top level element** is accepted
+
+## Guess the o/p
+
+```js
+import React, {useState} from "react"
+
+const myComponent = ({team = ""}) => {
+    const [teamMate, setTeamMate] = usestate(team)
+    return(<>{teamMate && teamMate}</>)
+}
+
+export default function App() {
+  return <myComponent team="red bull"><myComponent/>
+}
+```
+**Error:** Uncaught SyntaxError: Adjacent JSX elements must be wrapped in an enclosing tag
