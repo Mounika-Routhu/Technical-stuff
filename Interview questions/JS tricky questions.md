@@ -29,3 +29,25 @@ if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates 
 [1, [2], [1,2, [3,4]]].join(' ')
 ```
 o/p: '1 2 1,2,3,4'
+
+var greet = "hi";
+if(true){
+    var greet = "ghellow"
+    console.log(greet)
+}
+console.log(greet)
+//------
+var obj = {
+    a : 1, b:2, c:3
+}
+var obj2 = {
+    d : 1, e:2, c:5
+}
+console.log({...obj, obj2})
+//------
+var employee = {
+    name : "mounika"
+}
+var employee2 = employee
+employee2.name = "newName"
+console.log(employee, employee2 )
