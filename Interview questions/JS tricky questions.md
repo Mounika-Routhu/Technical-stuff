@@ -62,6 +62,6 @@ employee2.name = "newName"
 console.log(employee, employee2 )
 ```
 o/p: 
-```{ name : "newName"}
 { name : "newName"}
-```
+{ name : "newName"}
+
