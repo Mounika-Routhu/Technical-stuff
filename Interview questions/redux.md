@@ -123,15 +123,15 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     export default App;
     ```
 
-    - To access multiple values using `useSelector`:
-      ```js
-      // Access multiple values from the Redux store
-      const { counter, user, isLoggedIn } = useSelector(state => ({
-        counter: state.counter,
-        user: state.user,
-        isLoggedIn: state.isLoggedIn,
-      }));
-      ``` 
+  - To access multiple values using `useSelector`:
+    ```js
+    // Access multiple values from the Redux store
+    const { counter, user, isLoggedIn } = useSelector(state => ({
+      counter: state.counter,
+      user: state.user,
+      isLoggedIn: state.isLoggedIn,
+    }));
+    ``` 
 
 
     ```js
