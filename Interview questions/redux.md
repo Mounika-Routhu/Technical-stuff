@@ -216,6 +216,8 @@ what if I dont pass initial state as second arg, should I send undefined?
     ```
 
 ## Redux thunk - need to study
-
+**What is a middleware**
+1. In Redux, middleware refers to functions that provide a way to extend Redux's capabilities, enabling you to interact with the store's dispatch process. 
+2. Middleware sits between the dispatching of an action and the moment it reaches the reducer, allowing you to perform operations like logging, asynchronous actions (e.g., API calls), or modifying actions before they reach the reducer.
 
 
