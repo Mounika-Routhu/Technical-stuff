@@ -16,6 +16,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
+**Need to write more on this** like what is need? what is concurrent mode etc
+
 ## Server-Side Rendering & Search Engine Optimization
 **What is SSR (Server-Side Rendering)**
 SSR is a technique where web pages are rendered on the server and sent as fully rendered HTML to the browser, improving initial page load and SEO.
