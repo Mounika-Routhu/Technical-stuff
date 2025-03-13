@@ -92,8 +92,13 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     );
     ```
 4. **connect Redux to React**: There are two main ways to connect Redux to your components: using `connect` (older method) or using the modern hooks (`useSelector` and `useDispatch`).
-  - `useSelector` allows you to **read data** from the Redux store.
-  - `useDispatch` allows you to **dispatch actions** to the store.
+  - `useSelector`:
+    - allows you to **read data** from the Redux store.
+    - This hook takes a function as an argument, which maps the Redux state to the component's props.
+    - In this case, `state => state.counter` is extracting the counter value from the state.
+  - `useDispatch`
+     - allows you to **dispatch actions** to the store.
+     - This hook provides the dispatch function that allows you to send actions to the Redux store (like `INCREMENT` and `DECREMENT`).
 
     **App.js**
     ```js
