@@ -92,6 +92,46 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     );
     ```
 4. **connect Redux to React**: There are two main ways to connect Redux to your components: using `connect` (older method) or using the modern hooks (`useSelector` and `useDispatch`).
+  - `useSelector` allows you to **read data** from the Redux store.
+  - `useDispatch` allows you to **dispatch actions** to the store.
+
+    **App.js**
+    ```js
+    import React from 'react';
+    import { useSelector, useDispatch } from 'react-redux';
+    
+    const App = () => {
+      // Use useSelector to read from the Redux store
+      const counter = useSelector(state => state.counter);
+    
+      // Use useDispatch to dispatch actions
+      const dispatch = useDispatch();
+      
+      // Action handlers
+      const increment = () => dispatch({ type: 'INCREMENT' });
+      const decrement = () => dispatch({ type: 'DECREMENT' });
+    
+      return (
+        <div>
+          <h1>Counter: {counter}</h1>
+          <button onClick={increment}>Increment</button>
+          <button onClick={decrement}>Decrement</button>
+        </div>
+      );
+    };
+    
+    export default App;
+    ```
+
+    - To access multiple values using `useSelector`:
+      ```js
+      // Access multiple values from the Redux store
+      const { counter, user, isLoggedIn } = useSelector(state => ({
+        counter: state.counter,
+        user: state.user,
+        isLoggedIn: state.isLoggedIn,
+      }));
+      ``` 
 
 
     ```js
