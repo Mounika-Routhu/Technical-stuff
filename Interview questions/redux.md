@@ -48,6 +48,8 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 
     ```js
     const store = createStore(reducer, [preloadedState], [enhancer]);
+
+    const store = createStore(rootReducer, initialState, applyMiddleWare(thunk))
     ```
     
     **Store.js**
@@ -76,7 +78,8 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     
     export default store;
     ```
-  - will talk about optional `[preloadedState], [enhancer]` arguments later
+what if I dont pass initial state as second arg, should I send undefined?
+
 3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store.
     
     **Index.js**
