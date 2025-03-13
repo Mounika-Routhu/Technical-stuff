@@ -34,15 +34,15 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 2. Create the **Store** with **Reducer**
 
   - **Store:**
-  - The central repository where your application state is stored.
-  - You can only have one store in a Redux application.
+    - The central repository where your application state is stored.
+    - You can only have one store in a Redux application.
 
   - **Reducer:**
-  - A reducer is a **pure function** that determines how the state of the application changes in response to an **action**.
-  - **Why Reducer is pure function?** To make the application more predictable & avoid unexpected behaviour
-  - **Action**: A plain JS object with type
-    - **type**: This key is required in every action object and describes what type of action has occurred. Eg: `INCREMENT`
-    - **payload**: This key is optional and holds additional data that is necessary to perform the action, such as values that should update the state.
+    - A reducer is a **pure function** that determines how the state of the application changes in response to an **action**.
+    - **Why Reducer is pure function?** To make the application more predictable & avoid unexpected behaviour
+    - **Action**: A plain JS object with type
+      - **type**: This key is required in every action object and describes what type of action has occurred. Eg: `INCREMENT`
+      - **payload**: This key is optional and holds additional data that is necessary to perform the action, such as values that should update the state.
    
     Note: you can use different names instead of type and payload. However, using type and payload is the common practice and is recommended for consistency.
 
