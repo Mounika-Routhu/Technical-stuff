@@ -37,8 +37,12 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 
   **Reducer:**
   - A reducer is a **pure function** that determines how the state of the application changes in response to an **action**.
-  - Why Reducer is pure function? To make the application more predictable & avoid unexpected behaviour
+  - **Why Reducer is pure function?** To make the application more predictable & avoid unexpected behaviour
   - **Action**: A plain JS object with type
+    - **type**: This key is required in every action object and describes what type of action has occurred. Eg: `INCREMENT`
+    - **payload**: This key is optional and holds additional data that is necessary to perform the action, such as values that should update the state.
+   
+    Note: you can use different names instead of type and payload. However, using type and payload is the common practice and is recommended for consistency.
 
     ```js
     const store = createStore(reducer, [preloadedState], [enhancer]);
@@ -47,24 +51,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     **Store.js**
     ```js
     import { createStore } from 'redux';
-    import todoReducer from './todoReducer';
     
-    
-    // Create Redux store
-    const store = createStore(todoReducer);
-    
-    export default store;
-    ```
-  - will talk about optional `[preloadedState], [enhancer]` arguments later
-3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store.
-    
-    **Index.js**
-    ```js
-    import { Provider } from 'react-redux';
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import store from './store.js';
-
     // Initial state
     const initialState = {
       counter: 0,
@@ -81,7 +68,22 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
           return state;
       }
     };
+
+    // Create Redux store
+    const store = createStore(counterReducer);
     
+    export default store;
+    ```
+  - will talk about optional `[preloadedState], [enhancer]` arguments later
+3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store.
+    
+    **Index.js**
+    ```js
+    import { Provider } from 'react-redux';
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import store from './store.js';
+
     ReactDOM.render(
       <Provider store={store}>
         <App />
