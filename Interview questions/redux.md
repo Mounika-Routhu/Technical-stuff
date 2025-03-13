@@ -41,12 +41,17 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     **Store.js**
     ```js
     import { createStore } from 'redux';
+    import todoReducer from './todoReducer';
+    
+    
+    // Create Redux store
     const store = createStore(todoReducer);
-
+    
     export default store;
     ```
   - will talk about optional `[preloadedState], [enhancer]` arguments later
-3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store .
+3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store.
+    
     **Index.js**
     ```js
     import { Provider } from 'react-redux';
@@ -63,7 +68,22 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     ```
 4. 
 
-    
 
+    ```js
+import { createStore, combineReducers } from 'redux';
+import todoReducer from './todoReducer';
+
+// Combine reducers
+const rootReducer = combineReducers({
+  todos: todoReducer,
+});
+
+// Create Redux store
+const store = createStore(rootReducer);
+
+export default store;
+    ```
+    combineReducers
+  - if we have multiple reducers then we can combine them & send to store using `combineReducers
 
 
