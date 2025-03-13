@@ -91,7 +91,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
       document.getElementById('root')
     );
     ```
-4. **connect Redux to React**: we can either use the older `connect` method from `react-redux` or the newer, more modern `useSelector` and `useDispatch` hooks.
+4. **connect Redux to React**: There are two main ways to connect Redux to your components: using `connect` (older method) or using the modern hooks (`useSelector` and `useDispatch`).
 
 
     ```js
