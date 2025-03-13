@@ -33,13 +33,30 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 2. Create the **Store**
   - The central repository where your application state is stored.
   - You can only have one store in a Redux application.
-    `js
+
+    ```js
+    const store = createStore(reducer, [preloadedState], [enhancer]);
+    ```
+    
+    
+    ```js
     import { createStore } from 'redux';
+    const store = createStore(todoReducer);
+    ```
+  - will talk about optional `[preloadedState], [enhancer]` arguments later
+3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React.
+    ```js
+import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const store = createStore(todoReducer);
-
-
-    `
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+    ```
 
     
 
