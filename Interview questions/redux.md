@@ -13,7 +13,7 @@ Better solution for complex application is **REDUX**
 2. It helps manage the application state in a predictable way, making it easier to understand and debug. 
 3. It is based on the Flux architecture, but it simplifies many parts of it.
 
-Flux architecture : It was developed by Facebook to address some challenges in handling complex data flows within web apps. But it's not widely used as this is more complex
+**Flux architecture** : It was developed by Facebook to address some challenges in handling complex data flows within web apps. But it's not widely used as this is **more complex**
 
 **Why Use Redux?**
 1. **Predictable state:** The state is centralized and follows clear rules.
@@ -45,18 +45,18 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     ```
   - will talk about optional `[preloadedState], [enhancer]` arguments later
 3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React.
-```js
-import { Provider } from 'react-redux';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
-```
+    ```js
+    import { Provider } from 'react-redux';
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    
+    ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.getElementById('root')
+    );
+    ```
 
     
 
