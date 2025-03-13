@@ -1,3 +1,21 @@
+## React.createRoot
+ReactDOM.createRoot is part of the new API in React 18, designed to enable features like Concurrent Rendering, which allows React to work on multiple tasks simultaneously without blocking the main thread.
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Use `react-dom/client` instead of `react-dom`
+
+const App = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+// Create a root using the new API
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Render the application
+root.render(<App />);
+```
+
 ## Server-Side Rendering & Search Engine Optimization
 **What is SSR (Server-Side Rendering)**
 SSR is a technique where web pages are rendered on the server and sent as fully rendered HTML to the browser, improving initial page load and SEO.
