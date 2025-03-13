@@ -38,17 +38,21 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     const store = createStore(reducer, [preloadedState], [enhancer]);
     ```
     
-    
+    **Store.js**
     ```js
     import { createStore } from 'redux';
     const store = createStore(todoReducer);
+
+    export default store;
     ```
   - will talk about optional `[preloadedState], [enhancer]` arguments later
-3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React.
+3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store .
+    **Index.js**
     ```js
     import { Provider } from 'react-redux';
     import React from 'react';
     import ReactDOM from 'react-dom';
+    import store from './store.js'
     
     ReactDOM.render(
       <Provider store={store}>
@@ -57,6 +61,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
       document.getElementById('root')
     );
     ```
+4. 
 
     
 
