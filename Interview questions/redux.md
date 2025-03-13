@@ -144,22 +144,64 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     connect(mapStateToProps, mapDispatchToProps)(App);
     ```
 
-
-    ```js
-    import { createStore, combineReducers } from 'redux';
-    import todoReducer from './todoReducer';
+5. **Creating Action Creators (Optional)**
+   You can also create action creators for dispatching actions(type+payload) in a more structured way.
+   **actions.js**
+   ```js
+    export const increment = () => {
+      return { type: 'INCREMENT' };
+    };
     
-    // Combine reducers
+    export const decrement = () => {
+      return { type: 'DECREMENT' };
+    };
+   ```
+  Then, use the action creators in your component:
+  **App.js**
+  ```js
+  import React from 'react';
+  import { useSelector, useDispatch } from 'react-redux';
+  import { increment, decrement } from './actions'; // Import action creators
+  
+  const App = () => {
+    const counter = useSelector(state => state.counter);
+    const dispatch = useDispatch();
+  
+    return (
+      <div>
+        <h1>Counter: {counter}</h1>
+        <button onClick={() => dispatch(increment())}>Increment</button>
+        <button onClick={() => dispatch(decrement())}>Decrement</button>
+      </div>
+    );
+  };
+  
+  export default App;
+  ```
+ 6. **Advanced: Combine Reducers (Optional)**
+    If you have multiple reducers, you can combine them using `combineReducers` from Redux.
+    **rootReducer.js**
+    ```js
+    import { combineReducers } from 'redux';
+    import counterReducer from './counterReducer'; // Your counter reducer
+    
     const rootReducer = combineReducers({
-      todos: todoReducer,
+      counter: counterReducer,
+      todo:  todoReducer //another reducer for a different functionality in application
     });
     
-    // Create Redux store
+    export default rootReducer;
+    ```
+    Then, update your store creation:
+    **store.js**
+    ```js
+    import { createStore } from 'redux';
+    import rootReducer from './rootReducer'; // Import the combined reducer
+    
     const store = createStore(rootReducer);
     
     export default store;
     ```
-    combineReducers
-  - if we have multiple reducers then we can combine them & send to store using `combineReducers
+
 
 
