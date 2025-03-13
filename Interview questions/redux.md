@@ -149,6 +149,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 5. **Creating Action Types Constants & Action Creators (Optional)**
    - **Action Types Constants:** Action Types Constants are **predefined constants** (e.g., `ADD_TODO`) that **represent action types** in Redux. They **prevent typos** and **centralize action type management** for **easier maintenance**.
    - **Action Creators:** Action Creators are **functions** that return **action objects** to be dispatched to the Redux store. They **simplify the process of creating actions** and ensure **consistency** across the app.
+     
      **actionTypes.js**
      ```js
       export const INCREMENT = 'INCREMENT';
