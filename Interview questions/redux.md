@@ -136,7 +136,9 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
       user: state.user,
       isLoggedIn: state.isLoggedIn,
     }));
-    ``` 
+    ```
+  - Earlier we used `connect` a HOC along with `mapStateToProps` & `mapDispatchToProps`. With introduction of hooks **React-Redux 7.1.0**
+    we are using hooks approach as it is simpler
 
 
     ```js
