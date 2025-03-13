@@ -30,7 +30,9 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 1. Install **Redux** and **React-Redux**: If you’re using React, you’ll need react-redux as well.
   - **React-Redux**: A library that connects Redux with React applications. This will make integration of redux into react applications easy.
     `npm install redux react-redux`
+    
 2. Create the **Store** with **Reducer**
+
   **Store:**
   - The central repository where your application state is stored.
   - You can only have one store in a Redux application.
