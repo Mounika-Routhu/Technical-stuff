@@ -146,8 +146,9 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     connect(mapStateToProps, mapDispatchToProps)(App);
     ```
 
-5. **Creating Action Creators (Optional)**
-   You can also create action creators for dispatching actions(type+payload) in a more structured way.
+5. **Creating Action Types Constants & Action Creators (Optional)**
+   - **Action Types Constants:** Action Types Constants are **predefined constants** (e.g., `ADD_TODO`) that **represent action types** in Redux. They **prevent typos** and **centralize action type management** for **easier maintenance**.
+   - **Action Creators:** Action Creators are **functions** that return **action objects** to be dispatched to the Redux store. They **simplify the process of creating actions** and ensure **consistency** across the app.
      **actions.js**
      ```js
       export const increment = () => {
@@ -181,7 +182,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     
     export default App;
     ```
- 6. **Advanced: Combine Reducers (Optional)**
+ 7. **Advanced: Combine Reducers (Optional)**
     If you have multiple reducers, you can combine them using `combineReducers` from Redux.
     **rootReducer.js**
     ```js
