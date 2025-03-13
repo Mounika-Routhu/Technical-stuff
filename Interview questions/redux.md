@@ -30,9 +30,15 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 1. Install **Redux** and **React-Redux**: If you’re using React, you’ll need react-redux as well.
   - **React-Redux**: A library that connects Redux with React applications. This will make integration of redux into react applications easy.
     `npm install redux react-redux`
-2. Create the **Store**
+2. Create the **Store** with **Reducer**
+  **Store:**
   - The central repository where your application state is stored.
   - You can only have one store in a Redux application.
+
+  **Reducer:**
+  - A reducer is a **pure function** that determines how the state of the application changes in response to an **action**.
+  - Why Reducer is pure function? To make the application more predictable & avoid unexpected behaviour
+  - **Action**: A plain JS object with type
 
     ```js
     const store = createStore(reducer, [preloadedState], [enhancer]);
@@ -57,7 +63,24 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     import { Provider } from 'react-redux';
     import React from 'react';
     import ReactDOM from 'react-dom';
-    import store from './store.js'
+    import store from './store.js';
+
+    // Initial state
+    const initialState = {
+      counter: 0,
+    };
+    
+    // Reducer to handle the state changes
+    const counterReducer = (state = initialState, action) => {
+      switch (action.type) {
+        case 'INCREMENT':
+          return { counter: state.counter + 1 };
+        case 'DECREMENT':
+          return { counter: state.counter - 1 };
+        default:
+          return state;
+      }
+    };
     
     ReactDOM.render(
       <Provider store={store}>
@@ -66,22 +89,22 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
       document.getElementById('root')
     );
     ```
-4. 
+4. **connect Redux to React**: we can either use the older `connect` method from `react-redux` or the newer, more modern `useSelector` and `useDispatch` hooks.
 
 
     ```js
-import { createStore, combineReducers } from 'redux';
-import todoReducer from './todoReducer';
-
-// Combine reducers
-const rootReducer = combineReducers({
-  todos: todoReducer,
-});
-
-// Create Redux store
-const store = createStore(rootReducer);
-
-export default store;
+    import { createStore, combineReducers } from 'redux';
+    import todoReducer from './todoReducer';
+    
+    // Combine reducers
+    const rootReducer = combineReducers({
+      todos: todoReducer,
+    });
+    
+    // Create Redux store
+    const store = createStore(rootReducer);
+    
+    export default store;
     ```
     combineReducers
   - if we have multiple reducers then we can combine them & send to store using `combineReducers
