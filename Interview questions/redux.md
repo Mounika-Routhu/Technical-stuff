@@ -29,13 +29,17 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 **Core Concepts in Redux & How to implement it**
 1. Install **Redux** and **React-Redux**: If you’re using React, you’ll need react-redux as well.
   - **React-Redux**: A library that connects Redux with React applications. This will make integration of redux into react applications easy.
-    `bash
-    npm install redux react-redux
-    `
+    `npm install redux react-redux`
 2. Create the **Store**
   - The central repository where your application state is stored.
   - You can only have one store in a Redux application.
-  - 
+    `js
+    import { createStore } from 'redux';
+
+const store = createStore(todoReducer);
+
+
+    `
 
     
 
