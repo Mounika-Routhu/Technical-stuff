@@ -215,5 +215,7 @@ what if I dont pass initial state as second arg, should I send undefined?
     export default store;
     ```
 
+## Redux thunk - need to study
+
 
 
