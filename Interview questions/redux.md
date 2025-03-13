@@ -45,7 +45,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     ```
   - will talk about optional `[preloadedState], [enhancer]` arguments later
 3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React.
-    ```js
+```js
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -56,7 +56,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-    ```
+```
 
     
 
