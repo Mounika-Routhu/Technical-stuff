@@ -17,19 +17,19 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 ```
 ## Semantic elements vs Non-semantic elements
 1. Semantic elements describe both the **structure and meaning** of your content (like `<header>, <footer>, <article>`, etc.).
-   - it helps with SEO(search engines), accessibility(screen readers for visually challanged), and maintaining clear, understandable code(developers).
+- it helps with SEO(search engines), accessibility(screen readers for visually challanged), and maintaining clear, understandable code(developers).
     1. **`<header>`**: Contains introductory content or navigation.
     2. **`<footer>`**: Contains footer content, like copyright.
-    3. **`<article>`**: Represents a standalone piece of content.
+    3. **`<article>`**: Represents a standalone piece of content like blog post/new article.
     4. **`<section>`**: Groups related content into sections.
     5. **`<nav>`**: Contains navigation links.
     6. **`<aside>`**: Represents tangential content (e.g., sidebar).
     7. **`<main>`**: Contains the primary content of a page.
-    8. **`<mark>`**: Highlights important text.
+    8. **`<mark>`**: Highlights(bg yellow color) important text.
     9. **`<figure>`**: Contains media content with a caption.
     10. **`<figcaption>`**: Provides a caption for `<figure>`.
-3. Non-semantic elements are generic tags that **don’t give any clue** about the content they contain (like `<div>, <span>`).
-   - useful for certain structural purposes or when no semantic tag fits or not neccessary.
+2. Non-semantic elements are generic tags that **don’t give any clue** about the content they contain (like `<div>, <span>`).
+- useful for certain structural purposes or when no semantic tag fits or not neccessary.
 
 
 ## defer & async aatributes in script tag -accenture hackerrank test
