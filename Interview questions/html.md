@@ -90,10 +90,8 @@ body{
 @media (min-width: 1024px) {
   /* Styles for Desktops & laptops */
 }
-
 ```
-
-<img src="image.jpg" alt="Description of image"><img width="432" alt="Screenshot 2025-03-14 at 5 19 03 PM" src="https://github.com/user-attachments/assets/55408ff4-7ae1-4961-8789-5d5b5884f931" />
+<img width="409" alt="Screenshot 2025-03-14 at 5 27 39 PM" src="https://github.com/user-attachments/assets/10a856b4-5731-4129-8573-ee47fd95fb07" />
 
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
