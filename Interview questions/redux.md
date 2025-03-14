@@ -220,4 +220,43 @@ what if I dont pass initial state as second arg, should I send undefined?
 1. In Redux, middleware refers to functions that provide a way to extend Redux's capabilities, enabling you to interact with the store's dispatch process. 
 2. Middleware sits between the dispatching of an action and the moment it reaches the reducer, allowing you to perform operations like logging, asynchronous actions (e.g., API calls), or modifying actions before they reach the reducer.
 
+## How to add redux devtools for application?
 
+1. Install Redux DevTools Extension in the browser
+2. Install `redux-devtools-extension` in the project
+   `npm install redux-devtools-extension`
+3. Integrate Redux DevTools into Your Store: 2 ways
+   **First approach:**
+    ```JS
+    import { createStore } from 'redux';
+    import rootReducer from './reducers'; // Your root reducer
+    
+    const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // This line enables the DevTools
+    );
+    
+    export default store;
+    ```
+  - `window.__REDUX_DEVTOOLS_EXTENSION__`: It checks if the Redux DevTools Extension is installed in the browser.
+  - `window.__REDUX_DEVTOOLS_EXTENSION__()`: If installed, it enables the DevTools by calling its function(returns an enhancer function).
+  - This ensures your app works whether or not the DevTools are installed, **preventing crashes** if it's missing.
+
+    **2nd approach:** If you're using `configureStore` from `@reduxjs/toolkit`, it's even easier since it has built-in support for Redux DevTools:
+
+    ```javascript
+    Copy
+    import { configureStore } from '@reduxjs/toolkit';
+    import rootReducer from './reducers'; // Your root reducer
+    
+    const store = configureStore({
+      reducer: rootReducer,
+    });
+    
+    export default store;
+    ```
+    **`@reduxjs/toolkit`** (also known as RTK)
+    1. `npm install @reduxjs/toolkit`
+    2. is a package designed to make working with Redux easier, faster, and less error-prone by providing better defaults, simplifying common patterns, and reducing the need for boilerplate code.
+    3. `createStore`- gives support for middleware(no need to add manually),  `createSlice()` - for reducing boilerplate for creating actions & reducer etc. 
+    
