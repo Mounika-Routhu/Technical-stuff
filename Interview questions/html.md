@@ -34,6 +34,20 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 ## strong vs em vs mark vs i
 <img width="897" alt="Screenshot 2025-03-14 at 12 58 37 PM" src="https://github.com/user-attachments/assets/65c4bfd1-9b04-4a86-83f5-cc27cfde0242" />
 
+## New feature in HTML 5
+1. New Semantic Elements − These are like `<header>, <footer>, and <section>`.
+2. Forms 2.0 − Improvements to HTML web forms where new attributes have been introduced for <input> tag.
+   - New input types: `email, tel, url, number, date, range`, etc., which provide better validation and user input behavior . Also `Placeholder`,`Autofocus`, `Required`  
+3. Persistent Local Storage − To achieve without resorting to third-party plugins.
+WebSocket − A next-generation bidirectional communication technology for web applications.
+Server-Sent Events − HTML5 introduces events which flow from web server to the web browsers and they are called Server-Sent Events (SSE).
+Canvas − This supports a two-dimensional drawing surface that you can program with JavaScript.
+Audio & Video − You can embed audio or video on your webpages without resorting to third-party plugins.
+Geolocation − Now visitors can choose to share their physical location with your web application.
+Microdata − This lets you create your own vocabularies beyond HTML5 and extend your web pages with custom semantics.
+Drag and drop − Drag and drop the items from one location to another location on the same webpage.
+
+
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
 var script = document.createElement('script');
