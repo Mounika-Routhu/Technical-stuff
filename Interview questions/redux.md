@@ -258,5 +258,6 @@ what if I dont pass initial state as second arg, should I send undefined?
     **`@reduxjs/toolkit`** (also known as RTK)
     1. `npm install @reduxjs/toolkit`
     2. is a package designed to make working with Redux easier, faster, and less error-prone by providing better defaults, simplifying common patterns, and reducing the need for boilerplate code.
-    3. `createStore`- gives support for middleware(no need to add manually),  `createSlice()` - for reducing boilerplate for creating actions & reducer etc. 
+    3. `createStore`- gives support for middleware(no need to add manually),  `createSlice()` - for reducing boilerplate for creating actions & reducer etc.
+4. Open Redux DevTools in the Browser
     
