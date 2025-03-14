@@ -92,6 +92,7 @@ body{
 }
 ```
 <img width="409" alt="Screenshot 2025-03-14 at 5 27 39 PM" src="https://github.com/user-attachments/assets/10a856b4-5731-4129-8573-ee47fd95fb07" />
+
 ## Meta tag
 ```html
 <head>
@@ -102,6 +103,7 @@ body{
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 ```
+
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
 var script = document.createElement('script');
