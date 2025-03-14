@@ -66,6 +66,14 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 1. `localStorage, sessionStorage`(**only access with duplicated tab**), and `cookies` are all **domain and protocol-specific** by **default**. This is due to the **Same-Origin Policy(SOP)**,
 2. **SOP** which is a fundamental security feature in web browsers by **default** that restricts how documents or scripts from one origin can interact with resources from another origin.
 
+## why mobile first approach is considered good?
+1. **More people use mobile devices** to browse the internet than desktops. - **covering majority of users first**
+2. Google focuses on mobile versions of websites for ranking, so good for **SEO** => help your site **show up higher in search results**.
+3. Mobile devices usually have slower internet and less power, so designing for them makes your site faster and easier to use.
+4. Mobile-first makes sure your website looks good and works well on small screens.
+5. As screens get bigger, you can add extra features and styles to improve the experience for those users.
+6. It keeps your website simple and easy to maintain, focusing on mobile first and then expanding it.
+
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
 var script = document.createElement('script');
@@ -81,8 +89,6 @@ document.head.appendChild(script);
 | **Default**   | Blocks HTML parsing while downloading and executing the script. | When you need immediate execution, and order of script file excecution matters. |
 | **`async`**   | Downloads script asynchronously, executes immediately once ready (no blocking). | For independent scripts (e.g., analytics), execution order doesn’t matter. |
 | **`defer`**   | Downloads script asynchronously, executes after HTML is fully parsed (order is preserved). | For DOM-dependent scripts or when script execution order is important. |
-
-
 
 ## how to make div editable? - accenture hackerrack test
 ```html
