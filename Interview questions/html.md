@@ -63,7 +63,7 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 | **Performance**             | Faster, as data is stored and accessed client-side without network overhead | Potential overhead due to automatic sending with each request |
 
 **Note:**
-1. `localStorage, sessionStorage`, and `cookies` are all **domain and protocol-specific** by **default**. This is due to the **Same-Origin Policy(SOP)**,
+1. `localStorage, sessionStorage`(**only access with duplicated page**), and `cookies` are all **domain and protocol-specific** by **default**. This is due to the **Same-Origin Policy(SOP)**,
 2. **SOP** which is a fundamental security feature in web browsers by **default** that restricts how documents or scripts from one origin can interact with resources from another origin.
 
 ## defer & async aatributes in script tag -accenture hackerrank test
