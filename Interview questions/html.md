@@ -12,9 +12,9 @@ An element in HTML is a fundamental building block of a webpage. It consists of 
 ```
 Some elements are self-closing and don't require an end tag, like the `<input>`, `<img>` tag:
 ```html
-<img src="image.jpg" alt="Description of image">
 <input type="text/>
 ```
+
 ## Semantic elements vs Non-semantic elements
 1. Semantic elements describe both the **structure and meaning** of your content (like `<header>, <footer>, <article>`, etc.).
 - it helps with SEO(search engines), accessibility(screen readers for visually challanged), and maintaining clear, understandable code(developers).
@@ -73,6 +73,27 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 4. Mobile-first makes sure your website looks good and works well on small screens.
 5. As screens get bigger, you can add extra features and styles to improve the experience for those users.
 6. It keeps your website simple and easy to maintain, focusing on mobile first and then expanding it.
+
+## Standard media queries
+```css
+/* Mobile devices (portrait) default */
+body{
+ /* Styles for small screens (e.g., mobile devices) */
+}
+
+/* Tablets (portrait and small screens) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Styles for tablets & small laptops*/
+}
+
+/* Desktops & laptops */
+@media (min-width: 1024px) {
+  /* Styles for Desktops & laptops */
+}
+
+```
+
+<img src="image.jpg" alt="Description of image"><img width="432" alt="Screenshot 2025-03-14 at 5 19 03 PM" src="https://github.com/user-attachments/assets/55408ff4-7ae1-4961-8789-5d5b5884f931" />
 
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
