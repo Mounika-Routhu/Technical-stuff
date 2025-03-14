@@ -103,6 +103,7 @@ body{
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 ```
+**Need of charset** : when you access a website on the World Wide Web, the content (like text, images, etc.) is stored on web servers in machine code (binary data) and transmitted to your browser over the internet. However, the machine code itself is not typically readable by humans, so the web server uses a character encoding system (like UTF-8) to convert this binary data into human-readable text.
 
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
