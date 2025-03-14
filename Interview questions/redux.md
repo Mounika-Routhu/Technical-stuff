@@ -260,4 +260,8 @@ what if I dont pass initial state as second arg, should I send undefined?
     2. is a package designed to make working with Redux easier, faster, and less error-prone by providing better defaults, simplifying common patterns, and reducing the need for boilerplate code.
     3. `createStore`- gives support for middleware(no need to add manually),  `createSlice()` - for reducing boilerplate for creating actions & reducer etc.
 4. Open Redux DevTools in the Browser
+
+## alternatives for redux
+1. For smaller or simpler apps, **Context API** or **Zustand** might suffice.
+2. For more complex apps, **Recoil**, **MobX**, or **XState** could be better fits, while **Redux** and **Redux Toolkit** remain robust solutions for larger, more structured applications.
     
