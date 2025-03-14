@@ -53,11 +53,11 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 |----------------------------|----------------------------------------------------------|---------------------------------------------------------|
 | **Storage Size**            | Typically **5-10 MB** per origin(10 MB for microsoft edge) | Limited to **~4 KB** per cookie                         |
 | **Automatic Transmission**  | **No** - Data is not sent automatically with HTTP requests | **Yes** - Sent automatically with every HTTP request to the server(can be restricted) |
-| **Persistence**             | **localStorage**: Persistent across sessions; **sessionStorage**: Cleared when the tab/browser is closed | Can be persistent (until expiration) or session-based |
+| **Expiration**              | **localStorage**: No expiration;<br>**sessionStorage**: Clears when session ends(browser/tab closes),  | Expiration is managed manually with `expires` or `max-age` attributes. If not provided deleted when session ends(broser/tab closes) |
+| **Persistence**             | **localStorage**: persits page load, same origin tab can access;<br>**sessionStorage**: **don't** persits page load, same origin tab **can't** access | persits page load, same origin tab can access data |
 | **Ease of Use**             | Simple API (`setItem()`, `getItem()`, `removeItem()`)    | More complex, requires managing expiration and flags  `document.cookie = "username=john_doe; domain=example.com";`  |
 | **Data Type**               | Suitable for larger data (objects, arrays, strings)      | Typically used for small, key-value data (session IDs, preferences) |
 | **Security**                | Vulnerable to **XSS** (JavaScript can access stored data) | Vulnerable to **XSS** (but can be made secure with flags like `HttpOnly`, `Secure`, `SameSite`) |
-| **Expiration**              | **localStorage**: No expiration, persits page load, same origin tab can access;<br> **sessionStorage**: Clears when session ends, **don't** persits page load, same origin tab **can't** access | Expiration is managed manually with `expires` or `max-age` attributes. persits page load, same origin tab can access data but subjected to expire |
 | **Usage in SPAs**           | Well-suited for **Single-Page Applications (SPAs)** to manage state between pages | Less suited for SPAs due to automatic transmission on every request |
 | **Data Storage Location**   | **Client-Side** | Stored both client-side and server-side (if sent with requests) |
 | **Performance**             | Faster, as data is stored and accessed client-side without network overhead | Potential overhead due to automatic sending with each request |
