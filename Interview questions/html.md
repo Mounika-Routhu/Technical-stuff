@@ -1,5 +1,5 @@
 ## HTML : HyperText Markup Language
-1. is a **language** used to structure and display text and other media on the web, where text can be linked to other content(**hypertext** i.e hyperlink, and its structure is defined by **markup** tags.
+is a **language** used to structure and display text and other media on the web, where text can be linked to other content(**hypertext** i.e hyperlink, and its structure is defined by **markup** tags.
 
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
