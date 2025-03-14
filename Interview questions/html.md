@@ -31,6 +31,8 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 2. Non-semantic elements are generic tags that **don’t give any clue** about the content they contain (like `<div>, <span>`).
 - useful for certain structural purposes or when no semantic tag fits or not neccessary.
 
+## strong vs em vs mark vs i
+<img width="897" alt="Screenshot 2025-03-14 at 12 58 37 PM" src="https://github.com/user-attachments/assets/65c4bfd1-9b04-4a86-83f5-cc27cfde0242" />
 
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
