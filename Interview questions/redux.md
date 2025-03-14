@@ -78,7 +78,9 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     
     export default store;
     ```
-what if I dont pass initial state as second arg, should I send undefined?
+  **what if I dont pass initial state as second arg, should I send undefined?**
+  1. You don't need to pass `undefined` explicitly. Sets to `undefined` implicitely & takes whatever value set in reducer initial state
+  2. Even if you pass undefined as 2nd arg it's **still valid but unneccessary**.
 
 3. **Provider Setup**: Wrap your React application in a Provider component to allow Redux to work with React & pass store.
     
