@@ -47,6 +47,21 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 9. **Microdata** − This lets you create your own vocabularies beyond HTML5 and extend your web pages with custom semantics. - **for better SEO**
 10. **Drag and drop** − Drag and drop the items from one location to another location on the same webpage.
 
+# Comparison Summary: **localStorage / sessionStorage** vs. **Cookies**
+
+| **Feature**                | **localStorage / sessionStorage**                        | **Cookies**                                              |
+|----------------------------|----------------------------------------------------------|---------------------------------------------------------|
+| **Storage Size**            | Typically **5-10 MB** per origin(10 MB for microsoft edge) | Limited to **~4 KB** per cookie                         |
+| **Automatic Transmission**  | **No** - Data is not sent automatically with HTTP requests | **Yes** - Sent automatically with every HTTP request to the server(can be restricted) |
+| **Persistence**             | **localStorage**: Persistent across sessions; **sessionStorage**: Cleared when the tab/browser is closed | Can be persistent (until expiration) or session-based |
+| **Ease of Use**             | Simple API (`setItem()`, `getItem()`, `removeItem()`)    | More complex, requires managing expiration and flags  document.cookie = "username=john_doe; domain=example.com";  |
+| **Data Type**               | Suitable for larger data (objects, arrays, strings)      | Typically used for small, key-value data (session IDs, preferences) |
+| **Security**                | Vulnerable to **XSS** (JavaScript can access stored data) | Vulnerable to **XSS** (but can be made secure with flags like `HttpOnly`, `Secure`, `SameSite`) |
+| **Expiration**              | **localStorage**: No expiration; **sessionStorage**: Clears when session ends | Expiration is managed manually with `expires` or `max-age` attributes |
+| **Usage in SPAs**           | Well-suited for **Single-Page Applications (SPAs)** to manage state between pages | Less suited for SPAs due to automatic transmission on every request |
+| **Data Storage Location**   | **Client-Side** only, persists across page reloads (for **localStorage**) | Stored both client-side and server-side (if sent with requests) |
+| **Performance**             | Faster, as data is stored and accessed client-side without network overhead | Potential overhead due to automatic sending with each request |
+
 
 ## defer & async aatributes in script tag -accenture hackerrank test
 ```js
