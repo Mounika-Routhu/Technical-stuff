@@ -13,6 +13,11 @@ They enable you to package **HTML, CSS, and JavaScript together** into **self-co
 2. It’s useful for creating encapsulated components that **won’t be affected by the rest of the page**, or viceversa.
 3. DOM elements inside the Shadow DOM are **hidden** from the main page’s DOM, **preventing direct access** from the outside (unless the Shadow DOM is set to **open mode**).
 
+**uses:**
+1. Resuable, Isolated
+2. clean code
+3. no style conflicts
+
 **index.html**
 ```html
 <!DOCTYPE html>
