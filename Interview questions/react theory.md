@@ -544,3 +544,5 @@ const App = () => {
 
 ## Localization (L10n)
 Localization, or L10n, is the process of adapting software to a specific language, culture, or region. This involves translating software into a local language, adapting it to local customs, and modifying it to comply with local laws, regulations, and standards. The goal of localization is to make software feel natural and relevant to users in a particular region.
+
+same **react-i18next** library can be used to localize
