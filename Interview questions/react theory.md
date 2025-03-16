@@ -542,6 +542,13 @@ const App = () => {
 };
 ```
 
+this packages uses combination of factors to determine which language to select like 
+**Browser Language:** The language set in the browser's settings.
+**Cookie**: A cookie named i18nextLng that stores the user's preferred language.
+**Query Parameter**: A query parameter named lng in the URL.
+**Navigator Language:** The language set in the navigator object (e.g., navigator.language).
+**Fall back lang**
+
 How to handle language change through code
 ```js
 import { useTranslation } from 'react-i18next';
