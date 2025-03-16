@@ -525,3 +525,22 @@ export default Users;
 | **Prop Drilling & composition**     | No need for prop drilling                | May result in prop drilling across layers when more than 1 HOC used                   |
 | **Testability**       | Easier to test in isolation   | Testing can be more complex due to component wrapping        |
 
+## internationalization (i18n) 
+Internationalization, or i18n, is the process of designing software that can be adapted to different languages and cultures. Using external libraries we can easily translate and adapted for global markets.
+
+**using react-i18next library**
+```js
+import { useTranslation } from 'react-i18next';
+const App = () => {
+  const { t } = useTranslation();
+  return (
+    <div>
+      <h1>{t('helloWorld')}</h1>
+      <p>{t('welcomeMessage', { name: 'John' })}</p>
+    </div>
+  );
+};
+```
+
+## Localization (L10n)
+Localization, or L10n, is the process of adapting software to a specific language, culture, or region. This involves translating software into a local language, adapting it to local customs, and modifying it to comply with local laws, regulations, and standards. The goal of localization is to make software feel natural and relevant to users in a particular region.
