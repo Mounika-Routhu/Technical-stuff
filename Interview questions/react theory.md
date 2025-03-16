@@ -542,6 +542,27 @@ const App = () => {
 };
 ```
 
+How to handle language change through code
+```js
+import { useTranslation } from 'react-i18next';
+
+function MyComponent() {
+  const { t, i18n } = useTranslation();
+
+  // Change the language to Spanish
+  const handleLanguageChange = () => {
+    i18n.changeLanguage('es');
+  };
+
+  return (
+    <div>
+      <button onClick={handleLanguageChange}>Change to Spanish</button>
+      <p>{t('hello')}</p>
+    </div>
+  );
+}
+```
+
 ## Localization (L10n)
 Localization, or L10n, is the process of adapting software to a specific language, culture, or region. This involves translating software into a local language, adapting it to local customs, and modifying it to comply with local laws, regulations, and standards. The goal of localization is to make software feel natural and relevant to users in a particular region.
 
