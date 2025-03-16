@@ -546,3 +546,19 @@ const App = () => {
 Localization, or L10n, is the process of adapting software to a specific language, culture, or region. This involves translating software into a local language, adapting it to local customs, and modifying it to comply with local laws, regulations, and standards. The goal of localization is to make software feel natural and relevant to users in a particular region.
 
 same **react-i18next** library can be used to localize
+
+## How React supports accessibiliy
+Accessibility in digital applications refers to the design and development of products that can be used by people with disabilities, like visual. So it's imp to follow some standard to make screen readers work efficiently
+
+**How React Achieves Accessibility**
+1. **Semantic HTML:** Use semantic HTML elements to provide meaning to the structure of your content.
+2. **ARIA attributes:** Add ARIA(**Accessible Rich Internet Applications**) to dynamic content to make it accessible to screen readers like `aria-label, aria-role, aria-pressed, aria-selected` etc.
+3. **Focus management:** Manage focus states to ensure keyboard navigation works correctly.
+4. **Accessibility props:** Use props like `alt, role` to provide accessibility information.
+5. **Good contrast ratio of colors**
+
+**To test accessibility of an app**
+1. Go to developer tool & go to lighthouse
+2. check fot accessibility audit & get report
+3. check screen readers to play
+   
