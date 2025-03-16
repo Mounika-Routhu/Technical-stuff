@@ -230,7 +230,11 @@ Also, when hook not used, expensiveValue will get computed on every render
 - This issue arises when we don't use dependency array properly & pass unnecssary values to it.
 - Meaning, when I'm using React.memo & using this calllback function as prop & gave [count] then child component will render everytime on change of count. This will make React.memo **useless**
 - here we don't need count to be added as a dependency
-- Including count in the dependency array of useCallback can make sense when the function needs to **update its behavior** based on the updated count value.
+- Including count in the dependency array of useCallback can make sense when the function needs to **update its behavior** based on the updated count value. explain in below note
+
+**VV IMP Note**:
+  > when we use `setCount(count+1)` then [count] needed  if not this takes count as 0(initial value) always
+  > only when you use `setCount(prev => prev+1)` count in [count] is not needed bcz prevState always fetches prev state value
 
 ```javascript
 // Child component using React.memo to prevent unnecessary re-renders
