@@ -18,4 +18,4 @@ while working on these project I have developed strong foundation in skills like
 
 **Future Prospects**
 
-I'm excited to leverage my expertise and experience in future projects, continuing to learn and grow as a professional. This brief overview would give a glimpse into my experience, career journey & tech stack so far.
+I'm excited to leverage my expertise and experience in future projects, continuing to learn and grow as a professional. This is the brief overview about my experience, career journey & tech stack so far.
