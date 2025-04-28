@@ -63,11 +63,11 @@ The JavaScript engine (like Chrome's V8 engine) starts reading and analyzing the
    1. It may interpret the code directly, or
    2. It may compile parts of it into bytecode for faster execution (this is where JIT - Just-In-Time Compilation happens).
 4. **Event Loop (if there’s asynchronous code)**
- 1. If your JavaScript has things like setTimeout, fetch, or event listeners, the engine uses the Event Loop to manage these tasks.
- 2. The event loop makes sure asynchronous tasks (like waiting for data to load) don’t block the rest of the code from running.
+   1. If your JavaScript has things like setTimeout, fetch, or event listeners, the engine uses the Event Loop to manage these tasks.
+   2. The event loop makes sure asynchronous tasks (like waiting for data to load) don’t block the rest of the code from running.
 5. **Execution Environment**
- 1. Each JavaScript file is executed in a global execution context (for the entire file), and for each function, a local execution context is created.
- 2. Variables and functions are stored in memory as they are executed.
+   1. Each JavaScript file is executed in a global execution context (for the entire file), and for each function, a local execution context is created.
+   2. Variables and functions are stored in memory as they are executed.
 
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
