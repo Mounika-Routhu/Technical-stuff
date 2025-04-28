@@ -57,6 +57,7 @@ For example:
    The browser reads this line and loads the script.js file into memory.
 2. **Parsing the Code**
    The JavaScript engine (like Chrome's V8 engine) starts reading and analyzing the JavaScript code line-by-line. It creates an Abstract Syntax Tree (AST), which is like a blueprint of how the code is structured
+   
    **parse**: By def, anlayse & convert into a strctured way
 4. **Executing the Code**
    Once the code is parsed, the engine executes it:
