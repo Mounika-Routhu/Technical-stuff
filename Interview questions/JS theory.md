@@ -49,10 +49,25 @@ For example:
 6. **Reuse Optimized Code**: Optimized code is stored to avoid recompilation in future executions.
 
 ### Execution of a JS file
-1. Loading JS file : When you open a webpage, the browser loads the HTML and any linked JavaScript files. For example:
-   `HTML <script src="script.js"></script>`
-
-
+1. **Loading JS file**
+   When you open a webpage, the browser loads the HTML and any linked JavaScript files. For example:
+   ```HTML
+   <script src="script.js"></script>
+   ```
+   The browser reads this line and loads the script.js file into memory.
+2. **Parsing the Code**
+The JavaScript engine (like Chrome's V8 engine) starts reading and analyzing the JavaScript code line-by-line. It creates an Abstract Syntax Tree (AST), which is like a blueprint of how the code is structured
+**parse**: By def, anlayse & convert into a strctured way
+3. **Executing the Code**
+   Once the code is parsed, the engine executes it:
+   1. It may interpret the code directly, or
+   2. It may compile parts of it into bytecode for faster execution (this is where JIT - Just-In-Time Compilation happens).
+4. **Event Loop (if there’s asynchronous code)**
+ 1. If your JavaScript has things like setTimeout, fetch, or event listeners, the engine uses the Event Loop to manage these tasks.
+ 2. The event loop makes sure asynchronous tasks (like waiting for data to load) don’t block the rest of the code from running.
+5. **Execution Environment**
+ 1. Each JavaScript file is executed in a global execution context (for the entire file), and for each function, a local execution context is created.
+ 2. Variables and functions are stored in memory as they are executed.
 
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
