@@ -5,8 +5,10 @@
 4. Original Name: Initially, the language was called **Mocha**, then it was briefly named **LiveScript**, and finally, it was renamed to **JavaScript** as a marketing strategy to capitalize on the popularity of Java at the time (though the two languages are very different).
 5. **high-level:** closer to human languages (like English) than to machine code. Developer friendly - to write & read
 6. **interpreted**: not compiled beforehand but rather interpreted(executed) line-by-line at runtime by the JS engine (e.g., V8 in Chrome, SpiderMonkey in Firefox).
-7. **Dynamic**: don’t need to declare the type of a variable when you create it. The type is determined at runtime - flexible can be restricted with const
-8. **Loosely Coupled**: Loosely coupled refers to a design principle where different parts of code are independent of each other, changes made in one part of the system won't heavily affect other parts, making it more flexible, maintainable, and easier to update.
+8. **Dynamic**: don’t need to declare the type of a variable when you create it. The type is determined at runtime - flexible can be restricted with const
+9. A **scripting language** is a programming language designed for automating tasks and controlling software, typically executed by an interpreter rather than being compiled.
+10. JavaScript (JS) is considered a scripting language, as it is primarily used for automating tasks, manipulating web pages, and controlling web browsers, and it is executed by an interpreter (the browser) rather than being compiled.
+11. **Loosely Coupled**: Loosely coupled refers to a design principle where different parts of code are independent of each other, changes made in one part of the system won't heavily affect other parts, making it more flexible, maintainable, and easier to update.
 
 ```JS
 const button = document.querySelector('button');
@@ -32,8 +34,22 @@ button.addEventListener('click', () => {
 1. The button not only triggers an alert but also changes the text in a specific element (.message). If the .message element changes, you’ll have to modify this code.
 2. The button and the message element are tightly bound together in this example.
 
+**compilation** By definition it is the process of transforming a program written in a high-level programming language (like C, Java, or Python) into machine code or bytecode that a computer can understand and execute.
+For example:
+1. In C, you might write hello.c. The compiler turns this into a hello.exe or equivalent file that you can run.
+2. In Java, the compiler creates bytecode (.class files) that are then run on the Java Virtual Machine (JVM).
 
-### Execution
+
+### complilation in JS & JIT
+1. Compilation in JS happens differentsly modren VS engines uses both compilation & interpretation for optimazation
+2. **Just-In-Time (JIT)** compilation doesn't typically compile the entire page all at once. Instead, it compiles code incrementally as needed.
+3. **Initial Interpretation**: Code is interpreted first, running directly without immediate compilation into machine code.
+4. **Hot Spot Detection**: The JIT compiler identifies frequently executed code (hot spots) for optimization like loops or frequently executed functions.
+5. **Compilation on Demand**: The JIT compiler compiles hot spots into optimized machine code just before execution.
+6. **Reuse Optimized Code**: Optimized code is stored to avoid recompilation in future executions.
+
+### Execution of a JS file
+
 
 
 
