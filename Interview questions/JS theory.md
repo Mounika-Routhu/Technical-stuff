@@ -63,6 +63,7 @@ For example:
    Once the code is parsed, the engine executes it:
    1. It may interpret the code directly, or
    2. It may compile parts of it into bytecode for faster execution (this is where JIT - Just-In-Time Compilation happens).
+   3. Excecuted in Browser(front end) & Node.js is a JavaScript runtime environment (backend) it uses same V8 engine.
 5. **Event Loop (if there’s asynchronous code)**
    1. If your JavaScript has things like setTimeout, fetch, or event listeners, the engine uses the Event Loop to manage these tasks.
    2. The event loop makes sure asynchronous tasks (like waiting for data to load) don’t block the rest of the code from running.
