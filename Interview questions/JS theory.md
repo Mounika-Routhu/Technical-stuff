@@ -49,7 +49,8 @@ For example:
 6. **Reuse Optimized Code**: Optimized code is stored to avoid recompilation in future executions.
 
 ### Execution of a JS file
-
+1. Loading JS file : When you open a webpage, the browser loads the HTML and any linked JavaScript files. For example:
+   `HTML <script src="script.js"></script>`
 
 
 
