@@ -1,3 +1,42 @@
+## INTRO to JS
+1. JavaScript (often abbreviated as JS) is a high-level, interpreted programming language that was created to enable dynamic interaction on websites.
+2. Year of Introduction: JavaScript was introduced in **1995**.
+3. Creator: It was created by **Brendan Eich**, a programmer at **Netscape Communications Corporation.**
+4. Original Name: Initially, the language was called **Mocha**, then it was briefly named **LiveScript**, and finally, it was renamed to **JavaScript** as a marketing strategy to capitalize on the popularity of Java at the time (though the two languages are very different).
+5. **high-level:** closer to human languages (like English) than to machine code. Developer friendly - to write & read
+6. **interpreted**: not compiled beforehand but rather interpreted(executed) line-by-line at runtime by the JS engine (e.g., V8 in Chrome, SpiderMonkey in Firefox).
+7. **Dynamic**: don’t need to declare the type of a variable when you create it. The type is determined at runtime - flexible can be restricted with const
+8. **Loosely Coupled**: Loosely coupled refers to a design principle where different parts of code are independent of each other, changes made in one part of the system won't heavily affect other parts, making it more flexible, maintainable, and easier to update.
+
+```JS
+const button = document.querySelector('button');
+
+// The function to be triggered when the button is clicked
+const showAlert = () => alert('Button clicked!');
+
+// The button is loosely coupled to the function, it just knows to trigger showAlert when clicked
+// button doesn't care(doesn't know) about the functionality of function showAlert
+button.addEventListener('click', showAlert);
+```
+ JS can be written as tightly coupled
+ ```JS
+ // Tightly coupled example
+const button = document.querySelector('button');
+const alertMessage = document.querySelector('.message');
+
+button.addEventListener('click', () => {
+    alertMessage.innerText = 'Button clicked!'; // Directly updates a specific part of the page
+    alert('Button clicked!');
+});
+```
+1. The button not only triggers an alert but also changes the text in a specific element (.message). If the .message element changes, you’ll have to modify this code.
+2. The button and the message element are tightly bound together in this example.
+
+
+### Execution
+
+
+
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
     - Take one or more **functions as arguments**, and/or
