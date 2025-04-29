@@ -15,7 +15,8 @@
 Imagine a cashier:
 1. Single-threaded = only one cashier open (one task at a time).
 2. Synchronous = each customer waits in line until the previous one is done.
-   JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
+
+JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
 
 ```JS
 const button = document.querySelector('button');
