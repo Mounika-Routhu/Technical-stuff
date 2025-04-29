@@ -8,8 +8,8 @@
 8. **Dynamic**: don’t need to declare the type of a variable when you create it. The type is determined at runtime - flexible can be restricted with const
 9. A **scripting language** is a programming language designed for automating tasks and controlling software, typically executed by an interpreter rather than being compiled.
    JavaScript (JS) is considered a scripting language, as it is primarily used for automating tasks, manipulating web pages, and controlling web browsers, and it is executed by an interpreter (the browser) rather than being compiled.
-12. **single threaded**: describes how JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
-13. **Synchronous**: describes when JavaScript runs code: Each line runs one after another, waiting for the previous to complete
+12. **single threaded**: describes **how** JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
+13. **Synchronous**: describes **when** JavaScript runs code: Each line runs one after another, waiting for the previous to complete
 
    Imagine a cashier:
    1. Single-threaded = only one cashier open (one task at a time).
