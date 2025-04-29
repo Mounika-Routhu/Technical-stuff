@@ -9,15 +9,13 @@
 9. A **scripting language** is a programming language designed for automating tasks and controlling software, typically executed by an interpreter rather than being compiled.
 10. JavaScript (JS) is considered a scripting language, as it is primarily used for automating tasks, manipulating web pages, and controlling web browsers, and it is executed by an interpreter (the browser) rather than being compiled.
 11. **Loosely Coupled**: Loosely coupled refers to a design principle where different parts of code are independent of each other, changes made in one part of the system won't heavily affect other parts, making it more flexible, maintainable, and easier to update.
-12. **single threaded**: describes how JavaScript runs code:
-There is only one thread, so only one piece of code runs at a time.
-13. Synchronous describes when JavaScript runs code:
-Each line runs one after another, waiting for the previous to complete
+12. **single threaded**: describes how JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
+13. **Synchronous**: describes when JavaScript runs code: Each line runs one after another, waiting for the previous to complete
 
 Imagine a cashier:
- Single-threaded = only one cashier open (one task at a time).
- Synchronous = each customer waits in line until the previous one is done.
- JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
+1. Single-threaded = only one cashier open (one task at a time).
+2. Synchronous = each customer waits in line until the previous one is done.
+   JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
 
 ```JS
 const button = document.querySelector('button');
