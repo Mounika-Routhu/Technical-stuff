@@ -31,8 +31,8 @@ button.addEventListener('click', () => {
     alert('Button clicked!');
 });
 ```
-1. The button not only triggers an alert but also changes the text in a specific element (.message). If the .message element changes, you’ll have to modify this code.
-2. The button and the message element are tightly bound together in this example.
+   1. The button not only triggers an alert but also changes the text in a specific element (.message). If the .message element changes, you’ll have to modify this code.
+   2. The button and the message element are tightly bound together in this example.
 
 12. **single threaded**: describes how JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
 13. **Synchronous**: describes when JavaScript runs code: Each line runs one after another, waiting for the previous to complete
