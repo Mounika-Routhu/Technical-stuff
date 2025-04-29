@@ -8,6 +8,14 @@
 8. **Dynamic**: don’t need to declare the type of a variable when you create it. The type is determined at runtime - flexible can be restricted with const
 9. A **scripting language** is a programming language designed for automating tasks and controlling software, typically executed by an interpreter rather than being compiled.
    JavaScript (JS) is considered a scripting language, as it is primarily used for automating tasks, manipulating web pages, and controlling web browsers, and it is executed by an interpreter (the browser) rather than being compiled.
+12. **single threaded**: describes how JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
+13. **Synchronous**: describes when JavaScript runs code: Each line runs one after another, waiting for the previous to complete
+
+Imagine a cashier:
+1. Single-threaded = only one cashier open (one task at a time).
+2. Synchronous = each customer waits in line until the previous one is done.
+
+JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
 11. **Loosely Coupled**: Loosely coupled refers to a design principle where different parts of code are independent of each other, changes made in one part of the system won't heavily affect other parts, making it more flexible, maintainable, and easier to update.
 
 ```JS
@@ -31,17 +39,8 @@ button.addEventListener('click', () => {
     alert('Button clicked!');
 });
 ```
-   1. The button not only triggers an alert but also changes the text in a specific element (.message). If the .message element changes, you’ll have to modify this code.
-   2. The button and the message element are tightly bound together in this example.
-
-12. **single threaded**: describes how JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
-13. **Synchronous**: describes when JavaScript runs code: Each line runs one after another, waiting for the previous to complete
-
-Imagine a cashier:
-1. Single-threaded = only one cashier open (one task at a time).
-2. Synchronous = each customer waits in line until the previous one is done.
-
-JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
+1. The button not only triggers an alert but also changes the text in a specific element (.message). If the .message element changes, you’ll have to modify this code.
+2. The button and the message element are tightly bound together in this example.
 
 **compilation** By definition it is the process of transforming a program written in a high-level programming language (like C, Java, or Python) into machine code or bytecode that a computer can understand and execute.
 For example:
