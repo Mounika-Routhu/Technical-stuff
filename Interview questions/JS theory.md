@@ -11,11 +11,12 @@
 12. **single threaded**: describes how JavaScript runs code: There is only one thread(single call stack), so only one piece of code runs at a time.
 13. **Synchronous**: describes when JavaScript runs code: Each line runs one after another, waiting for the previous to complete
 
-Imagine a cashier:
-1. Single-threaded = only one cashier open (one task at a time).
-2. Synchronous = each customer waits in line until the previous one is done.
+   Imagine a cashier:
+   1. Single-threaded = only one cashier open (one task at a time).
+   2. Synchronous = each customer waits in line until the previous one is done.
+   
+   JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
 
-JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
 11. **Loosely Coupled**: Loosely coupled refers to a design principle where different parts of code are independent of each other, changes made in one part of the system won't heavily affect other parts, making it more flexible, maintainable, and easier to update.
 
 ```JS
