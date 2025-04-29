@@ -15,9 +15,9 @@ There is only one thread, so only one piece of code runs at a time.
 Each line runs one after another, waiting for the previous to complete
 
 Imagine a cashier:
-Single-threaded = only one cashier open (one task at a time).
-Synchronous = each customer waits in line until the previous one is done.
-JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
+ Single-threaded = only one cashier open (one task at a time).
+ Synchronous = each customer waits in line until the previous one is done.
+ JavaScript is single-threaded by design, and it runs synchronously by default, but you can make it asynchronous with tools like `setTimeout`, `Promise`, or `async/await`.
 
 ```JS
 const button = document.querySelector('button');
