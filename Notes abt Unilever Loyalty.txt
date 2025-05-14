@@ -1,0 +1,7 @@
+Loyalty means an admin portal for business to business, B2B. Like allocating some points to retailers based on their purchase etc.
+
+there are 3 markets -Vietnam(Vn), philipines(PH), Thailand(TH)
+
+there are 2 business groups for TH & VH
+hpc: home and personal care
+ic: ice cream
