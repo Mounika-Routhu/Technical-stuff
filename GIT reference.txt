@@ -1,0 +1,506 @@
+https://classroom.udacity.com/courses/ud123 ==> Version Control with Git
+https://classroom.udacity.com/courses/ud1775 ==> How to use Git and GitHub
+https://github.com/github/training-kit/blob/master/downloads/github-git-cheat-sheet.pdf ==> cheat sheet
+===================install GIT===================================
+
+install exe file original page
+
+check for successful installation: git --version 
+
+===================First Time Git Configuration===================
+
+Before you can start using Git, you need to configure it. Run each of the following lines on the command line to make sure everything is set up.
+
+# sets up Git with your name
+git config --global user.name "<Your-Full-Name>"
+
+# sets up Git with your email
+git config --global user.email "<your-email-address>"
+
+note: name and email are used to display details for commits(who made what)
+
+# displays all config data
+git config --global --list 
+
+# displays config data of an entry
+git config --global <entry-name>
+
+# removes config data of an entry
+git config --global --unset <entry-name>
+
+# makes sure that Git output is colored
+git config --global color.ui auto
+
+# displays the original state in a conflict
+git config --global merge.conflictstyle diff3
+
+# assosiate VSCode with GIT
+git config --global core.editor "code --wait"
+
+======================GIT commands===========================
+
+working directory - same as normal directory on hard drive
+repo/repository - .git folder, which keep track of file, commit history
+
+git init - create a new, empty repository in the current directory. short form of initialize. This creates .git "repo"!(hidden) This is where git records all of the commits and keeps track of everything!
+
+note: running git init multiple times doesn't cause any problems since it just re-initializes the Git directory.
+
+---------------------------------------------------------
+
+git clone <url> - copy an existing repo from remote to local computer
+
+tip: no need to create any folder. be in parent directory and clone. It will automatically create a folder for repo. 
+Don't forget to cd into the project after you've cloned it.
+
+note: we can't clone a repo with no commits
+
+git clone <url> <alias-name> - for cloning repo with diff name
+git clone https://github.com/udacity/course-git-blog-project blog-project
+
+note: when you clone a repo, git automatically sets a remote as origin pointing to repo you have cloned from
+
+we can also download the git code as zip file but we won't get it as a git repo and no access to it's commit history
+
+if issues with SSL certification: type this in git bash ==> export GIT_SSL_NO_VERIFY=1
+
+------------------------------------------------------
+ 
+git status -  status of repo which branch, any pending commits
+
+tip: You should always run the git status command. Especially when returning to a project after a period of time.
+tip: after editing, If you run git status but don't see that <file> has changed, make sure to save the file.
+
+-------------------------------------------------------
+
+git log - displays all existing commits for current branch
+git log [branch]- displays all existing commits for branch
+
+⁕ By default, this command displays:
+the SHA
+the author
+the date
+and the message
+
+⁕ GIT uses "less" as its pager(terminal pager/command line pager program used to view (but not change) the contents of a text file one screen at a time. It is similar to more, but has the extended capability of allowing both forward and backward navigation through the file.)
+
+: indicates there is still content left to display.
+END indicates content ended
+
+Navigating The Log:
+
+to scroll down, press
+	j or ↓ to move down one line at a time
+	spacebar or the Page Down button - to scroll down by a page
+to scroll up, press
+	k or ↑ to move _up_ one line at a time
+	b or the Page Up button to scroll up by a page
+press q to quit out of the log (returns to the regular command prompt) 
+
+⁕ Flags can be used to alter how a program functions and/or what is displayed. 
+
+git log --oneline => lists one commit per line. i.e, short SHA(first 7 characters) and the commit message.
+
+tip: the below error often means simple spelling mistake
+fatal: unfound or unrecognized argument: --online
+
+git log --stat ==> short form of statistics
+
+This command:
+
+displays the file(s) that have been modified
+displays the number of lines that have been added/removed
+displays a summary line with the total number of modified files and lines that have been added/removed
+
+commit 50d835d7b53f46deb1365fe7598e0ea7011dbc3e
+Author: Richard Kalehoff <richardkalehoff@gmail.com>
+Date:   Mon Dec 5 10:39:19 2016 -0500
+
+    Add breakpoint for medium-sized screens
+
+ css/app.css | 16 ++++++++++++++++
+ index.html  | 33 ++++++++++++++++++---------------
+ 2 files changed, 34 insertions(+), 15 deletions(-)
+
+git log -p or git log --patch ==> to display the actual changes made to a file. The flag is --patch which can be shortened to just -p
+
+a/css/app.css ==> old version
+b/css/app.css ==> new/current version
+
+we can combine flags! git log -p --stat will display the stats info above the patch info. Actually, the order doesn't matter; git log --stat -p will also show the stats info above the patch info.
+
+==> git log -p fdf5493
+
+By supplying a SHA(7), the git log -p command will start at that commit! No need to scroll through everything! Keep in mind that it will also show all of the commits that were made prior to the supplied SHA.
+
+git log --oneline --graph <branch1> <branch2> ==> graph flags gives the tree structure of commits in branch1, 2
+
+git log -n[number] ==> n flag is for showing no. of commits number represents that(space after -n and number is optional)
+---------------------------------------------------------
+
+after merge all commits are sorted by timestamp, so if we do ggit diff btw two adjacent commits it might show more chnages than the actual chnages. this is bcz the adjacant commit might be from other branch since we merged branches. So, we have to use git show to .....
+git show <SHA(7 or above)> ==> it shows the diff btw itself and its pearent. meaning simply shows what are the chnages introduced in this exact commit
+
+What does git show do?
+The git show command will show only one commit. The output of the git show command is exactly the same as the git log -p command. So by default, git show displays:
+
+the commit
+the author
+the date
+the commit message
+the patch information
+
+However, git show can be combined with most of the other flags we've looked at:
+
+--stat - to show the how many files were changed and the number of lines that were added/removed
+-p or --patch - this the default, but if --stat is used, the patch won't display, so pass -p to add it again
+-w - to ignore changes to whitespace
+
+how to get details of log when we only know commit msg?
+Try using git log --oneline to find the SHA of the commit in question. Then pass the SHA to either git log --stat or git show --stat.
+
+---------------------------------------------------------
+
+what is the need of staging area?
+It is a good practise to make one commit per logical change. so will stage all files as per logical change and commit all at once instaed of making commit per file change. 
+
+staging area is a copy of most recent commit and we make chnages to it(adding other files to SA for next commit)
+
+git add <file1> <file2> … <fileN>- add files(new or modified) to staging index. this is staging, after this the files will be staged
+
+tip: we can add multiple files at same time by seperating files with space or 
+git add .(period)==> this add all files(including all nested files and directories!) in working directory to staging index
+
+we have some new files that we want Git to start tracking
+for Git to track a file, it needs to be committed to the repository
+for a file to be committed, it needs to be in the Staging Index
+the git add command is used to move files from the Working Directory to the Staging Index
+
+git rm --cached <file> -to remove new file from staging index. This is unstaging
+git restore --staged <file> - to remove modified or old file from staging index. this is unstaging
+--------------------------------------------------------
+
+git commit -m "Initial commit" - adding files from stating area to repo, m indicates message
+
+git commit -a -m "Initial commit" - command to stage tracked files and add the changes to your repository. a means all(-a or --all)
+
+-a -m is same as -am
+
+each commit should make a change to just one aspect of the project.
+
+Now this isn't limiting the number of lines of code that are added/removed or the number of files that are added/removed/modified. Let's say you want to change your sidebar to add a new image. You'll probably:
+
+add a new image to the project files
+alter the HTML
+add/modify CSS to incorporate the new image
+A commit that records all of these changes would be totally fine!
+
+--------------------------------------------------------
+udacity guide for commit msg : http://udacity.github.io/git-styleguide/
+
+it's git practise to say a msg as a command so we use "Add a recipe" not adding or added
+
+Commit message 
+
+Do
+
+do keep the message short (less than 60-ish characters)
+do explain what the commit does (not how or why!)
+
+Do not
+
+do not explain why the changes are made (more on this below)
+do not explain how the changes are made (that's what git log -p is for!)
+do not use the word "and"
+if you have to use "and", your commit message is probably doing too many changes - break the changes into separate commits
+e.g. "make the background color pink and increase the size of the sidebar"
+
+If you need to explain why a commit needs to be made, you can!
+
+When you're writing the commit message, the first line is the message itself. After the message, leave a blank line, and then type out the body or explanation including details about why the commit is needed
+
+This details section of a commit message _is_ included in the git log. 
+Only the message (the first line) is included in git log --oneline, though!
+------------------------------------------------------
+
+git diff has many purposes, used to see actual changes that have been made
+
+git diff - with no arguments, shows changes btw working directory(b, recent edited one)(if we chnage) and staging area(a, old one). so these changes aren't yet staged just edited and saved in WD. so this gives the changes in WD  
+
+git diff --staged ==> shows changes btw staging area(b, recent edited one) and recent commit(a, old one). so these changes aren't yet commited just staged to SA. so this gives the changes in SA.
+
+
+git diff <old-SHA> <new-SHA> - to Compare two commits.(gives changes(add+/del-) in newSHA compared to oldSHA)
+
+tip: remember that git diff always gives changes(add/del) in 2nd argument comapred to 1st arg. i.e if we want to see new chnages 2nd arg should be the recent edited file.
+
+note: if no chnages found, it display nothing
+
+note:git log -p uses git diff under the hood.
+
+-----------------------------------------------------------
+
+.gitignore - file is used to tell Git about the files that Git should not track. This file should be placed in the same directory that the .git directory is in.
+
+Globbing lets you use special characters to match patterns/characters. In the .gitignore file, you can use the following:
+
+blank lines can be used for spacing
+# - marks line as a comment
+* - matches 0 or more characters
+? - matches 1 character
+[abc] - matches a, b, _or_ c
+** - matches nested directories - a/**/z matches
+a/z
+a/b/z
+a/b/c/z
+So if all of the 50 images are JPEG images in the "samples" folder, we could add the following line to .gitignore to have Git ignore all 50 images.
+
+samples/*.jpg
+-----------------------------------------------------------
+
+git tag command is used to add a marker on a specific commit. The tag does not move around as new commits are added.
+
+$ git tag -a beta => add a tag to the most recent commit (opens tag message file in editor)
+$ git tag -a beta b552fa5 => add a tag to a specific commit if a SHA is passed (opens tag message file in editor)
+$ git tag -a beta -m "this is for initial commit" 0325655 => add a tag to a specific commit if a SHA is passed along with message
+
+a flag is for annoted ==> deatiled takes date message author also, so that's why tag messages is expected
+
+simply we can also use git tag <tag name> ==> , since message is not supplied here commit msg will be shown if we do git tag -n
+
+to view tags => 
+git log ==> it is show along with SHA or
+git tag -n ==> n flag is no. of lines(tag message)
+
+to delete:(beta is the tag name)
+$ git tag -d beta
+$ git tag --delete beta
+
+-----------------------------------------------------------
+
+Branch - new line of devlopment. an alternative for main branch(line of dev)
+by default, GIT given the main branch name as MASTER.
+
+HEAD - it a GIT version name for recent commit. it's a pointer points to the active branch.
+
+-----------------------------------------------------------
+
+The git branch command is used to interact with Git's branches:
+
+git branch ==> list all branch names in the repository
+git branch -a ==> list out both local and remote branches(a => all)
+tip:An asterisk will appear next to the name of the active branch.
+
+git branch <branch-name> ==> create new branch same as current branch
+git branch <branch-name> <SHA7> ==> creates a new branch at commit SHA
+tip: Remember that there are a number of branches in the repository, but that the command prompt displays the current branch.
+Even though you created the new branch, it's not the current branch just yet. We need to switch to it.
+if we create from VSCODE branch changes to new one automatically
+
+git branch -d <branch-name> ==>delete branches
+note: you can't delete a branch that you're currently on. So to delete the sidebar branch, you'd have to switch to either the master branch or create and switch to a new branch.
+
+Git won't let you delete a branch if it has commits on it that aren't on any other branch (meaning the commits which are unique to the branch, which we committed after creating branch). To force deletion, you need to use a capital D flag - git branch -D sidebar.
+This force deletion won't work if you are on the same branch
+-----------------------------------------------------------
+
+to switch between branches, we need to use Git's checkout command.
+
+$ git checkout <branch-name>
+
+git checkout command can actually create a new branch with -b flag, you can create a branch and switch to it all in one command.
+git checkout -b <branch-name>
+git checkout -b <branch-name> <branch-name1|tag-name|SHA> ==> creates a branch with all the commits as 2nd branch
+tip: <branch-name1|tag-name|SHA> ==> these are ebding points not starting points 
+
+Temporarily reset all files in a directory to their state at the time of a specific commit.
+git checkout will do this. It takes one argument - the commit ID to restore.
+to check in which commit bug was introduced we can use this or check with commit msgs(guess).
+
+---------------------------------------------------------------
+
+all branches at once in the git log output.
+
+$ git log --oneline --decorate --graph --all
+
+The --graph flag adds the bullets and lines to the leftmost part of the output. This shows the actual branching that's happening. 
+The --all flag is what displays all of the branches in the repository.
+
+---------------------------------------------------------------
+
+changes are all on their own, separate branches. Let's have Git combine these changes together. Combining branches together is called merging.
+two main types of merges in Git, a regular merge and a Fast-forward merge.
+
+It's very important to know which branch you're on when you're about to merge branches together.
+
+There are two types of merges:
+
+Fast-forward merge – the branch being merged in must be ahead of the checked out branch. The checked out branch's pointer will just be moved forward to point to the same commit as the other branch.
+
+tip: the criteria for a merge to be a ff merge is if the branch you are merging into is an ancestor of the branch you are merging from. 
+check whether commit a is reachable for commit b or not
+
+the regular type of merge
+two divergent branches are combined
+a merge commit is created(default merge commit message.)
+main reason for this extra commit is to keep track of all commits of other branch we are merging-in
+where in fast forward case, the 2 branches shares the same ancestor, and commits happend only one side. ie. either on remote or local but not both. so there is no unknown commits to keep track. so extra merge commit not required. 
+ 
+git merge <name-of-branch-to-merge-in>
+
+GIT vocablury:
+"I want to merge in the footer branch". 
+That "merge in" is important; when a merge is performed, the other branch's changes are brought into the branch that's currently checked out.
+
+--------------------------------------------------------------
+
+Merge Conflict
+A merge conflict happens when the same line or lines have been changed on different branches that are being merged. not a fast forward merge. Git will pause mid-merge telling you that there is a conflict and will tell you in what file or files the conflict occurred. To resolve the conflict in a file:
+
+locate and remove all lines with merge conflict indicators
+determine what to keep
+save the file(s)
+stage the file(s)
+make a commit
+Be careful that a file might have merge conflicts in multiple parts of the file, so make sure you check the entire file for merge conflict indicators - a quick search for <<< should help you locate all of them.
+
+Merge Conflict Indicators Explanation
+The editor has the following merge conflict indicators:
+
+<<<<<<< HEAD everything below this line (until the next indicator) shows you what's on the current branch
+||||||| merged common ancestors everything below this line (until the next indicator) shows you what the original lines were
+======= is the end of the original lines, everything that follows (until the next indicator) is what's on the branch that's being merged in
+>>>>>>> heading-update is the ending indicator of what's on the branch that's being merged in (in this case, the heading-update branch)
+
+-----------------------------------------------------------------
+
+$ git commit --amend -you can alter the most-recent commit.
+edit the file(s)(add new files or change existing files)
+save the file(s)
+stage the file(s)
+add msg(if needed)
+and run git commit --amend
+
+in VSCODE commit--> edit(add new files or change existing files), save, stage, add msg(if needed) => commit staged(amend)
+undo last commit ==> moves committed changes to the staging index === git reset --soft HEAD^
+-----------------------------------------------------------------
+
+the git revert command is used to reverse a previously made commit:
+
+$ git revert <SHA-of-commit-to-revert>
+
+This command:
+will undo the changes that were made by the provided commit(if lines deleted this adds and viceversa)
+creates a new commit to record the change ==> reverted "<commit msg of sha provided>"
+
+-------------------------------------------------------------------
+
+the git reset command is used erase commits:
+
+$ git reset <reference-to-commit>
+It can be used to:
+
+move the HEAD and current branch pointer to the referenced commit
+erase commits with the --hard flag
+moves committed changes to the staging index with the --soft flag
+unstages committed changes --mixed flag
+Typically, ancestry references are used to indicate previous commits. The ancestry references are:
+
+^ – indicates the parent commit
+~ – indicates the first parent commit
+
+eg: git reset --hard HEAD^ === completely erase last commit
+
+----------------------------------------------------------------------------
+--------------------------------------REMOTE--------------------------------
+
+git remote - list out all remote repos
+
+git remote add origin <url> - to add a remote repo. origin is remote name of repo we gave(we can give any name, origin preffered)
+
+git remote -v - list out more details about remote repos (v means verbose(meaning, expressed in more words than needed)
+
+-----------------------------------------------------------------------------
+
+git push <remote-to-send-changes> <local-branch-to-push> - to push changes to repo from local
+
+git push origin master
+git push ==> if only one remote origin and we are in appro branch
+-----------------------------------------------------------------------------
+
+git pull <remote-to-send-changes> <local-branch-to-push> - to take changes from repo and merge with local
+
+pull ==> fetch + merge
+
+git pull origin master
+ 
+git pull  ==> if only one remote origin and we are in appro branch
+------------------------------FORK-----------------------------------------------
+
+fork is purely a GitHub invention, creating new GitHub-hosted repositories out of existing GitHub-hosted repositories. Creating a forks should not involve any local repositories.
+
+After you ran git push, your change should have existed locally and on your fork. It should not have existed on Larry's repository, which is the repository you forked. The reason you forked in the first place is because you don't have permission to change Larry's repository!
+
+------------------------------GIT CLONE details about origin/master pointer-----------------------------------------------
+
+when we clone a repo from GitHub the last commit is pointer with origin/master in local.
+
+if we added a new commit in local on master, the previous commit is still pointed as origin/master. when we push chnages to repo. only then the latest commit gets the pointer origin/master.
+
+same happen when a new commit happens in remote, when we pull, only then the latest commit gets the pointer origin/master.
+
+origin/master doesn't get up to date with remote repo it's kind of remote branch in local which points the last commit taken from remote repo
+
+----------------------------------wonderful explanation abt fetch/merge/pull------------------------------------------
+
+https://classroom.udacity.com/courses/ud775/lessons/3105028581/concepts/33526188150923
+
+---------------------------------------------------------------------------------------------------------------------
+
+git fetch [remote_repo] [branch] ==> fetches all changes from remote repo to REFERENCES OF REMOTE BRANCH(origin/master) but doesn't merge it with local to current branch
+
+to view changes 
+git log [origin/master]
+git diff [origin/master] [master]
+
+------------------------merging seperate branch with master-------------------------------------------------------------------
+
+what to do when master is updated after we created a seperate branch?
+
+you need to pull changes into your local master branch, merge the local master into your branch (different-oil, in our case), then push your branch to the remote before finally merging your branch into master, either locally or on GitHub.
+
+----------------------------------------------HOW TO DEAL WITH BUG FIXING--------------------------------------------------------------------------------
+
+Temporarily reset all files in a directory to their state at the time of a specific commit.
+git checkout will do this. It takes one argument - the commit ID to restore.
+to check in which commit bug was introduced we can use this or check with commit msgs(guess).
+
+create new branch from buggy commit
+
+To find the lines introduced by the buggy commit, you can use git diff. You'll need the ID of the buggy commit, which you just found to be shaB. Then you'll need the ID of the previous commit, which will be the commit below it in git log. (That's because git log lists the most recent commit first.) That turns out to be shaA.
+
+Thus, by running git diff <shaA> <shaB>, you can find out that the lines changed by the buggy commit were
+
+fix bug, save, test, stage, commit, merge-in master with bug fix branch(resolve any conflicts), then make a pull req
+
+-----
+
+replicate the error....check whther the bug is actual there or not
+
+after confirmation, create a branch from devlop branch
+
+It's hard to find buggy commit so understand where can bug happen. resolve, commit, pull request
+
+--------------------------------------------------------------GIT garbage------------------------------------------------------------------------------
+
+If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with git gc.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+After mege commits will be sorted by timestamp.
+
+---------------------------------------------------------
+
+if we delete a branch "A" after merging into branch "B" that doesn't effect the commints(from barnch "A") which are merged into the "B".
+
+--------------------------------------------------------
