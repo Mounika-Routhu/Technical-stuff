@@ -1,3 +1,18 @@
+## currying for n elements
+```JS
+function add(a) {
+  let sum = a; // start with the first number
+
+  function inner(b) {
+    sum += b; // keep adding
+    return inner; // return itself to allow chaining
+  }
+
+  inner.end = () => sum; // a custom method to stop chaining and get the total
+
+  return inner;
+}
+```
 ## Group anagrams from given array 
 ```javascript
 const input = ["eat", "ate", "army", "mary", "hello", "tea"]
