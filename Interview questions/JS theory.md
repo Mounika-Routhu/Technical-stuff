@@ -178,7 +178,23 @@ if (!Object.assign) {
 2. You call static methods on the class or constructor, not on an object created from it.
 
 ## Class
-constructor function works fine, but it’s a bit old-school and verbose.
+1. constructor function works fine, but it’s a bit old-school and verbose.
+2. so, new class feature introduced in ES6. which is cleaner and easier to read & No need to touch .prototype — JavaScript handles it for you.
+
+```JS
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHello() {
+    console.log("Hi, I'm " + this.name);
+  }
+}
+
+const p1 = new Person("Alice");
+p1.sayHello();
+```
 
 
     
