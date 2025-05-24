@@ -206,9 +206,27 @@ Behind the scenes:
 ```JS
 console.log(typeof Person); // "function"
 console.log(p1.__proto__ === Person.prototype); // true
-console.log(Object.getOwnPropertyNames(Person.prototype)); 
-// ['constructor', 'sayHello']
+console.log(employee.prototype); // {}
+console.log(e1.__proto__); // {}
+console.log(Object.getOwnPropertyNames(Person.prototype)); // ['constructor', 'sayHello']
+```
+### Why are console.log(employee.prototype) and console.log(e1.__proto__) showing {} (an empty object)?
+1. JavaScript automatically marks class methods (like sayHello) as non-enumerable, meaning they don't show up in Object.keys() & in plain console.log(). But they still exist on the object!
+2. Use `Object.getOwnPropertyNames(employee.prototype)` or `console.dir(employee.prototype)`(in browser) to see full content
 
+<img width="430" alt="Screenshot 2025-05-24 at 7 58 30 PM" src="https://github.com/user-attachments/assets/4ebdc78d-e956-4b05-9d45-2551d565ad5c" />
+
+## intresting fact: All functions & classes will get length as a property by default
+```JS
+function test(a, b, c) {}
+console.log(test.length); // 3 → because function takes 3 parameters/args
 ```
 
-    
+```JS
+class Employee {
+  constructor(name) {
+    this.name = name;
+  }
+}
+console.log(Employee.length); // 1 → because constructor takes one parameter
+```
