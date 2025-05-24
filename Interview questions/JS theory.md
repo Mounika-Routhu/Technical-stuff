@@ -121,16 +121,14 @@ For example:
 ## Prototype
 1. A prototype is an object that defines properties and methods which other objects can inherit.
 2. It acts like a blueprint or template for objects created by a constructor function.
-3. NOTE: other than arrow function all functions defined with function keyword will get protype object property, it just that we often use it in the context of constructor function & new objects created by it
-
+3. NOTE: other than arrow function all functions defined with function keyword will get protype object property
+   
+constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
 ```JS
-//constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
+//constructor function
 function Person(name) {
   this.name = name;
 }
-
-const printSum = (x,y) => console.log(x+y);
-console.log(printSum.prototype); //undefined
 ```
 1. JavaScript automatically gives this function a special property called .prototype — which is an object.
 2. This .prototype object defines the properties and methods that all instances created by new Person() will share.
@@ -143,6 +141,11 @@ const user = new Person("Alice");
 3. `this` inside the function refers to that new object.
 
 <img width="1103" alt="Screenshot 2025-05-24 at 5 49 36 PM" src="https://github.com/user-attachments/assets/3cf234ab-aba1-4efc-b917-dfd5c653fd87" />
+
+```JS
+const printSum = (x,y) => console.log(x+y);
+console.log(printSum.prototype); //undefined
+```
 
 in chrome:
 <img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
