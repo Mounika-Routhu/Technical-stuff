@@ -120,7 +120,7 @@ For example:
 
 
 ## Polyfill
-1. A polyfill is a piece of JavaScript code that adds a missing feature to environments (like old browsers) that don’t support it natively.
+1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
 2. It lets developers use modern JS features while maintaining backward compatibility.
 3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
 
