@@ -124,6 +124,7 @@ For example:
 3. NOTE: other than arrow function all functions defined with function keyword will get protype object property, it just that we often use it in the context of constructor function & new objects created by it
 
 ```JS
+//constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
 function Person(name) {
   this.name = name;
 }
@@ -175,6 +176,9 @@ if (!Object.assign) {
 ```
 1. A static method is a method that belongs directly to the constructor function (or class) itself, not to instances created by it.
 2. You call static methods on the class or constructor, not on an object created from it.
+
+## Class
+constructor function works fine, but it’s a bit old-school and verbose.
 
 
     
