@@ -199,7 +199,7 @@ p1.sayHello();
 Even though you don’t see it, JavaScript still builds the same structure using prototypes:
 
 Behind the scenes:
-1. Person is still a constructor function.
+1. Person is still a constructor function & get prototype object as a default property.
 2. sayHello is placed on Person.prototype.
 3. Instances (p1) have an internal link to Person.prototype via [[prototype]](accessed using `__proto__`).
 
