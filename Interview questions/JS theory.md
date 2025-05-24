@@ -139,7 +139,8 @@ const user = new Person("Alice");
 3. `this` inside the function refers to that new object.
 
 <img width="1103" alt="Screenshot 2025-05-24 at 5 49 36 PM" src="https://github.com/user-attachments/assets/3cf234ab-aba1-4efc-b917-dfd5c653fd87" />
-in crome:
+
+in chrome:
 <img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
 
 ## Polyfill
