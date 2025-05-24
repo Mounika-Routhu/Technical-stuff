@@ -148,6 +148,8 @@ in chrome:
 2. It lets developers use modern JS features while maintaining backward compatibility.
 3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
 4. How to implement: You use feature detection: check if a method exists, and if not, define it.
+   
+For methods that instances use → polyfill goes on .prototype.
 ```JS
 if (!Array.prototype.includes) {
   Array.prototype.includes = function (searchElement, fromIndex) {
@@ -160,8 +162,15 @@ if (!Array.prototype.includes) {
     return false;
   };
 }
-
 ```
 
-
+For static methods → polyfill goes directly on the constructor (function) itself.
+```JS
+// Polyfill for Object.assign (a static method)
+if (!Object.assign) {
+  Object.assign = function(target, ...sources) {
+    // implementation here
+  };
+}
+```
     
