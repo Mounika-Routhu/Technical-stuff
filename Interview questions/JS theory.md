@@ -220,6 +220,9 @@ console.log(Object.getOwnPropertyNames(Person.prototype)); // ['constructor', 's
 ```JS
 function test(a, b, c) {}
 console.log(test.length); // 3 → because function takes 3 parameters/args
+
+const printSum = (x,y) => console.log(x+y)
+console.log(printSum.length); // 2 because function takes 2 parameters/args
 ```
 
 ```JS
