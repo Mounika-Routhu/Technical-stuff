@@ -137,7 +137,10 @@ const user = new Person("Alice");
 1. A new object is created.
 2. The new object’s internal [[Prototype]] (accessed using obj.__proto__) is set to Person.prototype.
 3. `this` inside the function refers to that new object.
+
 <img width="1103" alt="Screenshot 2025-05-24 at 5 49 36 PM" src="https://github.com/user-attachments/assets/3cf234ab-aba1-4efc-b917-dfd5c653fd87" />
+in crome:
+<img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
 
 ## Polyfill
 1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
