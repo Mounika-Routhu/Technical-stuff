@@ -253,7 +253,11 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
      return y;
  })(4)
 ```
-## functions are first class citizens & are objects in JS
+## Functions are objects in JS
+Functions in JavaScript behave just like data.
+That's why they're first-class citizens.
+
+## Functions are first class citizens
 
 ## Closures
 
