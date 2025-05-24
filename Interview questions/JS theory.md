@@ -118,6 +118,26 @@ For example:
 ## call, apply, bind
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
 
+## Prototype
+1. A prototype is an object that defines properties and methods which other objects can inherit.
+2. It acts like a blueprint or template for objects created by a constructor function.
+3. NOTE: other than arrow function all functions defined with function keyword will get protype object property, it just that we often use it in the context of constructor function & new objects created by it
+
+```JS
+function Person(name) {
+  this.name = name;
+}
+```
+1. JavaScript automatically gives this function a special property called .prototype — which is an object.
+2. This .prototype object defines the properties and methods that all instances created by new Person() will share.
+
+```JS
+const user = new Person("Alice");
+```
+1. A new object is created.
+2. The new object’s internal [[Prototype]] (accessed using obj.__proto__) is set to Person.prototype.
+3. `this` inside the function refers to that new object.
+<img width="1103" alt="Screenshot 2025-05-24 at 5 49 36 PM" src="https://github.com/user-attachments/assets/3cf234ab-aba1-4efc-b917-dfd5c653fd87" />
 
 ## Polyfill
 1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
