@@ -118,20 +118,26 @@ For example:
 ## call, apply, bind
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
 
-## Prototype
-1. A prototype is an object that defines properties and methods which other objects can inherit.
-2. It acts like a blueprint or template for objects created by a constructor function.
-3. NOTE: other than arrow function all functions defined with function keyword will get protype object property
-   
-constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
+## Prototype   
+1. When a function is created JS automatically add a property to it, call Prototype - an object
+2. A prototype is an object that defines properties and methods which other objects(all instances created by new keyword) can inherit.
+3. It acts like a blueprint or template for objects created by a constructor function.
+4. constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
+5. NOTE:
+   1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
+     <img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
+   2. arrow function will not get prototype object property
+      ```JS
+      const printSum = (x,y) => console.log(x+y)
+      console.log(printSum.prototype); // undefined
+      ```
+
 ```JS
 //constructor function
 function Person(name) {
   this.name = name;
 }
 ```
-1. JavaScript automatically gives this function a special property called .prototype — which is an object.
-2. This .prototype object defines the properties and methods that all instances created by new Person() will share.
 
 ```JS
 const user = new Person("Alice");
@@ -139,13 +145,8 @@ const user = new Person("Alice");
 1. A new object is created.
 2. The new object’s internal [[Prototype]] (accessed using `obj.__proto__`) is set to Person.prototype.
 3. `this` inside the function refers to that new object.
-
-<img width="1103" alt="Screenshot 2025-05-24 at 5 49 36 PM" src="https://github.com/user-attachments/assets/3cf234ab-aba1-4efc-b917-dfd5c653fd87" />
-
-```JS
-const printSum = (x,y) => console.log(x+y);
-console.log(printSum.prototype); //undefined
-```
+   
+<img width="1086" alt="Screenshot 2025-05-24 at 8 41 03 PM" src="https://github.com/user-attachments/assets/c705d498-0cb2-49da-b8b3-4b6dcc52575c" />
 
 in chrome:
 <img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
