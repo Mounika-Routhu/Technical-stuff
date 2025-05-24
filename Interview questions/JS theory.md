@@ -216,6 +216,9 @@ console.log(Object.getOwnPropertyNames(Person.prototype)); // ['constructor', 's
 
 <img width="430" alt="Screenshot 2025-05-24 at 7 58 30 PM" src="https://github.com/user-attachments/assets/4ebdc78d-e956-4b05-9d45-2551d565ad5c" />
 
+<img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/8ab0e000-09fb-40df-8ed6-28390dc3478f" />
+
+
 ## intresting fact: All functions & classes will get length as a property by default
 ```JS
 function test(a, b, c) {}
