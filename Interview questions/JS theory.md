@@ -135,7 +135,7 @@ function Person(name) {
 const user = new Person("Alice");
 ```
 1. A new object is created.
-2. The new object’s internal [[Prototype]] (accessed using obj.__proto__) is set to Person.prototype.
+2. The new object’s internal [[Prototype]] (accessed using obj.____proto____) is set to Person.prototype.
 3. `this` inside the function refers to that new object.
 
 <img width="1103" alt="Screenshot 2025-05-24 at 5 49 36 PM" src="https://github.com/user-attachments/assets/3cf234ab-aba1-4efc-b917-dfd5c653fd87" />
