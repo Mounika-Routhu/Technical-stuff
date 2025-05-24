@@ -253,6 +253,8 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
      return y;
  })(4)
 ```
+## functions are first class citizens & are objects in JS
+
 ## Closures
 
 ## Currying
