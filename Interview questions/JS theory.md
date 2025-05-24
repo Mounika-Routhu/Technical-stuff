@@ -123,5 +123,21 @@ For example:
 1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
 2. It lets developers use modern JS features while maintaining backward compatibility.
 3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
+4. How to implement: You use feature detection: check if a method exists, and if not, define it.
+```JS
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function (searchElement, fromIndex) {
+    const len = this.length;
+    let i = fromIndex || 0;
+    while (i < len) {
+      if (this[i] === searchElement) return true;
+      i++;
+    }
+    return false;
+  };
+}
+
+```
+
 
     
