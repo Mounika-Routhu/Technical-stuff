@@ -256,6 +256,15 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 ## Functions are objects in JS
 Functions in JavaScript behave just like data.
 That's why they're first-class citizens.
+In society, a first-class citizen is someone who enjoys full rights and privileges.
+
+In programming, a "first-class" entity means it has full privileges in the language.
+
+So, when we say functions are first-class citizens, we mean:
+
+They have all the rights and privileges that other core data types (like numbers, strings, objects) have.
+
+
 
 ## Functions are first class citizens
 
