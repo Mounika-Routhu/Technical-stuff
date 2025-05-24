@@ -253,3 +253,8 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
      return y;
  })(4)
 ```
+## Closures
+
+## Currying
+
+## micro fronend
