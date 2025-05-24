@@ -128,6 +128,9 @@ For example:
 function Person(name) {
   this.name = name;
 }
+
+const printSum = (x,y) => console.log(x+y);
+console.log(printSum.prototype); //undefined
 ```
 1. JavaScript automatically gives this function a special property called .prototype — which is an object.
 2. This .prototype object defines the properties and methods that all instances created by new Person() will share.
