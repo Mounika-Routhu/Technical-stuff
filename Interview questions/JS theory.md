@@ -105,7 +105,7 @@ For example:
     console.log(triple(5)); // Output: 15
     ```
 
-    ## this
+## this
     1. this in global => window in browser, global obj in node js
     2. in regular func => undefined in strict mode, window in non strict mode(this substituation, when this is null /undefined implicitly window obj is attached)
     3. in method invokation => obj.x() => this referes to the obj that the method is invoked on here "obj"
@@ -115,7 +115,13 @@ For example:
     7. in class based this.handler => this refers to class instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
 
 
-    ## call, apply, bind
+## call, apply, bind
     <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
+
+
+## Polyfill
+    1. A polyfill is a piece of JavaScript code that adds a missing feature to environments (like old browsers) that don’t support it natively.
+    2. It lets developers use modern JS features while maintaining backward compatibility.
+    3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
 
     
