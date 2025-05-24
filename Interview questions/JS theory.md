@@ -125,8 +125,9 @@ For example:
 4. constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
 5. NOTE:
    1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
-     <img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
+      <img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
    2. arrow function will not get prototype object property
+      
       ```JS
       const printSum = (x,y) => console.log(x+y)
       console.log(printSum.prototype); // undefined
