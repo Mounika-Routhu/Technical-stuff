@@ -1,5 +1,5 @@
 ## INTRO to JS
-1. JavaScript (often abbreviated as JS) is a high-level, interpreted programming language that was created to enable dynamic interaction on websites.
+1. JavaScript (often abbreviated as JS) is a high-level, interpreted programming language that was created to enable **dynamic interaction** on websites.
 2. Year of Introduction: JavaScript was introduced in **1995**.
 3. Creator: It was created by **Brendan Eich**, a programmer at **Netscape Communications Corporation.**
 4. Original Name: Initially, the language was called **Mocha**, then it was briefly named **LiveScript**, and finally, it was renamed to **JavaScript** as a marketing strategy to capitalize on the popularity of Java at the time (though the two languages are very different).
