@@ -173,4 +173,8 @@ if (!Object.assign) {
   };
 }
 ```
+1. A static method is a method that belongs directly to the constructor function (or class) itself, not to instances created by it.
+2. You call static methods on the class or constructor, not on an object created from it.
+
+
     
