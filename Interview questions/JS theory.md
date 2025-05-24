@@ -246,7 +246,7 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 ```
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
-2. function() -> JS will throw err, Function statements require a function name
+2. function() -> JS will throw err, `Function statements require a function name`
 
 ```JS
 (function(y){
