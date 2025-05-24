@@ -119,19 +119,10 @@ For example:
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
 
 ## Prototype   
-1. When a function is created JS automatically add a property to it, call Prototype - an object
+1. When a function(except arrow function) is created JS automatically add a property to it, call Prototype - an object
 2. A prototype is an object that defines properties and methods which other objects(all instances created by new keyword) can inherit.
 3. It acts like a blueprint or template for objects created by a constructor function.
 4. constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
-5. NOTE:
-   1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
-      <img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
-   2. arrow function will not get prototype object property
-      
-      ```JS
-      const printSum = (x,y) => console.log(x+y)
-      console.log(printSum.prototype); // undefined
-      ```
 
 ```JS
 //constructor function
@@ -151,6 +142,16 @@ const user = new Person("Alice");
 
 in chrome:
 <img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
+
+**NOTE:**
+1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
+<img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
+2. arrow function will not get prototype object property
+
+```JS
+const printSum = (x,y) => console.log(x+y)
+console.log(printSum.prototype); // undefined
+```
 
 ## Polyfill
 1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
