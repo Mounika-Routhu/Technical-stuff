@@ -472,7 +472,30 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
  })(4)
 ```
 
-## mutation observer
+## Mutation observer
+1. A JavaScript API that watches for changes in the DOM (like element additions, removals, or attribute updates) and triggers a callback asynchronously.
+2. Earlier, developers used Older DOM mutation events like DOMNodeInserted, DOMSubtreeModified to track DOM changes
+3. But, They fired synchronously and too frequently, even for small changes, causing performance issues, main-thread blocking, and browser inconsistencies — leading to deprecation.
+4. MO is more efficient bcz it batches multiple changes & runs once per event loop tick.
+5. means MO waits until the current JS call stack finishes(synchronous), groups all changes together — e.g., multiple appendChild() calls trigger a single callback with all mutations, then runs the callback once asynchronously via the microtask queue per 1 event loop cycle(synchronous call stack -> micro stask queue -> macro task queue).
+6. It also allows control over what to observe — all these features making it lightweight and performant.
+
+```JS
+const targetElement = document.getElementById('box');
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach(mutation => console.log(mutation.type));
+});
+
+observer.observe(targetElement, {
+  childList: true,
+  attributes: true,
+  subtree: true
+});
+
+// Stop observing if needed:
+// observer.disconnect();
+```
+6. In dynamic UIs, web components, 3rd-party DOM updates, content scripts, real-time DOM tracking, or anything that reacts to DOM changes without polling.
 
 ## micro fronend
 
