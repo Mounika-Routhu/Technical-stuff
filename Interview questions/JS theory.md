@@ -149,6 +149,14 @@ console.log(b === null); // false
 | Meaning     | No value has been assigned yet    | Value intentionally set to "nothing"       |
 | when to use | to identify uninitialized vars (hoisting), missing props so best practise is to avoid using manually| for Resetting, clearing, or empty values       |
 
+| Feature         | `undefined`                                                                                      | `null`                                     |
+| --------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| **Type**        | Primitive, type: `"undefined"`                                                                   | Primitive, type: `"object"` *(legacy bug)* |
+| **Assigned by** | JavaScript (automatically): uninitialized vars, missing object properties, or function arguments | Developer (manually)                       |
+| **Meaning**     | No value has been assigned yet                                                                   | Value intentionally set to "nothing"       |
+| **Typical use** | Uninitialized vars, missing props or arguments                                                   | Resetting, clearing, or empty values       |
+
+
 ### where can we see implicit undefined
 1. Variable declared, not assigned	`let x; console.log(x); // undefined`
 2. Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
