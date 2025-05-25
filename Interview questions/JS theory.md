@@ -147,7 +147,7 @@ console.log(b === null); // false
 | Type        | Primitive, type: `"undefined"`    | Primitive, type: `"object"` (legacy quirk) |
 | Assigned by | JavaScript (automatically)        | Developer (manually)                       |
 | Meaning     | No value has been assigned yet    | Value intentionally set to "nothing"       |
-| when to use | to identify uninitialized vars (hoisting), missing props| Resetting, clearing, or empty values       |
+| when to use | to identify uninitialized vars (hoisting), missing props so best practise is to avoid using manually| for Resetting, clearing, or empty values       |
 
 ### where can we see implicit undefined
 1. Variable declared, not assigned	`let x; console.log(x); // undefined`
