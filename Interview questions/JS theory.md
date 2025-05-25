@@ -255,7 +255,16 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
      return y;
  })(4)
 ```
-## Functions are objects in JS
+## How functions are objects in JS
+1. Stored in variables - Assigned to variables like numbers/strings/obj
+   
+2. Pass as arguments - Passed to other functions (e.g. callbacks)
+
+3. Return from functions - Returned from another function (e.g. closures)
+   
+4. Store in data structures - Kept in arrays, objects, etc.
+5. Add properties	Functions can have custom properties
+Every function in JavaScript is an object created by the Function constructor, and inherits from Function.prototype, which provides methods like call, apply, and bind
 Functions in JavaScript behave just like data.
 That's why they're first-class citizens.
 In society, a first-class citizen is someone who enjoys full rights and privileges.
