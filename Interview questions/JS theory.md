@@ -182,12 +182,12 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 ## GEC - Global execution context
 1. In JavaScript, The Global Execution Context (GEC) is the default environment where the code is evaluated and executed.
 2. When JavaScript code runs, the GEC is created first.
-3. It creates the global object (window in browsers, global in Node.js) and sets up the this keyword to point to the global object.
+6. It has two phases:
+   1. **Creation Phase/ memory elocation**: Sets up memory for variables and functions; variables are initialized to undefined, functions are stored fully.
+   2. **Execution Phase**: Executes code line by line, assigning actual values to variables.
+4. It creates the global object (window in browsers, global in Node.js) and sets up the this keyword to point to the global object.
 4. Everything outside of functions runs in the GEC.
 5. For every function excution(when a func is call eg: sum(2,3)) a execution context will be created inside GEC
-6. It has two phases:
-  1. **Creation Phase/ memory elocation**: Sets up memory for variables and functions; variables are initialized to undefined, functions are stored fully.
-  2. **Execution Phase**: Executes code line by line, assigning actual values to variables.
 
 ## HOISTING 
 1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global or function scope) during the creation phase of the Execution Context.
