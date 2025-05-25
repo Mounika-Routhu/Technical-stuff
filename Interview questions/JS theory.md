@@ -241,14 +241,20 @@ let saySeeYa = () => {
 1. JavaScript runs code using a single-threaded call stack, handling one task at a time in a synchronous manner.(immediately executes, like explained in GEC)
 2. For asynchronous behavior (like timers, network calls, or events), JavaScript relies on the browser’s Web APIs since it doesn't have built-in async capabilities.
 3. When an async function like `setTimeout` or `fetch` is called, it’s handed off to the browser. The timer or request runs in the background, separate from the main thread.
-4. After the async operation finishes, its callback is not immediately executed. Instead, it's placed in a queue:
-   - **Promises** and similar tasks go to the **microtask queue**.
+4. After the async operation finishes, its callback is not immediately executed.
+5. Because, it disturbs the javaScript's single-threaded nature
+   1. Interrupt current code execution, causing unpredictable behavior.
+   2. Crash the stack, especially if multiple async callbacks tried to run while the stack was already busy.
+   3. Lose control over execution order, especially when multiple async operations finish around the same time.
+6. A queue ensures callbacks wait their turn, preserving the correct and safe execution order.
+6. So, it's placed in a queue with FIFO pattern:
+   - **Promises** and Mutation observer's go to the **microtask queue**.
    - **Timers**, I/O, and events go to the **macrotask queue** (also called the callback or task queue).
-5. The event loop continuously checks the call stack. When it’s empty, it first processes all tasks from the **microtask queue**, in order.
-6. Only after the microtask queue is empty does the event loop take the next task from the **macrotask queue** and push it onto the call stack.
-7. If a microtask (like a `.then()` handler) queues another microtask, it runs immediately after the current one, before moving on to any macrotasks.
-8. This prioritization can delay macrotasks for a long time if microtasks keep chaining—this situation is known as **macrotask starvation**.
-9. Through this system—call stack, Web APIs, task queues, and the event loop—JavaScript can handle asynchronous operations without blocking synchronous code.
+7. The event loop is a mechanism which continuously checks the call stack. When it’s empty, it first processes all tasks from the **microtask queue**, in order.
+8. Only after the microtask queue is empty, the event loop take the next task from the **macrotask queue** and push it onto the call stack.
+9. If a microtask (like a `.then()` handler) queues another microtask, it runs the new microtask after the current one, before moving on to any macrotasks.
+10. This prioritization can delay macrotasks for a long time if microtasks keep chaining — this situation is known as **macrotask starvation**.
+11. Through this system — call stack, Web APIs, task queues, and the event loop — JavaScript can handle asynchronous operations without blocking synchronous code.
 
 ## How functions are objects in JS
 1. Every function in JavaScript is an object created by the Function constructor, and inherits from `Function.prototype`, which provides methods like `call, apply, and bind`
