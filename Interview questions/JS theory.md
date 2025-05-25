@@ -487,9 +487,13 @@ const observer = new MutationObserver((mutations) => {
 });
 
 observer.observe(targetElement, {
-  childList: true,
-  attributes: true,
-  subtree: true
+  childList: true,              // Watch for addition or removal of child nodes
+  attributes: true,             // Watch for changes to attributes on the target node
+  characterData: true,          // Watch for changes to the text content of the target node
+  subtree: true,                // Also observe all descendants of the target node
+  attributeOldValue: true,      // Record previous value of changed attributes
+  characterDataOldValue: true,  // Record previous value of changed text nodes
+  attributeFilter: ['class', 'id'] // Only watch for changes to these specific attributes
 });
 
 // Stop observing if needed:
