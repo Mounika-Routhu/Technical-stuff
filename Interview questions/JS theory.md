@@ -111,7 +111,23 @@ JavaScript has two main categories of data types:
 | **Function**           | Callable objects         | `function() {}`, `() => {}`  | `"function"`(but obj underneath)    |
 | **Date, RegExp, etc.** | Built-in complex objects | `new Date()`, `/abc/`        | `"object"`      |
 
+
+### Why null type is object?
+1. It sure that null is a primitive value representing absence of any object
+2. But typeof null returns 'object' due to a historic JavaScript bug retained for backward compatibility.
+3. Be mindful during comparision(practical impact)
+```JS
+let a = null;
+let b = undefined;
+
+console.log(a == null); // true
+console.log(b == null); // true
+
+console.log(a === null); // true
+console.log(b === null); // false
+```
   
+
 ### explanation: JS temporarily “boxes” them to allow method calls
 
 ## HOF
