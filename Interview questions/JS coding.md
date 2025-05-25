@@ -29,6 +29,50 @@ function add(a) {
   return inner;
 }
 ```
+without using properties
+```JS
+function sum(x) {
+  let res = x;
+
+  function inner() {
+    if (arguments.length > 0) {
+        res += arguments[i];
+      }
+      return inner; // Keep chaining
+    }
+    return res; // When called with no args, return result
+  }
+
+  return inner;
+}
+
+console.log(sum(1)(2)()); // 3
+```
+without using properties & multiple args
+```JS
+function sum() {
+  let res = 0;
+
+  // Add all initial arguments
+  for (let i = 0; i < arguments.length; i++) {
+    res += arguments[i];
+  }
+
+  function inner() {
+    if (arguments.length > 0) {
+      for (let i = 0; i < arguments.length; i++) {
+        res += arguments[i];
+      }
+      return inner; // Keep chaining
+    }
+    return res; // When called with no args, return result
+  }
+
+  return inner;
+}
+
+console.log(sum(1, 4)(2, 6)()); // 13
+```
 ## Group anagrams from given array 
 ```javascript
 const input = ["eat", "ate", "army", "mary", "hello", "tea"]
