@@ -179,7 +179,41 @@ str.newProp = 123;
 console.log(str.newProp); // undefined (because the boxed object is discarded)
 ```
 
-## HOISTING - GEC - EVENT LOOP
+## GEC - Global execution context
+1. In JavaScript, The Global Execution Context (GEC) is the default environment where the code is evaluated and executed.
+2. When JavaScript code runs, the GEC is created first.
+3. It creates the global object (window in browsers, global in Node.js) and sets up the this keyword to point to the global object.
+4. Everything outside of functions runs in the GEC.
+5. For every function excution(when a func is call eg: sum(2,3)) a execution context will be created inside GEC
+6. It has two phases:
+  1. **Creation Phase/ memory elocation**: Sets up memory for variables and functions; variables are initialized to undefined, functions are stored fully.
+  2. **Execution Phase**: Executes code line by line, assigning actual values to variables.
+
+## HOISTING 
+1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global or function scope) during the creation phase of the Execution Context.
+2. It applies to:
+   1. Variable declarations (var)
+   2. Function declarations
+3. Variables declared with var are hoisted but initialized with undefined.
+4. Function declarations are fully hoisted (you can call them before they appear in code).
+5. let and const declarations are hoisted but are in a **Temporal Dead Zone (TDZ)** until their actual line of declaration, so accessing them before declaration causes a ReferenceError.
+
+```JS
+console.log(a); // undefined due to hoisting of var declaration
+var a = 5;
+
+foo(); // works fine because function declaration is hoisted
+function foo() {
+  console.log("Hello");
+}
+
+console.log(b); // (Actually code stops here at first err) ReferenceError: Cannot access 'b' before initialization
+console.log(c); // ReferenceError: Cannot access 'c' before initialization
+let b = 10;
+const c = 10;
+```  
+
+## EVENT LOOP
 
 ## How functions are objects in JS
 1. Every function in JavaScript is an object created by the Function constructor, and inherits from `Function.prototype`, which provides methods like `call, apply, and bind`
