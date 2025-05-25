@@ -180,15 +180,34 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 ```
 
 ## GEC - Global execution context
-1. In JavaScript, The Global Execution Context (GEC) is the default environment where the code is evaluated and executed.
-2. This is created when your JavaScript code first starts running. It represents the global scope (e.g., inside the browser, it's the window object, global object in node JS).
-3. It has two phases:
-   1. **Creation Phase/ memory elocation**: Sets up memory for variables and functions; variables are initialized to undefined, functions are stored fully.
-   2. **Execution Phase/ thread of execution**: Executes code line by line, assigning actual values to variables.
-4. Call Stack (CS): This is a stack (LIFO structure) that keeps track of execution contexts. When a function is invoked(square(n)), a new EC(E1) is created and pushed onto the Call Stack. When the function finishes, its EC is popped off.
-5. Function Definition vs Invocation:
-   1. Definition: Just adds the function to memory (inside GEC).
-   2. Invocation: Triggers the creation of a new execution context inside the Call Stack.
+1. **Global Execution Context (GEC)**  
+   In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
+2. **Creation of GEC**  
+   The GEC is created when your JavaScript code first starts running.  
+   - In the **browser**, it represents the `window` object.  
+   - In **Node.js**, it represents the `global` object.
+3. **Phases of GEC**
+   1. **Creation Phase / Memory Allocation**  
+      - Memory is allocated for variables and functions.  
+      - Variables are initialized to `undefined`.  
+      - Functions are stored completely in memory.
+   2. **Execution Phase / Thread of Execution**  
+      - Code is executed line by line.  
+      - Variables are assigned actual values.
+4. **Call Stack (CS)**  
+   - The Call Stack is a **LIFO (Last In, First Out)** structure that manages **execution contexts**.  
+   - It keeps track of which function is currently running and what happens next.
+5. **How Execution Contexts Work**
+   - First, the **GEC is created and pushed onto the Call Stack**.
+   - For **every function invocation** (e.g., `square(n)`), a new **Function Execution Context (e.g., E1)** is created and pushed onto the Call Stack.
+   - Once the function finishes executing, its execution context is **popped off** the Call Stack.
+6. **End of Execution**
+   - When all functions have returned and all code is finished executing, the **GEC is finally popped off** the Call Stack, leaving it empty.
+7. **Function Definition vs. Invocation**
+   - **Definition**  
+     When a function is defined, it is **stored in memory** during the creation phase (e.g., inside the GEC).
+   - **Invocation**  
+     When a function is called, a **new Execution Context is created** and **pushed onto the Call Stack** for execution.
 
 <img width="855" alt="Screenshot 2025-05-25 at 5 19 25 PM" src="https://github.com/user-attachments/assets/19a000a8-b8f8-4d3b-a40e-347d3225b652" />
 
