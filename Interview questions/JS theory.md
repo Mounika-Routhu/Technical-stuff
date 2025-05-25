@@ -103,7 +103,7 @@ JavaScript has two main categories of data types:
 | **Symbol**             | Unique identifiers       | `Symbol('id')`               | `"symbol"`      |
 | **BigInt**             | Arbitrary large integers | `12345678901234567890n`      | `"bigint"`      |
 
-2. Non-Primitive Types (Objects)
+2. Non-Primitive Types/reference values (Objects)
    1. Stored by reference (variable holds a pointer to the data)
    2. Mutable: properties and contents can be changed
       ```JS
