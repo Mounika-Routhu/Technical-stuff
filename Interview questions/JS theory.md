@@ -121,6 +121,7 @@ JavaScript has two main categories of data types:
 | **Function**           | Callable objects         | `function() {}`, `() => {}`  | `"function"`(but obj underneath)    |
 | **Date, RegExp, etc.** | Built-in complex objects | `new Date()`, `/abc/`        | `"object"`      |
 
+<img width="1381" alt="Screenshot 2025-05-25 at 12 29 53 PM" src="https://github.com/user-attachments/assets/9a4aafe8-3edb-40ef-84b9-34764a520550" />
 
 ### Why null type is object - JS popular legacy bug/quirk?
 1. How null became "object": Early JavaScript stored values with a type tag(a label to identify type of a value), and since null was represented by the null pointer (0x00) which matched the object type tag (0). So, typeof null incorrectly returned "object".
