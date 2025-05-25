@@ -84,9 +84,14 @@ For example:
 JavaScript has two main categories of data types:
 1. Primitive Types
    1. Stored directly by value
-   2. Immutable: their value cannot be changed once created
+   2. Immutable: their value cannot be changed once created(Any modification creates a new value instead of altering the original.)
+      ```JS
+      let str = "hello";
+      str.toUpperCase(); // Returns new string "HELLO"
+      console.log(str);  // Still "hello" — original unchanged
+      ```
    3. No methods or properties (but JS temporarily “boxes” them to allow method calls)
-   4. Compared by value
+   4. Compared by value (==)
 
 | Type                   | Description              | Example                      | `typeof` Result |
 | ---------------------- | ------------------------ | ---------------------------- | --------------- |
@@ -101,8 +106,13 @@ JavaScript has two main categories of data types:
 2. Non-Primitive Types (Objects)
    1. Stored by reference (variable holds a pointer to the data)
    2. Mutable: properties and contents can be changed
-   3. Have methods and properties
-   4. Compared by reference (two distinct objects with same content are different)
+      ```JS
+      let arr = [1, 2, 3];
+      arr.push(4);
+      console.log(arr); // [1, 2, 3, 4] — original array modified
+      ```
+   4. Have methods and properties
+   5. Compared by reference(===)(two distinct objects with same content are different)
   
 | Type                   | Description              | Example                      | `typeof` Result |
 | ---------------------- | ------------------------ | ---------------------------- | --------------- |
