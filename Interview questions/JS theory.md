@@ -80,6 +80,29 @@ For example:
    1. Each JavaScript file is executed in a global execution context (for the entire file), and for each function, a local execution context is created.
    2. Variables and functions are stored in memory as they are executed.
 
+## Data Types in JavaScript
+JavaScript has two main categories of data types:
+1. Primitive Types
+   1. Stored directly by value
+   2. Immutable: their value cannot be changed once created
+   3. No methods or properties (but JS temporarily “boxes” them to allow method calls)
+   4. Compared by value
+2. Non-Primitive Types (Objects)
+   1. Stored by reference (variable holds a pointer to the data)
+   2. Mutable: properties and contents can be changed
+   3. Have methods and properties
+   4. Compared by reference (two distinct objects with same content are different)
+  
+| Type                   | Description              | Example                      | `typeof` Result |
+| ---------------------- | ------------------------ | ---------------------------- | --------------- |
+| **Object**             | Key-value pairs          | `{ name: 'Alice', age: 30 }` | `"object"`      |
+| **Array**              | Ordered collection       | `[1, 2, 3]`                  | `"object"`      |
+| **Function**           | Callable objects         | `function() {}`, `() => {}`  | `"function"`(but obj underneath)    |
+| **Date, RegExp, etc.** | Built-in complex objects | `new Date()`, `/abc/`        | `"object"`      |
+
+  
+### explanation: JS temporarily “boxes” them to allow method calls
+
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
     - Take one or more **functions as arguments**, and/or
