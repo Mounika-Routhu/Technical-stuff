@@ -159,6 +159,25 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 5. Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
 ### explanation: JS temporarily “boxes” them to allow method calls
+JavaScript temporarily wraps(‘boxes’) primitive values into their corresponding object wrappers (like String, Number, etc.) to enable method calls, then discards the wrapper immediately.
+```JS
+const str = "hello";
+console.log(str.toUpperCase()); // "HELLO"
+```
+
+Behind the scenes:
+1. JavaScript temporarily wraps "hello" in a String object:
+→ new String("hello")
+2. Calls the .toUpperCase() method on that object.
+3. Returns the result.
+4. Discards the temporary object.
+
+__that means can we store properties for primitive values__?
+```JS
+const str = "abc";
+str.newProp = 123;
+console.log(str.newProp); // undefined (because the boxed object is discarded)
+```
 
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
