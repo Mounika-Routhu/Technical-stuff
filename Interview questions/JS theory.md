@@ -181,15 +181,16 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 
 ## GEC - Global execution context
 1. In JavaScript, The Global Execution Context (GEC) is the default environment where the code is evaluated and executed.
-2. When JavaScript code runs, the GEC is created first.
-6. It has two phases:
+2. This is created when your JavaScript code first starts running. It represents the global scope (e.g., inside the browser, it's the window object, global object in node JS).
+3. It has two phases:
    1. **Creation Phase/ memory elocation**: Sets up memory for variables and functions; variables are initialized to undefined, functions are stored fully.
-   2. **Execution Phase**: Executes code line by line, assigning actual values to variables.
-4. It creates the global object (window in browsers, global in Node.js) and sets up the this keyword to point to the global object.
-4. Everything outside of functions runs in the GEC.
-5. For every function excution(when a func is call eg: sum(2,3)) a new execution context will be created inside GEC
+   2. **Execution Phase/ thread of execution**: Executes code line by line, assigning actual values to variables.
+4. Call Stack (CS): This is a stack (LIFO structure) that keeps track of execution contexts. When a function is invoked(square(n)), a new EC(E1) is created and pushed onto the Call Stack. When the function finishes, its EC is popped off.
+5. Function Definition vs Invocation:
+   1. Definition: Just adds the function to memory (inside GEC).
+   2. Invocation: Triggers the creation of a new execution context inside the Call Stack.
 
-<img width="1079" alt="Screenshot 2025-05-25 at 5 13 45 PM" src="https://github.com/user-attachments/assets/cdf051be-40e8-40f0-81b4-490e47c8283c" />
+<img width="855" alt="Screenshot 2025-05-25 at 5 19 25 PM" src="https://github.com/user-attachments/assets/19a000a8-b8f8-4d3b-a40e-347d3225b652" />
 
 ## HOISTING 
 1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global or function scope) during the creation phase of the Execution Context.
