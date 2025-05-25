@@ -472,6 +472,8 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
  })(4)
 ```
 
+## mutation observer
+
 ## micro fronend
 
 ## splice vs slice
