@@ -479,7 +479,6 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 4. MO is more efficient bcz it batches multiple changes & runs once per event loop tick.
 5. means MO waits until the current JS call stack finishes(synchronous), groups all changes together — e.g., multiple appendChild() calls trigger a single callback with all mutations, then runs the callback once asynchronously via the microtask queue per 1 event loop cycle(synchronous call stack -> micro stask queue -> macro task queue).
 6. It also allows control over what to observe — all these features making it lightweight and performant.
-
 ```JS
 const targetElement = document.getElementById('box');
 const observer = new MutationObserver((mutations) => {
