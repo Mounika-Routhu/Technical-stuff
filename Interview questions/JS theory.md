@@ -82,7 +82,7 @@ For example:
 
 ## Data Types in JavaScript
 JavaScript has two main categories of data types:
-1. Primitive Types
+1. Primitive Types - to store simple values
    1. Stored directly by value
    2. Immutable: their value cannot be changed once created(Any modification creates a new value instead of altering the original.)
       ```JS
@@ -103,7 +103,7 @@ JavaScript has two main categories of data types:
 | **Symbol**             | Unique identifiers       | `Symbol('id')`               | `"symbol"`      |
 | **BigInt**             | Arbitrary large integers | `12345678901234567890n`      | `"bigint"`      |
 
-2. Non-Primitive Types/reference values (Objects)
+2. Non-Primitive Types/reference values (Objects) - to store complex data
    1. Stored by reference (variable holds a pointer to the data)
    2. Mutable: properties and contents can be changed
       ```JS
