@@ -151,7 +151,7 @@ console.log(b === null); // false
 
 BEST PRACTISE : avoid using undefined manually, so we can identify system implicit behaviour like below
 
-### where can we see implicit undefined
+**where can we see implicit undefined**
 1. Variable declared, not assigned	`let x; console.log(x); // undefined`
 2. Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
 3. Object property doesn’t exist	`const user = {}; console.log(user.age); // undefined`
@@ -172,7 +172,7 @@ Behind the scenes:
 3. Returns the result.
 4. Discards the temporary object.
 
-__that means can we store properties for primitive values__?
+**that means can we store properties for primitive values?**
 ```JS
 const str = "abc";
 str.newProp = 123;
