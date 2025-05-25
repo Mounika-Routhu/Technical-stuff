@@ -189,6 +189,8 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 4. Everything outside of functions runs in the GEC.
 5. For every function excution(when a func is call eg: sum(2,3)) a new execution context will be created inside GEC
 
+<img width="1079" alt="Screenshot 2025-05-25 at 5 13 45 PM" src="https://github.com/user-attachments/assets/cdf051be-40e8-40f0-81b4-490e47c8283c" />
+
 ## HOISTING 
 1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global or function scope) during the creation phase of the Execution Context.
 2. It applies to:
