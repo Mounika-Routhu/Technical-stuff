@@ -211,6 +211,23 @@ console.log(b); // (Actually code stops here at first err) ReferenceError: Canno
 console.log(c); // ReferenceError: Cannot access 'c' before initialization
 let b = 10;
 const c = 10;
+```
+Arrow functions act like variables
+```JS
+sayHi(); // TypeError: b is not a function, undefined();
+var sayHi = () => {
+    console.log("Hi");
+}
+
+sayBye(); // ReferenceError: Cannot access 'sayBye' before initialization
+let sayBye = () => {
+    console.log("Bye");
+}
+
+saySeeYa(); // ReferenceError: Cannot access 'saySeeYa' before initialization
+let saySeeYa = () => {
+    console.log("SeeYa");
+}
 ```  
 
 ## EVENT LOOP
