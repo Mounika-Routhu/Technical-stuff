@@ -187,7 +187,7 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
    2. **Execution Phase**: Executes code line by line, assigning actual values to variables.
 4. It creates the global object (window in browsers, global in Node.js) and sets up the this keyword to point to the global object.
 4. Everything outside of functions runs in the GEC.
-5. For every function excution(when a func is call eg: sum(2,3)) a execution context will be created inside GEC
+5. For every function excution(when a func is call eg: sum(2,3)) a new execution context will be created inside GEC
 
 ## HOISTING 
 1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global or function scope) during the creation phase of the Execution Context.
