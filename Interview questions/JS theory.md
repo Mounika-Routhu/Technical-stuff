@@ -235,8 +235,14 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
     ```
 
 ## call, apply, bind
-use apply when you already have a array like object to pass or when you don't know no. of params(need to use ...args to accept all args)
+1. use apply when you already have a array like object to pass or when you don't know no. of params(need to use ...args to accept all args)
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
+
+2. modren syntax is to use ...spread instead of apply
+```JS
+console.log(Math.max.apply(null, [1,2,7,3,6])) // 7
+console.log(Math.max(...[1,2,7,3,6])) // 7
+```
 
 ## Closures
 
