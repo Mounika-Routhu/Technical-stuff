@@ -191,6 +191,17 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
    ```
 3. Add properties	- Functions can have custom properties
    
+   ```JS
+   //there are many - one is to avoid globals creation
+   function increment() {
+   increment.value++;
+   return increment.value;
+   }
+   increment.value = 0;
+   
+   console.log(increment()); // 1
+   console.log(increment()); // 2
+   ```
 5. Stored in variables - Assigned to variables like numbers/strings/obj
    
 6. Pass as arguments - Passed to other functions (e.g. callbacks)
@@ -198,6 +209,9 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 7. Return from functions - Returned from another function (e.g. closures)
    
 8. Store in data structures - Kept in arrays, objects, etc.
+   ```JS
+   const arr = [() => {console.log("I'm a func"), 2, 5, "hi"]
+   ```
 
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
