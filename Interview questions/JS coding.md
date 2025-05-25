@@ -1,3 +1,19 @@
+## fibonacci series with cache
+```JS
+function fibonacci(n) {
+  if (n <= 1) return n;
+
+  // Use the function's own property as a cache
+  if (fibonacci.cache[n] != null) return fibonacci.cache[n];
+
+  fibonacci.cache[n] = fibonacci(n - 1) + fibonacci(n - 2);
+  return fibonacci.cache[n];
+}
+fibonacci.cache = {};
+
+console.log(fibonacci(10)); // 55
+```
+
 ## currying for n elements
 ```JS
 function add(a) {
