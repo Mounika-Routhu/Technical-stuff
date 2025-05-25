@@ -147,10 +147,14 @@ console.log(b === null); // false
 | Type        | Primitive, type: `"undefined"`    | Primitive, type: `"object"` (legacy quirk) |
 | Assigned by | JavaScript (automatically)        | Developer (manually)                       |
 | Meaning     | No value has been assigned yet    | Value intentionally set to "nothing"       |
-| Usage       | Uninitialized vars (hoisting), 
-accessing an object property or function argument that doesn't exist.| Resetting, clearing, or empty values       |
+| when to use | to identify uninitialized vars (hoisting), missing props| Resetting, clearing, or empty values       |
 
-
+### where can we see implicit undefined
+1. Variable declared, not assigned	`JS let x; console.log(x); // undefined`
+2. Function parameter not provided	`JS function greet(name) { console.log(name); } greet(); // undefined`
+3. Object property doesn’t exist	`JS const user = {}; console.log(user.age); // undefined`
+4. No return in function	`JS  function doNothing() {} console.log(doNothing()); // undefined`
+5. Empty slot in array `JS const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
 ### explanation: JS temporarily “boxes” them to allow method calls
 
