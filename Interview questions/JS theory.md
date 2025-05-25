@@ -147,7 +147,8 @@ console.log(b === null); // false
 | Type        | Primitive, type: `"undefined"`    | Primitive, type: `"object"` (legacy quirk) |
 | Assigned by | JavaScript (automatically)        | Developer (manually)                       |
 | Meaning     | No value has been assigned yet    | Value intentionally set to "nothing"       |
-| Usage       | Uninitialized vars (hoisting), accessing an object property or function argument that doesn't exist.| Resetting, clearing, or empty values       |
+| Usage       | Uninitialized vars (hoisting), 
+accessing an object property or function argument that doesn't exist.| Resetting, clearing, or empty values       |
 
 
 
