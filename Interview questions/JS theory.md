@@ -137,6 +137,8 @@ const user = new Person("Alice");
 1. A new object is created.
 2. The new object’s internal [[Prototype]] (accessed using `obj.__proto__`) is set to Person.prototype.
 3. `this` inside the function refers to that new object.
+4. prototype is used to **define** what future objects will inherit.
+5. `__proto__` is used to **access** what this object has inherited.
    
 <img width="1086" alt="Screenshot 2025-05-24 at 8 41 03 PM" src="https://github.com/user-attachments/assets/c705d498-0cb2-49da-b8b3-4b6dcc52575c" />
 
