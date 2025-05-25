@@ -112,10 +112,12 @@ JavaScript has two main categories of data types:
 | **Date, RegExp, etc.** | Built-in complex objects | `new Date()`, `/abc/`        | `"object"`      |
 
 
-### Why null type is object?
-1. It sure that null is a primitive value representing absence of any object
-2. But typeof null returns 'object' due to a historic JavaScript bug retained for backward compatibility.
-3. Be mindful during comparision(practical impact)
+### Why null type is object - JS popular legacy bug/quirk?
+1. How null became "object": Early JavaScript stored values with a type tag(a label to identify type of a value), and since null was represented by the null pointer (0x00) which matched the object type tag (0). So, typeof null incorrectly returned "object".
+2. How it’s handled now: Modern engines use distinct internal tags for null (separating it from objects), so they know null isn’t actually an object internally.
+3. Why it’s not changed: Changing typeof null now would break existing code that depends on this behavior, so the legacy "object" result is kept for backward compatibility.
+4. So, since there is an practical impact, be mindful during comparison
+   
 ```JS
 let a = null;
 let b = undefined;
@@ -126,7 +128,6 @@ console.log(b == null); // true
 console.log(a === null); // true
 console.log(b === null); // false
 ```
-  
 
 ### explanation: JS temporarily “boxes” them to allow method calls
 
