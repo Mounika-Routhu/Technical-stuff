@@ -140,6 +140,17 @@ console.log(a === null); // true
 console.log(b === null); // false
 ```
 
+## NULL vs Undefined
+
+| Feature     | `undefined`                       | `null`                                     |
+| ----------- | --------------------------------- | ------------------------------------------ |
+| Type        | Primitive, type: `"undefined"`    | Primitive, type: `"object"` (legacy quirk) |
+| Assigned by | JavaScript (automatically)        | Developer (manually)                       |
+| Meaning     | No value has been assigned yet    | Value intentionally set to "nothing"       |
+| Usage       | Uninitialized vars (hoisting), accessing an object property or function argument that doesn't exist.| Resetting, clearing, or empty values       |
+
+
+
 ### explanation: JS temporarily “boxes” them to allow method calls
 
 ## HOF
