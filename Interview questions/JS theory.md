@@ -238,7 +238,7 @@ let saySeeYa = () => {
 ```  
 
 ## EVENT LOOP
-1. JavaScript runs code using a single-threaded call stack, handling one task at a time in a synchronous manner.
+1. JavaScript runs code using a single-threaded call stack, handling one task at a time in a synchronous manner.(immediately executes, like explained in GEC)
 2. For asynchronous behavior (like timers, network calls, or events), JavaScript relies on the browser’s Web APIs since it doesn't have built-in async capabilities.
 3. When an async function like `setTimeout` or `fetch` is called, it’s handed off to the browser. The timer or request runs in the background, separate from the main thread.
 4. After the async operation finishes, its callback is not immediately executed. Instead, it's placed in a queue:
