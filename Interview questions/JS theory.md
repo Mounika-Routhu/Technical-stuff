@@ -179,6 +179,26 @@ str.newProp = 123;
 console.log(str.newProp); // undefined (because the boxed object is discarded)
 ```
 
+## HOISTING - GEC - EVENT LOOP
+
+## How functions are objects in JS
+1. Every function in JavaScript is an object created by the Function constructor, and inherits from Function.prototype, which provides methods like call, apply, and bind 
+   ```JS
+   function sayHello(name) {
+   return `Hello, ${name}`;
+   }
+   console.log(sayHello.__proto__ === Function.prototype); // true
+   ```
+3. Add properties	- Functions can have custom properties
+   
+5. Stored in variables - Assigned to variables like numbers/strings/obj
+   
+6. Pass as arguments - Passed to other functions (e.g. callbacks)
+
+7. Return from functions - Returned from another function (e.g. closures)
+   
+8. Store in data structures - Kept in arrays, objects, etc.
+
 ## HOF
 1. HOF stands for Higher-Order Function. A higher-order function is a function that can:
     - Take one or more **functions as arguments**, and/or
@@ -204,18 +224,13 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
     console.log(triple(5)); // Output: 15
     ```
 
-## this
-1. this in global => window in browser, global obj in node js
-2. in regular func => undefined in strict mode, window in non strict mode(this substituation, when this is null /undefined implicitly window obj is attached)
-3. in method invokation => obj.x() => this referes to the obj that the method is invoked on here "obj"
-4. call, apply, bind
-5. in arrow functions => no binding of this => this referes to enclosing lexical scope meaning where the function is created => window or enclosing scope
-6. in DOM -> HTML elements on which event is called
-7. in class based this.handler => this refers to class instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
-
-
 ## call, apply, bind
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
+
+## Closures
+
+## Currying
+for n elements understand recursiveness, .end, ...args, fn.length
 
 ## Prototype   
 1. When a function(except arrow function) is created JS automatically add a property to it, call Prototype - an object
@@ -316,11 +331,11 @@ Behind the scenes:
 ```JS
 console.log(typeof Person); // "function"
 console.log(p1.__proto__ === Person.prototype); // true
-console.log(employee.prototype); // {}
-console.log(e1.__proto__); // {}
+console.log(Person.prototype); // {}
+console.log(p1.__proto__); // {}
 console.log(Object.getOwnPropertyNames(Person.prototype)); // ['constructor', 'sayHello']
 ```
-### Why are console.log(employee.prototype) and console.log(e1.__proto__) showing {} (an empty object)?
+### Why are console.log(Person.prototype) and console.log(p1.__proto__) showing {} (an empty object)?
 1. JavaScript automatically marks class methods (like sayHello) as non-enumerable, meaning they don't show up in Object.keys() & in plain console.log(). But they still exist on the object!
 2. Use `Object.getOwnPropertyNames(employee.prototype)` or `console.dir(employee.prototype)`(in browser) to see full content
 
@@ -345,6 +360,16 @@ class Employee {
 }
 console.log(Employee.length); // 1 → because constructor takes one parameter
 ```
+
+## this
+1. this in global => window in browser, global obj in node js
+2. in regular func => undefined in strict mode, window in non strict mode(this substituation, when this is null /undefined implicitly window obj is attached)
+3. in method invokation => obj.x() => this referes to the obj that the method is invoked on here "obj"
+4. call, apply, bind
+5. in arrow functions => no binding of this => this referes to enclosing lexical scope meaning where the function is created => window or enclosing scope
+6. in DOM -> HTML elements on which event is called
+7. in class based this.handler => this refers to class instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
+   
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
 2. function() -> JS will throw err, `Function statements require a function name`
@@ -354,34 +379,6 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
      return y;
  })(4)
 ```
-## How functions are objects in JS
-1. Stored in variables - Assigned to variables like numbers/strings/obj
-   
-2. Pass as arguments - Passed to other functions (e.g. callbacks)
-
-3. Return from functions - Returned from another function (e.g. closures)
-   
-4. Store in data structures - Kept in arrays, objects, etc.
-5. Add properties	Functions can have custom properties
-Every function in JavaScript is an object created by the Function constructor, and inherits from Function.prototype, which provides methods like call, apply, and bind
-Functions in JavaScript behave just like data.
-That's why they're first-class citizens.
-In society, a first-class citizen is someone who enjoys full rights and privileges.
-
-In programming, a "first-class" entity means it has full privileges in the language.
-
-So, when we say functions are first-class citizens, we mean:
-
-They have all the rights and privileges that other core data types (like numbers, strings, objects) have.
-
-
-
-## Functions are first class citizens
-
-## Closures
-
-## Currying
-for n elements understand recursiveness, .end, ...args, fn.length
 
 ## micro fronend
 
