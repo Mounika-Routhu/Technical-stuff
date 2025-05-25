@@ -182,7 +182,7 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 ## HOISTING - GEC - EVENT LOOP
 
 ## How functions are objects in JS
-1. Every function in JavaScript is an object created by the Function constructor, and inherits from Function.prototype, which provides methods like call, apply, and bind 
+1. Every function in JavaScript is an object created by the Function constructor, and inherits from `Function.prototype`, which provides methods like `call, apply, and bind`
    ```JS
    function sayHello(name) {
    return `Hello, ${name}`;
