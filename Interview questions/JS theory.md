@@ -271,5 +271,14 @@ They have all the rights and privileges that other core data types (like numbers
 ## Closures
 
 ## Currying
+for n elements understand recursiveness, .end, ...args, fn.length
 
 ## micro fronend
+
+## splice vs slice
+
+## shallow vs deep copy
+
+## react fiber
+
+## bugnub
