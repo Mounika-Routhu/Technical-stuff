@@ -36,8 +36,7 @@ function sum(x) {
 
   function inner() {
     if (arguments.length > 0) {
-        res += arguments[i];
-      }
+      res += arguments[0];
       return inner; // Keep chaining
     }
     return res; // When called with no args, return result
