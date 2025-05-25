@@ -214,7 +214,7 @@ const c = 10;
 ```
 Arrow functions act like variables
 ```JS
-sayHi(); // TypeError: b is not a function, undefined();
+sayHi(); // (Actually code stops here at first err) TypeError: b is not a function, undefined();
 var sayHi = () => {
     console.log("Hi");
 }
