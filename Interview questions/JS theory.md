@@ -479,26 +479,33 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 4. MO is more efficient bcz it batches multiple changes & runs once per event loop tick.
 5. means MO waits until the current JS call stack finishes(synchronous), groups all changes together — e.g., multiple appendChild() calls trigger a single callback with all mutations, then runs the callback once asynchronously via the microtask queue per 1 event loop cycle(synchronous call stack -> micro stask queue -> macro task queue).
 6. It also allows control over what to observe — all these features making it lightweight and performant.
+7. Real world scenerio - there is an e-commerce website, where produts get loaded as user scrolls down, so requirement is to send data to google analytics data on what products user has viewed.
+
 ```JS
-const targetElement = document.getElementById('box');
+const target = document.getElementById('product-container');
+
 const observer = new MutationObserver((mutations) => {
-  mutations.forEach(mutation => console.log(mutation.type));
+    mutations.forEach(mutation => {
+       // send data to google analytics
+       console.log(mutation.type)
+    });
 });
 
 observer.observe(targetElement, {
   childList: true,              // Watch for addition or removal of child nodes
-  attributes: true,             // Watch for changes to attributes on the target node
-  characterData: true,          // Watch for changes to the text content of the target node
-  subtree: true,                // Also observe all descendants of the target node
-  attributeOldValue: true,      // Record previous value of changed attributes
-  characterDataOldValue: true,  // Record previous value of changed text nodes
-  attributeFilter: ['class', 'id'] // Only watch for changes to these specific attributes
 });
 
 // Stop observing if needed:
 // observer.disconnect();
 ```
-6. In dynamic UIs, web components, 3rd-party DOM updates, content scripts, real-time DOM tracking, or anything that reacts to DOM changes without polling.
+7. other options to watch are
+   1. attributes: true,             // Watch for changes to attributes on the target node
+   2. characterData: true,          // Watch for changes to the text content of the target node
+   3. subtree: true,                // Also observe all descendants of the target node
+   4. attributeOldValue: true,      // Record previous value of changed attributes
+   5. characterDataOldValue: true,  // Record previous value of changed text nodes
+   6. attributeFilter: ['class', 'id'] // Only watch for changes to these specific attributes
+8. In dynamic UIs, web components, 3rd-party DOM updates, content scripts, real-time DOM tracking, or anything that reacts to DOM changes without polling.
 
 ## micro fronend
 
