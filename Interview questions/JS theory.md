@@ -526,6 +526,44 @@ Micro Frontend is an **architectural approach** where a large frontend applicati
 ## splice vs slice
 
 ## shallow vs deep copy
+Copy - To create a new reference of an array/object
+When copying an object or array in JavaScript, you’re either:
+- Creating a new reference to the same data (**shallow copy**)
+- Or creating a fully independent clone (**deep copy**)
+
+**Shallow Copy**
+1. Copies only the **first level** of the object or array.
+2. **Nested objects are still referenced**, not copied.
+3. Modifying nested data in the copy will also affect the original.
+
+```javascript
+const original = { a: 1, b: { c: 2 } };
+const shallowCopy = { ...original };
+
+shallowCopy.b.c = 42;
+
+console.log(original.b.c); // Output: 42 (affected)
+```
+**Other ways to do**
+1. Object: `{ ...obj }, Object.assign({}, obj)`
+2. Array: `[...arr], arr.slice()`
+
+**Deep Copy**
+1. Copies all levels recursively, creating completely independent objects.
+2. Modifications in the copy do not affect the original, even for nested objects.
+3. Usually more complex and expensive to perform.
+```JS
+const original = { a: 1, b: { c: 2 } };
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+deepCopy.b.c = 42;
+
+console.log(original.b.c); // Output: 2 (unchanged)
+```
+**Other ways to do**
+1. JSON.parse(JSON.stringify(obj)) -> has limitations(only works if no functions, undefined, or special objects like Date)
+2. _.cloneDeep(obj) from Lodash
+3. Custom recursive function
 
 ## react fiber
 
