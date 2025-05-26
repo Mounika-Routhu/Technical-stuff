@@ -558,8 +558,60 @@ console.log(original.b.c); // Output: 2 (unchanged)
 ```
 **Other ways to do**
 1. JSON.parse(JSON.stringify(obj)) -> has limitations(only works if no functions, undefined, or special objects like Date)
-2. _.cloneDeep(obj) from Lodash
-3. Custom recursive function
+2. structuredClone - built-in JS function for deep clone - has limitation(only works if no functions)
+3. _.cloneDeep(obj) from Lodash
+4. Custom recursive function
+
+### Limitations on JSON.parse(JSON.stringify(obj))
+1. Functions, undefined, and symbols are lost
+```JS
+const obj = {
+name: "Alice",
+greet: () => "Hi",
+age: undefined,
+[sym]: 123 
+};
+
+const deepClone = JSON.parse(JSON.stringify(obj));
+console.log(deepClone); // 
+```
+3. Dates become strings
+```JS
+const obj = { today: new Date() };
+const deepClone = JSON.parse(JSON.stringify(obj));
+
+console.log(deepClone.today);              // "2025-05-26T12:00:00.000Z" ❌
+console.log(deepClone.today instanceof Date); // false ❌
+```   
+5. Special objects like Map, Set, and RegExp become {}
+```JS
+const obj = {
+  regex: /abc/,
+  map: new Map(),
+  set: new Set(),
+};
+
+const copy = JSON.parse(JSON.stringify(obj));
+console.log(copy);
+```
+7. Infinity, NaN become null
+```JS
+const obj = { val1: Infinity, val2: NaN };
+const deepClone = JSON.parse(JSON.stringify(obj));
+console.log(deepClone); // { val1: null, val2: null } ❌
+```
+8. Prototype is lost
+```JS
+function Person(name) {
+  this.name = name;
+}
+const alice = new Person("Alice");
+
+const clone = JSON.parse(JSON.stringify(alice));
+console.log(clone instanceof Person); // false
+```
+
+
 
 ### understand diff btw mutation & reassigning
 1. Mutation (e.g. push, change property) =>	Shared — both reflect change
