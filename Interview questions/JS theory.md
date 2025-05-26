@@ -520,7 +520,7 @@ Micro Frontend is an **architectural approach** where a large frontend applicati
 3. A shell/container app loads and integrates all micro frontends.
 4. Communication between micro frontends is usually via events or shared state.
 5. Common implementation methods: **iframes, JavaScript bundles, Web Components, module federation(module 5).**
-6. Challenges: shared state management, consistent UI, routing, and performance.
+6. Challenges: shared state management, ensuring consistent UI, routing, and performance.
 7. Used in large apps like **e-commerce sites, where product, checkout, and user profile** are separate micro frontends.
 
 ## splice vs slice
