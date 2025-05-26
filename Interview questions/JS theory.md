@@ -565,17 +565,19 @@ console.log(original.b.c); // Output: 2 (unchanged)
 ### Limitations on JSON.parse(JSON.stringify(obj))
 1. Functions, undefined, and symbols are lost
 ```JS
+const id = Symbol("id of user");
+
 const obj = {
 name: "Alice",
 greet: () => "Hi",
 age: undefined,
-[sym]: 123 
+[id]: 123 
 };
 
 const deepClone = JSON.parse(JSON.stringify(obj));
-console.log(deepClone); // 
+console.log(deepClone); // { name: 'Alice' }
 ```
-3. Dates become strings
+2. Dates become strings
 ```JS
 const obj = { today: new Date() };
 const deepClone = JSON.parse(JSON.stringify(obj));
@@ -583,7 +585,7 @@ const deepClone = JSON.parse(JSON.stringify(obj));
 console.log(deepClone.today);              // "2025-05-26T12:00:00.000Z" ❌
 console.log(deepClone.today instanceof Date); // false ❌
 ```   
-5. Special objects like Map, Set, and RegExp become {}
+3. Special objects like Map, Set, and RegExp become {}
 ```JS
 const obj = {
   regex: /abc/,
@@ -594,13 +596,13 @@ const obj = {
 const copy = JSON.parse(JSON.stringify(obj));
 console.log(copy);
 ```
-7. Infinity, NaN become null
+4. Infinity, NaN become null
 ```JS
 const obj = { val1: Infinity, val2: NaN };
 const deepClone = JSON.parse(JSON.stringify(obj));
 console.log(deepClone); // { val1: null, val2: null } ❌
 ```
-8. Prototype is lost
+5. Prototype is lost
 ```JS
 function Person(name) {
   this.name = name;
@@ -610,9 +612,6 @@ const alice = new Person("Alice");
 const clone = JSON.parse(JSON.stringify(alice));
 console.log(clone instanceof Person); // false
 ```
-
-
-
 ### understand diff btw mutation & reassigning
 1. Mutation (e.g. push, change property) =>	Shared — both reflect change
 2. Reassignment (e.g. arr[2] = ..., obj.key = {...}) =>	Not shared — breaks reference, changes are separate
