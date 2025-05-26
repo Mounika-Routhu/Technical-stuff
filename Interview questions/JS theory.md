@@ -527,12 +527,10 @@ Micro Frontend is an **architectural approach** where a large frontend applicati
 
 ## shallow vs deep copy
 Copy - To create a new reference of an array/object. When copying an object or array in JavaScript, you’re either:
-
 **Shallow Copy**
 1. Copies only the **first level** of the object or array.
 2. **Nested objects are still referenced**, not copied.
 3. Modifying nested data in the copy will also affect the original.
-
 ```javascript
 const original = { a: 1, b: { c: 2 } };
 const shallowCopy = { ...original };
