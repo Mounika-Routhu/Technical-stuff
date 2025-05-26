@@ -561,6 +561,32 @@ console.log(original.b.c); // Output: 2 (unchanged)
 2. _.cloneDeep(obj) from Lodash
 3. Custom recursive function
 
+### understand diff btw mutation & reassigning
+1. Mutation (e.g. push, change property) =>	Shared — both reflect change
+2. Reassignment (e.g. arr[2] = ..., obj.key = {...}) =>	Not shared — breaks reference, changes are separate
+
+```JS
+const arr = [1,2,[3,4,5]]
+const arrCopy = [...arr]
+arr[2].push(6) // mutating the existing one
+// arr[2] = [3,4,5,6] // reassigning a new arr
+console.log(arrCopy);
+
+// Output:
+// for mutation, changes: [ 1, 2, [ 3, 4, 5, 6 ] ]
+// for reassigning, no change: [ 1, 2, [ 3, 4, 5 ] ]
+
+const obj = {name : "Mounika", address : {city: "Hyd"}}
+const objCopy = {...obj}
+obj.address.city = "Chennai"  // mutating the existing one
+// obj.address = {city : "Chennai"} // reassigning a new arr
+console.log(objCopy);
+
+// Output:
+// for mutation, changes: {name : "Mounika", address : {city: "Chennai"}}
+// for reassigning, no change: {name : "Mounika", address : {city: "Hyd"}}
+```
+
 ## react fiber
 
 ## bugnub
