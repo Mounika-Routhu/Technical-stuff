@@ -526,10 +526,7 @@ Micro Frontend is an **architectural approach** where a large frontend applicati
 ## splice vs slice
 
 ## shallow vs deep copy
-Copy - To create a new reference of an array/object
-When copying an object or array in JavaScript, you’re either:
-- Creating a new reference to the same data (**shallow copy**)
-- Or creating a fully independent clone (**deep copy**)
+Copy - To create a new reference of an array/object. When copying an object or array in JavaScript, you’re either:
 
 **Shallow Copy**
 1. Copies only the **first level** of the object or array.
