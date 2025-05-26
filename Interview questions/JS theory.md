@@ -500,6 +500,7 @@ observer.observe(targetElement, {
 ```
 
 7. other options to watch are
+   
 | Option                  | Description & Example Code                                                                 |
 |-------------------------|--------------------------------------------------------------------------------------------|
 | `childList`             | Observe when direct children are added or removed. <br>**Code:** `{ childList: true }` <br>**Example:** Detect when a new product card is added to a list. |
