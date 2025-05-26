@@ -499,13 +499,15 @@ observer.observe(targetElement, {
 // observer.disconnect();
 ```
 7. other options to watch are
-   1. attributes: true,             // Watch for changes to attributes on the target node
-   2. characterData: true,          // Watch for changes to the text content of the target node
-   3. subtree: true,                // Also observe all descendants of the target node
-   4. attributeOldValue: true,      // Record previous value of changed attributes
-   5. characterDataOldValue: true,  // Record previous value of changed text nodes
-   6. attributeFilter: ['class', 'id'] // Only watch for changes to these specific attributes
-8. In dynamic UIs, web components, 3rd-party DOM updates, content scripts, real-time DOM tracking, or anything that reacts to DOM changes without polling.
+   | Option                  | Description & Example Code                                                                                                                                                                                                                                                                   |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `childList`             | Observe when direct children are added or removed. <br>**Code:** `{ childList: true }` <br>**Example:** Detect when a new product card is added to a list.                                                                                                                                   |
+| `attributes`            | Observe changes to attributes like `class`, `id`, or `src`. <br>**Code:** `{ attributes: true }` <br>**Example:** Detect when an image's `src` or a button's class changes.                                                                                                                  |
+| `characterData`         | Observe changes to text nodes (e.g., inside `<p>` or `<span>`). <br>**Code:** `{ characterData: true }` <br>**Example:** Detect when a user edits a review or description text.                                                                                                              |
+| `subtree`               | Extends observation to all descendant elements. <br>**Code:** `{ childList: true, subtree: true }` <br>**Example:** Track product cards added within deeply nested UI components. <br>⚠️ **Note:** `subtree` alone does nothing — use it with `childList`, `attributes`, or `characterData`. |
+| `attributeFilter`       | Observe only specific attributes (requires `attributes: true`). <br>**Code:** `{ attributes: true, attributeFilter: ['class', 'style'] }` <br>**Example:** Detect when only `class` or `style` attributes change on buttons or items.                                                        |
+| `attributeOldValue`     | Include the old value of a changed attribute (requires `attributes: true`). <br>**Code:** `{ attributes: true, attributeOldValue: true }` <br>**Example:** Log the previous value of an image's `src` before it changes.                                                                     |
+| `characterDataOldValue` | Include the old value of changed text (requires `characterData: true`). <br>**Code:** `{ characterData: true, characterDataOldValue: true }` <br>**Example:** Capture the original content of a paragraph before the user edits it.                                                          |
 
 ## micro fronend
 
