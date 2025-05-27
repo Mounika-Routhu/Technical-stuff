@@ -153,34 +153,37 @@ console.log(str.newProp); // undefined (because the boxed object is discarded)
 6. non-collinding:
    1. Even if we create a symbol with description or we have a same key, original symbol won't be effected.
    2. example : Hence used In libraries or frameworks, Symbols are used for internal data so that users can’t accidentally clash with those keys.
-      ```JS
-      const internal = Symbol('internal');
-      const internal2 = Symbol('internal');
-      
-      console.log(internal === internal2) // false
-      console.log(internal == internal2) // false
-      
-      function myLibrary(comp) {
-         comp[internal] = { mounted: true };
-      }
+```JS
+const _internal = Symbol('internal');
 
-      comp.internal = 123 //this won't effect internal data
-      ```
-   3. hidden : Not visible in object loops or JSON only access through direct Symbol reference or to get all sumbols -> Object.getOwnPropertySymbols(obj);.
-      1. example: to private metadata of library
+function setupComponent(comp) {
+  comp[_internal] = { mounted: true }; // safe, non-colliding key
+}
+
+const userComponent = {
+  _internal: 'user-defined value' // totally separate
+};
+
+setupComponent(userComponent);
+
+console.log(userComponent._internal); // ✅ 'user-defined value' (untouched)
+console.log(userComponent[_internal]); // ✅ { mounted: true } — only accessible with Symbol
+```
+7. hidden : Not visible in object loops or JSON only access through direct Symbol reference or to get all sumbols -> Object.getOwnPropertySymbols(obj);.
+      1. example: to create metadata of library, private keys like a user wants to hide phone number, balance application - hide bank balance - this basicallyt supports encasulation.
       ```JS
-      const hiddenKey = Symbol('hidden');
+      const phoneNumber = Symbol('metaData');
       const anotherHiddenKey = Symbol('anotherHidden')
-      const user = {
-      name: 'Alice',
-      [hiddenKey]: 'secret123',
-      [anotherHiddenKey] : 'secret456'
+      const Comp = {
+         name: 'Alice',
+         [phoneNumber]: 98765432234,
+         [anotherHiddenKey] : 'secret456'
       };
       
       console.log(Object.keys(user));        // ['name']
       console.log(JSON.stringify(user));     // {"name":"Alice"}
-      console.log(user[hiddenKey]);          // 'secret123'
-      console.log(Object.getOwnPropertySymbols(user)) // [ Symbol(hidden), Symbol(anotherHidden) ]
+      console.log(user[phoneNumber]);          //  98765432234
+      console.log(Object.getOwnPropertySymbols(user)) // [ Symbol(phoneNumber), Symbol(anotherHidden) ]
       ```
 
 
