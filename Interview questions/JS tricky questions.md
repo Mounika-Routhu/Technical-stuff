@@ -24,7 +24,7 @@ for(let x = 1; x < 6; x++){
 ```
 if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates a gloabl variable & by the time all setTimeout async function run global var x will be come 6 hence 6 will be printed for 5 times
 
-## increment decrement, primitive types, immutatble
+## increment-decrement, post-pre, primitive types, immutatble
 ```JS
 let x = 0
 console.log(x++)
@@ -44,6 +44,14 @@ explanation:
 3. so here we aren't modifying value, but reassigning value to X hence value of x change
 4. also X++ means, post increment, use the value & increment
 5. ++X means, pre increment, increment & use the value
+
+```JS
+let x = 5;
+let y = x--;
+console.log(x,y);
+
+//o/p: 4, 5
+```
 
 ## guess o/p
 ```js
