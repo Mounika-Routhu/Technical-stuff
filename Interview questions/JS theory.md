@@ -689,6 +689,12 @@ console.log(objCopy);
 // for reassigning, no change: {name : "Mounika", address : {city: "Hyd"}}
 ```
 
+## Promises
+
+## 
+
 ## react fiber
+
+
 
 ## bugnub
