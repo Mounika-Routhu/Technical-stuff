@@ -24,6 +24,26 @@ for(let x = 1; x < 6; x++){
 ```
 if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates a gloabl variable & by the time all setTimeout async function run global var x will be come 6 hence 6 will be printed for 5 times
 
+## increment decrement, primitive types, immutatble
+```JS
+let x = 0
+console.log(x++)
+console.log(++x)
+console.log(x)
+```
+
+```JS
+o/p :
+0
+2
+2
+```
+explanation: It's true that primitive types are immutable, meaning value can't be changed. 
+But X++ means => x = x + 1
+so here we aren't modifying value, but reassigning value to X hence value of x change
+also X++ means, post increment, assign & increment
+++X means, pre increment, increment & assign
+
 ## guess o/p
 ```js
 [1, [2], [1,2, [3,4]]].join(' ')
