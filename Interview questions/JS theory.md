@@ -123,6 +123,27 @@ JavaScript has two main categories of data types:
 
 <img width="1381" alt="Screenshot 2025-05-25 at 12 29 53 PM" src="https://github.com/user-attachments/assets/9a4aafe8-3edb-40ef-84b9-34764a520550" />
 
+**explanation: JS temporarily “boxes” them to allow method calls**
+JavaScript temporarily wraps(‘boxes’) primitive values into their corresponding object wrappers (like String, Number, etc.) to enable method calls, then discards the wrapper immediately.
+```JS
+const str = "hello";
+console.log(str.toUpperCase()); // "HELLO"
+```
+
+Behind the scenes:
+1. JavaScript temporarily wraps "hello" in a String object:
+→ new String("hello")
+2. Calls the .toUpperCase() method on that object.
+3. Returns the result.
+4. Discards the temporary object.
+
+**that means can we store properties for primitive values?**
+```JS
+const str = "abc";
+str.newProp = 123;
+console.log(str.newProp); // undefined (because the boxed object is discarded)
+```
+
 ### Why null type is object - JS popular legacy bug/quirk?
 1. How null became "object": Early JavaScript stored values with a type tag(a label to identify type of a value), and since null was represented by the null pointer (0x00) which matched the object type tag (0). So, typeof null incorrectly returned "object".
 2. How it’s handled now: Modern engines use distinct internal tags for null (separating it from objects), so they know null isn’t actually an object internally.
@@ -149,6 +170,11 @@ console.log(b === null); // false
 | Meaning     | No value has been assigned yet    | Value intentionally set to "nothing"       |
 | when to use | to identify uninitialized vars (hoisting), missing props| for Resetting, clearing, or empty values       |
 
+Also
+```JS
+null == undefined // true
+null === undefined // false
+```
 BEST PRACTISE : avoid using undefined manually, so we can identify system implicit behaviour like below
 
 **where can we see implicit undefined**
@@ -158,26 +184,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 4. No return in function	`function doNothing() {} console.log(doNothing()); // undefined`
 5. Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
-### explanation: JS temporarily “boxes” them to allow method calls
-JavaScript temporarily wraps(‘boxes’) primitive values into their corresponding object wrappers (like String, Number, etc.) to enable method calls, then discards the wrapper immediately.
-```JS
-const str = "hello";
-console.log(str.toUpperCase()); // "HELLO"
-```
-
-Behind the scenes:
-1. JavaScript temporarily wraps "hello" in a String object:
-→ new String("hello")
-2. Calls the .toUpperCase() method on that object.
-3. Returns the result.
-4. Discards the temporary object.
-
-**that means can we store properties for primitive values?**
-```JS
-const str = "abc";
-str.newProp = 123;
-console.log(str.newProp); // undefined (because the boxed object is discarded)
-```
+## == VS ===
 
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
@@ -637,8 +644,6 @@ console.log(objCopy);
 // for mutation, changes: {name : "Mounika", address : {city: "Chennai"}}
 // for reassigning, no change: {name : "Mounika", address : {city: "Hyd"}}
 ```
-
-## == VS ===
 
 ## react fiber
 
