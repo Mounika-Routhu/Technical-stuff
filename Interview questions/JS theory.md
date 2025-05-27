@@ -764,12 +764,12 @@ console.log(objCopy);
        });
    ```
 6. async/await(intro in **ES8**) - helps to avoid callback hell & write asynchronous code that looks like regular, easy-to-read code.
-   1. **await** waits for a promise to fulfill or reject inside an **async** function.
-   2. error handling(catch block) will be done using try/catch.
+   1. **await** waits for a promise to fulfill or reject inside an **async** function. **A FUNCTION ALWAYS NEEDED**
+   2. error handling(catch block) will be done using **try/catch**. - **ALWAYS NEEDED**
    3. chaining - Each await waits for the previous async operation to finish before moving on, we can write it like normal synchronous code.
 
 ```JS
-  async function runTasks() {
+  const runTasks = async () => {
      try {
        // const result1 = await promise; // when it's a direct promise
        const result1 = await doSomething();
