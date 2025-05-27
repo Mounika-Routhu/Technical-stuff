@@ -734,7 +734,7 @@ console.log(objCopy);
    ```
 
    ```JS
-   const myPromise = new Promise((success, failure) => {
+   const giveNumber = new Promise((success, failure) => {
       setTimeout(() => {
            if (true) {
                success(5);  // resolves with 5 after 2 seconds
@@ -752,7 +752,7 @@ console.log(objCopy);
        });
    };
 
-   myPromise
+   giveNumber
        .then((res) => {
            return multiplyBy2(res);  // after myPromise resolves, calls multiplyBy2
        })
