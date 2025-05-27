@@ -665,7 +665,10 @@ const alice = new Person("Alice");
 const clone = JSON.parse(JSON.stringify(alice));
 console.log(clone instanceof Person); // false
 ```
-### understand diff btw mutation & reassigning
+
+### Structured clone
+
+### Mutation VS Reassigning
 1. Mutation (e.g. push, change property) =>	Shared — both reflect change
 2. Reassignment (e.g. arr[2] = ..., obj.key = {...}) =>	Not shared — breaks reference, changes are separate
 
@@ -797,7 +800,5 @@ console.log(objCopy);
 1. It picks the result of the promise that the event loop happens to handle first.
 2. This is usually nondeterministic (can vary run-to-run or environment-to-environment).
 3. So, it’s not guaranteed which one “wins” if they settle simultaneously.
-  
-## 
 
 ## bugnub
