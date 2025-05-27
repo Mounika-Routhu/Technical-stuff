@@ -783,6 +783,16 @@ console.log(objCopy);
 
    runTasks();
 ```
+7. Static methods -> iterable -> array of promises [p1, p2, p3]
+   1. **`Promise.resolve(value)`** — creates a **resolved** promise with the given `value`.  
+   2. **`Promise.reject(error)`** — creates a **rejected** promise with the given `error`.  
+   3. **`Promise.all(iterable)`** — waits for **all promises** to resolve & returns an array of resolved values.; if any promise rejects, it rejects immediately with that reason
+   4. **`Promise.allSettled(iterable)`** — waits for **all promises to settle** (resolve or reject) and returns an array of their outcome.  
+   5. **`Promise.race(iterable)`** — waits for **the first promise to settle** (resolve or reject) and returns that promise’s outcome.  
+   6. **`Promise.any(iterable)`** — waits for **the first promise to resolve** and returns its value; if all promises reject, it rejects with an **AggregateError**.  
+ 
+
+   
 ## 
 
 ## bugnub
