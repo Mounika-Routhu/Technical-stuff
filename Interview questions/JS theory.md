@@ -690,7 +690,22 @@ console.log(objCopy);
 ```
 
 ## Promises
-
+1. A Promise in JavaScript represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+2. States of promise:
+   1. Pending – initial state, neither fulfilled nor rejected.
+   2. Fulfilled – operation completed successfully.
+   3. Rejected – operation failed.
+3. Created using new Promise
+```JS
+   let promise = new Promise((resolve, reject) => {
+   // Asynchronous operation
+   if (/* success */) {
+    resolve("Success!");
+   } else {
+    reject("Error occurred.");
+  }
+});
+```
 ## 
 
 ## bugnub
