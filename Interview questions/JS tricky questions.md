@@ -81,3 +81,15 @@ o/p :
 Error: Oops
 After catch
 ```
+
+```JS
+Promise.any([
+  Promise.reject("Fail 1"),
+  Promise.reject("Fail 2"),
+  Promise.reject("Fail 3")
+])
+.then(value => console.log("Resolved with:", value))
+.catch(err => console.log("All rejected:", err.errors));
+
+o/p: All rejected: [ 'Fail 1', 'Fail 2', 'Fail 3' ]
+```
