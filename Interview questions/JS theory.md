@@ -186,8 +186,6 @@ console.log(userComponent[_internal]); // ✅ { mounted: true } — only accessi
       console.log(Object.getOwnPropertySymbols(user)) // [ Symbol(phoneNumber), Symbol(anotherHidden) ]
       ```
 
-
-
 ### Why null type is object - JS popular legacy bug/quirk?
 1. How null became "object": Early JavaScript stored values with a type tag(a label to identify type of a value), and since null was represented by the null pointer (0x00) which matched the object type tag (0). So, typeof null incorrectly returned "object".
 2. How it’s handled now: Modern engines use distinct internal tags for null (separating it from objects), so they know null isn’t actually an object internally.
@@ -256,6 +254,16 @@ implicit coercion during with arthemtic operators like +, - etc
 3. So, the non-primitive or less "specific" type usually gets converted.
 
 ## Scoping
+1. **Scope** defines the **accessibility of variables**
+2. We have 4 types of scopes in JS
+3. **Global scope:** Variables declared outside any function/block. Accessible **everywhere** in the script.
+```JS
+var a = 10; // global
+function test() {
+  console.log(a); // 10
+}
+```
+4. 
 
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
@@ -281,7 +289,13 @@ implicit coercion during with arthemtic operators like +, - etc
    2. Function declarations
 3. Variables declared with var are hoisted but initialized with undefined.
 4. Function declarations are fully hoisted (you can call them before they appear in code).
-5. let and const declarations are hoisted but are in a **Temporal Dead Zone (TDZ)** until their actual line of declaration, so accessing them before declaration causes a ReferenceError.
+5. let and const declarations are hoisted but are in a **Temporal Dead Zone (TDZ)**
+6. **Temporal Dead Zone (TDZ):**
+   1. The Temoporal Dead Zone is the region of code where a variable is known to exist (because it is hoisted) but cannot yet be accessed because it hasn't been initialized.
+   2. Meaning, undefined won't be assigned to the variable unlike var
+   3. The variable is in a TDZ from the start of the block or scope where the variable is declared until the line where it is initialized.
+   4. During this period, accessing the variable will throw a ReferenceError
+   5. It applies to variables declared with let and const, but not to var
 
 ```JS
 console.log(a); // undefined due to hoisting of var declaration
@@ -402,7 +416,7 @@ console.log(Math.max(...[1,2,7,3,6])) // 7
 ## Currying
 for n elements understand recursiveness, .end, ...args, fn.length
 
-## Prototype   
+## Prototype - INHERITANCE
 1. When a function(except arrow function) is created JS automatically add a property to it, call Prototype - an object
 2. A prototype is an object that defines properties and methods which other objects(all instances created by new keyword) can inherit.
 3. It acts like a blueprint or template for objects created by a constructor function.
