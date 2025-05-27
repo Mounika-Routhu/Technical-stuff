@@ -68,3 +68,14 @@ o/p:
 { name : "newName"}
 { name : "newName"}
 
+## promises
+
+```JS
+Promise.reject("Oops")
+  .then(() => console.log("Success"))
+  .catch(err => console.log("Error:", err))
+  .then(() => console.log("After catch"));
+```
+o/p :
+Error: Oops
+After catch
