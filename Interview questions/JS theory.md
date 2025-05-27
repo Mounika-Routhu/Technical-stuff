@@ -693,8 +693,4 @@ console.log(objCopy);
 
 ## 
 
-## react fiber
-
-
-
 ## bugnub
