@@ -229,6 +229,37 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 5. Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
 ## == VS ===
+1. **`==` (loose equality)**: compares two values for equality **after type coercion**.
+2. **`===` (strict equality)**: compares both **value and type**, **no type coercion**.
+
+**Implicit coercion in loose equality**
+1. With == before comparing, JavaScript tries to convert operands((one or both sometimes) to the same type,
+2. JS understands user intensions & does coercion, but sometimes the output can be a bit strange
+
+| Rule                        | Logic Behind It |
+|----------------------------|------------------|
+| **Boolean → Number**        | Booleans are numeric in JS (`true → 1` (truthy), `false → 0` (falsy)). |
+| **String → Number**         | Strings often represent numeric input (e.g. `"5"` from a user input field). |
+| **Object → Primitive**      | Objects must be converted to compare values (via `.valueOf()` or `.toString()`),<br>because JavaScript assumes you want to compare the object’s **content**, not its reference. |
+| **null == undefined**       | Both represent “no value” and are loosely equal.<br><br>But **not equal** to `0`, `false`, or `""` — because those are **actual values**:<br>• `0` is a number<br>• `false` is a boolean<br>• `""` is a string (empty, but still a value). |
+| **NaN == anything → false** | `NaN` means "invalid number" — it's **not equal to anything**, not even to itself.<br><br>**Why?**<br>`NaN` can result from `0/0` or `"hello" * 5`.<br>Are two `NaN`s the same? We can't say.<br>Think of `NaN` as an “unknown value.”<br>Two unknowns can't be confirmed as equal. |
+| **Symbol can't be coerced** | Symbols are **unique identifiers** by design and cannot be automatically converted to a string or number — coercion throws a **TypeError**. |
+
+
+
+
+implicit coercion during +
+1. To preserve most information possible
+2. This is to avoid accidental data loss and to keep operations meaningful — even if sometimes the results look a bit odd.
+3. So, the non-primitive or less "specific" type usually gets converted.
+
+
+
+
+
+
+
+
 
 ## Scoping
 
