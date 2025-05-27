@@ -714,15 +714,16 @@ console.log(objCopy);
    1. .then() gets called if the promise resolves.
    2. .catch() gets called if the promise rejects.
    3. .finally() runs regardless of success or failure.
+      
    ```JS
    promise
-  .then(value => {
-  console.log("Success:", value)
-  }).catch(error => {
-  console.error("Failed:", error)
-  }).finally(() => {
-  console.log("Done")
-  });
+     .then(value => {
+     console.log("Success:", value)
+     }).catch(error => {
+     console.error("Failed:", error)
+     }).finally(() => {
+     console.log("Done")
+     });
    ```
 5. 
 ## 
