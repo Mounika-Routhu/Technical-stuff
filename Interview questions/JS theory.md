@@ -725,7 +725,7 @@ console.log(objCopy);
      console.log("Done")
      });
 ```
-5. Promise chaining - we can chain then blocks when previous then block does another async op & so on...
+5. Promise chaining - we can chain then blocks when previous then block does another async op & so on... This chaning is also known as **callback hell**
    ```JS
    doTask1()
      .then(result1 => doTask2(result1))
@@ -762,6 +762,26 @@ console.log(objCopy);
        .catch((err) => {
            console.log("I'm an err", err);  // catches rejection from multiplyBy2
        });
+   ```
+6. async/await(intro in **ES8**) - helps to avoid callback hell & write asynchronous code that looks like regular, easy-to-read code.
+   1. **await** waits for a promise to fulfill or reject inside an **async** function.
+   2. error handling(catch block) will be done using try/catch.
+   3. chaining - Each await waits for the previous async operation to finish before moving on, we can write it like normal synchronous code.
+
+   ```JS
+  async function runTasks() {
+     try {
+       // const result1 = await promise; // when it's a direct promise
+       const result1 = await doSomething();
+       const result2 = await doSomethingElse(result1);
+       const result3 = await doThirdThing(result2);
+       console.log('Final result:', result3);
+     } catch (err) {
+       console.error('Error:', err);
+     }
+  }
+
+   runTasks();
    ```
 ## 
 
