@@ -768,7 +768,7 @@ console.log(objCopy);
    2. error handling(catch block) will be done using try/catch.
    3. chaining - Each await waits for the previous async operation to finish before moving on, we can write it like normal synchronous code.
 
-   ```JS
+```JS
   async function runTasks() {
      try {
        // const result1 = await promise; // when it's a direct promise
@@ -782,7 +782,7 @@ console.log(objCopy);
   }
 
    runTasks();
-   ```
+```
 ## 
 
 ## bugnub
