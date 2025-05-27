@@ -245,21 +245,15 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 | **NaN == anything → false** | `NaN` means "invalid number" — it's **not equal to anything**, not even to itself.<br><br>**Why?**<br>`NaN` can result from `0/0` or `"hello" * 5`.<br>Are two `NaN`s the same? We can't say.<br>Think of `NaN` as an “unknown value.”<br>Two unknowns can't be confirmed as equal. |
 | **Symbol can't be coerced** | Symbols are **unique identifiers** by design and cannot be automatically converted to a string or number — coercion throws a **TypeError**. |
 
+3. JavaScript tries hard to make things "work", but sometimes it guesses wrong & output seems wierd. So:
+   1. == use this, when you expect implicit coercion to happen but be careful as it's risky
+   2. === try to use this as this is safe and predictable
 
-
-
-implicit coercion during +
-1. To preserve most information possible
+Not studied completely - ignore below
+implicit coercion during with arthemtic operators like +, - etc
+1. JS always try to preserve most information possible
 2. This is to avoid accidental data loss and to keep operations meaningful — even if sometimes the results look a bit odd.
 3. So, the non-primitive or less "specific" type usually gets converted.
-
-
-
-
-
-
-
-
 
 ## Scoping
 
