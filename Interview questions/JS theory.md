@@ -690,7 +690,7 @@ console.log(objCopy);
 ```
 
 ## Promises
-1. A Promise in JavaScript represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+1. A Promise is an object which represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 2. States of promise:
    1. Pending – initial state, neither fulfilled nor rejected.
    2. Fulfilled – operation completed successfully.
