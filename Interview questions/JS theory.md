@@ -791,7 +791,7 @@ console.log(objCopy);
    5. **`Promise.race(iterable)`** — waits for **the first promise to settle** (resolve or reject) and returns that promise’s outcome.  
    6. **`Promise.any(iterable)`** — waits for **the first promise to resolve** and returns its value; if all promises reject, it rejects with an **AggregateError**(catch block if exists).  
 
-**NOTE:** If two (or more) promises settle at exactly the same time (e.g., both resolve or reject after 2 seconds), Promise.race will settle with whichever promise’s resolution or rejection the JavaScript engine processes first — practically, that means:
+**NOTE: STOP & READ** If two (or more) promises settle at exactly the same time (e.g., both resolve or reject after 2 seconds), Promise.race will settle with whichever promise’s resolution or rejection the JavaScript engine processes first — practically, that means:
 1. It picks the result of the promise that the event loop happens to handle first.
 2. This is usually nondeterministic (can vary run-to-run or environment-to-environment).
 3. So, it’s not guaranteed which one “wins” if they settle simultaneously.
