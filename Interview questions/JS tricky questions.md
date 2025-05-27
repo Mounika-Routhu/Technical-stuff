@@ -38,11 +38,12 @@ o/p :
 2
 2
 ```
-explanation: It's true that primitive types are immutable, meaning value can't be changed. 
-But X++ means => x = x + 1
-so here we aren't modifying value, but reassigning value to X hence value of x change
-also X++ means, post increment, assign & increment
-++X means, pre increment, increment & assign
+explanation: 
+1. It's true that primitive types are immutable, meaning value can't be changed. 
+2. But X++ means => x = x + 1
+3. so here we aren't modifying value, but reassigning value to X hence value of x change
+4. also X++ means, post increment, use the value & increment
+5. ++X means, pre increment, increment & use the value
 
 ## guess o/p
 ```js
