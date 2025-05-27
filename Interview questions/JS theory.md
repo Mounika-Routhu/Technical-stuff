@@ -692,7 +692,7 @@ console.log(objCopy);
 ## Promises
 1. A Promise is an object which represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 2. States of promise:
-   1. Pending – initial state, neither fulfilled nor rejected.
+   1. Pending – initial state, neither fulfilled nor rejected. -> when we log immediately we will get this
    2. Fulfilled – operation completed successfully.
    3. Rejected – operation failed.
 3. We can also create a promise other than getting from async operation. Syntax explanation
@@ -725,7 +725,44 @@ console.log(objCopy);
      console.log("Done")
      });
 ```
-5. 
+5. Promise chaining - we can chain then blocks when previous then block does another async op & so on...
+   ```JS
+   doTask1()
+     .then(result1 => doTask2(result1))
+     .then(result2 => console.log(result2))
+     .catch(err => console.error(err));
+   ```
+
+   ```JS
+   const myPromise = new Promise((success, failure) => {
+      setTimeout(() => {
+           if (true) {
+               success(5);  // resolves with 5 after 2 seconds
+           }
+       }, 2000);
+   });
+
+   console.log(myPromise); // Logs the Promise object (initially pending)
+
+   const multiplyBy2 = (num) => {
+       return new Promise((resolve, reject) => {
+           setTimeout(() => {
+               reject(num * 2);  // rejects with num*2 after 2 seconds
+           }, 2000);
+       });
+   };
+
+   myPromise
+       .then((res) => {
+           return multiplyBy2(res);  // after myPromise resolves, calls multiplyBy2
+       })
+       .then((res2) => {
+           console.log(res2);  // this will not run because multiplyBy2 rejects
+       })
+       .catch((err) => {
+           console.log("I'm an err", err);  // catches rejection from multiplyBy2
+       });
+   ```
 ## 
 
 ## bugnub
