@@ -144,6 +144,47 @@ str.newProp = 123;
 console.log(str.newProp); // undefined (because the boxed object is discarded)
 ```
 
+## Symbol
+1. A Symbol is a primitive data type introduced in ES6, used to create unique and immutable identifiers
+3. `const mySymbol = Symbol('description');` — creates a unique symbol with an optional label for debugging.
+4. assiging value = `obj[mySymbol] = value;` — use square brackets to set symbol-keyed properties.
+7. Access value: `obj[mySymbol]` — must use the same symbol reference with square brackets to get the value.
+5. mainly they are used to create non-colliding, hidden object key.
+6. non-collinding:
+   1. Even if we create a symbol with description or we have a same key, original symbol won't be effected.
+   2. example : Hence used In libraries or frameworks, Symbols are used for internal data so that users can’t accidentally clash with those keys.
+      ```JS
+      const internal = Symbol('internal');
+      const internal2 = Symbol('internal');
+      
+      console.log(internal === internal2) // false
+      console.log(internal == internal2) // false
+      
+      function myLibrary(comp) {
+         comp[internal] = { mounted: true };
+      }
+
+      comp.internal = 123 //this won't effect internal data
+      ```
+   3. hidden : Not visible in object loops or JSON only access through direct Symbol reference or to get all sumbols -> Object.getOwnPropertySymbols(obj);.
+      1. example: to private metadata of library
+      ```JS
+      const hiddenKey = Symbol('hidden');
+      const anotherHiddenKey = Symbol('anotherHidden')
+      const user = {
+      name: 'Alice',
+      [hiddenKey]: 'secret123',
+      [anotherHiddenKey] : 'secret456'
+      };
+      
+      console.log(Object.keys(user));        // ['name']
+      console.log(JSON.stringify(user));     // {"name":"Alice"}
+      console.log(user[hiddenKey]);          // 'secret123'
+      console.log(Object.getOwnPropertySymbols(user)) // [ Symbol(hidden), Symbol(anotherHidden) ]
+      ```
+
+
+
 ### Why null type is object - JS popular legacy bug/quirk?
 1. How null became "object": Early JavaScript stored values with a type tag(a label to identify type of a value), and since null was represented by the null pointer (0x00) which matched the object type tag (0). So, typeof null incorrectly returned "object".
 2. How it’s handled now: Modern engines use distinct internal tags for null (separating it from objects), so they know null isn’t actually an object internally.
