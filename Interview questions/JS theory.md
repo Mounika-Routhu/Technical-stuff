@@ -230,6 +230,8 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 
 ## == VS ===
 
+## Scoping
+
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
 2. The GEC is created when your JavaScript code first starts running.  
