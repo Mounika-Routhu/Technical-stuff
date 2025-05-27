@@ -715,7 +715,7 @@ console.log(objCopy);
    2. .catch() gets called if the promise rejects.
    3. .finally() runs regardless of success or failure.
       
-   ```JS
+```JS
    promise
      .then(value => {
      console.log("Success:", value)
@@ -724,7 +724,7 @@ console.log(objCopy);
      }).finally(() => {
      console.log("Done")
      });
-   ```
+```
 5. 
 ## 
 
