@@ -695,17 +695,36 @@ console.log(objCopy);
    1. Pending – initial state, neither fulfilled nor rejected.
    2. Fulfilled – operation completed successfully.
    3. Rejected – operation failed.
-3. Created using new Promise
+3. We can also create a promise other than getting from async operation. Syntax explanation
+   1. new Promise -> creating with new keyword using Promise -> a JS built-in class or constructor function
+   2. this accepts a executor function with params(resolve & reject) -> these aren't keywords we can use any other names
+      3. resolve: a function to call if the async operation succeeds.
+      4. reject: a function to call if the async operation fails.
 ```JS
    let promise = new Promise((resolve, reject) => {
-   // Asynchronous operation
-   if (/* success */) {
-    resolve("Success!");
-   } else {
-    reject("Error occurred.");
-  }
-});
+      // Asynchronous operation
+      if (/* success */) {
+       resolve("Success!");
+      } else {
+       reject("Error occurred.");
+      }
+   });
 ```
+4. Now that we created a promise, we have to consume it using then & catch block(takes callbacks).
+   1. .then() gets called if the promise resolves.
+   2. .catch() gets called if the promise rejects.
+   3. .finally() runs regardless of success or failure.
+   ```JS
+   promise
+  .then(value => {
+  console.log("Success:", value)
+  }).catch(error => {
+  console.error("Failed:", error)
+  }).finally(() => {
+  console.log("Done")
+  });
+   ```
+5. 
 ## 
 
 ## bugnub
