@@ -254,16 +254,32 @@ implicit coercion during with arthemtic operators like +, - etc
 3. So, the non-primitive or less "specific" type usually gets converted.
 
 ## Scoping
-1. **Scope** defines the **accessibility of variables**
+1. **Scope** defines the **accessibility of variables** in the code
 2. We have 4 types of scopes in JS
-3. **Global scope:** Variables declared outside any function/block. Accessible **everywhere** in the script.
+3. **Global scope:** Variables declared(using var, let, const) outside any function/block. Accessible **everywhere** in the script.
 ```JS
 var a = 10; // global
 function test() {
   console.log(a); // 10
 }
+test();
 ```
-4. 
+4. function scope : Variables declared(using var, let, const)
+   ```JS
+   function test() {
+      var x = 5;
+      console.log(x); // 5
+   }
+   console.log(x); // ❌ Error: x is not defined
+   ```
+6. Block Scope (ES6+): let and const have block scope. They are only accessible within {} they are declared in.
+   ```JS
+   {
+     let a = 10;
+     const b = 20;
+   }
+   console.log(a); // ❌ Error: a is not defined
+   ```
 
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
