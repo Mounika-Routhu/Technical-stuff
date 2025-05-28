@@ -14,6 +14,20 @@ ans:[2,1,1]
 - y is 1, due to hoisting all declarations are moved to top. In this phase, when x will get undefined. so y should also get undefined but no. If a local variable (var x) and a function parameter (x) have the same name, the function will prioritize the function parameter over the hoisted local variable.
 - f() is 1, the default value will be calculated if given as an expression/function return value when the function is invoked. Here x is 1 when the function is invoked. If there no x in paramaters then f = () => x checks for global level x if no available throws an err
 
+```JS
+function scope(){
+    let x = 10;
+    {
+        var x = 9;
+        console.log(x)
+    }
+    console.log(x)
+}
+scope();
+```
+
+error bcz var is not block scoped & there is no function, so it will become global variable. but let can't be redeclared, so throws an err saying **syntax err: Identifier 'x' has already been declared**
+
 ## print 1 to 5 numbers with 1 sec delay
 ```javascript
 for(let x = 1; x < 6; x++){ 
