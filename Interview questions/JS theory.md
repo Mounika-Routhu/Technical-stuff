@@ -255,7 +255,7 @@ implicit coercion during with arthemtic operators like +, - etc
 
 ## Scoping
 1. **Scope** defines the **accessibility of variables** in the code, below are the types
-3. **Global scope:** Variables declared(using var, let, const) outside any function/block are accessible from **anywhere** in the script.
+2. **Global scope:** Variables declared(using var, let, const) outside any function/block are accessible from **anywhere** in the script.
 ```JS
 var a = 10; // global
 function test() {
@@ -263,8 +263,7 @@ function test() {
 }
 test();
 ```
-4. **Function scope:** Variables declared(using var, let, const) inside a function are only accessible **inside that function**
-   **Note:** so is let & const are function scoped here? NO. let & const are scoped to the nearest function, since entire function body is a block({}), let & const are block scoped to that function.
+3. **Function scope:** Variables declared(using var, let, const) inside a function are only accessible **inside that function**
    ```JS
    function test() {
       var x = 5;
@@ -272,7 +271,7 @@ test();
    }
    console.log(x); // ❌ Error: x is not defined
    ```
-6. **Block Scope (ES6+):** variables declared inside {} using let & const are only accessible **within that {}**
+4. **Block Scope (ES6+):** variables declared inside {} using let & const are only accessible **within that {}**
    ```JS
    {
      let a = 10;
@@ -281,13 +280,15 @@ test();
    console.log(a); // ❌ Error: a is not defined
    ```
    **IMP:** var is doesn't respect a {} block (like if, for, {}) — variables declared with **var are scoped to the nearest function, or global if no function.**
+   **Note:** so is let & const are function scoped here? NO. let & const are scoped to the nearest block({}), since entire function body is a block({}), let & const are block scoped to that function.
+   
    ```JS
    {
      var x = 5;
    }
    console.log(x); // ✅ 5
    ```
-7. **Lexical Scope:** Variables declared in an enclosing scope (outer function or block) are accessible within that scope—this is called function scope if declared with var, and block scope if declared with let or const. These variables are also accessible to any nested (inner) scopes (inner functions or blocks). This behavior is known as lexical scope.
+6. **Lexical Scope:** Variables declared in an enclosing scope (outer function or block) are accessible within that scope—this is called function scope if declared with var, and block scope if declared with let or const. These variables are also accessible to any nested (inner) scopes (inner functions or blocks). This behavior is known as lexical scope.
    ```JS
    // function
    function outer() {
@@ -307,7 +308,7 @@ test();
     }
    outer();
    ```
- 8. **function/block define/creates scope, variables get scope**
+ 7. **function/block define/creates scope, variables get scope**
 
 
 ## GEC - Global execution context
