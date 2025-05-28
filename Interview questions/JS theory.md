@@ -279,7 +279,7 @@ test();
    }
    console.log(a); // ❌ Error: a is not defined
    ```
-   **IMP:** var is doesn't respect a {} block (like if, for, {}) — variables declared with **var are scoped to the nearest function, or global if no function.**
+   **IMP:** var is doesn't respect a {} block (like if, for, {}) — variables declared with **var are scoped to the nearest function, or global if no function.** <br>
    **Note:** so is let & const are function scoped here? NO. let & const are scoped to the nearest block({}), since entire function body is a block({}), let & const are block scoped to that function.
    
    ```JS
