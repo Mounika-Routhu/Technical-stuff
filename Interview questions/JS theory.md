@@ -255,7 +255,7 @@ implicit coercion during with arthemtic operators like +, - etc
 
 ## What is a block?
 1. Block is defined by curly braces {}
-2. block allows us to group multiple statements. Like in if block & for, while loops
+2. block allows us to group multiple statements. Like in if & for, while loops
    ```JS
    if(true){
       console.log("HI");
