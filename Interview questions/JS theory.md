@@ -253,6 +253,17 @@ implicit coercion during with arthemtic operators like +, - etc
 2. This is to avoid accidental data loss and to keep operations meaningful — even if sometimes the results look a bit odd.
 3. So, the non-primitive or less "specific" type usually gets converted.
 
+## What is a block?
+1. Block is defined by curly braces {}
+2. block allows us to group multiple statements. Like in if block & for, while loops
+   ```JS
+   if(true){
+      console.log("HI");
+      let x = 10;
+      console.log(x);
+   }
+   ```
+
 ## Scoping
 1. **Scope** defines the **accessibility of variables** in the code, below are the types
 2. **Global scope:** Variables declared(using var, let, const) outside any function/block are accessible from **anywhere** in the script.
