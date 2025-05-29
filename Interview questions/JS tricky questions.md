@@ -38,6 +38,56 @@ for(let x = 1; x < 6; x++){
 ```
 if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates a gloabl variable & by the time all setTimeout async function run global var x will be come 6 hence 6 will be printed for 5 times
 
+## guess it
+```JS
+function implicit(){
+    {
+        x = 10;
+        console.log(x) // 10
+    }
+    console.log(x) // 10
+}
+
+implicit()
+console.log(x); // 10
+```
+
+tricky guess below code o/p
+```JS
+function implicit(){
+    x = 20;
+    {
+        var x = 10;
+        console.log(x)
+    }
+    console.log(x)
+}
+
+implicit()
+console.log(x);
+```
+o/p
+```JS
+10
+10
+reference error: x is not defined
+```
+explanation: inside function scope hoisting happens **ONLY** bcz **we have a var declaration,  no hoisting without declaration**, so JS treats it as
+```JS
+function implicit(){
+    var x; // hoisting during memery allocation phase of execution context for function
+    x = 20;
+    {
+        x = 10;
+        console.log(x)
+    }
+    console.log(x)
+}
+
+implicit()
+console.log(x);
+```
+
 ## increment-decrement, post-pre, primitive types, immutatble
 ```JS
 let x = 0
