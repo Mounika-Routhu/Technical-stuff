@@ -357,6 +357,7 @@ function test(x) {
 }
 test(20)
 ```
+But, we can do as below, here let x = 10 is defined inside a block{}
 ```JS
 function test(x) {
    {
