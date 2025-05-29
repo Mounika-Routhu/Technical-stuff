@@ -372,8 +372,7 @@ test(20)
 ## What is Shadowing in JavaScript?
 1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.
 2. The inner variable “shadows” or hides the outer one within its scope, making the outer variable inaccessible in that region.
-3. so, basically showdowing - redeclaration in a nested (different) scope — not only with var, **with let and const also**.
-
+3. **so, basically showdowing - redeclaration in a nested (different) scope — It works not just with var, but also with let and const — because you're declaring it in a new scope, not redeclaring in the same one.**
 ```JS
 let message = "Hello from global";
 
