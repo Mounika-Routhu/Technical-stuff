@@ -332,6 +332,7 @@ test();
 ## Scope of function paramater:
 1. Scoped to the function body -> available only inside the function
 2. Act like var (they’re **hoisted** and can be **re-declared with var**, but **not with let or const in the same scope** -> syntax err, already declared)
+3. funcion parameters & (local) variables declared inside function come under same scope.
 
 **hoisted** explained in below example
 ```JS
