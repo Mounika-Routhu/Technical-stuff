@@ -255,7 +255,7 @@ implicit coercion during with arthemtic operators like +, - etc
 
 ## var, let, const
 1. In JavaScript, var, let, and const are used to declare variables, but they have some differences in terms of scope and mutability:
-2. var: It is the oldest way to declare a variable in JavaScript. var is function scoped, meaning that it can be accessed from anywhere within the function it is declared in, including nested functions. However, var does not have block scope, which means that it can also be accessed outside the block it was declared in. var can be re-declared and re-assigned
+2. var: It is the oldest way to declare a variable in JavaScript. var is function scoped, meaning that it can be accessed from anywhere within the function it is declared in, including nested functions. However, var does not have block scope, which means that it can also be accessed outside the block it was declared in. var can be **re-declared(only using another var)** and re-assigned
 3. let intro in ES6 but it is block-scoped. It can only be accessed within the block it was declared in, including nested blocks. let variables can be reassigned, but not redeclared.
 4. const intro in ES6 It is also block-scoped and cannot be reassigned or redeclared. However, if the constant is an object or an array, its properties can still be modified.
 5. let & const can be function scoped, not technically, function's body is a block, if let & const are declared inside a function, they are scoped to nearest block which is function's body, hence they seem like they are function scoped.
@@ -378,7 +378,7 @@ test(20)
 ```
 
 ## What is Shadowing in JavaScript?
-1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.
+1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.**(doesn't consider declaration type(var, let & const))**
 2. The inner variable “shadows” or hides the outer one within its scope, making the outer variable inaccessible in that region.
 3. **so, basically shadowing - redeclaration in a nested (different) scope, doesn't effect outside variable — It works not just with var, but also with let and const — because you're declaring it in a new scope, not redeclaring in the same one.**
 ```JS
@@ -393,16 +393,17 @@ greet();
 console.log(message); // "Hello from global"
 ```
 
-Also deep nesting
+**Also deep nesting & declaration type(var, let & const) isn't considered for shadowing**
 ```JS
-let message = "Hello from global";
+var message = "Hello from global";
+
 function greet() {
-   let message = "Hello from function";
-   console.log(message); // "Hello from function"
-   {
-      let message = "hellow from nested func";
+  let message = "Hello from function"; // shadows the outer `message`
+  console.log(message); // "Hello from function"
+  {
+      const message = "hellow from nested"
       console.log(message)
-   }
+  }
 }
 
 greet();
