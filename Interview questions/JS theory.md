@@ -357,7 +357,7 @@ function test(x) {
 }
 test(20)
 ```
-But, we can do as below, here let x = 10 is defined inside a block{}
+But, we can do as below, here let x = 10 is defined inside a block{} - a different scope not same scope - this concept is technically known as shadowing
 ```JS
 function test(x) {
    {
@@ -372,7 +372,7 @@ test(20)
 ## What is Shadowing in JavaScript?
 1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.
 2. The inner variable “shadows” or hides the outer one within its scope, making the outer variable inaccessible in that region.
-3. **so, basically shadowing - redeclaration in a nested (different) scope — It works not just with var, but also with let and const — because you're declaring it in a new scope, not redeclaring in the same one.**
+3. **so, basically shadowing - redeclaration in a nested (different) scope, doesn't effect outside variable — It works not just with var, but also with let and const — because you're declaring it in a new scope, not redeclaring in the same one.**
 ```JS
 let message = "Hello from global";
 
