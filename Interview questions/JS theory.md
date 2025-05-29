@@ -419,7 +419,7 @@ console.log(message); // 👉 "Hello from global"
 <img width="855" alt="Screenshot 2025-05-25 at 5 19 25 PM" src="https://github.com/user-attachments/assets/19a000a8-b8f8-4d3b-a40e-347d3225b652" />
 
 ## HOISTING 
-1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global or function scope) during the creation phase of the Execution Context.
+1. Hoisting is JavaScript's default behavior of moving declarations to the top of their containing scope (Global - outside function/block, function scope - inside function, block scope - inside {}(let & const not var)) during the creation phase of the Execution Context.
 2. It applies to:
    1. Variable declarations (var)
    2. Function declarations
