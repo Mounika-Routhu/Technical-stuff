@@ -386,11 +386,11 @@ let message = "Hello from global";
 
 function greet() {
   let message = "Hello from function"; // shadows the outer `message`
-  console.log(message); // 👉 "Hello from function"
+  console.log(message); // "Hello from function"
 }
 
 greet();
-console.log(message); // 👉 "Hello from global"
+console.log(message); // "Hello from global"
 ```
 
 Also deep nesting
@@ -406,7 +406,60 @@ function greet() {
 }
 
 greet();
-console.log(message); // 👉 "Hello from global"
+console.log(message); // "Hello from global"
+```
+
+## Implicit global
+1. Implicit global is created when you assign a value to an undeclared identifier(without using var, let, or const) inside a function or block or globally.
+2. JavaScript automatically creates a global variable on the global object (window in browsers).
+
+```JS
+function implicit(){
+    {
+        x = 10;
+        console.log(x) // 10
+    }
+    console.log(x) // 10
+}
+
+implicit()
+console.log(x); // 10
+```
+
+tricky guess below code o/p
+```JS
+function implicit(){
+    x = 20;
+    {
+        var x = 10;
+        console.log(x)
+    }
+    console.log(x)
+}
+
+implicit()
+console.log(x);
+```
+o/p
+```JS
+10
+10
+reference error: x is not defined
+```
+explanation: inside function scope hoisting happens **ONLY** bcz **we have a var declaration,  no hoisting without declaration**, so JS treats it as
+```JS
+function implicit(){
+    var x; // hoisting during memery allocation phase of execution context for function
+    x = 20;
+    {
+        x = 10;
+        console.log(x)
+    }
+    console.log(x)
+}
+
+implicit()
+console.log(x);
 ```
 
 ## GEC - Global execution context
@@ -471,7 +524,7 @@ saySeeYa(); // ReferenceError: Cannot access 'saySeeYa' before initialization
 let saySeeYa = () => {
     console.log("SeeYa");
 }
-```  
+```
 
 ## EVENT LOOP
 1. JavaScript runs code using a single-threaded call stack, handling one task at a time in a synchronous manner.(immediately executes, like explained in GEC)
