@@ -353,6 +353,13 @@ hoist();
 here, function param acts like var, we can't **re-declare** a variable using let/cosnt in the same scope
 ```JS
 function test(x) {
+   var x = 10;
+   console.log(x) // 10 - declared with var
+}
+test(20)
+```
+```JS
+function test(x) {
   let x = 10; // ❌ SyntaxError: Identifier 'x' has already been declared
 }
 test(20)
