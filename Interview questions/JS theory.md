@@ -329,6 +329,45 @@ test();
    ```
  7. **function/block define/creates scope, variables get scope**
 
+## Scope of function paramater:
+1. Scoped to the function body -> available only inside the function
+2. Act like var (they’re **hoisted** and can be **re-declared with var**, but **not let or const** in the same scope -> syntax err, already declared)
+
+```JS
+function hoist(x){
+    console.log(x) //undefined
+}
+
+hoist();
+```
+above code is same as below when we hoisting applies for var
+
+```JS
+function hoist(){
+    console.log(x) //undefined
+    var x = 10;
+}
+
+hoist();
+```
+
+## What is Shadowing in JavaScript?
+1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.
+2. The inner variable “shadows” or hides the outer one within its scope, making the outer variable inaccessible in that region.
+3. so, basically showdowing - redeclaration in a nested (different) scope — not only with var, **with let and const also**.
+
+```JS
+let message = "Hello from global";
+
+function greet() {
+  let message = "Hello from function"; // shadows the outer `message`
+  console.log(message); // 👉 "Hello from function"
+}
+
+greet();
+console.log(message); // 👉 "Hello from global"
+```
+
 
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
