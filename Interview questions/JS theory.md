@@ -331,8 +331,9 @@ test();
 
 ## Scope of function paramater:
 1. Scoped to the function body -> available only inside the function
-2. Act like var (they’re **hoisted** and can be **re-declared with var**, but **not let or const** in the same scope -> syntax err, already declared)
+2. Act like var (they’re **hoisted** and can be **re-declared with var**, but **not with let or const in the same scope** -> syntax err, already declared)
 
+**hoisted** explained in below example
 ```JS
 function hoist(x){
     console.log(x) //undefined
@@ -340,15 +341,31 @@ function hoist(x){
 
 hoist();
 ```
-above code is same as below when we hoisting applies for var
+above code acts like same as below when we hoisting applies for var
 
 ```JS
 function hoist(){
     console.log(x) //undefined
     var x = 10;
 }
-
 hoist();
+```
+here, function param acts like var, we can't **re-declare** a variable using let/cosnt in the same scope
+```JS
+function test(x) {
+  let x = 10; // ❌ SyntaxError: Identifier 'x' has already been declared
+}
+test(20)
+```
+```JS
+function test(x) {
+   {
+      let x = 10; 
+      console.log(x) //10
+   }
+   console.log(x) //20
+}
+test(20)
 ```
 
 ## What is Shadowing in JavaScript?
@@ -368,6 +385,21 @@ greet();
 console.log(message); // 👉 "Hello from global"
 ```
 
+Also deep nesting
+```JS
+let message = "Hello from global";
+function greet() {
+   let message = "Hello from function";
+   console.log(message); // "Hello from function"
+   {
+      let message = "hellow from nested func";
+      console.log(message)
+   }
+}
+
+greet();
+console.log(message); // 👉 "Hello from global"
+```
 
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
