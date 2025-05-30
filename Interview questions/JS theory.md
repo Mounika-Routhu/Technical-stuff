@@ -688,15 +688,32 @@ counter.dec(); // count became 1
 counter.log(); // Output: 1
 ```
 9. Closures have many uses like
-   1. Encapsulation - counter example above
-   2. private variables
-   3. Currying - next topic
-   4. setTimeout
-   5. Event Handlers - functional components in react
-   6. once fn - to make a function execute only once
+   1. Encapsulation - Encapsulation is the concept of **restricting direct access** to some of an object's components and **exposing only necessary behavior.** In JavaScript, closures can be used to **create private variables**.
+      Eg: above counter, where we aren't exposing count value directly but only through log method. Real world example **Bank balance example**
+    2. Currying - next topic
+    3. setTimeout 
+    4. Event Handlers - functional components in react
+    5. once fn - to make a function execute only once
+    6. Debouncing - study in later notes
 
 ## Currying
+1. Currying is a functional programming **technique** where a function with multiple arguments is transformed into a series of functions, each taking one argument at a time.
 for n elements understand recursiveness, .end, ...args, fn.length
+
+## What is functional programing?
+Functional programming is a way of writing code where you:
+   1. **Use functions** to build your program - functions as first class citizens - pass as an argument, store in variable, resturn from another funtion - resusablity - modularity - USE: easy to write complex code.
+   2. **Immutability** - no updates to variables or data - Once you create something, don’t change it - make a new one. USE: Fewer bugs because you don’t change things
+      ```JS
+      const nums = [1, 2, 3];
+      const doubled = nums.map(n => n * 2); // makes a new array
+      ```
+   3. Try to keep functions **pure** – they don’t depend external world - Always give the same output for the same input. - USE: easy to debug
+      ```JS
+      function add(a, b) {
+        return a + b;
+      }
+      ```
 
 ## Prototype - INHERITANCE
 1. When a function(except arrow function) is created JS automatically add a property to it, call Prototype - an object
