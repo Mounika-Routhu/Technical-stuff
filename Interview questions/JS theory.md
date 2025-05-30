@@ -657,7 +657,6 @@ function counter(){
         console.log(count)
     }
       
-
     count++ //initially increment by 1
     return incrementCounter;
 }
@@ -669,36 +668,92 @@ incrementCounter(); //3
 const incrementCounter2 = counter(); //new environment
 incrementCounter2(); //2
 ```
-
-```JS
-function outer() {
-  let count = 0;
-
-  return {
-    inc: function () { count++; },
-    dec: function () { count--; },
-    log: function () { console.log(count); }
-  };
-}
-
-const counter = outer();
-counter.inc(); // count became 1
-counter.inc(); // count became 2
-counter.dec(); // count became 1
-counter.log(); // Output: 1
-```
 9. Closures have many uses like
    1. Encapsulation - Encapsulation is the concept of **restricting direct access** to some of an object's components and **exposing only necessary behavior.** In JavaScript, closures can be used to **create private variables**.
-      Eg: above counter, where we aren't exposing count value directly but only through log method. Real world example **Bank balance example**
-    2. Currying - next topic
-    3. setTimeout 
-    4. Event Handlers - functional components in react
-    5. once fn - to make a function execute only once
-    6. Debouncing - study in later notes
+      Eg: above counter, where we aren't exposing count value directly but only through log method. Real world example **Bank app example** - set, withdraw, deposit, getBalance
+```JS
+function bank(){
+    let userAccounts = {} ;
+    
+    const operations = {
+        setUserBalance: (accountId, balance) => {
+            userAccounts[accountId] = balance
+            console.log("New user added suucessfully");
+        },
+        withdraw: (accountId, amount) => {
+            userAccounts[accountId] -= amount;
+            console.log("Widthdraw successful, your remaining balance:", userAccounts[accountId]);
+        },
+        deposit: (accountId, amount) => {
+            userAccounts[accountId] += amount;
+            console.log("Deposit successful, your new balance:", userAccounts[accountId]);
+        },
+        fetchBalance: (accountId) => {
+           console.log("Your current balance is", userAccounts[accountId]);
+        },
+    }
+    return operations;
+}
+
+const gachibowliBranch = bank(); 
+gachibowliBranch.setUserBalance(123, 4000) // New user added suucessfully
+gachibowliBranch.withdraw(123, 300); // Widthdraw successful, your remaining balance: 3700
+gachibowliBranch.deposit(123, 500); // Deposit successful, your new balance: 4200
+gachibowliBranch.fetchBalance(123); // Your current balance is 4200
+
+console.log("--------------------------------");
+
+const kondapurBranch = bank(); // new environment created
+kondapurBranch.setUserBalance(456, 7000) // New user added suucessfully
+kondapurBranch.withdraw(456, 300); // Widthdraw successful, your remaining balance: 6700
+kondapurBranch.deposit(456, 500); // Deposit successful, your new balance: 7200
+kondapurBranch.fetchBalance(456); // Your current balance is 7200
+```
+    3. Currying - next topic
+    4. setTimeout 
+    5. Event Handlers - functional components in react
+    6. once fn - to make a function execute only once
+    7. Debouncing - study in later notes
 
 ## Currying
 1. Currying is a functional programming **technique** where a function with multiple arguments is transformed into a series of functions, each taking one argument at a time.
-for n elements understand recursiveness, .end, ...args, fn.length
+2. **Uses: enabling reusability & partial application** : we partially applied logic & got a function & we wait for next argument to apply & also multiply2 method can be reused many times
+
+```JS
+function multiply(a) {
+  return function (b) {
+    return a * b;
+  };
+}
+
+const double = multiply(2);
+const triple = multiply(3);
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+```
+3. **Real world example:** In a website, you want to log messages with different tags for different parts of the app (e.g., `[Auth], [Payment], [UI]`).
+
+```JS
+function createCustomLog(tag){
+    function customLog(log){
+        console.log("[" + tag + "]: " + log)
+    }
+    return customLog;
+}
+
+const authLog = createCustomLog("Auth");
+const paymentLog = createCustomLog("Payment");
+
+authLog("User logged in successfully"); // [Auth]: User logged in successfully
+paymentLog("Payment failed due to insufficient balance"); // [Payment]: Payment failed due to insufficient balance
+```
+
+**Very imp :** for n elements understand recursiveness, inner.end, arguments.length
+
+**arrow function syntax**
+```JS
+const multiply = a => b => a * b;
+```
 
 ## What is functional programing?
 Functional programming is a way of writing code where you:
