@@ -670,50 +670,71 @@ incrementCounter2(); //2
 ```
 9. Closures have many uses like
    1. Encapsulation - Encapsulation is the concept of **restricting direct access** to some of an object's components and **exposing only necessary behavior.** In JavaScript, closures can be used to **create private variables**.
+
       Eg: above counter, where we aren't exposing count value directly but only through log method. Real world example **Bank app example** - set, withdraw, deposit, getBalance
+
 ```JS
-function bank(){
-    let userAccounts = {} ;
-    
-    const operations = {
-        setUserBalance: (accountId, balance) => {
-            userAccounts[accountId] = balance
-            console.log("New user added suucessfully");
-        },
-        withdraw: (accountId, amount) => {
-            userAccounts[accountId] -= amount;
-            console.log("Widthdraw successful, your remaining balance:", userAccounts[accountId]);
-        },
-        deposit: (accountId, amount) => {
-            userAccounts[accountId] += amount;
-            console.log("Deposit successful, your new balance:", userAccounts[accountId]);
-        },
-        fetchBalance: (accountId) => {
-           console.log("Your current balance is", userAccounts[accountId]);
-        },
-    }
-    return operations;
-}
-
-const gachibowliBranch = bank(); 
-gachibowliBranch.setUserBalance(123, 4000) // New user added suucessfully
-gachibowliBranch.withdraw(123, 300); // Widthdraw successful, your remaining balance: 3700
-gachibowliBranch.deposit(123, 500); // Deposit successful, your new balance: 4200
-gachibowliBranch.fetchBalance(123); // Your current balance is 4200
-
-console.log("--------------------------------");
-
-const kondapurBranch = bank(); // new environment created
-kondapurBranch.setUserBalance(456, 7000) // New user added suucessfully
-kondapurBranch.withdraw(456, 300); // Widthdraw successful, your remaining balance: 6700
-kondapurBranch.deposit(456, 500); // Deposit successful, your new balance: 7200
-kondapurBranch.fetchBalance(456); // Your current balance is 7200
+   function bank(){
+       let userAccounts = {} ;
+       
+       const operations = {
+           setUserBalance: (accountId, balance) => {
+               userAccounts[accountId] = balance
+               console.log("New user added suucessfully");
+           },
+           withdraw: (accountId, amount) => {
+               userAccounts[accountId] -= amount;
+               console.log("Widthdraw successful, your remaining balance:", userAccounts[accountId]);
+           },
+           deposit: (accountId, amount) => {
+               userAccounts[accountId] += amount;
+               console.log("Deposit successful, your new balance:", userAccounts[accountId]);
+           },
+           fetchBalance: (accountId) => {
+              console.log("Your current balance is", userAccounts[accountId]);
+           },
+       }
+       return operations;
+   }
+   
+   const gachibowliBranch = bank(); 
+   gachibowliBranch.setUserBalance(123, 4000) // New user added suucessfully
+   gachibowliBranch.withdraw(123, 300); // Widthdraw successful, your remaining balance: 3700
+   gachibowliBranch.deposit(123, 500); // Deposit successful, your new balance: 4200
+   gachibowliBranch.fetchBalance(123); // Your current balance is 4200
+   
+   console.log("--------------------------------");
+   
+   const kondapurBranch = bank(); // new environment created
+   kondapurBranch.setUserBalance(456, 7000) // New user added suucessfully
+   kondapurBranch.withdraw(456, 300); // Widthdraw successful, your remaining balance: 6700
+   kondapurBranch.deposit(456, 500); // Deposit successful, your new balance: 7200
+   kondapurBranch.fetchBalance(456); // Your current balance is 7200
 ```
-    3. Currying - next topic
-    4. setTimeout 
-    5. Event Handlers - functional components in react
-    6. once fn - to make a function execute only once
-    7. Debouncing - study in later notes
+
+   2. **Currying** - next topic
+   3. **setTimeout** - In setTimeout, **each callback forms a closure** by **remembering variables from its outer scope**, even after the outer function has finished execution.
+      ```JS
+      for (var i = 0; i < 3; i++) {
+        setTimeout(() => console.log(i), 1000);
+      }
+      ```
+   4. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
+    ```JS
+   import { useState } from "react";
+
+   const Counter = () => {
+     const [count, setCount] = useState(0);
+   
+     function handleClick() {
+       setCount(prev => prev + 1);
+     }
+   
+     return <button onClick={handleClick}>Clicked {count} times</button>;
+   }
+    ```
+   5. **Debouncing** - study in later notes
+   6. once fn - to make a function execute only once - only study if you have time
 
 ## Currying
 1. Currying is a functional programming **technique** where a function with multiple arguments is transformed into a series of functions, each taking one argument at a time.
