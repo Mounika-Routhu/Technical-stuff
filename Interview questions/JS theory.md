@@ -607,6 +607,69 @@ console.log(Math.max(...[1,2,7,3,6])) // 7
 ```
 
 ## Closures
+1. A closure is a function along with its lexical environment.
+2. The lexical environment consists of the function’s local environment and a reference to the lexical environment of its parent. This chain continues up to the global scope
+3. since, there is no parent to global, lexical environment of global is global scope it self.
+4. In other words, a function "remembers" the variables that are in same scope at the time it was defined.
+5. For example, if an inner function is defined inside an outer function, the inner function can access variables declared in the outer function.
+```JS
+// let x = 30;
+// let y = 30;
+// let z = 30;
+
+let x = y = z = 30; // same as individually declaring like above
+
+function outer(){
+    let x = 10;
+    function inner(){
+        let y = 20;
+        console.log(x,y,z)
+    }
+    inner();
+}
+
+outer();
+```
+7. The key feature of closures is that this access remains intact even after the outer function has finished executing.
+```JS
+let x = y = z = 30; // same as individually declaring
+
+function outer(){
+    let x = 10;
+    function inner(){
+        let y = 20;
+        console.log(x,y,z)
+    }
+    return inner;
+}
+
+const inner = outer();
+inner();
+```
+9. Closures remember references to the parent’s variables, not their values. If the value of a variable changes later in the closure environment, the closure sees the updated value not the value at the time of definition.
+```JS
+function counter(){
+    let counter = 0;
+    function increment(){
+        counter ++ // counter = counter + 1
+        console.log(counter)
+    }
+    return increment
+}
+
+const incrementCounter = counter();
+
+incrementCounter();
+incrementCounter();
+incrementCounter();
+```
+9. Closures have many uses like
+   1. Encapsulation - counter example above
+   2. private variables
+   3. Currying - next topic
+   4. setTimeout
+   5. Event Handlers - functional components in react
+   6. once fn - to make a function execute only once
 
 ## Currying
 for n elements understand recursiveness, .end, ...args, fn.length
