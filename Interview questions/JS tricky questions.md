@@ -49,8 +49,19 @@ for(let x = 1; x < 6; x++){
     }, 1000)
 }
 ```
-if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var creates a gloabl variable & by the time all setTimeout async function run global var x will be come 6 hence 6 will be printed for 5 times
 
+explanation: if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var is function scoped & all itercations share same reference to x. by the time all setTimeout async function run, variable x will be come 6 hence 6 will be printed for 5 times
+
+if we use let, let is block scoped, for each iteraction a reference is passed to the callback
+
+before ES6 developers used **IIFE**(Immediately Invoked Function Expression) to form a closure for each iteraction
+```JS
+for (var i = 0; i < 3; i++) {
+  (function(j) {
+    setTimeout(() => console.log(j), 1000);
+  })(i);
+}
+```
 ## guess it
 ```JS
 function implicit(){
