@@ -714,7 +714,7 @@ incrementCounter2(); //2
 
    2. **Currying** - next topic
    3. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
-```react
+```JS
    import { useState } from "react";
 
    const Counter = () => {
