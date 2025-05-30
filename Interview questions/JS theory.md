@@ -330,57 +330,49 @@ test();
  7. **function/block define/creates scope, variables get scope**
 
 ## Scope of function paramater:
-1. Scoped to the function body -> available only inside the function
-2. When a function is invoked, a separate scope will get created where these paramaters gets initilized even before the function body runs
-3. But these share the same scope with local variables(variables created inside function) & they act like var inside the function
-4. hence, we can **re-declare with var(same name)**(declaration alone is ignored, redeclaration with reassignment works, alone reassignment also works, no implicit global will be created here), but **not with let or const in the same scope** -> syntax err, already declared
-
-only assignment doesn't create implicit global(bcz, function params & local variables share same scope, JS thinks like x is already created)
-```JS 
-function run(x){
-    x = 20;
-    console.log(x) //20
-}
-
-run(30)
-console.log(x)// x is not defined
-```
-
-```
-here, function param acts like var, we can't **re-declare** a variable using let/cosnt in the same scope
-```JS
-function test(x) {
-   var x = 10;
-   console.log(x) // 10 - declared with var
-}
-test(20)
-```
-```JS
-function test(x) {
-  let x = 10; // ❌ SyntaxError: Identifier 'x' has already been declared
-}
-test(20)
-```
-But, we can do as below, here let x = 10 is defined inside a block{} - a different scope not same scope - this concept is technically known as shadowing
-```JS
-function test(x) {
-   {
-      let x = 10; 
-      console.log(x) //10
+1. Function parameters are scoped to the function body, meaning they exist only inside the function.
+2. When a function is invoked, a new scope is created where parameters are initialized before the function body runs.
+   ```JS
+   function run(x, f = () => x){
+       var x = 20;
+       console.log(x, f()) // f forms a closure with x as these params get evaluted before function run
    }
-   console.log(x) //20
-}
-test(20)
-```
-
-**(NOT HOISTING, functions params won't get hoisted)**
-```JS
-function run(x){
-    console.log(x) //undefined bcz we didn't passed any param while invoking, hence JS implicitly assigns undefined when param is not passed 
-}
-
-run();
-```
+   run(30);
+   ```
+4. Parameters share the same scope as local variables declared inside the function (e.g., just like var).
+5. Because of this shared scope:
+   1. You can redeclare a parameter using var — the declaration alone is ignored, but reassignment works.
+   ```JS
+   function test(x) {
+      var x = 10;
+      console.log(x) // 10 - declared with var
+   }
+   test(20)
+   ```
+   2. You cannot redeclare a parameter using let or const in the same scope(in nested scope possible, next topic) — this causes a syntax error.
+   ```JS
+   function test(x) {
+     let x = 10; // ❌ SyntaxError: Identifier 'x' has already been declared
+   }
+   test(20)
+   ```
+   3. only assignment without declaration doesn't create implicit global(bcz, function params & local variables share same scope, JS thinks like x is already created)
+   ```JS 
+   function run(x){
+       x = 20;
+       console.log(x) //20
+   }
+   
+   run(30)
+   console.log(x)// x is not defined
+   ```
+   4. Even though these params act like they **won't get HOISTING, functions params won't get hoisted)**
+   ```JS
+   function run(x){
+       console.log(x) //undefined bcz we didn't passed any param while invoking, hence JS implicitly assigns undefined when param is not passed 
+   }
+   run();
+   ```
 
 ## What is Shadowing in JavaScript?
 1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.**(doesn't consider declaration type(var, let & const))**
