@@ -366,7 +366,7 @@ test();
    run(30)
    console.log(x)// x is not defined
    ```
-   4. Even though these params act like they **won't get HOISTING, functions params won't get hoisted)**
+   4. Even though these params act like var they **won't get HOISTING, functions params won't get hoisted)**
    ```JS
    function run(x){
        console.log(x) //undefined bcz we didn't passed any param while invoking, hence JS implicitly assigns undefined when param is not passed 
