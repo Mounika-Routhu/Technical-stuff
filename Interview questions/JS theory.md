@@ -714,7 +714,7 @@ incrementCounter2(); //2
 
    2. **Currying** - next topic
    3. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
-    ```JS
+```react
    import { useState } from "react";
 
    const Counter = () => {
@@ -726,7 +726,7 @@ incrementCounter2(); //2
    
      return <button onClick={handleClick}>Clicked {count} times</button>;
    }
-    ```
+```
    4. **Debouncing** - study in later notes
    
    5. **setTimeout** - In setTimeout, **each callback forms a closure** by **remembering variables from its outer scope**, even after the outer function has finished execution.
