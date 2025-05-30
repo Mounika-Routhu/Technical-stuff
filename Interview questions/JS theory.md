@@ -646,22 +646,46 @@ function outer(){
 const inner = outer();
 inner();
 ```
-9. Closures remember references to the parent’s variables, not their values. If the value of a variable changes later in the closure environment, the closure sees the updated value not the value at the time of definition.
+9. Closures remember references to the parent’s variables, not their values. If the value of a variable changes later in the closure shared environment(within counter function(includes incrementCounter, or any other closures inside it)), the closure sees the updated value not the value at the time of definition.
+
+**Not shared = new environment(every call to counter(), creates a new environment)**
 ```JS
 function counter(){
-    let counter = 0;
-    function increment(){
-        counter ++ // counter = counter + 1
-        console.log(counter)
+    let count = 0;
+    function incrementCounter(){
+        count++; // will increment evertime closure is invoked
+        console.log(count)
     }
-    return increment
+      
+
+    count++ //initially increment by 1
+    return incrementCounter;
 }
 
 const incrementCounter = counter();
+incrementCounter(); //2
+incrementCounter(); //3
 
-incrementCounter();
-incrementCounter();
-incrementCounter();
+const incrementCounter2 = counter(); //new environment
+incrementCounter2(); //2
+```
+
+```JS
+function outer() {
+  let count = 0;
+
+  return {
+    inc: function () { count++; },
+    dec: function () { count--; },
+    log: function () { console.log(count); }
+  };
+}
+
+const counter = outer();
+counter.inc(); // count became 1
+counter.inc(); // count became 2
+counter.dec(); // count became 1
+counter.log(); // Output: 1
 ```
 9. Closures have many uses like
    1. Encapsulation - counter example above
