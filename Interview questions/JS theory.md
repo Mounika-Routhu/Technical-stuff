@@ -711,7 +711,6 @@ incrementCounter2(); //2
    kondapurBranch.deposit(456, 500); // Deposit successful, your new balance: 7200
    kondapurBranch.fetchBalance(456); // Your current balance is 7200
 ```
-
    2. **Currying** - next topic
    3. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
 ```JS
@@ -938,6 +937,10 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 (function(y){
      return y;
  })(4)
+```
+3. syntax for arrow func
+```JS
+(() => console.log("hey"))()
 ```
 
 ## Mutation observer
