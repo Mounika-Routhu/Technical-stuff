@@ -942,6 +942,7 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 ```JS
 (() => console.log("hey"))()
 ```
+4. uses => execute code immediately without polluting global namespace, encapsulation, private variables, to alter the scope
 
 ## Mutation observer
 1. A JavaScript API that watches for changes in the DOM (like element additions, removals, or attribute updates) and triggers a callback asynchronously.
