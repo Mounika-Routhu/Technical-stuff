@@ -713,13 +713,7 @@ incrementCounter2(); //2
 ```
 
    2. **Currying** - next topic
-   3. **setTimeout** - In setTimeout, **each callback forms a closure** by **remembering variables from its outer scope**, even after the outer function has finished execution.
-      ```JS
-      for (var i = 0; i < 3; i++) {
-        setTimeout(() => console.log(i), 1000);
-      }
-      ```
-   4. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
+   3. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
     ```JS
    import { useState } from "react";
 
@@ -733,7 +727,14 @@ incrementCounter2(); //2
      return <button onClick={handleClick}>Clicked {count} times</button>;
    }
     ```
-   5. **Debouncing** - study in later notes
+   4. **Debouncing** - study in later notes
+   
+   5. **setTimeout** - In setTimeout, **each callback forms a closure** by **remembering variables from its outer scope**, even after the outer function has finished execution.
+      ```JS
+      for (var i = 0; i < 3; i++) {
+        setTimeout(() => console.log(i), 1000);
+      }
+      ```
    6. once fn - to make a function execute only once - only study if you have time
 
 ## Currying
