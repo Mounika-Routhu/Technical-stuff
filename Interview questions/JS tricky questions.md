@@ -26,7 +26,7 @@ f = () => x        var y = x;  y = 1
 
 f() closure captures param scope x=1
 ```
-
+Another question
 ```JS
 function scope(){
     let x = 10;
