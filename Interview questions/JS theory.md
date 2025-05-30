@@ -220,11 +220,11 @@ null === undefined // false
 BEST PRACTISE : avoid using undefined manually, so we can identify system implicit behaviour like below
 
 **where can we see implicit undefined**
-1. Variable declared, not assigned	`let x; console.log(x); // undefined`
-2. Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
-3. Object property doesn’t exist	`const user = {}; console.log(user.age); // undefined`
-4. No return in function	`function doNothing() {} console.log(doNothing()); // undefined`
-5. Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
+1. Variable declared, not assigned(hoisting)	`let x; console.log(x); // undefined`
+2. * Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
+3. * Object property doesn’t exist	`const user = {}; console.log(user.age); // undefined`
+4. * No return in function	`function doNothing() {} console.log(doNothing()); // undefined`
+5. * Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
 ## == VS ===
 1. **`==` (loose equality)**: compares two values for equality **after type coercion**.
@@ -331,25 +331,21 @@ test();
 
 ## Scope of function paramater:
 1. Scoped to the function body -> available only inside the function
-2. Act like var (they’re **hoisted** and can be **re-declared with var**, but **not with let or const in the same scope** -> syntax err, already declared)
-3. funcion parameters & local variables declared directly inside function(not in nested scope) come under same scope.
+2. When a function is invoked, a separate scope will get created where these paramaters gets initilized even before the function body runs
+3. But these share the same scope with local variables(variables created inside function) & they act like var inside the function
+4. hence, we can **re-declare with var(same name)**(declaration alone is ignored, redeclaration with reassignment works, alone reassignment also works, no implicit global will be created here), but **not with let or const in the same scope** -> syntax err, already declared
 
-**hoisted** explained in below example
-```JS
-function hoist(x){
-    console.log(x) //undefined
+only assignment doesn't create implicit global(bcz, function params & local variables share same scope, JS thinks like x is already created)
+```JS 
+function run(x){
+    x = 20;
+    console.log(x) //20
 }
 
-hoist();
+run(30)
+console.log(x)// x is not defined
 ```
-above code acts like same as below when we hoisting applies for var
 
-```JS
-function hoist(){
-    console.log(x) //undefined
-    var x = 10;
-}
-hoist();
 ```
 here, function param acts like var, we can't **re-declare** a variable using let/cosnt in the same scope
 ```JS
@@ -375,6 +371,15 @@ function test(x) {
    console.log(x) //20
 }
 test(20)
+```
+
+**(NOT HOISTING, functions params won't get hoisted)**
+```JS
+function run(x){
+    console.log(x) //undefined bcz we didn't passed any param while invoking, hence JS implicitly assigns undefined when param is not passed 
+}
+
+run();
 ```
 
 ## What is Shadowing in JavaScript?
