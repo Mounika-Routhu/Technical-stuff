@@ -12,7 +12,7 @@ ans:[2,1,1]
 **explanation:**
 1. function params get a different scope & they get evaluted even before the function body runs
 2. here, when function got invoked, x get value 1, & f forms a closure with x, later return 1
-3. inside function body, var x; this is valid, as redeclaration of var is allowed in JS
+3. inside function body, var x; this is valid, as redeclaration of var(only with var) is allowed in JS
 4. But it will be ignored as function params & local variables(variables inside function) share same scope
 5. it's like var x = 1; var x; => var gets hoisted, & assigned a value 1
 6. later y = x => x already has a value 1
