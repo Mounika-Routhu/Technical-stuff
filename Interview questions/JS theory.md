@@ -736,7 +736,7 @@ incrementCounter2(); //2
       ```
    6. once fn - to make a function execute only once - only study if you have time
 
-## Currying
+## Currying/Function Currying
 1. Currying is a functional programming **technique** where a function with multiple arguments is transformed into a series of functions, each taking one argument at a time.
 2. **Uses: enabling reusability & partial application** : we partially applied logic & got a function & we wait for next argument to apply & also multiply2 method can be reused many times
 
