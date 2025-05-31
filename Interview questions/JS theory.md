@@ -308,6 +308,8 @@ test();
    console.log(x); // ✅ 5
    ```
 6. **Lexical Scope:** Variables declared in an enclosing scope (outer function or block) are accessible within that scope—this is called function scope if declared with var, and block scope if declared with let or const. These variables are also accessible to any nested (inner) scopes (inner functions or blocks). This behavior is known as lexical scope.
+
+**Lexical scope = what variables or this a function has access to is based on where physically present(where it’s written) in the code**
    ```JS
    // function
    function outer() {
@@ -327,7 +329,7 @@ test();
     }
    outer();
    ```
- 7. **function/block define/creates scope, variables get scope**
+ 8. **function/block define/creates scope, variables get scope**
 
 ## Scope of function paramater:
 1. Function parameters are scoped to the function body, meaning they exist only inside the function.
@@ -597,6 +599,7 @@ let saySeeYa = () => {
     ```
 
 ## call, apply, bind
+For every object created, we get a prototype which points to Object constructor, which methods like
 1. use apply when you already have a array like object to pass or when you don't know no. of params(need to use ...args to accept all args)
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
 
@@ -792,10 +795,10 @@ Functional programming is a way of writing code where you:
       ```
 
 ## Prototype - INHERITANCE
-1. When a function(except arrow function) is created JS automatically add a property to it, call Prototype - an object
-2. A prototype is an object that defines properties and methods which other objects(all instances created by new keyword) can inherit.
+1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
+2. A prototype is an object that defines properties and methods which other objects can inherit.
 3. It acts like a blueprint or template for objects created by a constructor function.
-4. constructor function - is a regular JavaScript function that is used to create and initialize objects using new keyword.
+4. constructor function - is a regular JavaScript function that is used to create objects using new keyword.
 
 ```JS
 //constructor function
@@ -921,13 +924,18 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 ```
 
 ## this
-1. this in global => window in browser, global obj in node js
-2. in regular func => undefined in strict mode, window in non strict mode(this substituation, when this is null /undefined implicitly window obj is attached)
-3. in method invokation => obj.x() => this referes to the obj that the method is invoked on here "obj"
-4. call, apply, bind
-5. in arrow functions => no binding of this => this referes to enclosing lexical scope meaning where the function is created => window or enclosing scope
-6. in DOM -> HTML elements on which event is called
-7. in class based this.handler => this refers to class instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
+1. The this keyword in JavaScript typically refers to the object that invoked or called the function. Its main purpose is to allow methods (functions defined within an object) to be used by another object.
+2. But it can have different values based on where we are executing the code.
+3. this in global scope => this refers to global object, which is **window** in browser, **global** in node js
+2. in regular func => undefined in strict mode, window in non strict mode(this substituation, when this is null /undefined JS implicitly replaces undefined with global obj(window in browsers)
+3. in method invokation => obj.x() => this referes to the obj that the invoked the method. // here "obj"
+4. Also, we can manually change the context of this by using static methods like call, apply, bind - refer to the topic for more info.
+5. in arrow functions => no concept of this, it doesn't have it's own this => they inherit this from the parent scope at the time they are defined.
+   1. if the arrow function is created in a global scope then this -> global object
+   2. if the arrow fucntion is defined as a method in an object, then this -> this of it's enclosed lexcical scope, which is object, now what is this of obj, if defined in the global scope, this -> global object
+   3. if the obj is nested inside another outer obj, then this -> outer object
+8. in DOM -> HTML elements on which event is called
+9. in class based this.handler => this refers to class instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
    
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
