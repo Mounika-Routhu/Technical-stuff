@@ -223,7 +223,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 1. Variable declared, not assigned(hoisting)	`let x; console.log(x); // undefined`
 2. * Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
 3. * Object property doesn’t exist	`const user = {}; console.log(user.age); // undefined`
-4. * No return in function	`function doNothing() {} console.log(doNothing()); // undefined`
+4. * No return in function	`const doNothing = () => {}; console.log(doNothing()); // undefined`
 5. * Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
 ## == VS ===
@@ -1219,5 +1219,8 @@ console.log(objCopy);
 1. It picks the result of the promise that the event loop happens to handle first.
 2. This is usually nondeterministic (can vary run-to-run or environment-to-environment).
 3. So, it’s not guaranteed which one “wins” if they settle simultaneously.
+
+## debouncing
+1. Debouncing is a technique to **limit how often a function runs**, especially useful for events like typing, scrolling, or resizing where lots of events fire rapidly.
 
 ## bugnub
