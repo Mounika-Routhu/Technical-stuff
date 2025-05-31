@@ -18,6 +18,21 @@ ans:[2,1,1]
 6. later y = x => x already has a value 1
 7. x gets reassigned with 2
 
+## guess it duplicate function params
+```JS
+function sum(a, a, c) { // No error
+  return a + a + c;
+}
+console.log(sum(1, 2, 3)); // Output: 7
+```
+With strict mode:
+```
+"use strict";
+function sum(a, a, c) { // SyntaxError: Duplicate parameter name not allowed in this context
+  return a + a + c;
+}
+```
+
 ```JS
 Param Scope:       Function Body Scope:
 x = 1              var x;   (ignored, no new var)
