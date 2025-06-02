@@ -170,7 +170,7 @@ console.log(userComponent._internal); // ✅ 'user-defined value' (untouched)
 console.log(userComponent[_internal]); // ✅ { mounted: true } — only accessible with Symbol
 ```
 7. hidden : Not visible in object loops or JSON only access through direct Symbol reference or to get all sumbols -> Object.getOwnPropertySymbols(obj);.
-      1. example: to create metadata of library, private keys like a user wants to hide phone number, balance application - hide bank balance - this basicallyt supports encasulation.
+      1. example: to create metadata of library, private keys like a user wants to hide phone number, balance application - hide bank balance - this basically supports encasulation.
       ```JS
       const phoneNumber = Symbol('metaData');
       const anotherHiddenKey = Symbol('anotherHidden')
@@ -926,16 +926,57 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 ## this
 1. The this keyword in JavaScript typically refers to the object that invoked or called the function. Its main purpose is to allow methods (functions defined within an object) to be used by another object.
 2. But it can have different values based on where we are executing the code.
-3. this in global scope => this refers to global object, which is **window** in browser, **global** in node js
-2. in regular func => undefined in strict mode, window in non strict mode(this substituation, when this is null /undefined JS implicitly replaces undefined with global obj(window in browsers)
-3. in method invokation => obj.x() => this referes to the obj that the invoked the method. // here "obj"
-4. Also, we can manually change the context of this by using static methods like call, apply, bind - refer to the topic for more info.
-5. in arrow functions => no concept of this, it doesn't have it's own this => they inherit this from the parent scope at the time they are defined.
-   1. if the arrow function is created in a global scope then this -> global object
-   2. if the arrow fucntion is defined as a method in an object, then this -> this of it's enclosed lexcical scope, which is object, now what is this of obj, if defined in the global scope, this -> global object
-   3. if the obj is nested inside another outer obj, then this -> outer object
+4. this in global scope => this refers to global object, which is **window** in browser, **global** in node js
+   ```JS
+   console.log(this);
+   let x = 10; // undefined even though x gets created in global scope ,it won't be attached to global obj
+   const y = 20; // same
+   var z = 30 // attached to global obj
+   console.log(this.x) // undefined
+   console.log(this.y) // undefined
+   console.log(this.z) // undefined
+   ```
+2. in regular func => undefined in strict mode, window in non strict mode(this substituation,
+   ```JS
+   console.log(this);
+   let x = 10; // undefined even though x gets created in global scope ,it won't be attached to global obj
+   const y = 20; // same
+   var z = 30 // attached to global obj
+   console.log(this.x) // undefined
+   console.log(this.y) // undefined
+   console.log(this.z) // undefined
+   ```
+4. this is bcz when you don’t explicitly invoke through any call, then this should be null, but JavaScript automatically assigns global obj(window in browsers). this is known as this substitution. Think of it global obj is only calling these in GEC 
+5. in method invokation => obj.x() => this referes to the obj that the invoked the method. // here "obj"
+6. Also, we can manually change the context of this by using static methods like call, apply, bind - refer to the topic for more info.
+7. in arrow functions => Arrow functions do not have their own **this**. Instead, they inherit the this value from their parent scope **where they are created**. This means:
+   1. If an arrow function is created in the **global scope**, this refers to the global object (window in browsers).
+   2. If an arrow function is defined directly as a **method inside an object**, this still refers to the global object, because the arrow function is not created inside the object scope(there is no object scope in JS)— What internally happens is it will be created in the outer/global scope & then assigned to method. **Arrow is just created as part of obj not inside obj**
+      ```JS
+      const obj = {
+        arrowMethod: () => {
+          console.log(this);
+        }
+      };
+      
+      obj.arrowMethod();  // Logs: window (in browsers)
+      ```
+   3. If an arrow function is defined nested, meaning inside a regular method of an object, it inherits this from that method, as arrow function is created in function scope, so **this** points to the object that invoked the regular method.
+      ```JS
+      const obj = {
+        name: "My Object",
+        regularMethod: function() {
+          const arrowFunc = () => {
+            console.log(this.name);
+          };
+          arrowFunc();
+        }
+      };
+      
+      obj.regularMethod();  // Logs: "My Object"
+      ```
 8. in DOM -> HTML elements on which event is called
-9. in class based this.handler => this refers to class instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
+9. in class based components in react, this.handler => this refers to class(where it's created instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
    
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
