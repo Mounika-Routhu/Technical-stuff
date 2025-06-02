@@ -936,22 +936,30 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
    console.log(this.y) // undefined
    console.log(this.z) // 30
    ```
-2. in regular func => undefined in strict mode, window in non strict mode(this substituation,
+2. in regular func => undefined in strict mode, window in non strict mode
    ```JS
-   console.log(this);
-   let x = 10; // undefined even though x gets created in global scope ,it won't be attached to global obj
-   const y = 20; // same
-   var z = 30 // attached to global obj
-   console.log(this.x) // undefined
-   console.log(this.y) // undefined
-   console.log(this.z) // undefined
+   function test(){
+       console.log(this); // global obj in non - strict mode
+   }
+   
+   test();
    ```
-4. this is bcz when you don’t explicitly invoke through any call, then this should be null, but JavaScript automatically assigns global obj(window in browsers). this is known as this substitution. Think of it global obj is only calling these in GEC 
+4. this is bcz when you don’t explicitly invoke a function, then this will be null, but JavaScript automatically assigns global obj(window in browsers). this is known as this substitution. Think of it global obj is only calling this function in GEC 
 5. in method invokation => obj.x() => this referes to the obj that the invoked the method. // here "obj"
-6. Also, we can manually change the context of this by using static methods like call, apply, bind - refer to the topic for more info.
-7. in arrow functions => Arrow functions do not have their own **this**. Instead, they inherit the this value from their parent scope **where they are created**. This means:
+   ```JS
+   const obj = {
+       name: "Mounika",
+       printName: function(){
+           console.log(this.name);
+       }
+   }
+   
+   obj.printName(); // Mounika
+   ```
+7. Also, we can manually change the context of **this** by using static methods like call, apply, bind - refer to the topic for more info.
+8. in arrow functions => Arrow functions do not have their own **this**. Instead, they inherit the **this** value from their parent scope **where they are created**. This means:
    1. If an arrow function is created in the **global scope**, this refers to the global object (window in browsers).
-   2. If an arrow function is defined directly as a **method inside an object**, this still refers to the global object, because the arrow function is not created inside the object scope(there is no object scope in JS)— What internally happens is it will be created in the outer/global scope & then assigned to method. **Arrow is just created as part of obj not inside obj**
+   2. If an arrow function is defined directly as a **method inside an object**, this still refers to the global object, because the arrow function is not created inside the object scope(there is no object scope in JS)— What internally happens is arrow function will be created in the outer/global scope & then assigned to method. **Arrow function is just created as part of obj not inside obj**
       ```JS
       const obj = {
         arrowMethod: () => {
@@ -962,12 +970,13 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
       obj.arrowMethod();  // Logs: window (in browsers)
       ```
    3. If an arrow function is defined nested, meaning inside a regular method of an object, it inherits this from that method, as arrow function is created in function scope, so **this** points to the object that invoked the regular method.
+   in this way we can preserve this->obj, used in complex logic, setTimeout
       ```JS
       const obj = {
         name: "My Object",
         regularMethod: function() {
           const arrowFunc = () => {
-            console.log(this.name);
+            console.log(this.name); 
           };
           arrowFunc();
         }
@@ -975,9 +984,54 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
       
       obj.regularMethod();  // Logs: "My Object"
       ```
-8. in DOM -> HTML elements on which event is called
-9. in class based components in react, this.handler => this refers to class(where it's created instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)
-   
+9. In nested function, this inside nested function will refer to undefined since we execute it on any object
+    ```JS
+      const obj = {
+        name: "My Object",
+        regularMethod: function() {
+          function anotherFunc() => {
+            console.log(this.name); 
+          };
+          anotherFunc();
+        }
+      };
+      
+      obj.regularMethod();  // undefined in strict, window in non strict
+      ```
+10. ways to bind obj to this inside nested using .bind method or const self = this;
+    ```JS
+      const obj = {
+        name: "My Object",
+        regularMethod: function() {
+          function anotherFunc() => {
+            console.log(this.name);
+          };
+          const boundAnotherFunc = anotherFunc.bind(this)
+          boundAnotherFunc();
+        }
+      };
+      
+      obj.regularMethod();  // Logs: "My Object"
+      ```
+
+      ```JS
+      const obj = {
+        name: "My Object",
+        regularMethod: function() {
+          const self = this;
+          function anotherFunc() => {
+            console.log(self.name);
+          };
+          anotherFunc();
+        }
+      };
+      
+      obj.regularMethod();  // Logs: "My Object"
+      ```
+9. in DOM -> reference to the HTML element on which event is called
+ <img width="857" alt="Screenshot 2025-06-02 at 10 25 50 PM" src="https://github.com/user-attachments/assets/a0298097-422a-47ba-8b1c-63c18fbb01ab" />
+11. in class based components in react, this.handler => this refers to class(where it's created instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)  
+
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
 2. function() -> JS will throw err, `Function statements require a function name`
