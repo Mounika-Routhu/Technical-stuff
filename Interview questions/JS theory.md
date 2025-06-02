@@ -796,7 +796,7 @@ Functional programming is a way of writing code where you:
 
 ## Prototype - INHERITANCE
 1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
-2. A prototype is an object that defines properties and methods which other objects can inherit.
+2. A prototype is an object that defines properties and methods which other objects(created using new keyword from function constructor) can inherit.
 3. It acts like a blueprint or template for objects created by a constructor function.
 4. constructor function - is a regular JavaScript function that is used to create objects using new keyword.
 
