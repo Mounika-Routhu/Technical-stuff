@@ -1030,8 +1030,12 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
       ```
 11. in DOM -> reference to the HTML element on which event is called
  <img width="857" alt="Screenshot 2025-06-02 at 10 25 50 PM" src="https://github.com/user-attachments/assets/a0298097-422a-47ba-8b1c-63c18fbb01ab" />
- 
-12. in class based components in react, this.handler => this refers to class(where it's created instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)  
+
+## Issue in class based components earlier
+1. this.handleClick passes the function but does not call it immediately.
+2. When called later by React, **this** is lost and becomes undefined(in strcit mode) unless bound. Just handleClick() will be executed later without any obj
+3. following are the ways to resolve this issue,
+<img width="749" alt="Screenshot 2025-06-02 at 10 51 20 PM" src="https://github.com/user-attachments/assets/208c431e-475d-4779-a3c7-499ff67ff03a" />
 
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
