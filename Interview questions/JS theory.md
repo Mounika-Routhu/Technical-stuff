@@ -934,7 +934,7 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
    var z = 30 // attached to global obj
    console.log(this.x) // undefined
    console.log(this.y) // undefined
-   console.log(this.z) // undefined
+   console.log(this.z) // 30
    ```
 2. in regular func => undefined in strict mode, window in non strict mode(this substituation,
    ```JS
