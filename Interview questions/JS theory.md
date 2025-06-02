@@ -926,7 +926,7 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 ## this
 1. The this keyword in JavaScript typically refers to the object that invoked or called the function. Its main purpose is to allow methods (functions defined within an object) to be used by another object.
 2. But it can have different values based on where we are executing the code.
-4. this in global scope => this refers to global object, which is **window** in browser, **global** in node js
+3. this in global scope => this refers to global object, which is **window** in browser, **global** in node js
    ```JS
    console.log(this);
    let x = 10; // undefined even though x gets created in global scope ,it won't be attached to global obj
@@ -936,7 +936,7 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
    console.log(this.y) // undefined
    console.log(this.z) // 30
    ```
-2. in regular func => undefined in strict mode, window in non strict mode
+4. in regular func => undefined in strict mode, window in non strict mode
    ```JS
    function test(){
        console.log(this); // global obj in non - strict mode
@@ -944,8 +944,8 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
    
    test();
    ```
-4. this is bcz when you don’t explicitly invoke a function, then this will be null, but JavaScript automatically assigns global obj(window in browsers). this is known as this substitution. Think of it global obj is only calling this function in GEC 
-5. in method invokation => obj.x() => this referes to the obj that the invoked the method. // here "obj"
+5. this is bcz when you don’t explicitly invoke a function, then this will be null, but JavaScript automatically assigns global obj(window in browsers). this is known as this substitution. Think of it global obj is only calling this function in GEC 
+6. in method invokation => obj.x() => this referes to the obj that the invoked the method. // here "obj"
    ```JS
    const obj = {
        name: "Mounika",
@@ -1028,9 +1028,10 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
       
       obj.regularMethod();  // Logs: "My Object"
       ```
-9. in DOM -> reference to the HTML element on which event is called
+11. in DOM -> reference to the HTML element on which event is called
  <img width="857" alt="Screenshot 2025-06-02 at 10 25 50 PM" src="https://github.com/user-attachments/assets/a0298097-422a-47ba-8b1c-63c18fbb01ab" />
-11. in class based components in react, this.handler => this refers to class(where it's created instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)  
+ 
+12. in class based components in react, this.handler => this refers to class(where it's created instead of event so we have explicitely bind the function => (e) => this.eventHandler.bind(e)  
 
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
