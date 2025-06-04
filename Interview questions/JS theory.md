@@ -599,7 +599,20 @@ let saySeeYa = () => {
     ```
 
 ## call, apply, bind
-For every object created, we get a prototype which points to Object constructor, which methods like
+1. Every function in JavaScript has a prototype, which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
+2. These methods help to explicitly change the context (this) when calling a function. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
+3. Call: Calls a function immediately, with **this** set to the object you pass. And Passes arguments individually.
+```JS
+function greet(greeting) {
+  console.log(greeting + ", " + this.name);
+}
+
+const person = { name: "Alice" };
+greet.call(person, "Hello");  // Output: "Hello, Alice"
+```
+4. Apply: Like call(), but takes arguments as an array. Useful when arguments are already in an array or when we don't know no. of arguments expected
+```JS
+```
 1. use apply when you already have a array like object to pass or when you don't know no. of params(need to use ...args to accept all args)
 <img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
 
