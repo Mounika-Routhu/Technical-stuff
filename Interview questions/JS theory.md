@@ -601,25 +601,81 @@ let saySeeYa = () => {
 ## call, apply, bind
 1. Every function in JavaScript has a prototype, which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
 2. These methods help to explicitly change the context (this) when calling a function. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
-3. Call: Calls a function immediately, with **this** set to the object you pass. And Passes arguments individually.
+3. **Call:** calls(invokes) a function immediately, with **this** set to the object you pass. accepts & passes **optional** arguments individually.
 ```JS
-function greet(greeting) {
-  console.log(greeting + ", " + this.name);
+function printHobbies(s1, s2){
+    console.log(this.name, "has following skills:", s1 + ", " + s2);
 }
 
-const person = { name: "Alice" };
-greet.call(person, "Hello");  // Output: "Hello, Alice"
-```
-4. Apply: Like call(), but takes arguments as an array. Useful when arguments are already in an array or when we don't know no. of arguments expected
-```JS
-```
-1. use apply when you already have a array like object to pass or when you don't know no. of params(need to use ...args to accept all args)
-<img width="990" alt="Screenshot 2025-03-18 at 12 25 00 AM" src="https://github.com/user-attachments/assets/7c2fe9b8-e0c8-4a17-be8f-0eb5e8f171b5" />
+const employee = {
+    name : "Mounika"
+}
 
-2. modren syntax is to use ...spread instead of apply
+printHobbies.call(employee, 'react', 'JS') // Mounika has following skills: react, JS
+```
+4. **Apply:** Like call(), but takes **optional** arguments as an array(array-like objects) & passes arguments individually. So your function should use rest parameters to gather those args into an array.
+   1. Useful when arguments are already in an array or when we don't know no. of arguments expected. 
+   2. **array-like objects** -> objects which have length & indices but not an array eg: aruguments for a function doesn't have array methods like push, pop etc & Array.isArray(aruguments) // false
+
+```JS
+function printHobbies(...args){
+    console.log(this.name, "has following skills");
+    args.forEach(skill =>{
+        console.log(skill);
+    })
+}
+
+const hobbiesList = ["react", 'JS', "HTML"]; // employee selected these skills from dropdown
+
+const employee = {
+    name : "Mounika"
+}
+
+printHobbies.apply(employee, hobbiesList)
+// printHobbies.call(employee, ...hobbiesList) // for call spread args & accept using rest op
+```
+
+```JS
+o/p
+Mounika has following skills
+react
+JS
+HTML
+```
+   3. modren syntax is to use ...spread instead of apply
 ```JS
 console.log(Math.max.apply(null, [1,2,7,3,6])) // 7
 console.log(Math.max(...[1,2,7,3,6])) // 7
+```
+5. **bind**: instead of immediate invokation, bind returns a new function, accepts & passes **optional** individual aruguments
+   1. useful when we expect more arguments later & then invoke function
+
+```JS
+function printHobbies(...args){
+    console.log(this.name, "has following skills");
+    args.forEach(skill => {
+        console.log(skill);
+    })
+}
+
+const hobbiesList = ["react", 'JS', "HTML"]; // employee selected these skills from dropdown
+
+const employee = {
+    name : "Mounika"
+}
+
+const printHobbiesLater = printHobbies.bind(employee, ...hobbiesList)
+
+printHobbiesLater("CSS");
+```
+
+```JS
+o/p
+Mounika has following skills
+react
+JS
+HTML
+CSS
 ```
 
 ## Closures
