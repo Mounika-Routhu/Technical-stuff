@@ -598,86 +598,6 @@ let saySeeYa = () => {
     console.log(triple(5)); // Output: 15
     ```
 
-## call, apply, bind
-1. Every function in JavaScript has a prototype, which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
-2. These methods help to explicitly change the context (this) when calling a function. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
-3. **Call:** calls(invokes) a function immediately, with **this** set to the object you pass. accepts & passes **optional** arguments individually.
-```JS
-function printHobbies(s1, s2){
-    console.log(this.name, "has following skills:", s1 + ", " + s2);
-}
-
-const employee = {
-    name : "Mounika"
-}
-
-printHobbies.call(employee, 'react', 'JS') // Mounika has following skills: react, JS
-```
-4. **Apply:** Like call(), but takes **optional** arguments as an array(array-like objects) & passes arguments individually. So your function should use rest parameters to gather those args into an array.
-   1. Useful when arguments are already in an array or when we don't know no. of arguments expected. 
-   2. **array-like objects** -> objects which have length & indices but not an array eg: aruguments for a function doesn't have array methods like push, pop etc & Array.isArray(aruguments) // false
-
-```JS
-function printHobbies(...args){
-    console.log(this.name, "has following skills");
-    args.forEach(skill =>{
-        console.log(skill);
-    })
-}
-
-const hobbiesList = ["react", 'JS', "HTML"]; // employee selected these skills from dropdown
-
-const employee = {
-    name : "Mounika"
-}
-
-printHobbies.apply(employee, hobbiesList)
-// printHobbies.call(employee, ...hobbiesList) // for call spread args & accept using rest op
-```
-
-```JS
-o/p
-Mounika has following skills
-react
-JS
-HTML
-```
-   3. modren syntax is to use ...spread instead of apply
-```JS
-console.log(Math.max.apply(null, [1,2,7,3,6])) // 7
-console.log(Math.max(...[1,2,7,3,6])) // 7
-```
-5. **bind**: instead of immediate invokation, bind returns a new function, accepts & passes **optional** individual aruguments
-   1. useful when we expect more arguments later & then invoke function
-
-```JS
-function printHobbies(...args){
-    console.log(this.name, "has following skills");
-    args.forEach(skill => {
-        console.log(skill);
-    })
-}
-
-const hobbiesList = ["react", 'JS', "HTML"]; // employee selected these skills from dropdown
-
-const employee = {
-    name : "Mounika"
-}
-
-const printHobbiesLater = printHobbies.bind(employee, ...hobbiesList)
-
-printHobbiesLater("CSS");
-```
-
-```JS
-o/p
-Mounika has following skills
-react
-JS
-HTML
-CSS
-```
-
 ## Closures
 1. A closure is a function along with its lexical environment.
 2. The lexical environment consists of the function’s local environment and a reference to the lexical environment of its parent. This chain continues up to the global scope
@@ -863,169 +783,6 @@ Functional programming is a way of writing code where you:
       }
       ```
 
-## Prototype - INHERITANCE
-1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
-2. A prototype is an object that defines properties and methods which other objects(created using new keyword from function constructor) can inherit.
-3. It acts like a blueprint or template for objects created by a constructor function.
-4. constructor function - is a regular JavaScript function that is used to create objects using new keyword.
-
-```JS
-//constructor function
-function Person(name) {
-  this.name = name;
-}
-```
-
-```JS
-const user = new Person("Alice");
-```
-1. A new object is created.
-2. objects doesn't get prototype property instead it gets internal [[Prototype]]
-3. can be accessed using `Object.getPrototypeOf(obj)` or `__proto__` this will be set to Person.prototype.
-4. now `this` inside the function refers to that new object.
-   
-<img width="1086" alt="Screenshot 2025-05-24 at 8 41 03 PM" src="https://github.com/user-attachments/assets/c705d498-0cb2-49da-b8b3-4b6dcc52575c" />
-
-in chrome:
-<img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
-
-**NOTE:**
-1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
-<img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
-2. arrow function will not get prototype object property
-
-```JS
-const printSum = (x,y) => console.log(x+y)
-console.log(printSum.prototype); // undefined
-```
-
-**prototype vs [[Prototype]]/__proto__**
-1. prototype is used to **define** what future objects will inherit.
-2. `[[Prototype]]/__proto__` is used to **access** what this object has inherited.
-
-## Prototype chain / prototypal inheritance
-1. **The prototype chain** is how JavaScript looks up properties and methods. If an object doesn't have a property, JavaScript follows the chain of prototypes to find it(it's parent) and access it, this type of accessing/inheritance is called **prototypal inheritance**.
-
-```JS
-function animal(name) {
-   this.name = name
-   this.barks = true;
-   this.printName = function(){
-      console.log(this.name)
-   } 
-}
-
-animal.prototype.speak = false;
-
-const dog = new animal("dog")
-
-console.log(dog.speak); // false
-```
-flow in order to access speak 
-`dog --> animal.prototype --> Object.prototype --> null`
-
-```JS
-const cow = {
-   name : "Cow"
-}
-
-dog.printName.call(cow) // Cow
-```
-flow in order to access call method
-`dog.printName --> Function.prototype --> Object.prototype --> null`
-
-## Polyfill
-1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
-2. It lets developers use modern JS features while maintaining backward compatibility.
-3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
-4. How to implement: You use feature detection: check if a method exists, and if not, define it.
-   
-For methods that instances use → polyfill goes on .prototype.
-```JS
-if (!Array.prototype.includes) {
-  Array.prototype.includes = function (searchElement, fromIndex) {
-    const len = this.length;
-    let i = fromIndex || 0;
-    while (i < len) {
-      if (this[i] === searchElement) return true;
-      i++;
-    }
-    return false;
-  };
-}
-```
-
-For static methods → polyfill goes directly on the constructor (function) itself.
-```JS
-// Polyfill for Object.assign (a static method)
-if (!Object.assign) {
-  Object.assign = function(target, ...sources) {
-    // implementation here
-  };
-}
-```
-1. A static method is a method that belongs directly to the constructor function (or class) itself, not to instances created by it.
-2. You call static methods on the class or constructor, not on an object created from it.
-
-## Class
-1. constructor function works fine, but it’s a bit old-school and verbose.
-2. so, new class feature introduced in ES6. which is cleaner and easier to read & No need to touch .prototype — JavaScript handles it for you.
-
-```JS
-class Person {
-  constructor(name) {
-    this.name = name;
-  }
-
-  sayHello() {
-    console.log("Hi, I'm " + this.name);
-  }
-}
-
-const p1 = new Person("Alice");
-p1.sayHello();
-```
-
-Even though you don’t see it, JavaScript still builds the same structure using prototypes:
-
-Behind the scenes:
-1. Person is still a constructor function & get prototype object as a default property.
-2. sayHello is placed on Person.prototype.
-3. Instances (p1) have an internal link to Person.prototype via [[prototype]](accessed using `__proto__`).
-
-```JS
-console.log(typeof Person); // "function"
-console.log(p1.__proto__ === Person.prototype); // true
-console.log(Person.prototype); // {}
-console.log(p1.__proto__); // {}
-console.log(Object.getOwnPropertyNames(Person.prototype)); // ['constructor', 'sayHello']
-```
-### Why are console.log(Person.prototype) and console.log(p1.__proto__) showing {} (an empty object)?
-1. JavaScript automatically marks class methods (like sayHello) as non-enumerable, meaning they don't show up in Object.keys() & in plain console.log(). But they still exist on the object!
-2. Use `Object.getOwnPropertyNames(employee.prototype)` or `console.dir(employee.prototype)`(in browser) to see full content
-
-<img width="430" alt="Screenshot 2025-05-24 at 7 58 30 PM" src="https://github.com/user-attachments/assets/4ebdc78d-e956-4b05-9d45-2551d565ad5c" />
-
-<img width="356" alt="Screenshot 2025-05-24 at 8 16 59 PM" src="https://github.com/user-attachments/assets/abe75830-8725-4b2b-9365-29912f5e7ffb" />
-
-## intresting fact: All functions & classes will get length as a property by default
-```JS
-function test(a, b, c) {}
-console.log(test.length); // 3 → because function takes 3 parameters/args
-
-const printSum = (x,y) => console.log(x+y)
-console.log(printSum.length); // 2 because function takes 2 parameters/args
-```
-
-```JS
-class Employee {
-  constructor(name) {
-    this.name = name;
-  }
-}
-console.log(Employee.length); // 1 → because constructor takes one parameter
-```
-
 ## this
 1. The this keyword in JavaScript typically refers to the object that invoked or called the function. Its main purpose is to allow methods (functions defined within an object) to be used by another object.
 2. But it can have different values based on where we are executing the code.
@@ -1139,6 +896,263 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 2. When called later by React, **this** is lost and becomes undefined(in strcit mode) unless bound. Just handleClick() will be executed later without any obj
 3. following are the ways to resolve this issue,
 <img width="749" alt="Screenshot 2025-06-02 at 10 51 20 PM" src="https://github.com/user-attachments/assets/208c431e-475d-4779-a3c7-499ff67ff03a" />
+
+## Prototype - INHERITANCE
+1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
+2. A prototype is an object that defines properties and methods which other objects(created using new keyword from function constructor) can inherit.
+3. It acts like a blueprint or template for objects created by a constructor function.
+4. constructor function - is a regular JavaScript function that is used to create objects using new keyword.
+
+```JS
+//constructor function
+function Person(name) {
+  this.name = name;
+}
+```
+
+```JS
+const user = new Person("Alice");
+```
+1. A new object is created.
+2. objects doesn't get prototype property instead it gets internal [[Prototype]]
+3. can be accessed using `Object.getPrototypeOf(obj)` or `__proto__` this will be set to Person.prototype.
+4. now `this` inside the function refers to that new object.
+   
+<img width="1086" alt="Screenshot 2025-05-24 at 8 41 03 PM" src="https://github.com/user-attachments/assets/c705d498-0cb2-49da-b8b3-4b6dcc52575c" />
+
+in chrome:
+<img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
+
+**NOTE:**
+1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
+<img width="1027" alt="Screenshot 2025-05-24 at 8 39 54 PM" src="https://github.com/user-attachments/assets/cd108746-f7eb-437c-8317-0694a31140f1" />
+2. arrow function will not get prototype object property
+
+```JS
+const printSum = (x,y) => console.log(x+y)
+console.log(printSum.prototype); // undefined
+```
+
+**prototype vs [[Prototype]]/__proto__**
+1. prototype is used to **define** what future objects will inherit.
+2. `[[Prototype]]/__proto__` is used to **access** what this object has inherited.
+
+## Prototype chain / prototypal inheritance
+1. **The prototype chain** is how JavaScript looks up properties and methods. If an object doesn't have a property, JavaScript follows the chain of prototypes to find it(it's parent) and access it, this type of accessing/inheritance is called **prototypal inheritance**.
+
+```JS
+function animal(name) {
+   this.name = name
+   this.barks = true;
+   this.printName = function(){
+      console.log(this.name)
+   } 
+}
+
+animal.prototype.speak = false;
+
+const dog = new animal("dog")
+
+console.log(dog.speak); // false
+```
+flow in order to access speak 
+`dog --> animal.prototype --> Object.prototype --> null`
+
+```JS
+const cow = {
+   name : "Cow"
+}
+
+dog.printName.call(cow) // Cow
+```
+flow in order to access call method
+`dog.printName --> Function.prototype --> Object.prototype --> null`
+
+## call, apply, bind
+1. Every function in JavaScript has a prototype, which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
+2. These methods help to explicitly change the context (this) when calling a function. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
+3. **Call:** calls(invokes) a function immediately, with **this** set to the object you pass. accepts & passes **optional** arguments individually.
+```JS
+function printHobbies(s1, s2){
+    console.log(this.name, "has following skills:", s1 + ", " + s2);
+}
+
+const employee = {
+    name : "Mounika"
+}
+
+printHobbies.call(employee, 'react', 'JS') // Mounika has following skills: react, JS
+```
+4. **Apply:** Like call(), but takes **optional** arguments as an array(array-like objects) & It spreads that array into individual arguments when calling the function. So your function should use rest parameters to gather those args into an array.
+   1. Useful when arguments are already in an array or when we don't know no. of arguments expected. 
+   2. **array-like objects** -> objects which have length & indices but not an array eg: aruguments for a function doesn't have array methods like push, pop etc & Array.isArray(aruguments) // false
+
+```JS
+function printHobbies(...args){
+    console.log(this.name, "has following skills");
+    args.forEach(skill =>{
+        console.log(skill);
+    })
+}
+
+const hobbiesList = ["react", 'JS', "HTML"]; // employee selected these skills from dropdown
+
+const employee = {
+    name : "Mounika"
+}
+
+printHobbies.apply(employee, hobbiesList)
+// printHobbies.call(employee, ...hobbiesList) // for call spread args & accept using rest op
+```
+
+```JS
+o/p
+Mounika has following skills
+react
+JS
+HTML
+```
+5. **bind**: instead of immediate invokation, bind returns a new function, accepts & passes **optional** individual aruguments
+   1. useful when we expect more arguments later & then invoke function
+
+```JS
+function printHobbies(...args){
+    console.log(this.name, "has following skills");
+    args.forEach(skill => {
+        console.log(skill);
+    })
+}
+
+const hobbiesList = ["react", 'JS', "HTML"]; // employee selected these skills from dropdown
+
+const employee = {
+    name : "Mounika"
+}
+
+const printHobbiesLater = printHobbies.bind(employee, ...hobbiesList)
+
+printHobbiesLater("CSS");
+```
+
+```JS
+o/p
+Mounika has following skills
+react
+JS
+HTML
+CSS
+```
+**thisArg is optional**
+**NOTE:** Even if you don't use or need `this`, you can use call, apply, and bind to manipulate arguments or control function behavior.
+when we don't pass thisArg, then this will be `global` in non strict mode & `undefined` in strict mode
+
+1. call ->
+2. apply -> 
+```JS
+console.log(Math.max.apply(null, [1,2,7,3,6])) // 7
+console.log(Math.max(...[1,2,7,3,6])) // 7 // modren syntax is to use ...spread instead of apply
+```
+3. bind -> when you want to generate intermediate function like currying
+```JS
+function multiply(a, b) {
+  return a * b;
+}
+
+const double = multiply.bind(null, 2); // `a = 2`, `this` not used
+console.log(double(5)); // Output: 10
+```
+
+## Class
+1. constructor function works fine, but it’s a bit old-school and verbose.
+2. so, new class feature introduced in ES6. which is cleaner and easier to read & No need to touch .prototype — JavaScript handles it for you.
+
+```JS
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHello() {
+    console.log("Hi, I'm " + this.name);
+  }
+}
+
+const p1 = new Person("Alice");
+p1.sayHello();
+```
+
+Even though you don’t see it, JavaScript still builds the same structure using prototypes:
+
+Behind the scenes:
+1. Person is still a constructor function & get prototype object as a default property.
+2. sayHello is placed on Person.prototype.
+3. Instances (p1) have an internal link to Person.prototype via [[prototype]](accessed using `__proto__`).
+
+```JS
+console.log(typeof Person); // "function"
+console.log(p1.__proto__ === Person.prototype); // true
+console.log(Person.prototype); // {}
+console.log(p1.__proto__); // {}
+console.log(Object.getOwnPropertyNames(Person.prototype)); // ['constructor', 'sayHello']
+```
+### Why are console.log(Person.prototype) and console.log(p1.__proto__) showing {} (an empty object)?
+1. JavaScript automatically marks class methods (like sayHello) as non-enumerable, meaning they don't show up in Object.keys() & in plain console.log(). But they still exist on the object!
+2. Use `Object.getOwnPropertyNames(employee.prototype)` or `console.dir(employee.prototype)`(in browser) to see full content
+
+<img width="430" alt="Screenshot 2025-05-24 at 7 58 30 PM" src="https://github.com/user-attachments/assets/4ebdc78d-e956-4b05-9d45-2551d565ad5c" />
+
+<img width="356" alt="Screenshot 2025-05-24 at 8 16 59 PM" src="https://github.com/user-attachments/assets/abe75830-8725-4b2b-9365-29912f5e7ffb" />
+
+## intresting fact: All functions & classes will get length as a property by default
+```JS
+function test(a, b, c) {}
+console.log(test.length); // 3 → because function takes 3 parameters/args
+
+const printSum = (x,y) => console.log(x+y)
+console.log(printSum.length); // 2 because function takes 2 parameters/args
+```
+
+```JS
+class Employee {
+  constructor(name) {
+    this.name = name;
+  }
+}
+console.log(Employee.length); // 1 → because constructor takes one parameter
+```
+
+## Polyfill
+1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
+2. It lets developers use modern JS features while maintaining backward compatibility.
+3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
+4. How to implement: You use feature detection: check if a method exists, and if not, define it.
+   
+For methods that instances use → polyfill goes on .prototype.
+```JS
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function (searchElement, fromIndex) {
+    const len = this.length;
+    let i = fromIndex || 0;
+    while (i < len) {
+      if (this[i] === searchElement) return true;
+      i++;
+    }
+    return false;
+  };
+}
+```
+
+For static methods → polyfill goes directly on the constructor (function) itself.
+```JS
+// Polyfill for Object.assign (a static method)
+if (!Object.assign) {
+  Object.assign = function(target, ...sources) {
+    // implementation here
+  };
+}
+```
+1. A static method is a method that belongs directly to the constructor function (or class) itself, not to instances created by it.
+2. You call static methods on the class or constructor, not on an object created from it.
 
 ##  IIFE (Immediately Invoked Function Expression)
 1. syntax -> (function)()
