@@ -1355,16 +1355,16 @@ So, in a sense, both techniques control the frequency of executions, but with di
 4. Real time usage:
    1. Search input: Wait for the user to finish typing before executing a search query.
    2. Autocomplete: Wait for the user to finish typing before showing suggestions.
-   3. multiple fetch calls: **can be avoided by disabling click button**
+5. In general, debouncing means filtering out rapid, unwanted inputs or signals that occur within a short period
   
 ```JS
 const debounceFunc = (func, delay) => {
     let timer;
     return function(...args){ // rest op
-        // clearTimeout(undefined); for first time no error
+        // clearTimeout(undefined); for first time, no error
         clearTimeout(timer); 
         timer = setTimeout(() => {
-            func(...args) //spred op
+            func(...args) //spread op
         }, delay)
     }
 }
@@ -1412,6 +1412,7 @@ debouncedFetchAutoComplete("JS"); // user typed 2 letters - executes now
 4. Real time usage:
    1. Scrolling: Update a UI component every 200ms while the user is scrolling.
    2. API requests: Limit the number of API requests per second to prevent overwhelming the server.
+5. Throttle is typically twist grip on the handlebar that the rider uses to accelerate or decelerate the bike. Throttling means controlling the engine speed using throttle
 
 ```JS
 ```
