@@ -824,10 +824,9 @@ function Person(name) {
 const user = new Person("Alice");
 ```
 1. A new object is created.
-2. The new object’s internal [[Prototype]] (accessed using `obj.__proto__`) is set to Person.prototype.
-3. `this` inside the function refers to that new object.
-4. prototype is used to **define** what future objects will inherit.
-5. `__proto__` is used to **access** what this object has inherited.
+2. objects doesn't get prototype property instead it gets internal [[Prototype]]
+3. can be accessed using `Object.getPrototypeOf(obj)` or `__proto__` this will be set to Person.prototype.
+4. now `this` inside the function refers to that new object.
    
 <img width="1086" alt="Screenshot 2025-05-24 at 8 41 03 PM" src="https://github.com/user-attachments/assets/c705d498-0cb2-49da-b8b3-4b6dcc52575c" />
 
@@ -843,6 +842,41 @@ in chrome:
 const printSum = (x,y) => console.log(x+y)
 console.log(printSum.prototype); // undefined
 ```
+
+**prototype vs [[Prototype]]/__proto__**
+1. prototype is used to **define** what future objects will inherit.
+2. `[[Prototype]]/__proto__` is used to **access** what this object has inherited.
+
+## Prototype chain / prototypal inheritance
+1. **The prototype chain** is how JavaScript looks up properties and methods. If an object doesn't have a property, JavaScript follows the chain of prototypes to find it(it's parent) and access it, this type of accessing/inheritance is called **prototypal inheritance**.
+
+```JS
+function animal(name) {
+   this.name = name
+   this.barks = true;
+   this.printName = function(){
+      console.log(this.name)
+   } 
+}
+
+animal.prototype.speak = false;
+
+const dog = new animal("dog")
+
+console.log(dog.speak); // false
+```
+flow in order to access speak 
+`dog --> animal.prototype --> Object.prototype --> null`
+
+```JS
+const cow = {
+   name : "Cow"
+}
+
+dog.printName.call(cow) // Cow
+```
+flow in order to access call method
+`dog.printName --> Function.prototype --> Object.prototype --> null`
 
 ## Polyfill
 1. A polyfill is a piece of JavaScript code that **adds a missing feature** to environments (like old browsers) that don’t support it natively.-> means, no build-in feature available
