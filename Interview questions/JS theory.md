@@ -1341,7 +1341,80 @@ console.log(objCopy);
 2. This is usually nondeterministic (can vary run-to-run or environment-to-environment).
 3. So, it’s not guaranteed which one “wins” if they settle simultaneously.
 
-## debouncing
-1. Debouncing is a technique to **limit how often a function runs**, especially useful for events like typing, scrolling, or resizing where lots of events fire rapidly.
 
+## Optimization techniques: Debouncing & throttling
+1. Both debouncing and throttling limit the number of executions for a specific time.
+2. Which help prevent excessive function calls, which can improve performance and reduce resource usage
+
+So, in a sense, both techniques control the frequency of executions, but with different strategies:
+
+### Debouncing
+1. Debouncing waits for a quiet period before executing
+2. like waits for 500ms before executing a function
+3. Debouncing is better suited for situations where you want to wait for a user to finish interacting with an element before executing a function.
+4. Real time usage:
+   1. Search input: Wait for the user to finish typing before executing a search query.
+   2. Autocomplete: Wait for the user to finish typing before showing suggestions.
+   3. multiple fetch calls: **can be avoided by disabling click button**
+  
+```JS
+const debounceFunc = (func, delay) => {
+    let timer;
+    return function(...args){ // rest op
+        // clearTimeout(undefined); for first time no error
+        clearTimeout(timer); 
+        timer = setTimeout(() => {
+            func(...args) //spred op
+        }, delay)
+    }
+}
+
+
+const searchWithKeyword = (keyword) => {
+    console.log("searching with keyword " + keyword)
+}
+
+const debouncedSearchWithKeyword = debounceFunc(searchWithKeyword, 200)
+
+debouncedSearchWithKeyword("J"); // user typed 1 letter
+debouncedSearchWithKeyword("JS"); // user typed 2 letters
+setTimeout(() => debouncedSearchWithKeyword("JSX"), 200) // simulating user typed after 200
+```
+
+with object method
+```JS
+const apiManager = {
+  counter: 0,
+  getApiData() {
+    console.log("Fetching autocomplete results on attempt:", this.counter);
+  }
+};
+
+const debouncingFunction = (fn, context, delay)=>{
+	let timer;
+	return function(){
+		let args = arguments;
+		context.counter++;
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+		   fn.apply(context, args); 
+		}, delay);
+	}
+}
+const callDebounceFun = debouncingFunction(apiManager.getApiData, apiManager, 300);
+
+callDebounceFun(); // 1st API call
+callDebounceFun(); // 2nd API call
+callDebounceFun(); // 3rd API call - executes now
+```
+### Throttling:
+1. Throttling executes at a fixed rate, regardless of the input frequency(number of triggers)
+2. like for every 500ms executes a function only once
+3. Throttling is better suited for situations where you want to execute a function at a fixed rate, regardless of the input frequency.
+4. Real time usage:
+   1. Scrolling: Update a UI component every 200ms while the user is scrolling.
+   2. API requests: Limit the number of API requests per second to prevent overwhelming the server.
+
+```JS
+```
 ## bugnub
