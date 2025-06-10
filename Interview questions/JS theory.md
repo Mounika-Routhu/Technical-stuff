@@ -1384,28 +1384,26 @@ setTimeout(() => debouncedSearchWithKeyword("JSX"), 200) // simulating user type
 with object method
 ```JS
 const apiManager = {
-  counter: 0,
-  getApiData() {
-    console.log("Fetching autocomplete results on attempt:", this.counter);
-  }
-};
-
-const debouncingFunction = (fn, context, delay)=>{
-	let timer;
-	return function(){
-		let args = arguments;
-		context.counter++;
-		clearTimeout(timer);
-		timer = setTimeout(() => {
-		   fn.apply(context, args); 
-		}, delay);
-	}
+    attempts: 0,
+    fetchAutocomplete(keyword){
+        console.log("fetching autocomplete for '" + keyword + "' on attempt", this.attempts);
+    }
 }
-const callDebounceFun = debouncingFunction(apiManager.getApiData, apiManager, 300);
 
-callDebounceFun(); // 1st API call
-callDebounceFun(); // 2nd API call
-callDebounceFun(); // 3rd API call - executes now
+const deboucedFunction = (func, context, delay) => {
+    let timer;
+    return function(){
+        clearTimeout(timer);
+        context.attempts++
+        let args = arguments;
+        timer = setTimeout(() => func.apply(context, args), delay)
+    }
+}
+
+const debouncedFetchAutoComplete = deboucedFunction(apiManager.fetchAutocomplete, apiManager, 200);
+
+debouncedFetchAutoComplete("J"); // user typed 1 letter
+debouncedFetchAutoComplete("JS"); // user typed 2 letters - executes now
 ```
 ### Throttling:
 1. Throttling executes at a fixed rate, regardless of the input frequency(number of triggers)
