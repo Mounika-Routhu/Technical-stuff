@@ -1415,5 +1415,29 @@ debouncedFetchAutoComplete("JS"); // user typed 2 letters - executes now
 5. Throttle is typically twist grip on the handlebar that the rider uses to accelerate or decelerate the bike. Throttling means controlling the engine speed using throttle
 
 ```JS
+const fetchAPI = (keyword) => {
+    console.log("Fetching API results for", keyword);
+}
+
+const throttlingFunc = (func, interval) => {
+    let isTrottle = false;
+    return function(...args){ // rest op
+        if(isTrottle){
+            return;
+        }else{
+            func(...args); // spread op
+            isTrottle = true;
+            setTimeout(() => {
+                isTrottle = false
+            }, interval);
+        }
+    }
+}
+
+const throttledFetchAPI = throttlingFunc(fetchAPI, 200);
+
+throttledFetchAPI("phone"); // first API fetched
+throttledFetchAPI("laptop"); // second attempt ignored bcz of interval
+setTimeout(() => throttledFetchAPI("speaker"), 200); // simulating user delay
 ```
 ## bugnub
