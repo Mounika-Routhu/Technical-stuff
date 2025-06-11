@@ -1220,8 +1220,6 @@ Micro Frontend is an **architectural approach** where a large frontend applicati
 6. Challenges: shared state management, ensuring consistent UI, routing, and performance.
 7. Used in large apps like **e-commerce sites, where product, checkout, and user profile** are separate micro frontends.
 
-## splice vs slice
-
 ## shallow vs deep copy
 Copy - To create a new reference of an array/object. When copying an object or array in JavaScript, you’re either:
 
@@ -1544,4 +1542,10 @@ throttledFetchAPI("phone"); // first API fetched
 throttledFetchAPI("laptop"); // second attempt ignored bcz of interval
 setTimeout(() => throttledFetchAPI("speaker"), 200); // simulating user delay
 ```
+
+## shift, unshift, pop, push
+<img width="928" alt="Screenshot 2025-06-11 at 12 51 21 AM" src="https://github.com/user-attachments/assets/be94b1bf-d894-40f9-beae-ff2d7d51a9f9" />
+
+## slice vs splice
+
 ## bugnub
