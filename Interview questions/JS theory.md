@@ -1613,4 +1613,5 @@ arr.splice(3, 0, 1)
 // arr is ['a', 'z', 'x', 1], returns [] 
 ```
 
-## bugnub
+## session storage vs local storage
+
