@@ -1546,6 +1546,71 @@ setTimeout(() => throttledFetchAPI("speaker"), 200); // simulating user delay
 ## shift, unshift, pop, push
 <img width="928" alt="Screenshot 2025-06-11 at 12 51 21 AM" src="https://github.com/user-attachments/assets/be94b1bf-d894-40f9-beae-ff2d7d51a9f9" />
 
+for pop & shift => **no args**, even if we pass the methods effectively **do nothing except return the removed elememet**.
+for push & unshift => we can pass 1 or more args but **optional**. If omitted, the methods effectively **do nothing except return the array’s length.**
+
 ## slice vs splice
+**slice:**
+1. purpose is to extract a shallow copy of a portion of an array (or string).
+2. Does **not mutate** the original array.
+3. Returns a new array containing the extracted elements.
+4. Syntax:  `arr.slice([start], [end])`
+   1. start: index at which extraction begin, if omitted defaults to 0(start of arr)
+   2. end: index before which extraction end(non-inclusive), if omitted defaults to array length(last element of arr)
+5. Hence, easy way to do shallow copy if gave `arr.slice();` same as `arr.splice(0)`
+6. Useful for shallow copying arrays or extracting subarrays
+
+```JS
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+arr.slice(1, 3);      // ['b', 'c']   (indexes 1 to 2)
+arr.slice(-3, -1);    // ['c', 'd']   (indexes counted from end)
+arr.slice(2);         // ['c', 'd', 'e'] (from index 2 to end)
+arr.slice();          // ['a', 'b', 'c', 'd', 'e'] (shallow copy)
+arr.slice(5);         // []           (start > length)
+arr.slice(3, 3);      // []           (start = end)
+arr.slice(3, 5);      // ['d', 'e']   (end > length)
+```
+**Note**: 
+1. if start >= end, return empty array
+2. if start >= length, start is set to array length, returns empty array
+3. if end > length, end is set to array length
+4. negative indices(counted from end, -1 is last element) are supported
+
+**splice**
+1. Purpose is to change the contents of an array by removing, replacing, or adding elements in-place.
+2. **Mutates** the original array.
+3. return an array containing the removed elements or Empty array if no elements were removed.
+4. Syntax: `arr.splice(start[, deleteCount[, item1[, item2[, ...]]]])`
+   1. start (required): Index at which to start changing the array. If start > array length, start is set to array length (inserts at end).
+      if omitted, no error, returns empty array, does nothing.
+   3. deleteCount (optional): Number of elements to remove from start.
+   4. Defaults to arr.length - start if omitted (i.e., removes everything from start). If 0, no elements are removed.
+   5. item1, item2, ... (optional): Elements to add at start position.
+
+```JS
+let arr = ['a', 'b', 'c', 'd'];
+
+arr.splice(1, 2, 'x', 'y'); 
+// arr is now ['a', 'x', 'y', 'd']
+// returns ['b', 'c']
+
+arr.splice(2);
+// arr is ['a', 'x']
+// returns ['y', 'd']
+
+arr.splice(1, 0, 'z'); 
+// arr is ['a', 'z', 'x']
+// returns []
+
+arr.splice(1, 0); 
+// arr unchanged, returns []
+
+arr.splice(3)
+// arr unchanged, returns []
+
+arr.splice(3, 0, 1)
+// arr is ['a', 'z', 'x', 1], returns [] 
+```
 
 ## bugnub
