@@ -1,33 +1,3 @@
-## React.createRoot
-ReactDOM.createRoot is part of the new API in React 18, designed to enable features like Concurrent Rendering, which allows React to work on multiple tasks simultaneously without blocking the main thread.
-
-```js
-import React from 'react';
-import ReactDOM from 'react-dom/client'; // Use `react-dom/client` instead of `react-dom`
-
-const App = () => {
-  return <h1>Hello, World!</h1>;
-};
-
-// Create a root using the new API
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-// Render the application
-root.render(<App />);
-```
-
-**Need to write more on this** like what is need? what is concurrent mode etc
-
-## Server-Side Rendering & Search Engine Optimization
-**What is SSR (Server-Side Rendering)**
-SSR is a technique where web pages are rendered on the server and sent as fully rendered HTML to the browser, improving initial page load and SEO.
-
-**What is SEO?:** SEO (Search Engine Optimization) refers to the practice of improving the visibility of a website on search engines like Google, making it easier for users to find your site based on relevant keywords.
-
-- **How SSR improves SEO:** SSR involves rendering the initial HTML content of a web page on the server, rather than on the client-side. This allows search engines to crawl and index the content more easily, which can improve a website's visibility in search results without waiting for JavaScript to load.
-
-- **Does React have SSR?:** React by itself doesn't have built-in SSR, but it can be implemented using ReactDOMServer. Frameworks like Next.js provide SSR support out of the box for React.
-
 ## Virtual DOM
 - The virtual DOM is a lightweight virtual representation of the actual DOM (Document Object Model) in memory, created by React using ReactDOM library.
 - When you make changes to your webpage in React, instead of immediately updating the actual DOM, React first updates the virtual DOM to reflect these changes.
@@ -46,6 +16,207 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
   - For DOM elements: React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM element.
 - If no top-level properties have changed, there is no need for deep level comparision
 - Also, deep level comparision is expensive especially for complex websites.
+
+## What will be recomputed on re-render?
+- **Recomputed on Every Render:**
+  - Functions, variables, and JSX code inside the component body
+- **Not Recomputed on Every Render:**
+  - State values declared using `useState` (they persist across renders)
+  - Memoized values/functions using:
+    - `useMemo` & `useCallback` (if dependencies haven't changed or [] as dependency)
+  - Child components wrapped with `React.memo` (if props haven't changed)
+
+## React.memo
+- **Purpose**: It is a higher-order component (HOC)(explained later) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
+
+- **Usage**: `React.memo(Component)` is used to wrap a component to ensure that the component only re-renders when its props change.
+
+```javascript
+const MyComponent = React.memo((props) => {
+  // Your component logic
+  return <div>{props.name}</div>;
+});
+```
+- **When to use practically:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
+- eg: a component receives a list as a prop to display in a certain way, no user interaction, **read-only purpose**
+
+## What is callBack?
+- A callback is a function passed as an argument to another function, which is called (or "called back") later — usually after some operation or event happens.
+- In react, to update parent state by child, child invokes a prop, a function passed by parent to child component
+
+## useCallback
+- A React hook that returns a memoized version of a function — the function is only re-created when dependencies change.
+- In React on every render - functions, variables & JSX will be recomputed
+- But we often doesn't need functions to be recreated(unless any particular value changes)
+- To avoid this & improve performance, we can use useCallback.
+
+- **practical use:**
+  1. Passing a function to a memoized child (React.memo) -	Prevents child from re-rendering unnecessarily when the parent re-renders
+  2. Avoiding function recreation in dependency arrays (e.g., useEffect)	Prevents infinite loops or unnecessary side effects
+  3. Button or event handler inside a component that re-renders often - Keeps function stable and improves performance
+     
+```JS
+function MyComponent() {
+        const [count, setCount] = useState(0);
+
+        // Define a function that increments the count state
+        const incrementCount = useCallback(() => {
+          setCount(prevCount => prevCount + 1); //using prevCount
+        }, []
+        // }, [setCount]
+)
+    useEffect(() => {
+        console.log("created")
+    }, [incrementCount])
+
+        return (
+          <div>
+            <p>Count: {count}</p>
+            <button onClick={incrementCount}>Increment</button>
+          </div>
+        );
+      }
+```
+
+In above example 
+1. If we use updater function - `setCount(prev => prev+1)`- we want the increament function to be created only once. So we can give [] or setCount(**bcz on render useState won't get trigger**)
+2. if we use count(state) directly -  we have to pass count as dependency, if not this takes count as 0(initial value) always
+ 
+**Second example**
+```javascript
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+
+const UseCallbackExample = () => {
+    const [count, setCount] = useState(0);
+    const [count2, setCount2] = useState(0);
+    
+    // useCallback hook to memoize the increment function
+    const increment = useCallback(() => {
+        console.log("called");
+        setCount(count + 1);
+    }, [count]); // depend on count to recreate function when count changes
+
+    // Regular increment function without useCallback
+    // Since we don't used callback here this fucntion will get created even if count2 changes
+    const increment2 = () => {
+        console.log("called 2");
+        setCount2(count2 + 1);
+    }
+
+    // useEffect hook to log when 'increment' function is created/recreated
+    useEffect(() => {
+        console.log("created again increment");
+    }, [increment]);
+
+    // useEffect hook to log when 'increment2' function is created/recreated
+    useEffect(() => {
+        console.log("created again increment2");
+    }, [increment2]);
+
+    return (
+        <>
+            <p>Count: {count}</p>
+            <p>Count2: {count2}</p>
+            <button onClick={increment}>Click</button>
+            <button onClick={increment2}>Click2</button>
+        </>
+    );
+  }
+```
+## useMemo
+- A React hook that returns a memoized value of a function — the function is only re-computed when dependencies change.
+- In react on every render - functions, variables, JSX will be recomputed
+- What if the varibale is calculated using some expensive(time taking) logic
+- we don't what it to be recomputed on every prop or state change unless some particular value(can be props or state or [] for 1 time calculation)
+- To achieve this we have to use useMemo
+  
+**Practical use**
+1. Expensive computations (e.g., sorting, filtering, math) - Avoids recalculating unless necessary
+2. Derived data from props or state	- Keeps calculated data in sync without re-running logic
+3. Preventing unnecessary object/array creation -	Useful when objects are passed as props to memoized components
+```JS
+const options = useMemo(() => ({ darkMode: true }), []);
+return <ThemeContext.Provider value={options} />;
+```
+
+```JS
+import React, { useState, useMemo } from 'react';
+
+    function MyComponent() {
+      const [count, setCount] = useState(0);
+
+      // Define a function that returns a computed value
+      const expensiveValue = useMemo(() => {
+        console.log('Computing expensive value...');
+        let result = 0;
+        for (let i = 0; i < 1000000000; i++) {
+          result += i;
+        }
+        return result;
+      }, []);
+
+      return (
+        <div>
+          <p>Count: {count}</p>
+          <p>Expensive Value: {expensiveValue}</p>
+          <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+      );
+    }
+```
+**Note:** when useMemo not used then expensiveValue will become a fuction then we have to invoke function(add ()) in line 
+Also, when hook not used, expensiveValue will get computed on every render
+```
+<p>Expensive Value: {expensiveValue()}</p>
+```
+
+## Behavior of Hooks with and without Dependency Array
+- **No Dependency Array (`[]`)**:
+  - **`useEffect`** runs after **every render**.
+  - **`useMemo`** and **`useCallback`** trigger **recomputations** or **re-creations** on **every render** without optimizations.
+  - **Note**: React **warns** in development mode if the dependency array is omitted.
+
+- **Empty Dependency Array (`[]`)**:
+  - **`useEffect`** runs only **once**, after the **first render** (similar to `componentDidMount`).
+  - **`useMemo`** and **`useCallback`** **memoize** the value or function and **do not recompute** or **recreate** unless the component is remounted.
+ 
+### Is it good to use `useMemo` and `useCallback` everywhere - NO
+- `useMemo` and `useCallback` can increase **memory consumption** because they **store memoized values or functions**.
+- Even though **memory usage** is generally low, but it can grow if you are using these hooks on **large datasets** or many memoized functions.
+- **Best practice** is to use these hooks **only when necessary** (e.g., for expensive calculations or functions passed down to child components) and
+- **Avoid using them for every small value or function** for more redability, keep the code clean & to avaoid unnecessary code complexity.
+- Another issue is **Reference equality issue** - Reference equality refers to the concept of comparing the memory references of objects, arrays, functions, or other non-primitive data types, rather than comparing their contents.
+- React uses reference equality for re-rendering
+- This issue arises when we don't use dependency array properly & pass unnecssary values to it.
+- Meaning, when I'm using React.memo & using this calllback function as prop & gave [count] then child component will render everytime on change of count. This will make React.memo **useless**
+- here we don't need count to be added as a dependency
+- Including count in the dependency array of useCallback can make sense when the function needs to **update its behavior** based on the updated count value. explain in below note
+
+```JSX
+// Child component using React.memo to prevent unnecessary re-renders
+const ChildComponent = React.memo(({ onClick }) => {
+  console.log('Child rendered');
+  return <button onClick={onClick}>Click me</button>;
+});
+
+const ParentComponent = () => {
+  const [count, setCount] = useState(0);
+
+  // Memoized callback with count as a dependency
+  // The function is recreated every time `count` changes
+  const memoizedIncrement = useCallback(() => {
+    // setCount(prevCount => prevCount + 1); // This way no need to pass count in dependency array
+    setCount(count + 1)
+  }, [count]); // `memoizedIncrement` is recreated every time `count` changes
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={memoizedIncrement} />
+    </>
+  );
+};
+```
 
 ## Prop drilling - `useContext`\ Context API  
 - Prop drilling is passing data from a parent to deeply nested child components through props.
@@ -102,7 +273,6 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
   ```
   
 ## Unidirectional Data Flow in React
-
 **Unidirectional data flow** is a core principle of React. It means that data flows in one direction in a React application: from **parent components** to **child components**. This predictable flow of data makes it easier to understand and manage the state of an application, especially as it grows larger.
 
 **1. Data Flow from Parent to Child:**
@@ -145,7 +315,6 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 
 
 ## Why React Component Names Should Be Capitalized
-
 In React, component names must be capitalized to distinguish them from regular HTML elements. Here's why:
 
 1. **React differentiates between HTML elements and components**:  
@@ -153,193 +322,6 @@ In React, component names must be capitalized to distinguish them from regular H
 
 2. **What happens if not capitalized**:  
    If you don’t capitalize a component name (e.g., `<useCallbackExample />`), React will treat it as a string (or HTML element) and won't render it as a React component. This results in an error or unexpected behavior.
-
-## What is callBack?
-- A callback is a function passed as an argument to another function, which is called (or "called back") later — usually after some operation or event happens.
-- In react, to update parent state by child, child invokes a prop, a function passed by parent to child component
-
-
-## useCallback
-- A React hook that returns a memoized version of a function — the function is only re-created when dependencies change.
-- In React on every render - functions, variables & JSX will be recomputed
-- But we often doesn't need functions to be recreated(unless any particular value changes)
-- To avoid this & improve performance, we can use useCallback.
-  
-```JS
-function MyComponent() {
-        const [count, setCount] = useState(0);
-
-        // Define a function that increments the count state
-        const incrementCount = useCallback(() => {
-          setCount(prevCount => prevCount + 1); //using prevCount
-        }, []
-        // }, [setCount]
-)
-    useEffect(() => {
-        console.log("created")
-    }, [incrementCount])
-
-        return (
-          <div>
-            <p>Count: {count}</p>
-            <button onClick={incrementCount}>Increment</button>
-          </div>
-        );
-      }
-```
-
-In above example 
-1. If we use prevCount(available in seState) - we want the increament function to be created only once. So we can give [] or setCount(**bcz on render useState won't get trigger**)
-2. if we use count(state) directly -  we have to pass count as dependency
-
-**Note:**
-- **Recomputed on Every Render:**
-  - Functions, variables, and JSX code inside the component body
-- **Not Recomputed on Every Render:**
-  - State values declared using `useState` (they persist across renders)
-  - Memoized values/functions using:
-    - `useMemo` & `useCallback` (if dependencies haven't changed or [] as dependency)
-  - Child components wrapped with `React.memo` (if props haven't changed)
- 
-**Second example**
-```javascript
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-
-const UseCallbackExample = () => {
-    const [count, setCount] = useState(0);
-    const [count2, setCount2] = useState(0);
-    
-    // useCallback hook to memoize the increment function
-    const increment = useCallback(() => {
-        console.log("called");
-        setCount(count + 1);
-    }, [count]); // depend on count to recreate function when count changes
-
-    // Regular increment function without useCallback
-    // Since we don't used callback here this fucntion will get created even if count2 changes
-    const increment2 = () => {
-        console.log("called 2");
-        setCount2(count2 + 1);
-    }
-
-    // useEffect hook to log when 'increment' function is created/recreated
-    useEffect(() => {
-        console.log("created again increment");
-    }, [increment]);
-
-    // useEffect hook to log when 'increment2' function is created/recreated
-    useEffect(() => {
-        console.log("created again increment2");
-    }, [increment2]);
-
-    return (
-        <>
-            <p>Count: {count}</p>
-            <p>Count2: {count2}</p>
-            <button onClick={increment}>Click</button>
-            <button onClick={increment2}>Click2</button>
-        </>
-    );
-  }
-```
-## Example for useMemo
-```JS
-import React, { useState, useMemo } from 'react';
-
-    function MyComponent() {
-      const [count, setCount] = useState(0);
-
-      // Define a function that returns a computed value
-      const expensiveValue = useMemo(() => {
-        console.log('Computing expensive value...');
-        let result = 0;
-        for (let i = 0; i < 1000000000; i++) {
-          result += i;
-        }
-        return result;
-      }, []);
-
-      return (
-        <div>
-          <p>Count: {count}</p>
-          <p>Expensive Value: {expensiveValue}</p>
-          <button onClick={() => setCount(count + 1)}>Increment</button>
-        </div>
-      );
-    }
-```
-**Note:** when useMemo not used then expensiveValue will become a fuction then we have to invoke function(add ()) in line 
-Also, when hook not used, expensiveValue will get computed on every render
-```
-<p>Expensive Value: {expensiveValue()}</p>
-```
-
-## Behavior of Hooks with and without Dependency Array
-
-- **No Dependency Array (`[]`)**:
-  - **`useEffect`** runs after **every render**.
-  - **`useMemo`** and **`useCallback`** trigger **recomputations** or **re-creations** on **every render** without optimizations.
-  - **Note**: React **warns** in development mode if the dependency array is omitted.
-
-- **Empty Dependency Array (`[]`)**:
-  - **`useEffect`** runs only **once**, after the **first render** (similar to `componentDidMount`).
-  - **`useMemo`** and **`useCallback`** **memoize** the value or function and **do not recompute** or **recreate** unless the component is remounted.
- 
-### Is it good to use `useMemo` and `useCallback` everywhere - NO
-
-- `useMemo` and `useCallback` can increase **memory consumption** because they **store memoized values or functions**.
-- Even though **memory usage** is generally low, but it can grow if you are using these hooks on **large datasets** or many memoized functions.
-- **Best practice** is to use these hooks **only when necessary** (e.g., for expensive calculations or functions passed down to child components) and
-- **Avoid using them for every small value or function** for more redability, keep the code clean & to avaoid unnecessary code complexity.
-- Another issue is **Reference equality issue** - Reference equality refers to the concept of comparing the memory references of objects, arrays, functions, or other non-primitive data types, rather than comparing their contents.
-- React uses reference equality for re-rendering(which got changed)
-- This issue arises when we don't use dependency array properly & pass unnecssary values to it.
-- Meaning, when I'm using React.memo & using this calllback function as prop & gave [count] then child component will render everytime on change of count. This will make React.memo **useless**
-- here we don't need count to be added as a dependency
-- Including count in the dependency array of useCallback can make sense when the function needs to **update its behavior** based on the updated count value. explain in below note
-
-**VV IMP Note**:
-  > when we use `setCount(count+1)` then [count] needed  if not this takes count as 0(initial value) always
-  > only when you use `setCount(prev => prev+1)` count in [count] is not needed bcz prevState always fetches prev state value
-
-```javascript
-// Child component using React.memo to prevent unnecessary re-renders
-const ChildComponent = React.memo(({ onClick }) => {
-  console.log('Child rendered');
-  return <button onClick={onClick}>Click me</button>;
-});
-
-const ParentComponent = () => {
-  const [count, setCount] = useState(0);
-
-  // Memoized callback with count as a dependency
-  // The function is recreated every time `count` changes
-  const memoizedIncrement = useCallback(() => {
-    setCount(prevCount => prevCount + 1);
-  }, [count]); // `memoizedIncrement` is recreated every time `count` changes
-
-  return (
-    <>
-      <p>Count: {count}</p>
-      <ChildComponent onClick={memoizedIncrement} />
-    </>
-  );
-};
-```
-
-## React.memo
-- **Purpose**: It is a higher-order component (HOC) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
-
-- **Usage**: `React.memo(Component)` is used to wrap a component to ensure that the component only re-renders when its props change.
-
-```javascript
-const MyComponent = React.memo((props) => {
-  // Your component logic
-  return <div>{props.name}</div>;
-});
-```
-- **When to use:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
-- eg: a component receives a list as a prop to display in a certain way, no user interaction, read-only purpose
 
 ## HOC - higher order component
 - A HOC is a function that takes a **component as an argument and returns a new component**.
@@ -655,4 +637,34 @@ Accessibility in digital applications refers to the design and development of pr
 1. Go to developer tool & go to lighthouse
 2. check fot accessibility audit & get report
 3. check screen readers to play
+
+## React.createRoot
+ReactDOM.createRoot is part of the new API in React 18, designed to enable features like Concurrent Rendering, which allows React to work on multiple tasks simultaneously without blocking the main thread.
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Use `react-dom/client` instead of `react-dom`
+
+const App = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+// Create a root using the new API
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Render the application
+root.render(<App />);
+```
+
+**Need to write more on this** like what is need? what is concurrent mode etc
+
+## Server-Side Rendering & Search Engine Optimization
+**What is SSR (Server-Side Rendering)**
+SSR is a technique where web pages are rendered on the server and sent as fully rendered HTML to the browser, improving initial page load and SEO.
+
+**What is SEO?:** SEO (Search Engine Optimization) refers to the practice of improving the visibility of a website on search engines like Google, making it easier for users to find your site based on relevant keywords.
+
+- **How SSR improves SEO:** SSR involves rendering the initial HTML content of a web page on the server, rather than on the client-side. This allows search engines to crawl and index the content more easily, which can improve a website's visibility in search results without waiting for JavaScript to load.
+
+- **Does React have SSR?:** React by itself doesn't have built-in SSR, but it can be implemented using ReactDOMServer. Frameworks like Next.js provide SSR support out of the box for React.
    
