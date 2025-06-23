@@ -29,7 +29,7 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 - **Does React have SSR?:** React by itself doesn't have built-in SSR, but it can be implemented using ReactDOMServer. Frameworks like Next.js provide SSR support out of the box for React.
 
 ## Virtual DOM
-- The virtual DOM is a lightweight virtual representation of the actual DOM (Document Object Model) in memory, created by React using library like ReactDOM.
+- The virtual DOM is a lightweight virtual representation of the actual DOM (Document Object Model) in memory, created by React using ReactDOM library.
 - When you make changes to your webpage in React, instead of immediately updating the actual DOM, React first updates the virtual DOM to reflect these changes.
 - As updating the actual DOM can be slow and resource-consuming.
 - Once the virtual DOM has been updated, React then performs a **"diffing"** algorithm to **compare the new virtual DOM with the previous virtual DOM**, and identify any differences between them.
@@ -40,11 +40,10 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 - This entire process is called as **"Reconciliation"**
 
 ### Diffing explained - How Shallow comparision sufficient in VDOM?
-- **Diffing** is an alogirithn in the Virtual DOM typically involves shallow comparison for only top level elements(i.e compares each top node) of components or elements in React
+- **Diffing** is an algoirithm which does shallow comparison for only top level elements(i.e top node)
 - **How Shallow Comparison Works:**
-  - For components: React compares the props and state of the component. If the shallow comparison detects a change, React will re-render the component and apply the changes. If props or state changes then it dives deeper at last it reached DOM elements
-  - For DOM elements: React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM.
-  
+  - For components: React compares the props and state of the component. If any changes detected, React will re-render the component and checks for it's children util it reaches DOM elements
+  - For DOM elements: React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM element.
 - If no top-level properties have changed, there is no need for deep level comparision
 - Also, deep level comparision is expensive especially for complex websites.
 
