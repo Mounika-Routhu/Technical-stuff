@@ -59,7 +59,7 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 
 **How it's created?**
 1. Create a context using createContext from React.
-2. Wrap the part of the app with a Context Provider.
+2. Wrap the children in the return of the app with a Context Provider & pass data in value prop.
 3. Inside any child component, use useContext(MyContext) to access the data directly.
 ```JSX
 import React, { createContext } from 'react';
