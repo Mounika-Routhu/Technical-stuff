@@ -12,14 +12,14 @@
 ### Diffing explained - How Shallow comparision sufficient in VDOM?
 - **Diffing** is an algoirithm which does shallow comparison for only top level elements(i.e top node)
 - **How Shallow Comparison Works:**
-  - For components: React compares the props and state of the component. If any changes detected, React will re-render the component and checks for it's children util it reaches DOM elements
-  - For DOM elements: React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM element.
+  - For components: React compares the props and state of the component. If any changes detected, React will re-render the component and by default all children re-render when parent does. But with memoization (like **React.memo**), You can prevent unnecessary re-renders if props haven't changed.
+  - For DOM elements(HTML elements): React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM element.
 - If no top-level properties have changed, there is no need for deep level comparision
 - Also, deep level comparision is expensive especially for complex websites.
 
 ## What will be recomputed on re-render?
 - **Recomputed on Every Render:**
-  - Functions, variables, and JSX code inside the component body
+  - Functions, variables, and JSX code(includes all child components & HTML code(<div>Hellow!</div>) inside the component body
 - **Not Recomputed on Every Render:**
   - State values declared using `useState` (they persist across renders)
   - Memoized values/functions using:
@@ -29,16 +29,36 @@
 ## React.memo
 - **Purpose**: It is a higher-order component (HOC)(explained later) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
 
-- **Usage**: `React.memo(Component)` is used to wrap a component to ensure that the component only re-renders when its props change.
-
 ```javascript
 const MyComponent = React.memo((props) => {
   // Your component logic
   return <div>{props.name}</div>;
 });
 ```
-- **When to use practically:** It's most useful for components that receive props but don't depend on state or context and when you want to avoid unnecessary re-renders when the props haven't changed.
-- eg: a component receives a list as a prop to display in a certain way, no user interaction, **read-only purpose**
+- **When to use practically:** In react, by default when a parent component re-render, all child components also re-render. let's say You have a parent component that re-renders often (e.g., due to state updates), but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
+
+```JS
+import React, { useState, memo } from "react";
+
+// ✅ This child won't re-render unless `name` changes
+const Child = memo(({ name }) => {
+  console.log("Child rendered");
+  return <p>Hi, {name}</p>;
+});
+
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <Child name="John" />
+      <button onClick={() => setCount(count + 1)}>
+        Increment: {count}
+      </button>
+    </div>
+  );
+}
+```
 
 ## What is callBack?
 - A callback is a function passed as an argument to another function, which is called (or "called back") later — usually after some operation or event happens.
