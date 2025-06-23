@@ -135,8 +135,14 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 ## Why we shouldn't update state directly?
 - Directly **mutating the state** in React **will not throw an error**, but it will **prevent React from detecting the change**, which leads to **UI inconsistencies**.
 - To **properly update the state** and ensure the UI reflects the changes, you should always use:
-  - `setState` in **class components**.
   - The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
+  - If new state value depends on previous value => then use updater function or callback in setState:
+    ```JS
+    setCount(prevCount => prevCount + 1); 
+    ```
+    - Because React batches state updates and doesn't guarantee immediate updates, using the previous state value (i.e., prevCount) is the safest way to ensure you're updating based on the latest state.
+
+
 
 ## Why React Component Names Should Be Capitalized
 
@@ -148,16 +154,24 @@ In React, component names must be capitalized to distinguish them from regular H
 2. **What happens if not capitalized**:  
    If you don’t capitalize a component name (e.g., `<useCallbackExample />`), React will treat it as a string (or HTML element) and won't render it as a React component. This results in an error or unexpected behavior.
 
+## What is callBack?
+- A callback is a function passed as an argument to another function, which is called (or "called back") later — usually after some operation or event happens.
+- In react, to update parent state by child, child invokes a prop, a function passed by parent to child component
 
-## Example for useCallback
 
+## useCallback
+- A React hook that returns a memoized version of a function — the function is only re-created when dependencies change.
+- In React on every render - functions, variables & JSX will be recomputed
+- But we often doesn't need functions to be recreated(unless any particular value changes)
+- To avoid this & improve performance, we can use useCallback.
+  
 ```JS
 function MyComponent() {
         const [count, setCount] = useState(0);
 
         // Define a function that increments the count state
         const incrementCount = useCallback(() => {
-          setCount(prevCount => prevCount + 1);
+          setCount(prevCount => prevCount + 1); //using prevCount
         }, []
         // }, [setCount]
 )
@@ -174,12 +188,20 @@ function MyComponent() {
       }
 ```
 
-In above example we want the increament to be created only when once so we gave setCount(**bcz on render useState won't get trigger**) as dependency or simple empty array also will do
+In above example 
+1. If we use prevCount(available in seState) - we want the increament function to be created only once. So we can give [] or setCount(**bcz on render useState won't get trigger**)
+2. if we use count(state) directly -  we have to pass count as dependency
 
 **Note:**
-- **Recomputes every render:** functions, variables, and JSX code inside the component.
-- **Does not recompute every render:** state values (useState), props, and memoized values (useMemo, useCallback if [] passed or based on dependencies).
-
+- **Recomputed on Every Render:**
+  - Functions, variables, and JSX code inside the component body
+- **Not Recomputed on Every Render:**
+  - State values declared using `useState` (they persist across renders)
+  - Memoized values/functions using:
+    - `useMemo` & `useCallback` (if dependencies haven't changed or [] as dependency)
+  - Child components wrapped with `React.memo` (if props haven't changed)
+ 
+**Second example**
 ```javascript
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
