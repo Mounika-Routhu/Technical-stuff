@@ -47,6 +47,17 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 - If no top-level properties have changed, there is no need for deep level comparision
 - Also, deep level comparision is expensive especially for complex websites.
 
+## Prop drilling - `useContext`\ Context API  
+- Prop drilling is passing data from a parent to deeply nested child components through props.
+- Even if the middle components don’t need the data, they still have to pass it down.
+- This can make the code messy and harder to maintain as the component tree grows.
+- Uneccessarily middle level components get access to it.
+
+- useContext(Context API) is a React hook that lets you share data across components without passing props manually at every level.
+- Helps to avoid prop drilling.
+- Good for global/shared state (like theme, user info, auth status, etc.).
+- Practical example - refer useContext.md file
+
 ## Why React doesn't allow multiple elements in return?
 **1. Virtual DOM Efficiency**
 React uses the **Virtual DOM** to compare changes and efficiently update the UI. When a component returns a single root element, React can quickly determine what changed and apply the update. If there were multiple root elements, React would have to deal with more complexity during the reconciliation process, slowing down the rendering.
@@ -272,7 +283,6 @@ const ParentComponent = () => {
 ```
 
 ## React.memo
-
 - **Purpose**: It is a higher-order component (HOC) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
 
 - **Usage**: `React.memo(Component)` is used to wrap a component to ensure that the component only re-renders when its props change.
@@ -437,7 +447,6 @@ Use ```useReducer``` when:
 1. **In `useReducer`** : **`type` is not strictly required** by the API, but it is a **common convention** and **recommended** for predictable state management.
 2. **In `Redux`** : **`type` is required** in every action. `type` is a core part of Redux and tells the reducer what action is being performed and how to update the state.
 
-## `useContext` practical example - refer useContext.md file
 
 ## built-in hooks
 1. Hooks are built in functions which allow us to do as follows
