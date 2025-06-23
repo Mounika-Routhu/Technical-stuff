@@ -55,7 +55,29 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 
 - useContext(Context API) is a React hook that lets you share data across components without passing props manually at every level.
 - Helps to avoid prop drilling.
-- Good for global/shared state (like theme, user info, auth status, etc.).
+- Good for global/shared state (like theme, user info, auth status, etc.)
+How it's created?
+1. Create a context using createContext from React.
+2. Wrap the part of the app with a Context Provider.
+3. Inside any child component, use useContext(MyContext) to access the data directly.
+```JSX
+import React, { createContext } from 'react';
+const MyContext = React.createContext();
+
+const App = () => {
+  return (
+    <MyContext.Provider value="Hello">
+      <Child />
+    </MyContext.Provider>
+  );
+}
+
+const Child = () => {
+  const value = useContext(MyContext);
+  return <p>{value}</p>; // "Hello"
+}
+```
+- Note: **createContext is not a hook**. It is a standard function to create context obj hence it can be invoked(called) outside functional component unlike hooks.
 - Practical example - refer useContext.md file
 
 ## Why React doesn't allow multiple elements in return?
