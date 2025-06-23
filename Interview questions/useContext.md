@@ -3,7 +3,7 @@
 import React, { createContext, useState } from 'react';
 
 // Create the context with default value
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
 // Create a provider component to manage the theme
 export const ThemeProvider = ({ children }) => {
@@ -24,7 +24,7 @@ export default ThemeContext;
 ```
 
 **App.js**
-```
+```JSX
 import React from 'react';
 import { ThemeProvider } from './ThemeContext';
 import Header from './Header';
