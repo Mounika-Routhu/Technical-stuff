@@ -52,8 +52,7 @@ const MyComponent = React.memo((props) => {
 
 - **practical use:**
   1. Passing a function to a memoized child (React.memo) -	Prevents child from re-rendering unnecessarily when the parent re-renders
-  2. Avoiding function recreation in dependency arrays (e.g., useEffect)	Prevents infinite loops or unnecessary side effects
-  3. Button or event handler inside a component that re-renders often - Keeps function stable and improves performance
+  2. Event handler inside a component that re-renders often(or shouln't rerender when unrelated state or prop changes) - Keeps function stable and improves performance
      
 ```JS
 function MyComponent() {
