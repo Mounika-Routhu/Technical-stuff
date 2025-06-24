@@ -5,12 +5,13 @@
   - **Does not** re-render or recreate virtual DOM for **parent or sibling components** unless their **props or state change**.
 - Props may change if(not directly by user interaction but indirectly):
   - A **state change in a child**(by user interaction) calls a **callback in the parent**, then parent passes new props down to children.
-- After creation of VDOM, React then performs a deep comparision btw the **new virtual DOM** & the **previous virtual DOM**.
-- This is called as **diffing** algorithm, this actually checks for changes in:
+- These re-renders doesn't change real DOM, instead creates a new VDOM with changes
+- Then React performs a deep comparision btw the **new virtual DOM** & the **previous virtual DOM**.
+- This comparision is done by a **diffing** algorithm, this actually checks for changes in:
     - Element types (`div`, `span`, etc.)
     - Keys (especially in lists)
     - Props (e.g., `className`, `style`, `onClick`)
-- React **does not compare virtual DOM with real DOM** directly (real DOM is slow to access).
+- React **does not compare virtual DOM with real DOM** directly (real DOM is slow to access & read).
 - This comparision gives actually changed values(minimal) & Only the **changed parts** of the real DOM are updated not full component(but re-render happens for whole component including children).
 - Updates are done in **batches** to optimize performance.
 - After DOM updates, the **browser repaints the UI**.
