@@ -898,9 +898,11 @@ Functional programming is a way of writing code where you:
 <img width="749" alt="Screenshot 2025-06-02 at 10 51 20 PM" src="https://github.com/user-attachments/assets/208c431e-475d-4779-a3c7-499ff67ff03a" />
 
 ## Every function in JavaScript has two important things:
-| Feature	| Description |
-|[[Prototype]] or __proto__ |	This is the function object’s prototype, i.e., where it inherits from Function.prototype.|
-|.prototype	|This is used only when the function is called with new. It becomes the prototype of the created object.|
+| Concept               | What It Refers To                                 | Purpose / Usage                                      | Example                         |
+|-----------------------|--------------------------------------------------|----------------------------------------------------|--------------------------------|
+| `functionName.prototype` | The prototype object assigned to instances created by the function when called with `new` | Sets the prototype for objects created by `new` (e.g., inheritance for instances) | `sayHi.prototype` is the prototype for `new sayHi()` objects |
+| `functionName.__proto__` or internal `[[Prototype]]` | The prototype of the function object itself | Points to `Function.prototype`, giving the function access to methods like `call`, `apply`, `bind` | `sayHi.__proto__ === Function.prototype` |
+| `Function.prototype`  | The prototype object for all functions            | Contains methods such as `call`, `apply`, and `bind` that all functions inherit | `Function.prototype.call` is available to all functions |
 
 ## Prototype - INHERITANCE
 1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
