@@ -1,33 +1,18 @@
 ## Virtual DOM
-- The virtual DOM is a lightweight virtual representation of the actual DOM (Document Object Model) in memory, created by React using ReactDOM library.
-- When you make changes to your webpage in React, instead of immediately updating the actual DOM, React first updates the virtual DOM to reflect these changes.
-- As updating the actual DOM can be slow and resource-consuming.
-- Once the virtual DOM has been updated, React then performs a **"diffing"** algorithm to **compare the new virtual DOM with the previous virtual DOM**, and identify any differences between them.
-- **Explain Diffing here**
-- So, react always maintains 2 VDOMs - current DOM, work in progress DOM(user changes)
-- Here, React never compares with Real DOM -> reading Real DOM is slow & in previous VDOM we already have JS objects available - easy to compare
-- Then react updates real DOM in batches to optimize DOM writes(updating UI)
-- This entire process is called as **"Reconciliation"**
-
-### Diffing explained - How Shallow comparision sufficient in VDOM?
-- **Diffing** is an algoirithm which does shallow comparison for only top level elements(i.e top node)
-- **How Shallow Comparison Works:**
-  - For components: React compares the props and state of the component. If any changes detected, React will re-render the component and by default all children re-render when parent does. But with memoization (like **React.memo**), You can prevent unnecessary re-renders if props haven't changed.
-  - For DOM elements(HTML elements): React will compare the type (e.g., div, span) and props (e.g., className, style). If the type or props have changed, React will update the DOM element.
-- If no top-level properties have changed, there is no need for deep level comparision
-- Also, deep level comparision is expensive especially for complex websites.
-
-## What will be recomputed on re-render?
-- **Recomputed on Every Render:**
-  - Functions, variables, and JSX code(includes all child components & HTML code(<div>Hellow!</div>) inside the component body
-- **Not Recomputed on Every Render:**
-  - State values declared using `useState` (they persist across renders)
-  - Memoized values/functions using:
-    - `useMemo` & `useCallback` (if dependencies haven't changed or [] as dependency)
-  - Child components wrapped with `React.memo` (if props haven't changed)
+- The virtual DOM is a lightweight representation of the real DOM kept in memory by React, created using ReactDOM library.
+- When user interacts & triggers a state changes, React re-render that affected component & all it's children
+- But doesn't update real DOM, instead it creates a virtual DOM for the component where the change happened and its children.
+- No virtual DOM for parents or sibling components get created unless their props or state also change.(prop change can happen when state change in child triggers a callback in parents which can pass new props down down to children)
+- Now, React runs a diffing algorithm, a deep comparision where it compares element types(div, span), keys(in list), props(attributes like className, styles) between the new VDOM with the previous VDOM to find what actually changed(minimal changes).
+- React never compares virtual DOM with real DOM directly because it’s slow
+- After diffing, React applies only the minimal(actually changed parts) changes to the real DOM in batches to keep the UI fast and efficient.
+- After DOM updates, browser repaints the UI
+- This process is called Reconciliation.
 
 ## React.memo
-- **Purpose**: It is a higher-order component (HOC)(explained later) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
+- In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
+- usecase: let's say You have a component that re-renders often, but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
+- It is a higher-order component (HOC)(explained later) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
 
 ```javascript
 const MyComponent = React.memo((props) => {
@@ -35,7 +20,7 @@ const MyComponent = React.memo((props) => {
   return <div>{props.name}</div>;
 });
 ```
-- **When to use practically:** In react, by default when a parent component re-render, all child components also re-render. let's say You have a parent component that re-renders often (e.g., due to state updates), but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
+- **When to use practically:** score card of a player, everytime I update score(state change in ScoreCard), re-renders all children(name) but we don't what this to happen unless name also changes.  
 
 ```JS
 import React, { useState, memo } from "react";
@@ -46,14 +31,15 @@ const Child = memo(({ name }) => {
   return <p>Hi, {name}</p>;
 });
 
-function Parent() {
-  const [count, setCount] = useState(0);
+const ScoreCard = () => {
+  const [score, setScore] = useState(0);
 
   return (
     <div>
       <Child name="John" />
-      <button onClick={() => setCount(count + 1)}>
-        Increment: {count}
+      <span> Score: {score} </span>
+      <button onClick={() => setScore(score + 1)}>
+        Increase Score
       </button>
     </div>
   );
