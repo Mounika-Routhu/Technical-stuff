@@ -285,7 +285,19 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 - If you try to return multiple elements without a single parent, react won't be able to create html element & will throw an error like:
   ```Adjacent JSX elements must be wrapped in an enclosing tag.```
 - **Solution (React Fragments)**: React Fragments allow you to return multiple elements without introducing an extra wrapper element(hence light weight) in the DOM. This avoids unnecessary extra nodes like `<div>` and keeps the DOM clean.
-- **Shorthand Syntax**: You can use the shorthand `<>` and `</>` to wrap multiple elements without adding extra tags, making the code more concise:
+```JSX
+import React, { Fragment } from 'react';
+
+const MyComponent = () => {
+  return (
+    <Fragment>
+      <h1>Title</h1>
+      <p>Description</p>
+    </Fragment>
+  );
+}
+```
+- **Shorthand Syntax for Fragment**: You can use the shorthand `<>` and `</>` to wrap multiple elements without adding extra tags, making the code more concise:
 
   ```jsx
   <>
