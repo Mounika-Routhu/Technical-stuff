@@ -849,7 +849,7 @@ Functional programming is a way of writing code where you:
       const obj = {
         name: "My Object",
         regularMethod: function() {
-          function anotherFunc() => {
+          function anotherFunc() {
             console.log(this.name); 
           };
           anotherFunc();
@@ -863,7 +863,7 @@ Functional programming is a way of writing code where you:
       const obj = {
         name: "My Object",
         regularMethod: function() {
-          function anotherFunc() => {
+          function anotherFunc() {
             console.log(this.name);
           };
           const boundAnotherFunc = anotherFunc.bind(this)
@@ -879,7 +879,7 @@ Functional programming is a way of writing code where you:
         name: "My Object",
         regularMethod: function() {
           const self = this;
-          function anotherFunc() => {
+          function anotherFunc() {
             console.log(self.name);
           };
           anotherFunc();
