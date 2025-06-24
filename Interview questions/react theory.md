@@ -16,6 +16,15 @@
 - After DOM updates, the **browser repaints the UI**.
 - This whole process is called **Reconciliation**.
 
+## What will be recomputed on re-render?
+- **Recomputed on Every Render:**
+  - Functions, variables, and JSX code(includes all child components & HTML code(`<div>Hellow!</div>`) inside the component body
+- **Not Recomputed on Every Render:**
+  - State values declared using `useState` (they persist across renders)
+  - Memoized values/functions using:
+    - `useMemo` & `useCallback` (if dependencies haven't changed or [] as dependency)
+  - Child components wrapped with `React.memo` (if props haven't changed)
+
 ## React.memo
 - In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
 - usecase: let's say You have a component that re-renders often, but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
