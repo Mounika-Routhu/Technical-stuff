@@ -1,13 +1,20 @@
 ## Virtual DOM
-- The virtual DOM is a lightweight representation of the real DOM kept in memory by React, created using ReactDOM library.
-- When user interacts & triggers a state changes, React re-render that affected component & all it's children
-- But doesn't update real DOM, instead it creates a virtual DOM for the component where the change happened and its children.
-- No virtual DOM for parents or sibling components get created unless their props or state also change.(prop change can happen when state change in child triggers a callback in parents which can pass new props down down to children)
-- Now, React runs a diffing algorithm, a deep comparision where it compares element types(div, span), keys(in list), props(attributes like className, styles) between the new VDOM with the previous VDOM to find what actually changed(minimal changes).
-- React never compares virtual DOM with real DOM directly because it’s slow
-- After diffing, React applies only the minimal(actually changed parts) changes to the real DOM in batches to keep the UI fast and efficient.
-- After DOM updates, browser repaints the UI
-- This process is called Reconciliation.
+- The **virtual DOM** is a lightweight, in-memory version of the real DOM, created using the ReactDOM library.
+- When a **user interaction triggers a state change**, React:
+  - Re-renders the **affected component** and its **children**.
+  - **Does not** re-render or recreate virtual DOM for **parent or sibling components** unless their **props or state change**.
+- Props may change if(not directly by user interaction but indirectly):
+  - A **state change in a child**(by user interaction) calls a **callback in the parent**, then parent passes new props down to children.
+- After creation of VDOM, React then performs a deep comparision btw the **new virtual DOM** & the **previous virtual DOM**.
+- This is called as **diffing** algorithm, this actually checks for changes in:
+    - Element types (`div`, `span`, etc.)
+    - Keys (especially in lists)
+    - Props (e.g., `className`, `style`, `onClick`)
+- React **does not compare virtual DOM with real DOM** directly (real DOM is slow to access).
+- This comparision gives actually changed values(minimal) & Only the **changed parts** of the real DOM are updated not full component(but re-render happens for whole component including children).
+- Updates are done in **batches** to optimize performance.
+- After DOM updates, the **browser repaints the UI**.
+- This whole process is called **Reconciliation**.
 
 ## React.memo
 - In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
