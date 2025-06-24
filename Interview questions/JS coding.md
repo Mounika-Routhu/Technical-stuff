@@ -2,18 +2,23 @@
 ```JS
 const getVowelCount = (str) => {
     const vowels = ['a', 'e', 'i', 'o', 'u'];
+    let vowelCount = 0;
     let strArr = str.split('');
-    let vowelCount = 0
     strArr.forEach(el => {
         if(vowels.includes(el)){
             vowelCount++;
         }
     });
+    // for(i=0; i<str.length; i++){
+    //     if(vowels.includes(str[i])){
+    //         vowelCount++;
+    //     }
+    // }
     return vowelCount;
 };
 
 let vowelCount = getVowelCount("education");
-console.log(vowelCount); //5
+console.log(vowelCount); // 5
 ```
 
 ## fibonacci series with cache
