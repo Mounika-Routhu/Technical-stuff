@@ -897,6 +897,11 @@ Functional programming is a way of writing code where you:
 3. following are the ways to resolve this issue,
 <img width="749" alt="Screenshot 2025-06-02 at 10 51 20 PM" src="https://github.com/user-attachments/assets/208c431e-475d-4779-a3c7-499ff67ff03a" />
 
+## Every function in JavaScript has two important things:
+| Feature	| Description |
+|[[Prototype]] or __proto__ |	This is the function object’s prototype, i.e., where it inherits from Function.prototype.|
+|.prototype	|This is used only when the function is called with new. It becomes the prototype of the created object.|
+
 ## Prototype - INHERITANCE
 1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
 2. A prototype is an object that defines properties and methods which other objects(created using new keyword from function constructor) can inherit.
@@ -969,7 +974,7 @@ flow in order to access call method
 `dog.printName --> Function.prototype --> Object.prototype --> null`
 
 ## call, apply, bind
-1. Every function in JavaScript has a prototype, which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
+1. In React, function is an object it so it gets [[Prototype]] or `__proto__` which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
 2. These methods help to explicitly change the context (this) when calling a function. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
 3. **Call:** calls(invokes) a function immediately, with **this** set to the object you pass. accepts & passes **optional** arguments individually.
 ```JS
