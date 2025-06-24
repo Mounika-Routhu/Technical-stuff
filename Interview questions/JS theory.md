@@ -844,7 +844,7 @@ Functional programming is a way of writing code where you:
       
       obj.regularMethod();  // Logs: "My Object"
       ```
-9. In nested function, this inside nested function will refer to undefined since we execute it on any object
+9. In nested function, this inside nested function will refer to undefined since we didn't invoked it on any object
     ```JS
       const obj = {
         name: "My Object",
