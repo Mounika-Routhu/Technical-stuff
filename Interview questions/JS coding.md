@@ -1,3 +1,21 @@
+## count no. of vowels in string
+```JS
+const getVowelCount = (str) => {
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    let strArr = str.split('');
+    let vowelCount = 0
+    strArr.forEach(el => {
+        if(vowels.includes(el)){
+            vowelCount++;
+        }
+    });
+    return vowelCount;
+};
+
+let vowelCount = getVowelCount("education");
+console.log(vowelCount); //5
+```
+
 ## fibonacci series with cache
 ```JS
 function fibonacci(n) {
