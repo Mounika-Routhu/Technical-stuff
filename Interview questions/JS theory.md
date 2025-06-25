@@ -1622,3 +1622,10 @@ arr.splice(3, 0, 1)
 
 ## session storage vs local storage
 
+## for..of, for...in
+-for...of → Iterates over values of an iterable (like arrays, strings, etc.). technically
+👉 "Use when you want the actual values."
+   - iterable means any obj that we can loop through, technically speacking, it should have Symbol.iterator method.
+   - plain object({k:v}) is not an iterable
+- for...in → Iterates over keys (property names) of an object or array.
+👉 "Use when you want the keys or indexes."
