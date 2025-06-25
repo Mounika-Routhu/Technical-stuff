@@ -1,15 +1,17 @@
 ## sort arr
 ```JS
 const sortArr = (arr) => {
-    for(i=0; i<arr.length; i++){
-        for(j=i+1; j<arr.length; j++){
-            if(arr[i] > arr[j]){
-                [arr[i], arr[j]] = [arr[j], arr[i]]
-            }
-        }
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap
+      }
     }
-    return arr;
-}
+  }
+  return arr;
+};
+
+console.log(sortArr([5, 2, 8, 1])); // [1, 2, 5, 8]
 ```
 
 ## sort Obj by value
