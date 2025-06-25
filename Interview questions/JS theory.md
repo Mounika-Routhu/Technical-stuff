@@ -1645,7 +1645,23 @@ arr.splice(3, 0, 1)
 // arr is ['a', 'z', 'x', 1], returns [] 
 ```
 
-## session storage vs local storage
+## local storage vs session storage vs cookies
+1. Local Storage (LS) and Session Storage (SS) are browser-based client storage options that allow storing key-value pairs without sending data to the server.
+2. They are better than cookies for most client-side use because they don't require user consent, have much larger storage capacity, and aren’t automatically sent with every HTTP request, making them faster and more efficient.
+
+| Feature               | Local Storage                     | Session Storage                  | Cookies                          |
+|------------------------|----------------------------------|----------------------------------|----------------------------------|
+| **Storage Limit**      | ~5–10 MB                         | ~5 MB                            | ~4 KB                            |
+| **Persistence**        | Until manually cleared           | Until tab/window is closed       | Until expiration time or manually cleared |
+| **Page Reload**        | ✅ Persists                      | ✅ Persists (same tab)            | ✅ Persists (until expired)       |
+| **Scope**              | All tabs/windows of same origin  | Current tab/window only          | All tabs, also sent to server     |
+| **Accessible By**      | JavaScript only                 | JavaScript only                  | JavaScript & server              |
+| **Auto Sent to Server**| ❌ No                            | ❌ No                             | ✅ Yes (with every request)       |
+| **Expiration Control** | ❌ No                            | ✅ Auto on tab close              | ✅ Yes (set via expiry)           |
+| **Typical Use**        | Persistent app state, preferences | Temporary state, form data       | Auth tokens, tracking IDs        |
+| **Requires user consent**| ❌ No                            | ❌ No                             | ✅ Sometimes (for tracking/3rd-party cookies) |
+
+Note: when we duplicate tab, session storage is shared with that tab.
 
 ## for..of, for...in
 -for...of → Iterates over values of an iterable (like arrays, strings, etc.). technically
