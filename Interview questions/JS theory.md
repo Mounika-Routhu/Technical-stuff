@@ -309,7 +309,7 @@ test();
    ```
 6. **Lexical Scope:** Variables declared in an enclosing scope (outer function or block) are accessible within that scope—this is called function scope if declared with var, and block scope if declared with let or const. These variables are also accessible to any nested (inner) scopes (inner functions or blocks). This behavior is known as lexical scope.
 
-**Lexical scope = what variables or this a function has access to is based on where physically present(where it’s written) in the code**
+**Lexical scope = Lexical Scope means that what variables a function/block can access is determined by where it is physically written in the source code**
    ```JS
    // function
    function outer() {
