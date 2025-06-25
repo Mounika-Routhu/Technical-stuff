@@ -285,6 +285,23 @@ const arr = [2, 1, 4, 62, 7, 9];
 console.log(sumMinMax(arr)); // Output: 63 (1 + 62)
 ```
 
+## reverse string
+```JS
+const reverseStr = (str) => {
+    let strArr = str.split("");
+    // return strArr.reverse().join("");
+    let res =[];
+    for(let i=strArr.length-1; i>=0 ; i--){
+        res.push(strArr[i])
+    }
+    return res.join("");
+}
+
+console.log(reverseStr("Hellow!"));
+```
+
+## 
+
 How to group by and sum an array of objects?
 ARRAY Input : [
   {
