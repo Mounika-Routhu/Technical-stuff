@@ -1,7 +1,7 @@
 ## Self intro
 **About My Experience**
 
-With over 5 years of IT experience, I've developed a strong expertise in front-end development, specializing in React JS.
+With over 6 years of IT experience, I've developed a strong expertise in front-end development, specializing in React JS.
 
 **Career Journey**
 
