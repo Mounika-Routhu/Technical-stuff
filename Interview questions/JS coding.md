@@ -227,15 +227,12 @@ console.log(flattenArr([1,2,3, 9, [8, [5, 6], 2]]))
 
 ## flatten array with depth 
 ```JS
-
 const flattenArr = (arr, depth) => {
-    let count = 0;
     let res = [];
     arr.forEach(el => {
-        if(Array.isArray(el) && count < depth){
-            count++
-            const nestedRes = flattenArr(el, --depth); // pre decrement is needed
-            res = [...res, ...nestedRes]
+        if(Array.isArray(el) && depth > 0){
+            const nestedRes = flattenArr(el, depth-1);
+            res = [...res, ...nestedRes];
         }else{
             res.push(el);
         }
@@ -243,7 +240,7 @@ const flattenArr = (arr, depth) => {
     return res
 }
 
-console.log(flattenArr([1,2,3, 9, [8, [5, 6, [7, 4]], 2]], 2));
+console.log(flattenArr([1, [2, [3]], [4, [5]]], 2)); //[ 1, 2, 3, 4, 5 ]
 ```
 
 How to group by and sum an array of objects?
