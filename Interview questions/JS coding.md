@@ -1,3 +1,17 @@
+## sort arr
+```JS
+const sortArr = (arr) => {
+    for(i=0; i<arr.length; i++){
+        for(j=i+1; j<arr.length; j++){
+            if(arr[i] > arr[j]){
+                [arr[i], arr[j]] = [arr[j], arr[i]]
+            }
+        }
+    }
+    return arr;
+}
+```
+
 ## count no. of vowels in string
 ```JS
 const getVowelCount = (str) => {
