@@ -251,6 +251,28 @@ Timeout
 2. setTimeout is macro-task (in the callback queue).
 3. Promise.then is a micro-task (runs before macro-tasks).
 
+### await
+```JS
+async function example() {
+  console.log("Before await");
+  await Promise.resolve();  // awaits resolved promise, pauses async function briefly
+  // Now synchronous code after await:
+  console.log("After await - sync code");
+  for(let i = 0; i < 3; i++) {
+    console.log(i);
+  }
+  console.log("Done sync after await");
+}
+
+console.log("Start");
+example();
+console.log("End");
+```
+
+await block code temp inside block
+rest of code continues
+again controls comes to promise
+
 ## += VS =+
 1. Adds and assigns — increases the variable's value.
 `x += 5; // same as x = x + 5`
