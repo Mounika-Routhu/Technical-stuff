@@ -93,6 +93,7 @@ JavaScript has two main categories of data types:
    3. No methods or properties (but JS temporarily “boxes” them to allow method calls)
    4. Compared by value (==)
 
+
 | Type                   | Description              | Example                      | `typeof` Result |
 | ---------------------- | ------------------------ | ---------------------------- | --------------- |
 | **Number**             | Numeric values(integer & float)           | `42`, `3.14`, `NaN`          | `"number"`      |
@@ -120,6 +121,9 @@ JavaScript has two main categories of data types:
 | **Array**              | Ordered collection       | `[1, 2, 3]`                  | `"object"`      |
 | **Function**           | Callable objects         | `function() {}`, `() => {}`  | `"function"`(but obj underneath)    |
 | **Date, RegExp, etc.** | Built-in complex objects | `new Date()`, `/abc/`        | `"object"`      |
+
+**tricky**: **STOP & SEE**
+   <img width="158" alt="Screenshot 2025-06-26 at 2 46 51 AM" src="https://github.com/user-attachments/assets/b41ee758-0a28-4ea2-bc2c-b67d70b6a723" />
 
 <img width="1381" alt="Screenshot 2025-05-25 at 12 29 53 PM" src="https://github.com/user-attachments/assets/9a4aafe8-3edb-40ef-84b9-34764a520550" />
 
