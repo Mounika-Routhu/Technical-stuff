@@ -1,12 +1,12 @@
 ## scoping - guess the o/p
 ```javascript
-function(x, f = () => x){
+function f(x, f = () => x){
  var x;
  var y=x;
  x = 2;
  return [x,y,f()]
 } 
-function(1); 
+console.log(f(1)); 
 ```
 ans:[2,1,1]
 **explanation:**
