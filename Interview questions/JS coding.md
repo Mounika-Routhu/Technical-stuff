@@ -12,6 +12,35 @@ const sortArr = (arr) => {
 }
 ```
 
+## sort Obj by value
+```JS
+const obj = { "mounika": 12, "Rohit": 34, "Krishna": 10}
+
+const sortArr = (arr) => {
+    for(let i=0; i<arr.length; i++){
+        for(let j=i+1; j<arr.length; j++){
+            if(arr[i][1] > arr[j][1]){
+                [arr[i], arr[j]] = [arr[j], arr[i]]
+            }
+        }
+    }
+    return arr;
+}
+
+const sortObj = (obj) => {
+    let objArr = Object.entries(obj);
+    const sortedArr = sortArr(objArr);
+    objArr.sort(a, b => a[1] - b[1]);
+    const sortedObj = {};
+    sortedArr.forEach(el => {
+        sortedObj[el[0]] = el[1];
+    });
+    console.log(sortedObj);
+}
+
+sortObj(obj)
+```
+
 ## count no. of vowels in string
 ```JS
 const getVowelCount = (str) => {
