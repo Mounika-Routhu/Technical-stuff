@@ -225,3 +225,11 @@ Promise.any([
 
 o/p: All rejected: [ 'Fail 1', 'Fail 2', 'Fail 3' ]
 ```
+
+## += VS =+
+1. Adds and assigns — increases the variable's value.
+`x += 5; // same as x = x + 5`
+
+2. Assigns a positive value — just sets the value (with a unary +).
+`x =+ 5; // same as x = +5` → assigns positive 5
+🔸 =+ is rarely useful, and can be confusing — avoid it unless you're explicitly using a unary plus.
