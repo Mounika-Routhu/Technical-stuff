@@ -620,12 +620,31 @@ function outer(){
     let x = 10;
     function inner(){
         let y = 20;
-        console.log(x,y,z)
+        console.log(x,y,z) // 10, 20, 30
     }
     inner();
 }
 
 outer();
+
+// ANOTHER EXAMPLE
+let z = 30;
+
+function grandParent(){
+    let x = 10;
+    function parent(){
+        let y = 20;
+        function child(){
+            console.log(x, y, z);
+        }
+        return child;
+    }
+    return parent;
+}
+
+const parent = grandParent();
+const child = parent();
+child(); // 10, 20, 30
 ```
 7. The key feature of closures is that this access remains intact even after the outer function has finished executing.
 ```JS
