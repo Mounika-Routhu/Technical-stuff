@@ -1647,7 +1647,7 @@ arr.splice(3, 0, 1)
 
 ## local storage vs session storage vs cookies
 1. Local Storage (LS) and Session Storage (SS) are browser-based client storage options that allow storing key-value pairs without sending data to the server.
-2. They are better than cookies for most client-side use because they don't require user consent, have much larger storage capacity, and aren’t automatically sent with every HTTP request, making them faster and more efficient.
+2. They are better than cookies for most client-side use because they don't require user consent, have much larger storage capacity, and aren’t automatically sent to server with every HTTP request, making them faster and more efficient.
 
 | Feature               | Local Storage                     | Session Storage                  | Cookies                          |
 |------------------------|----------------------------------|----------------------------------|----------------------------------|
@@ -1661,7 +1661,7 @@ arr.splice(3, 0, 1)
 | **Typical Use**        | Persistent app state, preferences | Temporary state, form data       | Auth tokens, tracking IDs        |
 | **Requires user consent**| ❌ No                            | ❌ No                             | ✅ Sometimes (for tracking/3rd-party cookies) |
 
-Note: when we duplicate tab, session storage is shared with that tab.
+**Note**: when we **duplicate** tab, **session storage is shared with that tab**.
 
 ## for..of, for...in
 -for...of → Iterates over values of an iterable (like arrays, strings, etc.). technically
