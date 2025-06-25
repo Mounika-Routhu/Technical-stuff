@@ -375,6 +375,11 @@ test();
    }
    run();
    ```
+## scope chaining
+Scope chaining is the process JavaScript uses to resolve variable names. When a variable is referenced, the JS engine looks in the current scope, and if not found, it "climbs up" to parent scopes until it either:
+
+1. ✅ Finds the variable
+2. ❌ Reaches the global scope and throws a ReferenceError if not found
 
 ## What is Shadowing in JavaScript?
 1. Shadowing in JavaScript is when a variable declared in an inner scope (like inside a function or block) has the same name as a variable in an outer scope.**(doesn't consider declaration type(var, let & const))**
