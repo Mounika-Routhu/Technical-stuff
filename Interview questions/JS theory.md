@@ -255,9 +255,9 @@ implicit coercion during with arthemtic operators like +, - etc
 
 ## var, let, const
 1. In JavaScript, var, let, and const are used to declare variables, but they have some differences in terms of scope and mutability:
-2. var: It is the oldest way to declare a variable in JavaScript. var is function scoped, meaning that it can be accessed from anywhere within the function it is declared in. However, var does not have block scope, which means that it can also be accessed outside the block it was declared in. They are scoped to nearest function if available. var can be **re-declared(only using another var)** and re-assigned
-3. let intro in ES6 but it is block-scoped. It can only be accessed within the block it was declared in, including nested blocks. let variables can be reassigned, but not redeclared.
-4. const intro in ES6 It is also block-scoped and cannot be reassigned or redeclared. However, if the constant is an object or an array, its properties can still be modified.
+2. var: It is the oldest way to declare a variable in JavaScript. var is function scoped, meaning that it can be accessed from anywhere within the function it is declared in. However, var does not have block scope, which means that it can also be accessed outside the block it was declared in. They are scoped to nearest function if available. var can be **re-declared(only using another var)** and re-assigned. Can be initilized later
+3. let intro in ES6 but it is block-scoped. It can only be accessed within the block it was declared in, including nested blocks. let variables can be reassigned, but not redeclared. Can be initilized later
+4. const intro in ES6 It is also block-scoped and cannot be reassigned or redeclared. However, if the constant is an object or an array, its properties can still be modified. Should be initilized while declaration.
 5. let & const can be function scoped, not technically, function's body is a block, if let & const are declared inside a function, they are scoped to nearest block which is function's body, hence they seem like they are function scoped.
 6. All 3 can have global scope if declarabled in global space(outside any function or block).
 
