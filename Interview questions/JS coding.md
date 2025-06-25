@@ -234,7 +234,7 @@ const flattenArr = (arr, depth) => {
     arr.forEach(el => {
         if(Array.isArray(el) && count < depth){
             count++
-            const nestedRes = flattenArr(el, --depth); // pre increment is needed
+            const nestedRes = flattenArr(el, --depth); // pre decrement is needed
             res = [...res, ...nestedRes]
         }else{
             res.push(el);
