@@ -228,6 +228,29 @@ Promise.any([
 o/p: All rejected: [ 'Fail 1', 'Fail 2', 'Fail 3' ]
 ```
 
+```JS
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("Promise");
+});
+
+console.log("End");
+
+o/p:
+Start
+End
+Promise
+Timeout
+```
+1. console.log is synchronous.
+2. setTimeout is macro-task (in the callback queue).
+3. Promise.then is a micro-task (runs before macro-tasks).
+
 ## += VS =+
 1. Adds and assigns — increases the variable's value.
 `x += 5; // same as x = x + 5`
