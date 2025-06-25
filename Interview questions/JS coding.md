@@ -207,6 +207,24 @@ const flatten = (obj, prefix = []) => {
 console.log(flatten(input));
 ```
 
+## flatten arr
+```JS
+const flattenArr = (arr) => {
+    let res = [];
+    arr.forEach(el => {
+        if(Array.isArray(el)){
+            const nestedRes = flattenArr(el)
+            res = [...res, ...nestedRes]
+        }else{
+            res.push(el);
+        }
+    })
+    return res
+}
+
+console.log(flattenArr([1,2,3, 9, [8, [5, 6], 2]]))
+```
+
 How to group by and sum an array of objects?
 ARRAY Input : [
   {
