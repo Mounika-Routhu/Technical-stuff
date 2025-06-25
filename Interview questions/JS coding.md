@@ -241,6 +241,7 @@ const flattenArr = (arr, depth) => {
 }
 
 console.log(flattenArr([1, [2, [3]], [4, [5]]], 2)); //[ 1, 2, 3, 4, 5 ]
+console.log([1, [2, [3]], [4, [5]]].flat(1)); // inbuilt method => [ 1, 2, [ 3 ], 4, [ 5 ] ]
 ```
 
 How to group by and sum an array of objects?
