@@ -213,6 +213,8 @@ o/p :
 Error: Oops
 After catch
 ```
+then.catch.finally -> recommended to follow this order but no syntax error
+try-catch-finally -> strict order. If not, syntax error
 
 ```JS
 Promise.any([
