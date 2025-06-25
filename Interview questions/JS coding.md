@@ -266,6 +266,25 @@ const arr = [2,1,3,8,2,7];
 console.log(findPair(arr, 4)) [ [ 0, 4 ], [ 1, 2 ] ]
 ```
 
+## find sum of min & max of array
+```JS
+const sumMinMax = (arr) => {
+    let min = arr[0];
+    let max = arr[0];
+    // let min = max = arr[0] // might be confusing to avoid using, but it's valid in JS
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < min) min = arr[i];
+        if (arr[i] > max) max = arr[i];
+    }
+
+    return min + max;
+};
+
+const arr = [2, 1, 4, 62, 7, 9];
+console.log(sumMinMax(arr)); // Output: 63 (1 + 62)
+```
+
 How to group by and sum an array of objects?
 ARRAY Input : [
   {
