@@ -43,7 +43,7 @@ sortObj(obj)
 
 ### Property Order Rules in Objects
 When you iterate over object properties (e.g., using for...in, Object.keys(), etc.), JavaScript follows this order:
-1. Integer-like keys (e.g., "0", "1", "2") — ordered numerically
+1. Integer-like keys (e.g., "0", "1", "2") — ordered numerically, even if we don't add in numerical order
 2. String keys (non-integer) — ordered in the order they were added
 3. Symbol keys — appear only with Object.getOwnPropertySymbols(), not Object.keys()
 
