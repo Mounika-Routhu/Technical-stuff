@@ -244,6 +244,28 @@ console.log(flattenArr([1, [2, [3]], [4, [5]]], 2)); //[ 1, 2, 3, 4, 5 ]
 console.log([1, [2, [3]], [4, [5]]].flat(1)); // inbuilt method => [ 1, 2, [ 3 ], 4, [ 5 ] ]
 ```
 
+## find pairs which sums to target
+```JS
+// Input: nums = [2, 7, 11, 15], target = 9  
+// Output: [0, 1] // Because nums[0] + nums[1] == 2 + 7 == 9
+
+const findPair = (arr, target) => {
+    let allPairs = [];
+    for(let i=0; i<arr.length; i++){
+        for(j=i+1; j<arr.length; j++){
+            let res = arr[i] + arr[j];
+            if(res === target){
+                allPairs.push([i, j]);
+            }
+        }
+    }
+    return allPairs;
+}
+
+const arr = [2,1,3,8,2,7];
+console.log(findPair(arr, 4)) [ [ 0, 4 ], [ 1, 2 ] ]
+```
+
 How to group by and sum an array of objects?
 ARRAY Input : [
   {
