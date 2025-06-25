@@ -1376,8 +1376,9 @@ console.log(objCopy);
 3. We can also create a promise other than getting from async operation. Syntax explanation
    1. new Promise -> creating with new keyword using Promise -> a JS built-in class or constructor function
    2. this accepts a executor function with params(resolve & reject) -> these aren't keywords we can use any other names
-      3. resolve: a function to call if the async operation succeeds.
-      4. reject: a function to call if the async operation fails.
+      1. resolve: a function to call if the async operation succeeds.
+      2. reject: a function to call if the async operation fails.
+      3. NOTE: resolve & reject only take single arugument any more will be ignored(do string concatination if required(not like resolve("My promise is", val) instead do resolve("My promise is " + val)
 ```JS
    let promise = new Promise((resolve, reject) => {
       // Asynchronous operation
