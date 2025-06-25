@@ -41,6 +41,12 @@ const sortObj = (obj) => {
 sortObj(obj)
 ```
 
+### Property Order Rules in Objects
+When you iterate over object properties (e.g., using for...in, Object.keys(), etc.), JavaScript follows this order:
+1. Integer-like keys (e.g., "0", "1", "2") — ordered numerically
+2. String keys (non-integer) — ordered in the order they were added
+3. Symbol keys — appear only with Object.getOwnPropertySymbols(), not Object.keys()
+
 ## count no. of vowels in string
 ```JS
 const getVowelCount = (str) => {
