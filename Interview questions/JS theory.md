@@ -1707,3 +1707,18 @@ arr.splice(3, 0, 1)
 
 syntax: fetch(url, {options}
 
+```JS
+const fetchAPI = async () => {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+    let data = await res.json();
+    data = data.slice(0, 5);
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+fetchAPI();
+```
+
