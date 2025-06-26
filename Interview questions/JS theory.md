@@ -1548,8 +1548,10 @@ debouncedFetchAutoComplete("JS"); // user typed 2 letters - executes now
 2. like for every 500ms executes a function only once
 3. Throttling is better suited for situations where you want to execute a function at a fixed rate, regardless of the input frequency.
 4. Real time usage:
-   1. Scrolling: Update a UI component every 200ms while the user is scrolling.
-   2. API requests: Limit the number of API requests per second to prevent overwhelming the server.
+   1. autosave a file : every 5 seconds save file, debouncing not suitable here, bcz user might be continuosly typing for a long time
+   2. gaming : when key pressed down for a long time, we want to trigger action at regular intervals 
+   3. Scrolling: Update a UI component every 200ms while the user is scrolling.
+   4. API requests: Limit the number of API requests per second to prevent overwhelming the server.
 5. Throttle is typically twist grip on the handlebar that the rider uses to accelerate or decelerate the bike. Throttling means controlling the engine speed using throttle
 
 ```JS
