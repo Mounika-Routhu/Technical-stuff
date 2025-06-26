@@ -1344,6 +1344,9 @@ console.log(clone instanceof Person); // false
 ```
 
 ### Structured clone
+1. structuredClone() is a built-in JavaScript method used to deep clone complex JavaScript objects, including those with nested structures, special types like Map, Set, Date etc
+2. syntax: `const clone = structuredClone(value);`
+3. limitation: **can't clone functions, throws error**
 
 ### Mutation VS Reassigning
 1. Mutation (e.g. push, change property) =>	Shared — both reflect change
