@@ -273,9 +273,34 @@ example();
 console.log("End");
 ```
 
-await block code temp inside block
-rest of code continues
-again controls comes to promise
+1. await block code temp inside block
+2. rest of code continues
+3. again controls comes to promise
+
+```JS
+console.log("A");
+
+async function foo() {
+  console.log("B");
+  await Promise.resolve();
+  console.log("C");
+}
+
+foo();
+
+setTimeout(() => {
+  console.log("D");
+}, 0);
+
+Promise.resolve().then(() => console.log("E"));
+
+console.log("F");
+```
+1. The code after an await becomes a microtask,
+2. but it doesn't get added to the microtask queue immediately. after other then blocks
+3. But .then() will be added to micro immediately
+
+
 
 ## += VS =+
 1. Adds and assigns — increases the variable's value.
