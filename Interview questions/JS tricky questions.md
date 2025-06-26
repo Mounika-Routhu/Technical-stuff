@@ -273,7 +273,7 @@ example();
 console.log("End");
 ```
 
-1. await block code temp inside block
+1. await block code temp inside async function - It pauses the rest of the async function, regardless of whether the next line is inside or outside the try.
 2. rest of code continues
 3. again controls comes to promise
 
