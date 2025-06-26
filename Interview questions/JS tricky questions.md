@@ -300,6 +300,29 @@ console.log("F");
 2. but it doesn't get added to the microtask queue immediately. after other then blocks
 3. But .then() will be added to micro immediately
 
+```JS
+console.log("start");
+
+setTimeout(() => {
+  console.log("timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("promise1");
+}).then(() => {
+  console.log("promise2");
+});
+
+(async () => {
+  console.log("async1");
+  await Promise.resolve();
+  console.log("async2");
+})();
+
+console.log("end");
+```
+1. 2 thens doesn't fall in queue one after another, 2nd then waits for 1st then to execute
+2. in the mean time await is resumed
 
 
 ## += VS =+
