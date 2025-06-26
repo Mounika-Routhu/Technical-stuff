@@ -1676,3 +1676,31 @@ arr.splice(3, 0, 1)
    - plain object({k:v}) is not an iterable
 - for...in → Iterates over keys (property names) of an object or array.
 👉 "Use when you want the keys or indexes."
+
+## HTTP - HTTP Methods
+An HTTP(Hyper Text Transfer Protocal) request is like a message your web browser(client) sends to a website to ask for something—like a page, image, or data.
+We have methods to represent the desired action to be performed on a resource in a web server.
+**GET**  
+1. Used to request data.
+2. Example: Visiting `www.news.com` sends a GET request.
+
+**POST**  
+1. Used to send new data to the server., multiple calls with same data creates duplicate resources
+2. Example: Logging into a website sends a POST request with your login info.
+
+**PUT**  
+Used to update existing data, completely replace existing resource, if resources doesn't exist creates a new one
+Example: Editing your profile sends a PUT request with updated info.
+
+**DELETE**  
+Used to delete data from the server. Deleting non existing resource won't cause any error
+Example: Clicking "Delete account" sends a DELETE request.
+
+**PATCH**  
+Used to partially update data. if resource not found -> 404 error not found.
+Example: Updating only your email address sends a PATCH request.
+
+## fetch API
+1. A built-in JavaScript function used to make HTTP requests (like GET, POST).
+2. It returns a Promise.
+
