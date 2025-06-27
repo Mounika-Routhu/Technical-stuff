@@ -1832,4 +1832,21 @@ document.getElementById('list').addEventListener('click', (e) => {
 | every    | Checks if all elements satisfy a condition   | Boolean (true/false)             | ```js const allPositive = [1,2,3,4].every(n => n > 0); console.log(allPositive); // true ``` | Checks all elements; don’t confuse with `some` which checks any element. |
 | some     | Checks if any element satisfies a condition   | Boolean (true/false)             | ```js const hasEven = [1,2,3,4].some(n => n % 2 === 0); console.log(hasEven); // true ``` | Returns true on first passing element; may not check all elements. |
 
+## map vs object
+| Feature                      | `Object`                                                      | `Map`                                                          |
+|------------------------------|---------------------------------------------------------------|----------------------------------------------------------------|
+| Creation Syntax               | `const obj = { key1: value1, key2: value2 }`                  | `const map = new Map([[key1, value1], [key2, value2]])`         |
+| `new` Keyword Required        | Optional (`const obj = {}` or `new Object()`)                 | Required (`new Map()`)                                          |
+| Key Types                    | Only strings & symbols                                        | Any value (strings, numbers, objects, functions)                |
+| Key Order                    | Numeric keys sorted, others in insertion order                | Fully preserves insertion order                                 |
+| Iteration                    | Use `Object.keys/values/entries` or `for...in`                | Directly iterable via `.keys()`, `.values()`, `.entries()`     |
+| Size                         | No built-in way (`Object.keys(obj).length`)                   | `.size` property                                                |
+| Add / Update Value           | `obj[key] = value`                                            | `map.set(key, value)`                                           |
+| Get Value                    | `obj[key]`                                                    | `map.get(key)`                                                  |
+| Check Key Exists             | `'key' in obj` or `obj.hasOwnProperty('key')`                 | `map.has(key)`                                                  |
+| Delete Key                   | `delete obj[key]`                                             | `map.delete(key)`                                               |
+| Clear All                    | Manual loop or reassign to `{}`                               | `map.clear()`                                                  |
+| JSON Support                 | ✅ Yes                                                        | ❌ No (must convert manually)                                  |
+| Prototype Inheritance        | Has prototype chain (`__proto__`)                            | No prototype (clean by default)                                 |
+| Use Case                     | Static structures, JSON-like data                            | Dynamic key-value store, frequent key changes                   |
 
