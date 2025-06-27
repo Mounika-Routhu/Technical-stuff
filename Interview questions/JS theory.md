@@ -1780,12 +1780,10 @@ Default: Event listeners run in the bubbling phase unless specified.
 ```
 
 It has 3 phases:
-1. Capturing Phase: Event travels top-down:
-   
+1. **Capturing Phase:** Event travels top-down:
    `window → document → <html> → <body> → #outer → #inner → #btn(target)`
-2. Target Phase: Event reaches the element that triggered it (e.g. the clicked button).
-3. Bubbling Phase (default):Event bubbles up from target back through its ancestors:
-   
+2. **Target Phase:** Event reaches the element that triggered it (e.g. the clicked button).
+3. **Bubbling Phase(default):** Event bubbles up from target back through its ancestors:
    `#btn(target) → #inner → #outer → body → html → document → window`
 
 **To listen in Capture Phase** => Use the { capture: true } option in addEventListener:
