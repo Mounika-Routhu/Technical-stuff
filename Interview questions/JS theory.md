@@ -1786,12 +1786,13 @@ It has 3 phases:
 3. Bubbling Phase (default):Event bubbles up from target back through its ancestors:
 ```JS #btn(target) → #inner → #outer → body → html → document → window ```
 
-to Listen in Capture Phase => Use the { capture: true } option in addEventListener:
+**To listen in Capture Phase** => Use the { capture: true } option in addEventListener:
 ```JS
 element.addEventListener('click', handler, { capture: true });
 ```
 
-During bubbling/capture phase, if we add event listners to all, all will be triggered, inorder to stop the event from continuing to bubble or capture further, `event.stopPropagation();`
+**To stop, bubbling/capturing:**
+During bubbling/capture phase, if we add event listners to all, all will be triggered. To stop this, use `event.stopPropagation();`
 ```JS
 document.getElementById('btn').addEventListener('click', (e) => {
   console.log('Button clicked');
@@ -1799,7 +1800,7 @@ document.getElementById('btn').addEventListener('click', (e) => {
 });
 ```
 
-Event Delegation (1-liner)
+**Event Delegation**
 A technique, where a parent element handles events for its child elements using bubbling and event.target.
 
 ```HTML
