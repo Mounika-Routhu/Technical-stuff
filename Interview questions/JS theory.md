@@ -919,11 +919,51 @@ Functional programming is a way of writing code where you:
 11. in DOM -> reference to the HTML element on which event is called
  <img width="857" alt="Screenshot 2025-06-02 at 10 25 50 PM" src="https://github.com/user-attachments/assets/a0298097-422a-47ba-8b1c-63c18fbb01ab" />
 
-## Issue in class based components earlier
-1. this.handleClick passes the function but does not call it immediately.
-2. When called later by React, **this** is lost and becomes undefined(in strcit mode) unless bound. Just handleClick() will be executed later without any obj
-3. following are the ways to resolve this issue,
-<img width="749" alt="Screenshot 2025-06-02 at 10 51 20 PM" src="https://github.com/user-attachments/assets/208c431e-475d-4779-a3c7-499ff67ff03a" />
+## No binding of this in regular methhods - Issue in class based components
+1. In regular methods, `this` is evaluated at call time, not when it's defined. That means when you call a method on an object, `this` refers to that object.
+2. When assigned to another variable or passed as a callback, the method loses `this` unless explicitly bound.
+```js
+const obj = {
+  name: "Alice",
+  greet() {
+    console.log(this.name);
+  }
+};
+
+obj.greet();       // logs "Alice"
+const greet = obj.greet; // only reference is passed without binding
+greet();           // logs undefined (or global object in non-strict mode)
+```
+3. In class-based React components, when you pass a class method as a callback, you are passing only the reference to that method:
+```jsx
+<button onClick={this.handleClick}>Click me!</button>
+```
+4. This behaves like passing an inline regular function:
+```jsx
+<button onClick={function () { console.log(this); }}>Click me</button>
+```
+5. When the user clicks the button, the `handleClick` function is invoked by the DOM element (the button), so `this` inside the function points to the button element, not the component instance.
+6. To avoid this loss of `this`, explicitly bind it to the component instance:
+```jsx
+<button onClick={this.handleClick.bind(this)}>Click me</button>
+```
+7. Arrow functions do not have their own `this`. Instead, they capture `this` from their lexical (surrounding) scope.
+8. In React class components, an instance of the component is created internally by React, and arrow functions defined as class fields automatically refer to that instance:
+```js
+class MyComponent extends React.Component {
+  handleClick = () => {
+    console.log(this); // `this` refers to the component instance
+  }
+
+  render() {
+    return <button onClick={this.handleClick}>Click me</button>;
+  }
+}
+```
+9. You can also use inline arrow functions in JSX, which close over the component instance: 
+```jsx
+<button onClick={() => this.handleClick()}>Click me</button>
+```
 
 ## Every function in JavaScript has two important things:
 | Concept               | What It Refers To                                 | Purpose / Usage                                      | Example                         |
