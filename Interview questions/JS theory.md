@@ -1765,3 +1765,59 @@ const fetchAPI = async () => {
 fetchAPI();
 ```
 
+## Event Propagation - capturing, bubbling, event delegation technique, stop propagation(capture/bubble)
+Event propagation is how events travel through the DOM in three phases: capturing → target → bubbling.
+Default: Event listeners run in the bubbling phase unless specified.
+
+```HTML
+<body>
+  <div id="outer">
+    <div id="inner">
+      <button id="btn">Click me</button>
+    </div>
+  </div>
+</body>
+```
+
+It has 3 phases:
+1. Capturing Phase: Event travels top-down:
+```JS window → document → <html> → <body> → #outer → #inner → #btn(target) ```
+2. Target Phase: Event reaches the element that triggered it (e.g. the clicked button).
+3. Bubbling Phase (default):Event bubbles up from target back through its ancestors:
+```JS #btn(target) → #inner → #outer → body → html → document → window ```
+
+to Listen in Capture Phase => Use the { capture: true } option in addEventListener:
+```JS
+element.addEventListener('click', handler, { capture: true });
+```
+
+During bubbling/capture phase, if we add event listners to all, all will be triggered, inorder to stop the event from continuing to bubble or capture further, `event.stopPropagation();`
+```JS
+document.getElementById('btn').addEventListener('click', (e) => {
+  console.log('Button clicked');
+  e.stopPropagation();
+});
+```
+
+Event Delegation (1-liner)
+A technique, where a parent element handles events for its child elements using bubbling and event.target.
+
+```HTML
+<ul id="list">
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ul>
+```
+```JS
+document.getElementById('list').addEventListener('click', (e) => {
+  if (e.target.tagName === 'LI') {
+    console.log('Clicked on:', e.target.textContent);
+  }
+});
+```
+
+✅ Benefits of Event Delegation
+1. Fewer event listeners → better performance
+2. Works with dynamically added elements
+3. Cleaner, scalable code structure
+
