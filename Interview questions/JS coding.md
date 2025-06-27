@@ -43,6 +43,8 @@ const sortObj = (obj) => {
 sortObj(obj)
 ```
 
+<img width="813" alt="Screenshot 2025-06-27 at 10 58 56 AM" src="https://github.com/user-attachments/assets/da6afa15-303a-448b-8200-5678685cbc1e" />
+
 ### Property Order Rules in Objects
 When you iterate over object properties (e.g., using for...in, Object.keys(), etc.), JavaScript follows this order:
 1. Integer-like keys (e.g., "0", "1", "2") — ordered numerically, even if we don't add in numerical order
