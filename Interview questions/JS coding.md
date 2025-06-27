@@ -45,6 +45,8 @@ sortObj(obj)
 
 <img width="1108" alt="Screenshot 2025-06-27 at 1 40 22 PM" src="https://github.com/user-attachments/assets/e8687dd8-fe30-4de8-a761-57a411550611" />
 
+Swap: `arr[i], arr[j]] = [arr[j], arr[i]]`
+
 ### Property Order Rules in Objects
 When you iterate over object properties (e.g., using for...in, Object.keys(), etc.), JavaScript follows this order:
 1. Integer-like keys (e.g., "0", "1", "2") — ordered numerically, even if we don't add in numerical order
