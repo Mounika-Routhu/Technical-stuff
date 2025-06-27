@@ -43,7 +43,7 @@ const sortObj = (obj) => {
 sortObj(obj)
 ```
 
-<img width="813" alt="Screenshot 2025-06-27 at 10 58 56 AM" src="https://github.com/user-attachments/assets/da6afa15-303a-448b-8200-5678685cbc1e" />
+<img width="1108" alt="Screenshot 2025-06-27 at 1 40 22 PM" src="https://github.com/user-attachments/assets/e8687dd8-fe30-4de8-a761-57a411550611" />
 
 ### Property Order Rules in Objects
 When you iterate over object properties (e.g., using for...in, Object.keys(), etc.), JavaScript follows this order:
