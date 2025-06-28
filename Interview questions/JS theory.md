@@ -237,25 +237,34 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 **Implicit coercion in loose equality**
 1. With == before comparing, JavaScript tries to convert operands((one or both sometimes) to the same type,
 2. JS understands user intensions & does coercion, but sometimes the output can be a bit strange
+3. There are specific rule defined - Abstract Equality Comparison rules in JS
 
-| Rule                        | Logic Behind It |
-|----------------------------|------------------|
-| **Boolean → Number**        | Booleans are numeric in JS (`true → 1` (truthy), `false → 0` (falsy)). |
-| **String → Number**         | Strings often represent numeric input (e.g. `"5"` from a user input field). |
-| **Object → Primitive**      | Objects must be converted to compare values (via `.valueOf()` or `.toString()`),<br>because JavaScript assumes you want to compare the object’s **content**, not its reference.<br> First JS use `.valueOf()`, after this if the value is still obj it's not useful to compare, next it uses `.toString()` to convert to a string |
-| **null == undefined**       | Both represent “no value” and are loosely equal.<br><br>But **not equal** to `0`, `false`, or `""` — because those are **actual values**:<br>• `0` is a valid number<br>• `false` is a boolean - represents not true<br>• `""` is a string (empty, but still a string without characters). |
-| **NaN == anything → false** | `NaN` means "invalid number" — it's **not equal to anything**, not even to itself.<br><br>**Why?**<br>`NaN` can result from `0/0` or `"hello" * 5`.<br>Are two `NaN`s the same? We can't say.<br>Think of `NaN` as an “unknown value.”<br>Two unknowns can't be confirmed as equal. |
-| **Symbol can't be coerced** | Symbols are **unique identifiers** by design and cannot be automatically converted to a string or number — coercion throws a **TypeError**. |
+| A           | B                  | Rule - Coercion Behavior & Flow                                                    | Example Result                                            |
+| ----------- | ------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `null`      | `undefined`        | No coercion; special hardcoded rule                                                   | `null == undefined` → ✅ true                              |
+| `null`      | anything else      | No coercion                                                                 | `null == 0` → ❌ false                                     |
+| `undefined` | anything else      | No coercion                                                                 | `undefined == false` → ❌ false                            |
+| `boolean`   | anything else      | `boolean → number` then compare                         | `false == "0"` → "0" → 0, false → 0 → ✅ `0 == 0`          |
+| `string`    | `number`           | `string → number`, then compare                                             | `"42" == 42` → `42 == 42` → ✅ true                        |
+| `string`    | `boolean`          | `boolean → number`, `string → number`, then compare                         | `"1" == true` → "1" → 1, true → 1 → ✅ `1 == 1`            |
+| `object`    | `string`           | `object → primitive (toString)`, then string compared                       | `[5] == "5"` → `[5]` → `"5"` → ✅ `"5" == "5"`             |
+| `object`    | `number`           | `object → string`, then `string → number`, then compare                     | `[1] == 1` → `[1]` → `"1"` → 1 → ✅ `1 == 1`               |
+| `object`   | `boolean`           | `object → string` then `string → number`, then compare | `[] == false` → `[]` → `""` → 0, `false → 0` → ✅ `0 == 0` |
+| `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                                    |
+**Why NaN == anything or even itself is false** ?
+1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
+2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
 
 3. JavaScript tries hard to make things "work", but sometimes it guesses wrong & output seems wierd. So:
    1. == use this, when you expect implicit coercion to happen but be careful as it's risky
    2. === try to use this as this is safe and predictable
 
-Not studied completely - ignore below
-implicit coercion during with arthemtic operators like +, - etc
-1. JS always try to preserve most information possible
-2. This is to avoid accidental data loss and to keep operations meaningful — even if sometimes the results look a bit odd.
-3. So, the non-primitive or less "specific" type usually gets converted.
+## Implicit coercion with arthmetic operations
+1. JavaScript is dynamically typed and tries to be helpful by converting types where it can.
+2. The -, *, / operators trigger numeric coercion.
+3. But + is special: if either operand is a string, it performs string concatenation instead.
+
+<img width="657" alt="Screenshot 2025-06-28 at 12 00 32 PM" src="https://github.com/user-attachments/assets/ee5fc88f-2d10-4ced-afb4-30a48ca4c8db" />
 
 ## var, let, const
 1. In JavaScript, var, let, and const are used to declare variables, but they have some differences in terms of scope and mutability:
