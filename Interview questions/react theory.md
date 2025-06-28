@@ -166,7 +166,8 @@ const UseCallbackExample = () => {
 **Practical use**
 1. Expensive computations (e.g., sorting, filtering, math) - Avoids recalculating unless necessary
 2. Derived data from props or state	- Keeps calculated data in sync without re-running logic
-3. Preventing unnecessary object/array creation -	Useful when objects are passed as props to memoized components
+3. Memoize **static** props (objects/arrays) when passing to memoized components - Dynamic object should be created as new reference if not memoised component won't detect(as React.memo only compare references(shallow compare)
+   
 ```JS
 const options = useMemo(() => ({ darkMode: true }), []);
 return <ThemeContext.Provider value={options} />;
