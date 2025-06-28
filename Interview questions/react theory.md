@@ -164,9 +164,8 @@ const UseCallbackExample = () => {
 - To achieve this we have to use useMemo
   
 **Practical use**
-1. Expensive computations (e.g., sorting, filtering, math) - Avoids recalculating unless necessary
-2. Derived data from props or state	- Keeps calculated data in sync without re-running logic
-3. Memoize **static** props (objects/arrays) when passing to memoized components - Dynamic object should be created as new reference if not memoised component won't detect(as React.memo only compare references(shallow compare)
+1. Derived data from props or state by doing expensive computations (e.g., sorting, filtering, math) - Avoids recalculating unless necessary
+2. Memoize **static** props (objects/arrays) when passing to memoized components - Dynamic object should be created as new reference if not memoised component won't detect(as React.memo only compare references(shallow compare)
    
 ```JS
 const options = useMemo(() => ({ darkMode: true }), []);
