@@ -242,6 +242,18 @@ function App() {
 }
 ```
 
+## Manually add delay to see Suspense loader
+1. `React.lazy()` requires a function returning a Promise, if we directly use `setTimeout` schedules a callback but immediately returns a number (timer ID), not a Promise.
+```JS
+const LazyScoreCard = React.lazy(() =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve(import('./ScoreCard'));
+    }, 200);
+  })
+);
+```
+
 ## useEffect - mount, update, unmount
 1. useEffect is a React Hook that lets you perform **side effects(actions outside component)** in function components. Side effects include tasks like:
   - Fetching data from an API
@@ -300,16 +312,89 @@ Note: if dependency array not provided, component will render everytime prop or 
 4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
 5. So, even if component unmounts, window still holds a reference to that obj, hence, can't be garbage collected & leads to memory leak.
 
-## Manually add delay to see Suspense loader
-1. `React.lazy()` requires a function returning a Promise, if we directly use `setTimeout` schedules a callback but immediately returns a number (timer ID), not a Promise.
+## useRef
+1. useRef is a react hook which return a mutable object: {current: initialValue}
+2. syntax : `inputRef = useRef(initialValue);`
+   
+Uses:
+1. to access DOM elements directly - scroll to section, focus an input box on mount
 ```JS
-const LazyScoreCard = React.lazy(() =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(import('./ScoreCard'));
-    }, 200);
-  })
-);
+import React, { useRef } from 'react';
+
+const ScrollExample = () => {
+  const sectionRef = useRef();
+  const inputRef = useRef();
+
+  const scrollToSection = () => {
+    sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  return (
+    <>
+      <input ref={inputRef} placeholder="Autofocus input" />;
+      <button onClick={scrollToSection}>Scroll to Section</button>
+      <div style={{ height: '100vh' }}>some long text in between</div>
+      <div ref={sectionRef}>🎯 Target Section</div>
+    </>
+  );
+}
+```
+3. to store form data without causing re-renders - uncontrolled components
+```JS
+import React, { useRef } from 'react';
+
+function UncontrolledForm() {
+  const nameRef = useRef();
+  const emailRef = useRef();
+
+  const handleSubmit = () => {
+    alert(`Name: ${nameRef.current.value}, Email: ${emailRef.current.value}`);
+  };
+
+  return (
+    <>
+      <input ref={nameRef} type="text" placeholder="Enter name" />
+      <input ref={emailRef} type="email" placeholder="Enter email" />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+}
+```
+5. to preserve values over re-renders - counter - perfect for internal tracking.
+```Js
+import React, { useEffect, useRef } from 'react';
+
+function TimerCounter() {
+  const countRef = useRef(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      countRef.current++;
+      console.log('Count:', countRef.current);
+    }, 1000);
+
+    return () => clearInterval(id);
+  }, []);
+
+  return <div>Open the console to see the counter ⏱️</div>;
+}
+```
+
+## controlled components - uncontrolled components
+1. Controlled Component: Where react state manages the input value via setState; updates cause re-renders.
+```JS
+const [name, setName] = useState('');
+<input value={name} onChange={(e) => setName(e.target.value)} />
+```
+2. Uncontrolled Component
+The DOM manages the input; React accesses it via ref without re-rendering - used for form data.
+```
+const nameRef = useRef();
+<input ref={nameRef} />
 ```
 
 ## Why React doesn't allow multiple elements in return?
