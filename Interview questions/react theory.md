@@ -33,6 +33,7 @@
 - It is a higher-order component (HOC)(explained later) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
 - Usecase: In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
 - let's say You have a component that re-renders often, but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
+- **POINT to NOTE:** memo only does shallow comparision (only checks the reference, not the internal structure). Let's say we passed an obj as prop, if don't recreate obj but updated a key value, then reference stays same, then our component won't re-render
 
 ```javascript
 const MyComponent = React.memo((props) => {
