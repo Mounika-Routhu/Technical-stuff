@@ -47,28 +47,55 @@ App
 │
 └── Game
     ├── Player   ← re-renders every time
-    └── score(JSX)  ← updates score state
+    └── ScoreCard  ← updates score state
 ```  
 
 ```JS
-import React, { useState, memo } from "react";
+import React, { useState, memo, useCallback, useMemo } from "react";
 
-// ✅ This Player won't re-render unless `name` changes with `memo`
+// ✅ This Player won't re-render unless `name` changes by using `memo`
 const Player = memo(({ name }) => {
-  console.log("Child rendered");
+  console.log("Player rendered");
   return <p>Hi, {name}</p>;
 });
 
+// ✅ This ScoreCard won't re-render unless `score` and/or `increaseScore` changes by using `memo`
+const ScoreCard = memo(({score, increaseScore}) => {
+  console.log("ScoreCard rendered");
+  return (
+    <div>
+      <span> Player Score: {score} </span>
+      <button onClick={increseScore}>
+        Increase Score
+      </button>
+    </div>
+  );
+});
+
 const Game = () => {
+  const [playerName, setPlayerName] = useState("");
   const [score, setScore] = useState(0);
+
+  const playerInfo = useMemo(() => {
+    return {
+      country: "India",
+      state: "Telangana"
+    }
+  }, []);
+
+  const increaseScore = useCallback(() => {
+    setScore(prev => prev + 1);
+  }, []);
 
   return (
     <div>
-      <Player name="John" />
-      <span> Player Score: {score} </span>
-      <button onClick={() => setScore(score + 1)}>
-        Increase Score
-      </button>
+      <input
+        type="text"
+        placeholder="Enter Name"
+        value={playerName}
+        onChange={(e) => setPlayerName(e.target.value)} />
+      <Player name={playerName} info={playerInfo}/>
+      <ScoreCard score={score} increaseScore={increaseScore} />
     </div>
   );
 }
@@ -86,76 +113,9 @@ const Game = () => {
 
 - **practical use:**
   1. Passing a memoized function(using callback) to a memoized child (React.memo) or useEffect, useMemo(as dependencies) -	Prevents child from re-rendering unnecessarily when the parent re-renders
-  2. Re-render will create a new function every time - space will take up -> not a big issu, v8 does garbage collection. But something to avoid as app grows.
-     
-```JS
-function MyComponent() {
-        const [count, setCount] = useState(0);
+  2. Let's say our component has 2 states & even 1 state updates, all function will be recomputed.
+  3. Space will take up -> not a big issue, v8 does garbage collection. But this is something to avoid as app grows.    
 
-        // Define a function that increments the count state
-        const incrementCount = useCallback(() => {
-          setCount(prevCount => prevCount + 1); //using prevCount
-        }, []
-        // }, [setCount]
-)
-    useEffect(() => {
-        console.log("created")
-    }, [incrementCount])
-
-        return (
-          <div>
-            <p>Count: {count}</p>
-            <button onClick={incrementCount}>Increment</button>
-          </div>
-        );
-      }
-```
-
-In above example 
-1. If we use updater function - `setCount(prev => prev+1)`- we want the increament function to be created only once. So we can give [] or setCount(**bcz on render useState won't get trigger**)
-2. if we use count(state) directly -  we have to pass count as dependency, if not this takes count as 0(initial value) always
- 
-**Second example**
-```javascript
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-
-const UseCallbackExample = () => {
-    const [count, setCount] = useState(0);
-    const [count2, setCount2] = useState(0);
-    
-    // useCallback hook to memoize the increment function
-    const increment = useCallback(() => {
-        console.log("called");
-        setCount(count + 1);
-    }, [count]); // depend on count to recreate function when count changes
-
-    // Regular increment function without useCallback
-    // Since we don't used callback here this fucntion will get created even if count2 changes
-    const increment2 = () => {
-        console.log("called 2");
-        setCount2(count2 + 1);
-    }
-
-    // useEffect hook to log when 'increment' function is created/recreated
-    useEffect(() => {
-        console.log("created again increment");
-    }, [increment]);
-
-    // useEffect hook to log when 'increment2' function is created/recreated
-    useEffect(() => {
-        console.log("created again increment2");
-    }, [increment2]);
-
-    return (
-        <>
-            <p>Count: {count}</p>
-            <p>Count2: {count2}</p>
-            <button onClick={increment}>Click</button>
-            <button onClick={increment2}>Click2</button>
-        </>
-    );
-  }
-```
 ## useMemo
 - A React hook that returns a memoized value of a function — the function is only re-computed when dependencies change.
 - In react on every render - functions, variables, JSX will be recomputed
@@ -166,37 +126,7 @@ const UseCallbackExample = () => {
 **Practical use**
 1. Derived data from props or state by doing expensive computations (e.g., sorting, filtering, math) - Avoids recalculating unless necessary
 2. Memoize **static** props (objects/arrays) when passing to memoized components - Dynamic object should be created as new reference if not memoised component won't detect(as React.memo only compare references(shallow compare)
-   
-```JS
-const options = useMemo(() => ({ darkMode: true }), []);
-return <ThemeContext.Provider value={options} />;
-```
 
-```JS
-import React, { useState, useMemo } from 'react';
-
-    function MyComponent() {
-      const [count, setCount] = useState(0);
-
-      // Define a function that returns a computed value
-      const expensiveValue = useMemo(() => {
-        console.log('Computing expensive value...');
-        let result = 0;
-        for (let i = 0; i < 1000000000; i++) {
-          result += i;
-        }
-        return result;
-      }, []);
-
-      return (
-        <div>
-          <p>Count: {count}</p>
-          <p>Expensive Value: {expensiveValue}</p>
-          <button onClick={() => setCount(count + 1)}>Increment</button>
-        </div>
-      );
-    }
-```
 **Note:** when useMemo not used then expensiveValue will become a fuction then we have to invoke function(add ()) in line 
 Also, when hook not used, expensiveValue will get computed on every render
 ```
