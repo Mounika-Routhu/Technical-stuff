@@ -11,7 +11,9 @@
     - Keys (especially in lists)
     - Props (e.g., `className`, `style`, `onClick`)
 - React **does not compare virtual DOM with real DOM** directly (real DOM is slow to access & read).
-- This comparision gives actually changed values(minimal) & Only the **changed parts** of the real DOM are updated not full component(but re-render happens for whole component including children).
+- This comparision gives actually changed values(minimal) & Only the **changed parts** of the real DOM are updated
+- Meaning for example, if only `className` changes, React will update just the class attribute on the existing DOM node, **not re-render or replace** the entire <div>
+- **Remember** - but re-render happens for whole component including children while creating VDOM.
 - Updates are done in **batches** to optimize performance.
 - After DOM updates, the **browser repaints the UI**.
 - This whole process is called **Reconciliation**.
