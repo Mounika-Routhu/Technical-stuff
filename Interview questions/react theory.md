@@ -30,9 +30,9 @@
   - `useContext`: accessing context don't re-render, but the component only re-renders when the context value changes.
 
 ## React.memo
-- In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
-- usecase: let's say You have a component that re-renders often, but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
 - It is a higher-order component (HOC)(explained later) that wraps a functional component to prevent re-rendering of the component if its props haven't changed.
+- Usecase: In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
+- let's say You have a component that re-renders often, but one of its child components doesn't need to update unless a specific prop changes. When we can wrap it with React.Memo, child components will only re-render when it's props changes
 
 ```javascript
 const MyComponent = React.memo((props) => {
@@ -40,24 +40,31 @@ const MyComponent = React.memo((props) => {
   return <div>{props.name}</div>;
 });
 ```
-- **When to use practically:** score card of a player, everytime I update score(state change in ScoreCard), re-renders all children(name) but we don't what this to happen unless name also changes.  
+- **Practical use case:** score card of a player, everytime score updated(state change in Game), re-renders all children(Player profile Component) & score display(JSX) but we don't what this to happen unless player info(like name) also changes.
+```sql
+App
+│
+└── Game
+    ├── Player   ← re-renders every time
+    └── score(JSX)  ← updates score state
+```  
 
 ```JS
 import React, { useState, memo } from "react";
 
-// ✅ This child won't re-render unless `name` changes
-const Child = memo(({ name }) => {
+// ✅ This Player won't re-render unless `name` changes with `memo`
+const Player = memo(({ name }) => {
   console.log("Child rendered");
   return <p>Hi, {name}</p>;
 });
 
-const ScoreCard = () => {
+const Game = () => {
   const [score, setScore] = useState(0);
 
   return (
     <div>
-      <Child name="John" />
-      <span> Score: {score} </span>
+      <Player name="John" />
+      <span> Player Score: {score} </span>
       <button onClick={() => setScore(score + 1)}>
         Increase Score
       </button>
