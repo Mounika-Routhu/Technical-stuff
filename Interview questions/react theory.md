@@ -694,18 +694,14 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 6. JSX will internally converted into React.createElemet(tag, props, ...children);
 7. JSX code must return a single parent element as JSX is still JS & react functional component is a fuction which expect only 1 statement in return. So wrap it in `<div>{...}</div>` or `<Fragment>{...}</Fragment>` / `<>{...}</>`
 8. some diffs are btw HTML & JSX are:
-   - class => className. As class is reserved keyword in React
-     
+   - class => className. As class is reserved keyword in React <br>
      `<div className="box"></div>`
-   - for -> htmlFor. As for is reversed keyword for `for` loop in react.
-     
+   - for -> htmlFor. As for is reversed keyword for `for` loop in react. <br>
      `<label htmlFor="name">Name</label>`
    - Self closing tag must end with /, HTML is forgiving it will ignore & auto correct even if we forget but error in react
      ```JSx
        <img src="logo.png" />
        <input type="text" />
      ```
-9. We can use JS in JSX for dynamic code using {}.
-
-eg: `<h1>{username}</h1>`  
+9. We can use JS in JSX for dynamic code using {}. <br> eg: `<h1>{username}</h1>`  
    
