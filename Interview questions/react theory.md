@@ -75,8 +75,8 @@ const ScoreCard = () => {
 - To avoid this & improve performance, we can use useCallback.
 
 - **practical use:**
-  1. Passing a function to a memoized child (React.memo) -	Prevents child from re-rendering unnecessarily when the parent re-renders
-  2. Event handler inside a component that re-renders often(or shouln't rerender when unrelated state or prop changes) - Keeps function stable and improves performance
+  1. Passing a memoized function(using callback) to a memoized child (React.memo) or useEffect, useMemo(as dependencies) -	Prevents child from re-rendering unnecessarily when the parent re-renders
+  2. Re-render will create a new function every time - space will take up -> not a big issu, v8 does garbage collection. But something to avoid as app grows.
      
 ```JS
 function MyComponent() {
