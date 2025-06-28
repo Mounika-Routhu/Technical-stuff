@@ -221,6 +221,7 @@ const Child = () => {
 6. Combine it with **`Suspense`**, an inbuilt component to show a fallback UI (like a spinner) while the component loads.
 7. NOTE: **Suspence only shown in UI when the component loads not always**
 8. **REMEMBER** to give a **capitilized** name for **`LazyComponent`** as it is a React component
+9. NOTE: Lazy loading happens **once per component per session (or page load)**
 
 ```JS
 import React from 'react';
