@@ -250,7 +250,8 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 | `object`    | `string`           | `object → primitive (toString)`, then string compared                       | `[5] == "5"` → `[5]` → `"5"` → ✅ `"5" == "5"`             |
 | `object`    | `number`           | `object → string`, then `string → number`, then compare                     | `[1] == 1` → `[1]` → `"1"` → 1 → ✅ `1 == 1`               |
 | `object`   | `boolean`           | `object → string` then `string → number`, then compare | `[] == false` → `[]` → `""` → 0, `false → 0` → ✅ `0 == 0` |
-| `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                                    |
+| `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                |
+
 **Why NaN == anything or even itself is false** ?
 1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
 2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
