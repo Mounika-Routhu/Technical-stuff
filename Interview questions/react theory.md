@@ -241,6 +241,18 @@ function App() {
 }
 ```
 
+## Manually add delay to see Suspense loader
+1. `React.lazy()` requires a function returning a Promise, if we directly use `setTimeout` schedules a callback but immediately returns a number (timer ID), not a Promise.
+```JS
+const LazyScoreCard = React.lazy(() =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve(import('./ScoreCard'));
+    }, 200);
+  })
+);
+```
+
 ## Why React doesn't allow multiple elements in return?
 **1. Virtual DOM Efficiency**
 React uses the **Virtual DOM** to compare changes and efficiently update the UI. When a component returns a **single root element**, React can **quickly determine** what changed and apply the update. If there were multiple root elements, React would have to deal with **more complexity** during the **reconciliation** process, slowing down the rendering.
