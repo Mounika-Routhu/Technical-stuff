@@ -1,5 +1,5 @@
 ## Virtual DOM
-- The **virtual DOM** is a lightweight, in-memory version of the real DOM, created using the ReactDOM library.
+- The **virtual DOM** is a lightweight, in-memory version of the real DOM, created by React using the reactDOM library.
 - When a **user interaction triggers a state change**, React:
   - Props may change if(not directly by user interaction but indirectly), but
   - A **state change in a child**(by user interaction) calls a **callback in the parent**, then parent passes new props down to children.
