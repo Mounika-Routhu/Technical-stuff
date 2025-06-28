@@ -222,7 +222,10 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
   ```React.createElement(tag, props, ...children)```
 - If you try to return multiple elements without a single parent, react won't be able to create html element & will throw an error like:
   ```Adjacent JSX elements must be wrapped in an enclosing tag.```
-- **Solution (React Fragments)**: React Fragments allow you to return multiple elements without introducing an extra wrapper element(hence light weight) in the DOM. This avoids unnecessary extra nodes like `<div>` and keeps the DOM clean.
+- **Solution (React Fragments in react 16)**: React Fragments allow you to return multiple elements without introducing an extra wrapper element(hence light weight) in the DOM. This avoids unnecessary extra nodes like `<div>` and keeps the DOM clean.
+
+<img width="655" alt="Screenshot 2025-06-28 at 6 03 10 PM" src="https://github.com/user-attachments/assets/bb8345c6-2b3a-4cb6-9e18-3751f6bfaa1c" />
+
 ```JSX
 import React, { Fragment } from 'react';
 
