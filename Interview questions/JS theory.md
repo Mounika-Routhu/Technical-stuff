@@ -742,7 +742,7 @@ incrementCounter2(); //2
    kondapurBranch.fetchBalance(456); // Your current balance is 7200
 ```
    2. **Currying** - next topic
-   3. **Event Handlers - In React functional components** , event handlers often capture values from the component scope. Here, handleClick is closure, which has **access to setCount & count even after the Counter component re-rendered**. 
+   3. **Event Handlers** - In React, **callbacks**(when passed as prop to child) are closures because they "**remember**" the variables (like **state**, **setState**, **props**, etc.) from the component's rendering scope, even after the component function has **finished running**.
 ```JS
    import { useState } from "react";
 
