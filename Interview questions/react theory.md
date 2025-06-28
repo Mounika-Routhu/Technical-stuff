@@ -294,6 +294,8 @@ Note: if dependency array not provided, component will render everytime prop or 
       user = null; // manually remove the reference
     }
     ```
+    - When we set user = null, there are no more references to that object.
+    - The garbage collector will clean it up automatically in the background.
 3. But, GC only works if there are no references to the object.
 4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
 5. So, even if component unmounts, window still holds a reference to that obj, hence, can't be garbage collected & leads to memory leak.
