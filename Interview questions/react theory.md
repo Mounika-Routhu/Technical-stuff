@@ -220,6 +220,7 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 - In HTML, every valid structure must have a single parent element. React follows this rule to ensure the structure is valid.
 - React still ultimately uses React.createElement() behind the scenes to create the Virtual DOM representation of those elements.
   ```React.createElement(tag, props, ...children)```
+- As JSX is still JS, functional components as still function which expect only single elememt to return.
 - If you try to return multiple elements without a single parent, react won't be able to create html element & will throw an error like:
   ```Adjacent JSX elements must be wrapped in an enclosing tag.```
 - **Solution (React Fragments in react 16)**: React Fragments allow you to return multiple elements without introducing an extra wrapper element(hence light weight) in the DOM. This avoids unnecessary extra nodes like `<div>` and keeps the DOM clean.
