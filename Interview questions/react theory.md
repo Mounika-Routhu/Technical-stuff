@@ -256,7 +256,7 @@ const ParentComponent = () => {
 
 **practical example for prop drilling:**
 ```pgsql
-App
+App **(fetches User info)**
 │
 └── Layout **(receives user)**
     ├── Sidebar
