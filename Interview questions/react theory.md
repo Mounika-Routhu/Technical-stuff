@@ -20,7 +20,7 @@
 
 ## What will be recomputed on re-render?
 - **Recomputed on Every Render:**
-  - Functions, variables, and JSX code(includes all child components & HTML code(`<div>Hellow!</div>`) inside the component body
+  - Functions, variables, and everthing inside return - all child components & JSX code(`<div>Hellow!</div>`)
 - **Not Recomputed on Every Render:**
   - `useState`: State values persist between renders and are not recalculated unless explicitly updated.
   - `useRef`: Value persists between renders without causing re-renders
