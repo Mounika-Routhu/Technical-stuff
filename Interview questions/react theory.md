@@ -207,11 +207,14 @@ const Child = () => {
 }
 ```
 - Note: **createContext is not a hook**. It is a standard function to create context obj hence it can be invoked(called) outside functional component unlike hooks.
-- Practical example - refer useContext.md file
+- Practical example - refer useContext.md file or check stackblitz App & child file
+
+## Lazy loading or code splitting
+1. 
 
 ## Why React doesn't allow multiple elements in return?
 **1. Virtual DOM Efficiency**
-React uses the **Virtual DOM** to compare changes and efficiently update the UI. When a component returns a single root element, React can quickly determine what changed and apply the update. If there were multiple root elements, React would have to deal with more complexity during the reconciliation process, slowing down the rendering.
+React uses the **Virtual DOM** to compare changes and efficiently update the UI. When a component returns a **single root element**, React can **quickly determine** what changed and apply the update. If there were multiple root elements, React would have to deal with **more complexity** during the **reconciliation** process, slowing down the rendering.
 
 **2. HTML Structure Consistency**:
 - In HTML, every valid structure must have a single parent element. React follows this rule to ensure the structure is valid.
@@ -242,7 +245,7 @@ const MyComponent = () => {
   ```
   
 ## Unidirectional Data Flow in React
-**Unidirectional data flow** is a core principle of React. It means that data flows in one direction in a React application: from **parent components** to **child components**. This predictable flow of data makes it easier to understand and manage the state of an application, especially as it grows larger.
+**Unidirectional data flow** is a core principle of React. It means that data flows in one direction in a React application: from **parent components** to **child components**. This **predictable flow** of data makes it **easier to understand and manage the state** of an application, especially as it grows larger.
 
 **1. Data Flow from Parent to Child:**
 - In React, a parent component passes data to its child components via props.
@@ -279,18 +282,7 @@ const MyComponent = () => {
     ```JS
     setCount(prevCount => prevCount + 1); 
     ```
-    - Because React batches state updates and doesn't guarantee immediate updates, using the previous state value (i.e., prevCount) is the safest way to ensure you're updating based on the latest state.
-
-
-
-## Why React Component Names Should Be Capitalized
-In React, component names must be capitalized to distinguish them from regular HTML elements. Here's why:
-
-1. **React differentiates between HTML elements and components**:  
-   React treats lowercase names (e.g., `<button>`, `<div>`) as standard HTML tags. If you use a lowercase name for a component (e.g., `<useCallbackExample />`), React will assume it's a built-in HTML element, not a custom component.
-
-2. **What happens if not capitalized**:  
-   If you don’t capitalize a component name (e.g., `<useCallbackExample />`), React will treat it as a string (or HTML element) and won't render it as a React component. This results in an error or unexpected behavior.
+    - Because **React batches state updates** and doesn't guarantee immediate updates, using the previous state value (i.e., prevCount) is the safest way to ensure you're updating based on the latest state.
 
 ## HOC - higher order component
 - A HOC is a function that takes a **component as an argument and returns a new component**.
@@ -426,7 +418,6 @@ export default UserProfile;
 ```
 
 **When to Use ```useReducer``` vs ```useState```:**
-
 Use ```useState``` when:
 - You have simple state logic that doesn’t require multiple state updates based on previous states.
 - The state is simple (e.g., a boolean, string, number) and doesn’t need complex transitions.
@@ -437,12 +428,10 @@ Use ```useReducer``` when:
 - You have complex interactions or need to manage a state object with multiple properties.
 - You want a more predictable, centralized way of managing state transitions (similar to how state is managed in Redux).
 
-
 ## Is `type` required in `useReducer` and `Redux`?
 
 1. **In `useReducer`** : **`type` is not strictly required** by the API, but it is a **common convention** and **recommended** for predictable state management.
 2. **In `Redux`** : **`type` is required** in every action. `type` is a core part of Redux and tells the reducer what action is being performed and how to update the state.
-
 
 ## built-in hooks
 1. Hooks are built in functions which allow us to do as follows
@@ -454,6 +443,15 @@ Use ```useReducer``` when:
    - `useRef`: work with DOM elements(when no need re-rendering on change of values) 
    - and many more.
 2. All built-in book have `use` prefix. It's react way of indenfying hooks & apply hook rules
+
+## Why React Component Names Should Be Capitalized
+In React, component names must be capitalized to distinguish them from regular HTML elements. Here's why:
+
+1. **React differentiates between HTML elements and components**:  
+   React treats lowercase names (e.g., `<button>`, `<div>`) as standard HTML tags. If you use a lowercase name for a component (e.g., `<useCallbackExample />`), React will assume it's a built-in HTML element, not a custom component.
+
+2. **What happens if not capitalized**:  
+   If you don’t capitalize a component name (e.g., `<useCallbackExample />`), React will treat it as a string (or HTML element) and won't render it as a React component. This results in an error or unexpected behavior as life-cycle methods won't apply.
 
 **What are hook rules?**
 1. **Call Hooks at the Top Level**: Always use hooks at the top level of your component, not inside loops, conditions, or nested functions.
