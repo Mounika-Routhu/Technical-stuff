@@ -22,10 +22,12 @@
 - **Recomputed on Every Render:**
   - Functions, variables, and JSX code(includes all child components & HTML code(`<div>Hellow!</div>`) inside the component body
 - **Not Recomputed on Every Render:**
-  - State values declared using `useState` (they persist across renders)
-  - Memoized values/functions using:
-    - `useMemo` & `useCallback` (if dependencies haven't changed or [] as dependency)
-  - Child components wrapped with `React.memo` (if props haven't changed)
+  - `useState`: State values persist between renders and are not recalculated unless explicitly updated.
+  - `useRef`: Value persists between renders without causing re-renders
+  - `useMemo`: Memoized values are only recomputed when their dependencies change.
+  - `useCallback`: Memoized functions are re-created only when their dependencies change.
+  - `React.memo`: Prevents re-rendering of child components unless their props have changed.
+  - `useContext`: accessing context don't re-render, but the component only re-renders when the context value changes.
 
 ## React.memo
 - In react, by default when a component re-render due to state update, all child components also re-render even if no props/state of these doesn't change.
