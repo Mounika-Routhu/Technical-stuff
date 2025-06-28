@@ -275,15 +275,15 @@ export const MyContext = React.createContext();
 
 const App = () => {
   return (
-    <MyContext.Provider value="Hello">
+    <MyContext.Provider value={{ greet: "Hello", name: "Mounika"}}>
       <Child />
     </MyContext.Provider>
   );
 }
 
 const Child = () => {
-  const value = useContext(MyContext);
-  return <p>{value}</p>; // "Hello"
+  const {name, greet} = useContext(MyContext);
+  return <p>{greet + " " + name}</p>; // "Hello"
 }
 ```
 - Note: **createContext is not a hook**. It is a standard function to create context obj hence it can be invoked(called) outside functional component unlike hooks.
