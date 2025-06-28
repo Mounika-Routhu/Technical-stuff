@@ -114,7 +114,9 @@ const Game = () => {
 - **practical use:**
   1. Passing a memoized function(using callback) to a memoized child (React.memo) or useEffect, useMemo(as dependencies) -	Prevents child from re-rendering unnecessarily when the parent re-renders
   2. Let's say our component has 2 states & even 1 state updates, all function will be recomputed.
-  3. Space will take up -> not a big issue, v8 does garbage collection. But this is something to avoid as app grows.    
+  3. Space will take up -> not a big issue, v8 does garbage collection. But this is something to avoid as app grows.
+ 
+Code: scorecard example  
 
 ## useMemo
 - A React hook that returns a memoized value of a function — the function is only re-computed when dependencies change.
@@ -126,6 +128,8 @@ const Game = () => {
 **Practical use**
 1. Derived data from props or state by doing expensive computations (e.g., sorting, filtering, math) - Avoids recalculating unless necessary
 2. Memoize **static** props (objects/arrays) when passing to memoized components - Dynamic object should be created as new reference if not memoised component won't detect(as React.memo only compare references(shallow compare)
+
+Code: scorecard example  
 
 **Note:** when useMemo not used then expensiveValue will become a fuction then we have to invoke function(add ()) in line 
 Also, when hook not used, expensiveValue will get computed on every render
@@ -155,31 +159,7 @@ Also, when hook not used, expensiveValue will get computed on every render
 - here we don't need count to be added as a dependency we can directly use prevCount from updater function
 - Including count in the dependency array of useCallback can make sense when the function needs to **update its behavior** based on the updated count value.
 
-```JSX
-// Child component using React.memo to prevent unnecessary re-renders
-const ChildComponent = React.memo(({ onClick }) => {
-  console.log('Child rendered');
-  return <button onClick={onClick}>Click me</button>;
-});
-
-const ParentComponent = () => {
-  const [count, setCount] = useState(0);
-
-  // Memoized callback with count as a dependency
-  // The function is recreated every time `count` changes
-  const memoizedIncrement = useCallback(() => {
-    // setCount(prevCount => prevCount + 1); // This way no need to pass count in dependency array
-    setCount(count + 1)
-  }, [count]); // `memoizedIncrement` is recreated every time `count` changes
-
-  return (
-    <>
-      <p>Count: {count}</p>
-      <ChildComponent onClick={memoizedIncrement} />
-    </>
-  );
-};
-```
+Code: Score card example when score is in Game only => & increScore got score as dependency then score scard will render every time.
 
 ## `useContext`\ Context API  
 1. useContext(Context API) is a React hook that lets you share data across components without passing props manually at every level.
