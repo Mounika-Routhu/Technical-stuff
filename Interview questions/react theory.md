@@ -1,10 +1,9 @@
 ## Virtual DOM
 - The **virtual DOM** is a lightweight, in-memory version of the real DOM, created using the ReactDOM library.
 - When a **user interaction triggers a state change**, React:
-  - Re-renders the **affected component** and its **children**.
-  - **Does not** re-render or recreate virtual DOM for **parent or sibling components** unless their **props or state change**.
-- Props may change if(not directly by user interaction but indirectly):
+  - Props may change if(not directly by user interaction but indirectly), but
   - A **state change in a child**(by user interaction) calls a **callback in the parent**, then parent passes new props down to children.
+- Now, all these **affected components** will re-render along with it's **children**.
 - These re-renders doesn't change real DOM, instead creates a new VDOM with changes
 - Then React performs a deep comparision btw the **new virtual DOM** & the **previous virtual DOM**.
 - This comparision is done by a **diffing** algorithm, this actually checks for changes in:
