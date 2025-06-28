@@ -209,8 +209,36 @@ const Child = () => {
 - Note: **createContext is not a hook**. It is a standard function to create context obj hence it can be invoked(called) outside functional component unlike hooks.
 - Practical example - refer useContext.md file or check stackblitz App & child file
 
-## Lazy loading or code splitting
-1. 
+## Lazy loading - code splitting - done with `React.lazy()`
+1. **Lazy loading is a technique** where you **defer the loading** of resources (like components, images, or data) until they are actually needed. Instead of loading everything upfront, you load parts of your application **on demand**.
+2. **Code splitting is splitling/breaking** the code into separate files/chunks.
+3. Lazy loading uses code splitting under the hood to break & fetch those chunks dynamically.
+4. uses:
+   - Improves performance: **Reduces the initial load time** by splitting the app into smaller chunks.
+   - Saves bandwidth: Only downloads code when the user actually needs.
+   - Enhances user experience: **Faster page load**.
+5. `React.lazy()` is a **built-in function** that enables lazy loading
+6. Combine it with **`Suspense`** to show a fallback UI (like a spinner) while the component loads.
+7. NOTE: **Suspence only shown in UI when the component loads not always**
+
+```JS
+import React from 'react';
+const LazyComponent = React.lazy(() => import('./HeavyComponent'));
+
+function App() {
+  const [show, setShow] = React.useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>Load Heavy Component</button>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        {show && <LazyComponent />}
+      </Suspense>
+    </div>
+  );
+}
+```
 
 ## Why React doesn't allow multiple elements in return?
 **1. Virtual DOM Efficiency**
