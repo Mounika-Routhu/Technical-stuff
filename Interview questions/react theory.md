@@ -218,8 +218,9 @@ const Child = () => {
    - Saves bandwidth: Only downloads code when the user actually needs.
    - Enhances user experience: **Faster page load**.
 5. `React.lazy()` is a **built-in function** that enables lazy loading
-6. Combine it with **`Suspense`** to show a fallback UI (like a spinner) while the component loads.
+6. Combine it with **`Suspense`**, an inbuilt component to show a fallback UI (like a spinner) while the component loads.
 7. NOTE: **Suspence only shown in UI when the component loads not always**
+8. **REMEMBER** to give a **capitilized** name for **`LazyComponent`** as it is a React component
 
 ```JS
 import React from 'react';
