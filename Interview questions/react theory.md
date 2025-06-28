@@ -242,6 +242,62 @@ function App() {
 }
 ```
 
+## useEffect - mount, update, unmount
+1. useEffect is a React Hook that lets you perform **side effects(actions outside component)** in function components. Side effects include tasks like:
+  - Fetching data from an API
+  - Setting up subscriptions (adding event listeners)
+  - Updating the DOM manually (changing title on routing)
+  - Running timers (setTimeout, setIntervals
+2. It replaces lifecycle methods like **componentDidMount**, **componentDidUpdate**, and **componentWillUnmount** from class components.
+3. componentDidMount - empty dependency array - runs once per component lifecycle
+```JS
+useEffect(() => {
+  console.log('Component mounted');
+}, []);
+```
+4. componentDidUpdate - Run when state/props change - can be given in dependency array
+```JS
+useEffect(() => {
+  console.log('Count changed:', count);
+}, [count]);
+```
+5. componentWillUnmount - Cleanup - clean any event listeners or timers to avoid memory leak
+ex: to add event listener when it user clicks escape to close a modal
+
+```JS
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') onClose();
+  };
+  window.addEventListener('keydown', handleKeyDown);
+
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [onClose]);
+
+```
+Note: if dependency array not provided, component will render everytime prop or state changes.
+
+## what is memory leak, garbage collection, why is it neccessary to cleanup?
+1. A memory leak occurs when memory that is no longer needed is not released. Over time, this unused memory accumulates, which can slow down or crash your app.
+2. Garbage collection (GC) is an automatic process in JavaScript (and many other languages) that:
+  - Detects objects that are no longer accessible by checking if any reference are still available or not(e.g., variables, DOM nodes, functions).
+  - and Frees up memory used by those objects.
+    ```JS
+    function createUser() {
+      let user = {
+        name: 'Alice'
+      };
+    
+      console.log(user.name); // 'Alice'
+    
+      // After this line, `user` is no longer needed
+      user = null; // manually remove the reference
+    }
+    ```
+3. But, GC only works if there are no references to the object.
+4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
+5. So, even if component unmounts, window still holds a reference to that obj, hence, can't be garbage collected & leads to memory leak.
+
 ## Manually add delay to see Suspense loader
 1. `React.lazy()` requires a function returning a Promise, if we directly use `setTimeout` schedules a callback but immediately returns a number (timer ID), not a Promise.
 ```JS
