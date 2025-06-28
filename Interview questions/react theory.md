@@ -257,7 +257,7 @@ const ParentComponent = () => {
 3. Inside any child component, use useContext(MyContext) to access the data directly.
 ```JSX
 import React, { createContext } from 'react';
-const MyContext = React.createContext();
+export const MyContext = React.createContext();
 
 const App = () => {
   return (
