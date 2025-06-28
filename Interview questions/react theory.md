@@ -226,6 +226,10 @@ React uses the **Virtual DOM** to compare changes and efficiently update the UI.
 
 <img width="655" alt="Screenshot 2025-06-28 at 6 03 10 PM" src="https://github.com/user-attachments/assets/bb8345c6-2b3a-4cb6-9e18-3751f6bfaa1c" />
 
+**multiple elements in children**
+
+![image](https://github.com/user-attachments/assets/83e1bd6a-4d06-43dc-a52c-292e4b0b5b5d)
+
 ```JSX
 import React, { Fragment } from 'react';
 
