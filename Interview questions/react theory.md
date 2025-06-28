@@ -241,15 +241,27 @@ const ParentComponent = () => {
 };
 ```
 
-## Prop drilling - `useContext`\ Context API  
+## `useContext`\ Context API  
+- useContext(Context API) is a React hook that lets you share data across components without passing props manually at every level.
+- Uses:
+  - Helps to avoid prop drilling.
+  - Good for global/shared state (like theme, user info, auth status, i18 etc.)
+  - light weight alternative for Redux when use along with useReducer
+
+**What is prop drilling?**
 - Prop drilling is passing data from a parent to deeply nested child components through props.
 - Even if the middle components don’t need the data, they still have to pass it down.
 - This can make the code messy and harder to maintain as the component tree grows.
 - Uneccessarily middle level components get access to it.
 
-- useContext(Context API) is a React hook that lets you share data across components without passing props manually at every level.
-- Helps to avoid prop drilling.
-- Good for global/shared state (like theme, user info, auth status, etc.)
+**practical example for prop drilling:**
+App
+│
+└── Layout **(receives user)**
+    ├── Sidebar
+    └── MainContent **(receives user)**
+        ├── Header **(uses user)**
+        └── Dashboard
 
 **How it's created?**
 1. Create a context using createContext from React.
