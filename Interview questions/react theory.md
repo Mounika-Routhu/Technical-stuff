@@ -688,19 +688,24 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 ## What is JSX?
 1. JSX means JavaScript XML – it's a syntax extension of JS
 2. It lets you write HTML-like code in JavaScript, so we combine markup & logic into 1 file.
-3. Used in React to describe the UI in return statement.
-4. Even though it looks like HTML, but it's actually JavaScript syntax.
-5. JSX will internally converted into React.createElemet(tag, props, ...children);
-6. JSX code must return a single parent element as JSX is still JS & react functional component is a fuction which expect only 1 statement in return. So wrap it in `<div>{...}</div>` or `<Fragment>{...}</Fragment>` / `<>{...}</>`
-7. some diffs are btw HTML & JSX are:
+3. So, easy to write & maintain
+4. Used in React to describe the UI in return statement.
+5. Even though it looks like HTML, but it's actually JavaScript syntax.
+6. JSX will internally converted into React.createElemet(tag, props, ...children);
+7. JSX code must return a single parent element as JSX is still JS & react functional component is a fuction which expect only 1 statement in return. So wrap it in `<div>{...}</div>` or `<Fragment>{...}</Fragment>` / `<>{...}</>`
+8. some diffs are btw HTML & JSX are:
    - class => className. As class is reserved keyword in React
+     
      `<div className="box"></div>`
    - for -> htmlFor. As for is reversed keyword for `for` loop in react.
+     
      `<label htmlFor="name">Name</label>`
    - Self closing tag must end with /, HTML is forgiving it will ignore & auto correct even if we forget but error in react
      ```JSx
        <img src="logo.png" />
        <input type="text" />
      ```
-8. We can use JS in JSX for dynamic code using {}. eg: `<h1>{username}</h1>`  
+9. We can use JS in JSX for dynamic code using {}.
+
+eg: `<h1>{username}</h1>`  
    
