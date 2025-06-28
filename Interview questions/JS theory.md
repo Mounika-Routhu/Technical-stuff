@@ -252,9 +252,9 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 | `object`   | `boolean`           | `object → string` then `string → number`, then compare | `[] == false` → `[]` → `""` → 0, `false → 0` → ✅ `0 == 0` |
 | `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                |
 
-**Why NaN == anything or even itself is false** ?
-1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
-2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
+   **Why NaN == anything or even itself is false** ?
+   1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
+   2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
 
 3. JavaScript tries hard to make things "work", but sometimes it guesses wrong & output seems wierd. So:
    1. == use this, when you expect implicit coercion to happen but be careful as it's risky
