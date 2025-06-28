@@ -848,3 +848,14 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
      ```
 9. We can use JS in JSX for dynamic code using {}. <br> eg: `<h1>{username}</h1>`  
    
+## React vs Vue vs Angular
+
+| 🔹 Feature | ✅ **React** | 🔶 **Vue** | 🔴 **Angular** |
+|-----------|---------------|-------------|----------------|
+| **Ease of Learning** | Uses plain JS + JSX — very beginner-friendly. | Easy to start, but has its own template syntax. | Complex — requires TypeScript, decorators, and extra structure. |
+| **Flexibility** | Just a library — choose your own routing, state, etc. | Framework-lite — some structure, some freedom. | Full framework — opinionated and rigid. |
+| **Logic Reuse** | Powerful **Hooks** (`useState`, `useEffect`) for clean and modular logic sharing. | Uses Composition API (good, but newer and less intuitive). | Uses services, DI, and boilerplate-heavy structure. |
+| **UI + Logic Structure** | JSX = UI and logic in one place — easier maintenance. | Logic and templates are split — more separation. | UI in HTML templates, logic via TypeScript classes + decorators. |
+| **Community & Jobs** | Huge ecosystem, tons of jobs, backed by Meta, used by top companies (Netflix, Instagram). | Strong OSS community, mostly used in smaller teams/projects. | Popular in enterprise, but less startup adoption, fewer jobs. |
+| **Performance** | Virtual DOM + fine-tuned control (`React.memo`, `useCallback`) for fast updates. | Also uses Virtual DOM, good speed, less customization. | Heavier due to **Zone.js** and complex change detection system. |
+| **Cross-Platform** | Write mobile apps using **React Native** — same code style. | Vue Native exists but not widely used. | Uses **Ionic** (separate library, bulkier setup). |
