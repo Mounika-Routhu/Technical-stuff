@@ -91,10 +91,37 @@ selector::pseudo-element {
       = margin-left + width + margin-right
       = 20px + 200px + 20px = 240px
      ```
-
 **Outline** - not part of box modal
 1. Drawn outside the border. Does not affect layout or box size
 2. Used for **visible focus indication** - Commonly seen when you **Tab** through form fields or buttons
 ```css
 outline: 2px dashed red;
 ```
+
+## why mobile first approach is considered good?
+1. **More people use mobile devices** to browse the internet than desktops. - **covering majority of users first**
+2. Google focuses on mobile versions of websites for ranking, so good for **SEO** => help your site **show up higher in search results**.
+3. Mobile devices usually have slower internet and less power, so designing for them makes your site faster and easier to use.
+4. Mobile-first makes sure your website looks good and works well on small screens.
+5. As screens get bigger, you can add extra features and styles to improve the experience for those users.
+6. It keeps your website simple and easy to maintain, focusing on mobile first and then expanding it.
+
+## Standard media queries
+```css
+/* Mobile devices (portrait) default */
+body{
+ /* Styles for small screens (e.g., mobile devices) */
+}
+
+/* Tablets (portrait and small screens) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Styles for tablets & small laptops*/
+}
+
+/* Desktops & laptops */
+@media (min-width: 1024px) {
+  /* Styles for Desktops & laptops */
+}
+```
+<img width="409" alt="Screenshot 2025-03-14 at 5 27 39 PM" src="https://github.com/user-attachments/assets/10a856b4-5731-4129-8573-ee47fd95fb07" />
+
