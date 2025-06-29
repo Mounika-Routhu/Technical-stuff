@@ -107,7 +107,7 @@ navigate('/settings', {replace: true}) // navigates to settings page by replacin
    - has methods to extract/set/check - `.get(key)`, `set(name, value)`, `.has('key')` 
 
 ```JS
-<Link to="/search?search?q=react&page=2">Search React</Link> // URL : /search?q=react&page=2
+<Link to="/search?q=react&page=2">Search React</Link> // URL : /search?q=react&page=2
 
 // Inside component
 import { useLocation } from 'react-router-dom';
