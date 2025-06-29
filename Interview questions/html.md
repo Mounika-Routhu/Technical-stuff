@@ -66,33 +66,6 @@ Some elements are self-closing and don't require an end tag, like the `<input>`,
 1. `localStorage, sessionStorage`(**only access with duplicated tab**), and `cookies` are all **domain and protocol-specific** by **default**. This is due to the **Same-Origin Policy(SOP)**,
 2. **SOP** which is a fundamental security feature in web browsers by **default** that restricts how documents or scripts from one origin can interact with resources from another origin.
 
-## why mobile first approach is considered good?
-1. **More people use mobile devices** to browse the internet than desktops. - **covering majority of users first**
-2. Google focuses on mobile versions of websites for ranking, so good for **SEO** => help your site **show up higher in search results**.
-3. Mobile devices usually have slower internet and less power, so designing for them makes your site faster and easier to use.
-4. Mobile-first makes sure your website looks good and works well on small screens.
-5. As screens get bigger, you can add extra features and styles to improve the experience for those users.
-6. It keeps your website simple and easy to maintain, focusing on mobile first and then expanding it.
-
-## Standard media queries
-```css
-/* Mobile devices (portrait) default */
-body{
- /* Styles for small screens (e.g., mobile devices) */
-}
-
-/* Tablets (portrait and small screens) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Styles for tablets & small laptops*/
-}
-
-/* Desktops & laptops */
-@media (min-width: 1024px) {
-  /* Styles for Desktops & laptops */
-}
-```
-<img width="409" alt="Screenshot 2025-03-14 at 5 27 39 PM" src="https://github.com/user-attachments/assets/10a856b4-5731-4129-8573-ee47fd95fb07" />
-
 ## Meta tag
 ```html
 <head>
@@ -105,7 +78,7 @@ body{
 ```
 **Need of charset** : when you access a website on the World Wide Web, the content (like text, images, etc.) is stored on web servers in machine code (binary data) and transmitted to your browser over the internet. However, the machine code itself is not typically readable by humans, so the web server uses a character encoding system (like UTF-8) to convert this binary data into human-readable text.
 
-## defer & async aatributes in script tag -accenture hackerrank test
+## defer & async atributes in script tag -accenture hackerrank test
 ```js
 var script = document.createElement('script');
 script.src = "https://example.com/script.js";
@@ -122,6 +95,7 @@ document.head.appendChild(script);
 | **`defer`**   | Downloads script asynchronously, executes after HTML is fully parsed (order is preserved). | For DOM-dependent scripts or when script execution order is important. |
 
 ## how to make div editable? - accenture hackerrack test
+useful for **Live demos or editable tutorials**
 ```html
 <div contenteditable="true">
   This text can be edited by the user.
