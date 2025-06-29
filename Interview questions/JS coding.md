@@ -1,7 +1,10 @@
 ## gemerate lorem ipsum
 notes: 
 1. ASCII -> A-Z(65-90), a-z(97-122) 
-2. Math.random() -> generates a floting number 0 to 1(exclusive). So, if you want a num btw 1 to 10 -> Math.ceil(Math.random() * 10)
+2. Math.random() -> generates a floting number 0 to 1(exclusive).
+3. So, if you want a num btw 1 to 10 ->
+   - Math.ceil(Math.random() * 10)
+   - Math.floor(Math.random() * 10) + 1
 ```JS
 const generateLoremIpsum = (wordCount) => {
   let words = ['mouni', 'ipsum'];
