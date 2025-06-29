@@ -60,8 +60,6 @@ import { Link, NavLink } from 'react-router-dom';
 // Inside User component
 import { useParams } from 'react-router-dom';
 
-const location = useLocation();
-
 const { id } = useParams(); // Access dynamic segment
 //fetch results based on ID & display
 ```
