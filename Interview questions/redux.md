@@ -261,7 +261,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     **`@reduxjs/toolkit`** (also known as RTK)
     1. `npm install @reduxjs/toolkit`
     2. is a package designed to make working with Redux easier, faster, and less error-prone by providing better defaults, simplifying common patterns, and reducing the need for boilerplate code.
-    3. `createStore`- gives support for middleware(no need to add manually),  `createSlice()` - for reducing boilerplate for creating actions & reducer etc.
+    3. `configureStore`- gives support for middleware(no need to add manually),  `createSlice()` - for reducing boilerplate for creating actions & reducer etc.
 4. Open Redux DevTools in the Browser
 
 ## alternatives for redux
