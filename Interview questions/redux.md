@@ -198,6 +198,7 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
     ```js
     import { combineReducers } from 'redux';
     import counterReducer from './counterReducer'; // Your counter reducer
+    import todoReducer from './todoReducer'; // Your todo reducer
     
     const rootReducer = combineReducers({
       counter: counterReducer,
