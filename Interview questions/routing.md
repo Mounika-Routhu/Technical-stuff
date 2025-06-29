@@ -4,11 +4,11 @@
    `react-router-dom (for web apps)`
 
 ## Key Concepts in React Router:
-4. **BrowserRouter**: This is the component that wraps your entire app to enable routing.
+1. **BrowserRouter**: This is the component that wraps your entire app to enable routing.
 2. **Routes**: This is used to group multiple routes. It ensures that only the first matching route is rendered.
-1. **Route**: This is used to define a path and the component(element) that should render when the user navigates to that path.
-3. **Link**: This is used to create links that navigate to different routes within your app, without refreshing the page.
-4. **NavLink**: Same as Link but comes with isActive to determine current page. remember ({ isActive }) as an object
+3. **Route**: This is used to define a path and the component(element) that should render when the user navigates to that path.
+4. **Link**: This is used to create links that navigate to different routes within your app, without refreshing the page.
+5. **NavLink**: Same as Link but comes with isActive to determine current page. remember ({ isActive }) as an object
 
 ## Basic Example:
 1. **Install React Router**:
