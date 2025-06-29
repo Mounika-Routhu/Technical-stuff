@@ -18,8 +18,23 @@
 | **10. Attribute Selector**      | Targets elements with a **specific attribute or attribute value**.  | `input[type="text"] { border: 1px solid; }`   |
 
 ## pseudo class selector
-
-| **11. Pseudo-class Selector**   | Targets elements based on **state or position**.                    | `a:hover { text-decoration: underline; }`     |
+A pseudo-class selector targets an element based on its **state or position** in the DOM 
+```CSS
+selector:pseudo-class {
+  /* styles */
+}
+```
+| Pseudo-Class    | Description                             | Example                                |
+| --------------- | --------------------------------------- | -------------------------------------- |
+| `:hover`        | When user hovers over an element        | `button:hover { background: red; }`    |
+| `:active`       | When element is being clicked           | `a:active { color: green; }`           |
+| `:focus`        | When element is focused (like an input) | `input:focus { border: 2px solid; }`   |
+| `:first-child`  | First child of a parent                 | `li:first-child { color: blue; }`      |
+| `:last-child`   | Last child of a parent                  | `li:last-child { font-weight: bold; }` |
+| `:nth-child(n)` | Selects the nth child                   | `li:nth-child(2) { color: purple; }`   |
+| `:checked`      | Checked radio or checkbox               | `input:checked { background: green; }` |
+| `:disabled`     | Disabled input fields                   | `input:disabled { opacity: 0.5; }`     |
+| `:visited`      | Visited link                            | `a:visited { color: purple; }`         |
 
 ## pseudo element selector
 | **12. Pseudo-element Selector** | Targets **parts of an element** (like the first letter or line).    | `p::first-letter { font-size: 200%; }`        |
