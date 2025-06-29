@@ -42,6 +42,7 @@ const App = () => (
 ```
 
 4. **Add Navigation with `<Link>` or `<NavLink>`** in another file or include in APP.js only
+Note: remember ({ isActive }) **as an object**
 ```JS
 import { Link, NavLink } from 'react-router-dom';
 
