@@ -94,8 +94,6 @@ const { id } = useParams(); // Access dynamic segment
 ```JS
 import { useNavigate } from 'react-router-dom';
 
-const location = useLocation();
-
 const navigate = useNavigate();
 navigate('/home'); // navigates to home page
 navigate(-1); // go 1 page back in history stack
