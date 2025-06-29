@@ -100,14 +100,16 @@ navigate('/settings', {replace: true}) // navigates to settings page by replacin
 
 ## useLocation() - Read only - no editing
 1. This hook lets you access the current URL info (location object) from anywhere inside your component.
-2. like search query params, state passed between routes.
+2. like to access search query params through `.search` or access state passed between routes through `.state`.
 3. Note: route match only pathName not query string(anything after ?)
 4. URLSearchParams - built in JS web API,
    - Handles decoding (?q=react%20router → react router)
    - has methods to extract/set/check - `.get(key)`, `set(name, value)`, `.has('key')` 
 
-`URL : /search?q=react&page=2`
 ```JS
+<Link to="/search?search?q=react&page=2">Search React</Link> // URL : /search?q=react&page=2
+
+// Inside component
 import { useLocation } from 'react-router-dom';
 
 const location = useLocation();
@@ -127,7 +129,7 @@ import { NavLink } from 'react-router-dom';
   Go to Product 42
 </NavLink>
 ```
-3. Pass through `useNavigate` & access useLocation
+3. Pass through `useNavigate` & access using `useLocation`
 ```JS
 import { useNavigate } from 'react-router-dom';
 
@@ -141,7 +143,7 @@ const ButtonNav = () => {
   return <button onClick={goToProduct}>Buy Now</button>;
 };
 ```
-4. access by useLocation
+4. access by `useLocation`
 ```JS
 //access it using useLocation from state inside component
 import { useParams, useLocation } from 'react-router-dom';
