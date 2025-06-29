@@ -52,8 +52,8 @@ import { Link, NavLink } from 'react-router-dom';
 </NavLink>
 ```
 
-## dynamic routes:
-1. dynamic routes can be added using `:` & use useParams() hook to get route parameters
+## Dynamic routes:
+1. dynamic routes can be added using `:` & use `useParams()` hook to get route parameters
 ```JS
 <Route path="/user/:id" element={<User />} />
 
