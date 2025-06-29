@@ -268,3 +268,28 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
 1. For smaller or simpler apps, **Context API** or **Zustand** might suffice.
 2. For more complex apps, **Recoil**, **MobX**, or **XState** could be better fits, while **Redux** and **Redux Toolkit** remain robust solutions for larger, more structured applications.
     
+## without thunk vs redux thunk vs createAsyncThunk from RTK
+**Without Thunk (basic async)**
+1. You can write async code using async/await inside a component.
+2. But you must manually pass dispatch and getState if the logic is outside.
+3. You handle everything — API call, dispatching actions, updating state.
+
+**With Thunk**
+1. Thunk allows you to dispatch a function instead of an object.
+2. Inside the function, you get dispatch and getState automatically.
+3. But still, for each API call, you need to:
+   - Write 3 action types (e.g., FETCH_START, FETCH_SUCCESS, FETCH_FAIL)
+   - Write 3 action creators
+   - Dispatch all 3 manually
+   - This becomes repetitive if done for many APIs.
+
+**With createAsyncThunk (Redux Toolkit)**
+1. Designed to simplify async logic in Redux.
+2. Automatically generates:
+  - pending action (for loading)
+  - fulfilled action (for success)
+  - rejected action (for failure)
+3. Inside your slice, you just handle those 3 cases.
+4. This reduces boilerplate significantly like no need to create 3 action types &  action creators everytime, as we can reuse this logic.
+
+
