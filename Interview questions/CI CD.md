@@ -18,4 +18,4 @@ Automatically builds and tests code(using written unit tests) every time you pus
 Goes a step further — automatically deploys to production after passing tests, without manual approval.
 
 1. In meta- we use diff - where CI/CD is integrated
-2. In General - Jenkins, newly came GitHub actions
+2. In General - Jenkins or GitHub actions(newly came)
