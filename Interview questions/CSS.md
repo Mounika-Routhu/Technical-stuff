@@ -92,10 +92,9 @@ selector::pseudo-element {
       = 20px + 200px + 20px = 240px
      ```
 
-**Outline**
-1. Drawn outside the border
-2. Does not affect layout or box size
-3. Used for accessibility/focus
+**Outline** - not part of box modal
+1. Drawn outside the border. Does not affect layout or box size
+2. Used for **visible focus indication** - Commonly seen when you **Tab** through form fields or buttons
 ```css
 outline: 2px dashed red;
 ```
