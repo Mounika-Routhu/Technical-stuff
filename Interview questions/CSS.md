@@ -98,14 +98,13 @@ selector::pseudo-element {
 outline: 2px dashed red;
 ```
 
-## why mobile first approach is considered good?
+## Why mobile first approach is considered good?
 1. **More people use mobile devices** to browse the internet than desktops. - **covering majority of users first**
-2. Google focuses on mobile versions of websites for ranking, so good for **SEO** => help your site **show up higher in search results**.
-3. Mobile devices usually have slower internet and less power, so designing for them makes your site faster and easier to use.
-4. Mobile-first makes sure your website looks good and works well on small screens.
-5. As screens get bigger, you can add extra features and styles to improve the experience for those users.
-6. It keeps your website simple and easy to maintain, focusing on mobile first and then expanding it.
-
+2. Google focuses on mobile views of websites for ranking, so good for **SEO** => help your site **show up higher in search results**.
+3. Mobile-first keeps the design clean and fast from the start, while desktop-first often leads to **bloated mobile versions**.
+4. Desktop designs often include extra visuals, animations, and features. When you try to shrink it down for mobile, **it’s hard to remove or adapt things cleanly**. Result: **Overloaded mobile site that’s slow or cluttered**.
+5. Mobile-first starts light. You begin with the **core content and layout**. Then you progressively **enhance for larger screens**. Result: **Fast, focused, and scalable — works well on all devices.**
+   
 ## Standard media queries
 Media Queries are a feature in CSS that let you apply styles based on the device's screen size, resolution(of screen), or features like orientation(potraint, landscape).
 
@@ -122,7 +121,7 @@ body{
  /* Styles for small screens (e.g., mobile devices) */
 }
 
-/* Tablets (portrait and small screens) */
+/* Tablets (landscape phones and small screens) */
 @media (min-width: 768px) and (max-width: 1023px) {
   /* Styles for tablets & small laptops*/
 }
