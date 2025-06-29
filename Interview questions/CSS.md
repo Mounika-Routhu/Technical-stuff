@@ -107,7 +107,16 @@ outline: 2px dashed red;
 6. It keeps your website simple and easy to maintain, focusing on mobile first and then expanding it.
 
 ## Standard media queries
+Media Queries are a feature in CSS that let you apply styles based on the device's screen size, resolution(of screen), or features like orientation(potraint, landscape).
+
+Media Queries = "If screen is this size → apply these styles"
 ```css
+/*Syntax */
+@media(condition){
+}
+```
+condition is often min & max width
+```CSS
 /* Mobile devices (portrait) default */
 body{
  /* Styles for small screens (e.g., mobile devices) */
