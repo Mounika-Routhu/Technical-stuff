@@ -859,3 +859,55 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 | **Community & Jobs** | Huge ecosystem, tons of jobs, backed by Meta, used by top companies (Netflix, Instagram). | Strong OSS community, mostly used in smaller teams/projects. | Popular in enterprise, but less startup adoption, fewer jobs. |
 | **Performance** | Virtual DOM + fine-tuned control (`React.memo`, `useCallback`) for fast updates. | Also uses Virtual DOM, good speed, less customization. | Heavier due to **Zone.js** and complex change detection system. |
 | **Cross-Platform** | Write mobile apps using **React Native** — same code style. | Vue Native exists but not widely used. | Uses **Ionic** (separate library, bulkier setup). |
+
+## Error Boundary:
+Currently, error boundaries must be class components. React might support functional boundaries with hooks like useErrorBoundary in the future (experimental).
+
+```JS
+import React from 'react';
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render shows fallback UI
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    // Log error details to an error reporting service
+    console.error("Caught an error:", error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h2>Something went wrong.</h2>;
+    }
+
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
+```JS
+//wrap for components
+import ErrorBoundary from './ErrorBoundary';
+import MyComponent from './MyComponent';
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <MyComponent />
+    </ErrorBoundary>
+  );
+}
+```
+1. It has some limitations:cant catch below
+   - Errors in event handlers
+   - Asynchronous errors (e.g., setTimeout, fetch)
+   - Errors outside React tree (like service workers)
+2. For async or event errors, use try...catch
