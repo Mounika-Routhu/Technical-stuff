@@ -101,9 +101,10 @@ outline: 2px dashed red;
 ## Why mobile first approach is considered good?
 1. **More people use mobile devices** to browse the internet than desktops. - **covering majority of users first**
 2. Google focuses on mobile views of websites for ranking, so good for **SEO** => help your site **show up higher in search results**.
-3. Mobile-first keeps the design clean and fast from the start, while desktop-first often leads to **bloated mobile versions**.
-4. Desktop designs often include extra visuals, animations, and features. When you try to shrink it down for mobile, **it’s hard to remove or adapt things cleanly**. Result: **Overloaded mobile site that’s slow or cluttered**.
+3. Desktop-first often leads to **bloated mobile versions**. explained
+4. Desktop designs often include extra visuals, animations, and features as we have more space to display content. When you try to shrink it down for mobile, **it’s hard to remove or adapt things cleanly**. Result: **Overloaded mobile site that’s slow or cluttered**.
 5. Mobile-first starts light. You begin with the **core content and layout**. Then you progressively **enhance for larger screens**. Result: **Fast, focused, and scalable — works well on all devices.**
+6. **Desktop-first = Too much stuff to remove | Mobile-first = Add only what’s needed**
    
 ## Standard media queries
 Media Queries are a feature in CSS that let you apply styles based on the device's screen size, resolution(of screen), or features like orientation(potraint, landscape).
