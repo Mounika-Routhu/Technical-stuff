@@ -18,7 +18,9 @@
 | **10. Attribute Selector**      | Targets elements with a **specific attribute or attribute value**.  | `input[type="text"] { border: 1px solid; }`   |
 
 ## pseudo class selector
-A pseudo-class selector targets an element based on its **state or position** in the DOM 
+1. A pseudo-class selector targets an element based on its **state or position** in the DOM
+2. It starts with single colons :, followed by the pseudo-class name.
+   
 ```CSS
 selector:pseudo-class {
   /* styles */
@@ -37,5 +39,21 @@ selector:pseudo-class {
 | `:visited`      | Visited link                            | `a:visited { color: purple; }`         |
 
 ## pseudo element selector
-| **12. Pseudo-element Selector** | Targets **parts of an element** (like the first letter or line).    | `p::first-letter { font-size: 200%; }`        |
+1. A pseudo-element selector allows you to style **specific parts** of an element or **insert content** without adding extra HTML.
+2. It starts with two colons ::, followed by the pseudo-element name.
+   
+```CSS
+selector::pseudo-element {
+  /* styles */
+}
+```
+| Pseudo-Element   | What it does                              | Example                                |
+| ---------------- | ----------------------------------------- | -------------------------------------- |
+| `::before`       | Inserts content **before** the element    | `p::before { content: "👉 "; }`        |
+| `::after`        | Inserts content **after** the element     | `p::after { content: " ✔️"; }`         |
+| `::first-letter` | Styles the **first letter** of an element | `p::first-letter { font-size: 200%; }` |
+| `::first-line`   | Styles the **first line** of a paragraph  | `p::first-line { color: red; }`        |
+| `::placeholder`  | Styles placeholder text inside inputs     | `input::placeholder { color: gray; }`  |
+| `::selection`    | Styles the text **highlighted** by user   | `::selection { background: yellow; }`  |
+
 
