@@ -123,12 +123,12 @@ body{
 }
 
 /* Tablets (landscape phones and small screens) */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   /* Styles for tablets & small laptops*/
 }
 
 /* Desktops & laptops */
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   /* Styles for Desktops & laptops */
 }
 ```
