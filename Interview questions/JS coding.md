@@ -4,21 +4,27 @@ notes:
 2. Math.random() -> generates a floting number 0 to 1(exclusive). So, if you want a num btw 1 to 10 -> Math.ceil(Math.random() * 10)
 ```JS
 const generateLoremIpsum = (wordCount) => {
-  let words = [];
-  for (let i = 0; i < wordCount; i++) {
-    const randomWordLength =  Math.ceil(Math.random() * 10);
-    let word = '';
-    for (let j = 0; j < randomWordLength; j++) {
-      const randomLetter = String.fromCharCode(Math.ceil(Math.random() * 26) + 96);
-      word += randomLetter;
+  let words = ['mouni', 'ipsum'];
+  if (wordCount <= 2) {
+    return words.slice(0, [wordCount]).join(' ');
+  } else {
+    for (let i = 0; i < wordCount - 2; i++) {
+      const randomWordLength = Math.floor(Math.random() * 8) + 3; // min 3 letter max 10
+      let word = '';
+      for (let j = 0; j < randomWordLength; j++) {
+        const randomLetter = String.fromCharCode(
+          Math.floor(Math.random() * 26) + 97
+        );
+        word += randomLetter;
+      }
+      words.push(word);
     }
-    words.push(word);
+    let sentence = words.join(' ');
+    return sentence;
   }
-  let sentence = words.join(' ');
-  console.log(sentence);
 };
 
-generateLoremIpsum(30);
+console.log(generateLoremIpsum(6));
 ```
 
 ## sort arr
