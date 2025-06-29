@@ -56,4 +56,8 @@ selector::pseudo-element {
 | `::placeholder`  | Styles placeholder text inside inputs     | `input::placeholder { color: gray; }`  |
 | `::selection`    | Styles the text **highlighted** by user   | `::selection { background: yellow; }`  |
 
+## Box Modal
+1. The Box Model is the core concept that describes how **every HTML element is displayed** on a web page.
+2. Each element is treated like a box with four layers:
+
 
