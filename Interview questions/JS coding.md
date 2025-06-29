@@ -1,3 +1,23 @@
+## gemerate lorem ipsum,
+```JS
+const generateLoremIpsum = (wordCount) => {
+  let words = [];
+  for (let i = 0; i < wordCount; i++) {
+    const randomWordLength = Math.random() * 10 + 1;
+    let word = '';
+    for (let j = 0; j < randomWordLength; j++) {
+      const randomLetter = String.fromCharCode(Math.random() * 26 + 97);
+      word += randomLetter;
+    }
+    words.push(word);
+  }
+  let sentence = words.join(' ');
+  console.log(sentence);
+};
+
+generateLoremIpsum(30);
+```
+
 ## sort arr
 ```JS
 const sortArr = (arr) => {
