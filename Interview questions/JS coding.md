@@ -9,7 +9,7 @@ const generateLoremIpsum = (wordCount) => {
     const randomWordLength =  Math.ceil(Math.random() * 10);
     let word = '';
     for (let j = 0; j < randomWordLength; j++) {
-      const randomLetter = String.fromCharCode(Math.ceil(Math.random() * 10) + 96);
+      const randomLetter = String.fromCharCode(Math.ceil(Math.random() * 26) + 96);
       word += randomLetter;
     }
     words.push(word);
