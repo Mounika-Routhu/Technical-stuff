@@ -290,6 +290,6 @@ Redux flow on high level -> Redux follows a **unidirectional data** flow where:
   - fulfilled action (for success)
   - rejected action (for failure)
 3. Inside your slice, you just handle those 3 cases.
-4. This reduces boilerplate significantly like no need to create 3 action types &  action creators everytime, as we can reuse this logic.
+4. This reduces boilerplate significantly like no need to create 3 action types &  action creators, also we can reuse this logic.
 
 
