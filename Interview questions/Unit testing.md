@@ -2,8 +2,8 @@
 Unit testing in React means testing individual components or logic (like a form, button, or utility function) in isolation, to ensure they behave correctly.
 
 ### Tools Used: (default installed with Create React App(CRP))
-**Jest** → Test runner and assertion library 
-**React Testing Library (RTL)** → To render and test components like a user would
+1. **Jest** → Test runner and assertion library 
+2. **React Testing Library (RTL)** → To render and test components like a user would
 
 **example:**
 1. Write **test** function from Jest take description & arrow function as params
