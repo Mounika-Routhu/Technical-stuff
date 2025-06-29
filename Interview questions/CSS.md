@@ -134,3 +134,29 @@ body{
 ```
 <img width="409" alt="Screenshot 2025-03-14 at 5 27 39 PM" src="https://github.com/user-attachments/assets/10a856b4-5731-4129-8573-ee47fd95fb07" />
 
+## Flexbox 
+Flexbox (Flexible Box Layout) is a CSS feature that makes it easy to design responsive one-dimensional layouts — either in a row or a column.
+“It helps align, space, and distribute items inside a container — even when sizes are unknown or dynamic.”
+
+```CSS
+display: flex
+justfy-content: center - main axis - horizontal
+align-items: center - cross axis - vertical
+align-self:	Overrides align-items for a single item
+```
+## Positions
+The position property in CSS determines how an element is placed in the document flow and how it responds to top, left, right, and bottom.
+1. static (default)- not effect by T, L, B , R
+2. Relative to itself in normal flow - overlaps with other elements
+3. absolute - removed from normal flow, relative to ancestor or viewport if not available - overlaps with other elements
+4. fixed: removed from normal flow, relative to viewport - overlaps with other elements
+5. sticky - relative until it reaches scroll threshold then becomes fixed. - overlaps with other elements
+6. use z-index for overlays
+
+## ways to position center
+1. text-align: center(horizontal), height, line-height(only works for 1 line) - vertical
+2. position: relative, position aboslute -> left: 50%, top: 50%, transform: translate(-50%, -50%)
+3. flex is easy
+
+
+
