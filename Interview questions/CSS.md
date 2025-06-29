@@ -57,7 +57,45 @@ selector::pseudo-element {
 | `::selection`    | Styles the text **highlighted** by user   | `::selection { background: yellow; }`  |
 
 ## Box Modal
-1. The Box Model is the core concept that describes how **every HTML element is displayed** on a web page.
-2. Each element is treated like a box with four layers:
+1. The Box Model is the core concept that describes how every HTML element is treated as a **rectangular box made up of four parts**:
+   1. Content: The actual content: text, image, etc. Controlled by: width, height
+      ```CSS
+      width: 200px;
+      height: 100px;
+      ```
+   2. Padding: Space between content and border. Increases space inside the box. Background color applies here
+      ```CSS
+      padding: 20px;
+      ```
+   3. Border: Line that wraps around padding + content. You can change color, width, style
+      ```CSS
+      border: 2px solid black;
+      ```
+   4. Margin: Space outside the border (gap from other elements). Fully transparent, does not get background color
+      ```CS
+      margin: 10px;
+      ```
+2. Using box modal, browsers calculate element size and spacing. It includes content, padding, border, and margin — allowing precise layout control
+3. `Box-Sizing` is CSS property to calculate size of an element.
+4. By default `Box-Sizing: Content-Box`, where element width only includes content; padding and border are added outside.
+5. Total Width of element (Content-Box): width + padding (left & right) + border (left & right)
+   - eg: If you set element width: 200px & padding:10px & border 2px - total width of element will be 200 + 10x2(padding left & right) + 2x2(border left & right) = 200 + 20 + 4 => 224px
+6. If we change `Box-Sizing: Border-Box`, element width includes content, padding, and border
+7. Total Width of element (Border-Box): Exactly equals the width you set, padding and border are inside it
+   - eg: If you set element width: 200px & padding:10px & border 2px, then Total width = 200px
+   - The **actual content area shrinks** to fit within the 200px after subtracting padding and border.
+8. Why it's good to have Border-Box is, this makes **sizing more predictable** and **prevents unexpected layout issues**.
+9. **Margin is not included in width**. Margin adds space outside the element, affecting layout but not the box’s actual size.
+   - final occupied space/ visible space on the page:
+     ```sql
+      = margin-left + width + margin-right
+      = 20px + 200px + 20px = 240px
+     ```
 
-
+**Outline**
+1. Drawn outside the border
+2. Does not affect layout or box size
+3. Used for accessibility/focus
+```css
+outline: 2px dashed red;
+```
