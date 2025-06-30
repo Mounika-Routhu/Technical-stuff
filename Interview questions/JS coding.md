@@ -1,4 +1,24 @@
-## gemerate lorem ipsum
+## format Date
+```JS
+const formatDate = (str) => {
+  let date = new Date(str); //invalid dates become null
+  console.log(date.valueOf(), isNaN(date)); // while doing isNaN(), data is coverted to number using valueOf to timestamp
+  if (date instanceof Date && !isNaN(date)) {
+    // return date.toISOString().split('T')[0]; //easy way
+    return [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, 0), // month starts from 0
+      String(date.getDate()).padStart(2, 0),
+    ].join('-');
+  } else {
+    return 'Not a valid date';
+  }
+};
+
+console.log(formatDate('2025-06-01T10:00:00'));
+```
+
+## generate lorem ipsum
 notes: 
 1. ASCII -> A-Z(65-90), a-z(97-122) 
 2. Math.random() -> generates a floting number 0 to 1(exclusive).
