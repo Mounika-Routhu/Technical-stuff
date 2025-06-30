@@ -1089,9 +1089,10 @@ flow in order to access call method
 `dog.printName --> Function.prototype(has call method) --> Object.prototype --> null`
 
 ## call, apply, bind
-1. In React, function is an object it so it gets [[Prototype]] or `__proto__` which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
-2. These methods help to explicitly change the context (this) when calling a function. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
-3. **Call:** calls(invokes) a function immediately, with **this** set to the object you pass. accepts & passes **optional** arguments individually.
+1. call, apply, bind are methods available on only every function(except arrow functions), these are used to explicitly change the context of **this keyword** when calling a function & can also accept additional aruguments.
+2. In React, function is an object, so it gets a prototype which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
+3. Useful when we already have a method in an obj & we want to use the same method on another obj. Or we have a function which can be used for multiple objects
+4. **Call:** calls(invokes) a function immediately, with **this** set to the object you pass. accepts & passes **optional** arguments individually.
 ```JS
 function printHobbies(s1, s2){
     console.log(this.name, "has following skills:", s1 + ", " + s2);
@@ -1103,7 +1104,7 @@ const employee = {
 
 printHobbies.call(employee, 'react', 'JS') // Mounika has following skills: react, JS
 ```
-4. **Apply:** Like call(), but takes **optional** arguments as an array(array-like objects) & It spreads that array into individual arguments when calling the function. So your function should use rest parameters to gather those args into an array.
+5.**Apply:** Like call(), but takes **optional** arguments as an array(array-like objects) & It spreads that array into individual arguments when calling the function. So your function should use rest parameters to gather those args into an array.
    1. Useful when arguments are already in an array or when we don't know no. of arguments expected. 
    2. **array-like objects** -> objects which have length & indices but not an array eg: aruguments for a function doesn't have array methods like push, pop etc & Array.isArray(aruguments) // false
 
@@ -1132,7 +1133,7 @@ react
 JS
 HTML
 ```
-5. **bind**: instead of immediate invokation, bind returns a new function, accepts & passes **optional** individual aruguments
+6. **bind**: instead of immediate invokation, bind returns a new function, accepts & passes **optional** individual aruguments
    1. useful when we expect more arguments later & then invoke function
 
 ```JS
@@ -1205,7 +1206,7 @@ Even though you don’t see it, JavaScript still builds the same structure using
 
 Behind the scenes:
 1. Person is still a constructor function & get prototype object as a default property.
-2. sayHello is placed on Person.prototype.
+2. What ever is added outside contructor is placed on prototype. Here, sayHello is placed on Person.prototype. 
 3. Instances (p1) have an internal link to Person.prototype via [[prototype]](accessed using `__proto__`).
 
 ```JS
