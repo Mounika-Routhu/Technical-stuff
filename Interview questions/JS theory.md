@@ -1713,7 +1713,7 @@ arr.slice(3, 5);      // ['d', 'e']   (end > length)
 3. return an array containing the removed elements or Empty array if no elements were removed.
 4. Syntax: `arr.splice(start[, deleteCount[, item1[, item2[, ...]]]])`
    - start: index to start from **(defaults to 0 if missing)**
-   - deleteCount: number of items to delete **(defaults to rest of array if missing)**
+   - deleteCount: number of items to delete **(defaults to rest of array if missing & start is provided)**
    - If no arguments are provided: **start is 0**, **deleteCount is 0** → **no deletion**.
 
 ```JS
