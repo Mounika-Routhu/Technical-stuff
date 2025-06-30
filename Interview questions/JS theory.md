@@ -1684,8 +1684,9 @@ for push & unshift => we can pass 1 or more args but **optional**. If omitted, t
 2. Does **not mutate** the original array.
 3. Returns a new array containing the extracted elements.
 4. Syntax:  `arr.slice([start], [end])`
-   1. start: index at which extraction begin, if omitted defaults to 0(start of arr)
-   2. end: index before which extraction end(non-inclusive), if omitted defaults to array length(last element of arr)
+   - start: index to start from **(defaults to 0 if missing)**
+   - end: index to end(not inclusive)**(defaults to arr length)**
+   - if both omitted -> whole array is copied 
 5. Hence, easy way to do shallow copy if gave `arr.slice();` same as `arr.splice(0)`
 6. Useful for shallow copying arrays or extracting subarrays
 
@@ -1701,8 +1702,8 @@ arr.slice(3, 3);      // []           (start = end)
 arr.slice(3, 5);      // ['d', 'e']   (end > length)
 ```
 **Note**: 
-1. if start >= end, return empty array
-2. if start >= length, start is set to array length, returns empty array
+1. if start >= end, **return empty array** as there are no elements from in between, 
+2. if start >= length, **returns empty array** as start is set to array length, 
 3. if end > length, end is set to array length
 4. negative indices(counted from end, -1 is last element) are supported
 
@@ -1711,11 +1712,9 @@ arr.slice(3, 5);      // ['d', 'e']   (end > length)
 2. **Mutates** the original array.
 3. return an array containing the removed elements or Empty array if no elements were removed.
 4. Syntax: `arr.splice(start[, deleteCount[, item1[, item2[, ...]]]])`
-   1. start (required): Index at which to start changing the array. If start > array length, start is set to array length (inserts at end).
-      if omitted, no error, returns empty array, does nothing.
-   3. deleteCount (optional): Number of elements to remove from start.
-   4. Defaults to arr.length - start if omitted (i.e., removes everything from start). If 0, no elements are removed.
-   5. item1, item2, ... (optional): Elements to add at start position.
+   - start: index to start from **(defaults to 0 if missing)**
+   - deleteCount: number of items to delete **(defaults to rest of array if missing)**
+   - If no arguments are provided: **start is 0**, **deleteCount is 0** → **no deletion**.
 
 ```JS
 let arr = ['a', 'b', 'c', 'd'];
