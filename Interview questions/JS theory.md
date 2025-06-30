@@ -1331,7 +1331,7 @@ observer.observe(targetElement, {
 
 
 ## Micro fronend
-- **Micro Frontend** is an architectural approach where a large frontend application is broken into **smaller, independent pieces** called **micro frontends**.
+- **Micro Frontend** is an **architectural approach** where a large frontend application is broken into **smaller, independent pieces** called **micro frontends**.
 - Each micro frontend is **owned by a separate team**, and represents a specific domain or feature (e.g., product, checkout, profile).
 - These micro frontends are:
   - **Developed**, **tested**, and **deployed independently**
