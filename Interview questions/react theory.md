@@ -5,18 +5,36 @@
   - It triggers a **callback to the parent** -> **state change in a parent** -> parent passes new props down to children.
 - Now, all these **affected components** will re-render along with it's **children**.
 - These re-renders doesn't change real DOM, instead creates a new VDOM with changes
+- So, if multiple state changes are happening, it will **batch** them to optimize performance instead if re-rendring each time for 1 state update.
 - Then React performs a deep comparision btw the **new virtual DOM** & the **previous virtual DOM**.
 - This comparision is done by a **diffing** algorithm, this actually checks for changes in:
     - Element types (`div`, `span`, etc.)
     - Keys (especially in lists)
     - Props (e.g., `className`, `style`, `onClick`)
 - React **does not compare virtual DOM with real DOM** directly (real DOM is slow to access & read).
-- This comparision gives actually changed values(minimal) & Only the **changed parts** of the real DOM are updated
-- Meaning for example, if only `className` changes, React will update just the class attribute on the existing DOM node, **not re-render or replace** the entire <div>
+- This comparision gives actually changed values(minimal) & creates a effect list. 
+- Only the **actually changed parts** will be added, for example, if only `className` changes, only the class attribute change is added to effect list, the entire element
+- This whole process where React **render & generates the new virtual DOM**, **compares it with the old one**, and **figures out what needs to change**. **It prepares a list of changes**, is called **Reconciliation**.
 - **Remember** - but re-render happens for whole component including children while creating VDOM.
-- Updates are done in **batches** to optimize performance.
-- After DOM updates, the **browser repaints the UI**.
-- This whole process is called **Reconciliation**.
+- Now, all these changes in list will be applied to **DOM in commit phase** in one go
+- After DOM updates, the **browser repaints the UI in one go**.
+
+# 🔄 React Fiber 
+- The problem with the existing reconciliation process is that it **compares all components at once, synchronously.**
+- If the user interacts with the browser during this comparison, they may notice a **lag**, and the page might become **unresponsive** especially in **larger apps.**
+- **Fiber is a re-written version of this process to solve that problem.**
+- **What Fiber does is divide the comparison work into small units.**
+- **Each unit of work is called a fiber, and one fiber is responsible for comparing one component**
+- After completing the work for one fiber, React checks:
+  > "Do I have time left in this frame for the browser to handle user inputs?"
+- If time is left, React continues with the next fiber's work.
+- If not, it pauses and yields control to the browser.
+- Later, it resumes the remaining fiber work from where it left off.
+- This way, the React app stays responsive to user inputs even during rendering.
+- Once all the comparison work is done, React gives out a list of changes.
+- After that, the process is the same:
+  - DOM updates happen in the **commit phase**
+  - Then the **browser repaints** the UI
 
 ## What will be recomputed on re-render?
 - **Recomputed on Every Render:**
