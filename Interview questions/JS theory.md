@@ -983,30 +983,60 @@ class MyComponent extends React.Component {
 | `Function.prototype`  | The prototype object for all functions            | Contains methods such as `call`, `apply`, and `bind` that all functions inherit | `Function.prototype.call` is available to all functions |
 
 ## Prototype - INHERITANCE
-1. When a function(except arrow function) is created JS automatically adds a property to it, call Prototype - an object
-2. A prototype is an object that defines properties and methods which other objects(created using new keyword from function constructor) can inherit.
-3. It acts like a blueprint or template for objects created by a constructor function.
-4. constructor function - is a regular JavaScript function that is used to create objects using new keyword.
+1. In JavaScript, every object has an **internal link to another object** called its **prototype**.
+2. A prototype is simply an object from which other objects can **inherit properties and methods**.
 
-```JS
-//constructor function
-function Person(name) {
-  this.name = name;
-}
-```
+**How prototype links are created**
+### 1. Using Constructor Functions(implict prototype link)
+- When a function(except arrow function) is created JS automatically adds a property to it, called **Prototype** - an object
+- constructor function - is a regular JavaScript function that is used to create objects using new keyword.
+- When you create an object using the `new` keyword and a constructor function
+- A new object is created with properties & methods of that constructor.
+- This object is internally linked to the constructor’s **`.prototype`** object.
+- This allows all instances created from that constructor to **share methods** defined on the prototype.
+  - Example:
+    ```js
+    function Person(name) {
+      this.name = name;
+    }
+    Person.prototype.greet = function() {
+      console.log('Hello', this.name);
+    };
+    const p = new Person("Mounika");
+    console.log(p); // {name : "Mounika"}
+    p.greet() // Hello Mounika
+    ```
 
-```JS
-const user = new Person("Alice");
-```
-1. A new object is created.
-2. objects doesn't get prototype property instead it gets internal [[Prototype]]
-3. can be accessed using `Object.getPrototypeOf(obj)` or `__proto__` this will be set to Person.prototype.
-4. now `this` inside the function refers to that new object.
-   
-<img width="1086" alt="Screenshot 2025-05-24 at 8 41 03 PM" src="https://github.com/user-attachments/assets/c705d498-0cb2-49da-b8b3-4b6dcc52575c" />
+### 2. Using `Object.create()` (explicit prototype link)
+- You can also create an object with a specific prototype using `Object.create([object as prototype])`:
+- The object passed to `Object.create()` becomes the prototype of the new object.
+  - Example:
+    ```js
+    const base = {
+       greet: () => console.log("hi");
+    };
+    const obj = Object.create(base);
+    console.log(obj) // {}
+    obj.greet() // hi
+    ```
 
-in chrome:
-<img width="243" alt="Screenshot 2025-05-24 at 5 54 39 PM" src="https://github.com/user-attachments/assets/1475856a-e7d6-4fbf-944a-2cc712a9b6f0" />
+### 3. Manually set prototype
+- You can set an object's prototype using:
+  - `Object.setPrototypeOf(obj, newPrototype)`
+
+### To access prototype
+- You can access an object's prototype using:
+  - `Object.getPrototypeOf(obj)`
+  - `obj.__proto__` (not recommended but still used)
+
+**Also core concepts:**
+1. Object created using object literal {} like const obj = {name: "Mounika"}, it has `Object.prototype` as prototype & this has null as prototype.
+2. this is how object get methods like toString(), valueOf(), contructor etc from `Object.prototype`
+3. Same for function - which has `Function.prototype` as prototype & this has null as prototype.
+4. this is how function get methods like call, apply, bind, arguments, length, name from `Object.prototype`
+5. if we try to console.log(Object.prototype) or console.log(Function.prototype) we will get {}. As these are internal, to see these methods, use `Object.getPropertyNames(Object.prototype)`
+
+<img width="1153" alt="Screenshot 2025-06-30 at 6 31 43 PM" src="https://github.com/user-attachments/assets/1648e25d-08d8-4559-a632-8945d7c993a1" />
 
 **NOTE:**
 1. normal functions also gets prototype by default, but the .prototype is just unused. It's only meaningful with constructor function.
@@ -1019,16 +1049,16 @@ console.log(printSum.prototype); // undefined
 ```
 
 **prototype vs [[Prototype]]/__proto__**
-1. prototype is used to **define** what future objects will inherit.
-2. `[[Prototype]]/__proto__` is used to **access** what this object has inherited.
+1. prototype is used to **define** properties or methods, which future objects will inherit.
+2. `[[Prototype]]/__proto__` is used represents prototype of current obj from which we can **inherit** properties or methods.
 
 ## Prototype chain / prototypal inheritance
-1. **The prototype chain** is how JavaScript looks up properties and methods. If an object doesn't have a property, JavaScript follows the chain of prototypes to find it(it's parent) and access it, this type of accessing/inheritance is called **prototypal inheritance**.
+Prototypal inheritance in JavaScript means that objects can inherit missing properties and methods from other objects via the prototype chain — which is created either through constructor functions or Object.create([prototype])
 
 ```JS
 function animal(name) {
    this.name = name
-   this.barks = true;
+   this.walks = true;
    this.printName = function(){
       console.log(this.name)
    } 
@@ -1051,7 +1081,7 @@ const cow = {
 dog.printName.call(cow) // Cow
 ```
 flow in order to access call method
-`dog.printName --> Function.prototype --> Object.prototype --> null`
+`dog.printName --> Function.prototype(has call method) --> Object.prototype --> null`
 
 ## call, apply, bind
 1. In React, function is an object it so it gets [[Prototype]] or `__proto__` which links to Function.prototype. From Function.prototype, functions inherit methods like call, apply & bind.
