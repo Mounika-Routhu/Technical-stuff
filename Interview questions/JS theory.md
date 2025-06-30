@@ -983,7 +983,7 @@ class MyComponent extends React.Component {
 | `Function.prototype`  | The prototype object for all functions            | Contains methods such as `call`, `apply`, and `bind` that all functions inherit | `Function.prototype.call` is available to all functions |
 
 ## Prototype - INHERITANCE
-1. In JavaScript, every object has an **internal link to another object** called its **prototype**.
+1. In JavaScript, every object has an **hidden internal link to another object** called its **prototype**.
 2. A prototype is simply an object from which other objects can **inherit properties and methods**.
 
 **How prototype links are created**
@@ -1029,7 +1029,12 @@ class MyComponent extends React.Component {
   - `Object.getPrototypeOf(obj)`
   - `obj.__proto__` (not recommended but still used)
 
-**Also core concepts:**
+### Uses
+- The main use of prototypes is to **reuse shared properties and methods** across multiple objects.
+- Instead of creating a new copy of a method for every object, the method is placed on the prototype.
+- All objects linked to that prototype can **access the method** without **duplicating it in memory**.
+
+**Some core concepts:**
 1. Object created using object literal {} like const obj = {name: "Mounika"}, it has `Object.prototype` as prototype & this has null as prototype.
 2. this is how object get methods like toString(), valueOf(), contructor etc from `Object.prototype`
 3. Same for function - which has `Function.prototype` as prototype & this has null as prototype.
@@ -1053,7 +1058,7 @@ console.log(printSum.prototype); // undefined
 2. `[[Prototype]]/__proto__` is used represents prototype of current obj from which we can **inherit** properties or methods.
 
 ## Prototype chain / prototypal inheritance
-Prototypal inheritance in JavaScript means that objects can inherit missing properties and methods from other objects via the prototype chain — which is created either through constructor functions or Object.create([prototype])
+Prototypal inheritance in JavaScript means that objects can inherit missing properties and methods from other objects via the **prototype chain** — which is created either through constructor functions or Object.create([prototype])
 
 ```JS
 function animal(name) {
