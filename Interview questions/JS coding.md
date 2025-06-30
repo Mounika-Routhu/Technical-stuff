@@ -94,7 +94,16 @@ const sortObj = (obj) => {
 
 sortObj(obj)
 ```
-
+NOTE: CHROME IS SORTING KEYS ALPHABETICALLY, SO SHOW AS MAP or STRIGIFY OBJ. FOR LOCALE COMPARE ITS IGNORING CASE SENSITIVE. SO, USE 
+```JS
+  if (a[0] > b[0]) {
+    return 1;
+  }
+  if (a[0] < b[0]) {
+    return -1;
+  }
+  return 0;
+```
 <img width="1108" alt="Screenshot 2025-06-27 at 1 40 22 PM" src="https://github.com/user-attachments/assets/e8687dd8-fe30-4de8-a761-57a411550611" />
 
 Swap: `arr[i], arr[j]] = [arr[j], arr[i]]`
