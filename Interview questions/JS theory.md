@@ -1331,15 +1331,17 @@ observer.observe(targetElement, {
 
 
 ## Micro fronend
-Micro Frontend is an **architectural approach** where a large frontend application is decomposed into smaller, independent pieces—called micro frontends—each owned by different teams. These pieces work together to form a complete user experience, but are developed, tested, and deployed independently.
-
-1. Enables teams to work independently and choose different tech stacks(react, vue, angular).
-2. Improves scalability(maintaining easy) and speeds up development.
-3. A shell/container app loads and integrates all micro frontends.
-4. Communication between micro frontends is usually via events or shared state.
-5. Common implementation methods: **iframes, JavaScript bundles, Web Components, module federation(module 5).**
-6. Challenges: shared state management, ensuring consistent UI, routing, and performance.
-7. Used in large apps like **e-commerce sites, where product, checkout, and user profile** are separate micro frontends.
+- **Micro Frontend** is an architectural approach where a large frontend application is broken into **smaller, independent pieces** called **micro frontends**.
+- Each micro frontend is **owned by a separate team**, and represents a specific domain or feature (e.g., product, checkout, profile).
+- These micro frontends are:
+  - **Developed**, **tested**, and **deployed independently**
+  - Combined at runtime to form a **complete user experience**
+- **Only the frontend is split** — the backend remains separate (often paired with microservices or BFFs).
+- Micro frontends enable independent team workflows, faster development, tech stack flexibility, and scalable deployments.
+- **A container app** loads and integrates independently built micro frontends, which communicate via shared state or events.
+- Micro frontends can be implemented using **iframes**, **JavaScript bundles, Web Components, or Module Federation**.
+- **Common Challenges:** Managing shared state, **consistent UI**, routing, and performance across isolated micro apps can be complex.
+- Example: Large apps like e-commerce platforms split features like product, cart, and checkout into separate micro frontends.
 
 ## shallow vs deep copy
 Copy - To create a new reference of an array/object. When copying an object or array in JavaScript, you’re either:
