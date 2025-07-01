@@ -342,4 +342,4 @@ for (let i = 5; i >= 0; i--) {
 }
 ```
 
-output => 4 2 0 bcz 0%2 => 0 & 0/2 => 0 reverse is infinity
+output => 4 2 0 bcz 0%2 => 0 & 0/2 => 0;  2/0 infinity & 2%0 => NaN
