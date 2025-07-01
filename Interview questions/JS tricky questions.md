@@ -189,7 +189,7 @@ var obj2 = {
 }
 console.log({...obj, obj2})
 ```
-o/p: ```{a:1, b:2, c:3, d:1, e:2, c:5}```
+o/p: ```{a:1, b:2, c:3, {d:1, e:2, c:5}}```
 
 //accenture hackerrack test
 ```js
