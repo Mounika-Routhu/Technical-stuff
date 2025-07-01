@@ -354,3 +354,26 @@ for (let i = 5; i >= 0; i--) {
 ```
 
 output => 4 2 0 bcz 0%2 => 0 & 0/2 => 0;  2/0 infinity & 2%0 => NaN
+
+## forEach
+```JS
+const fruits = ['apple', 'banana', 'cherry'];
+
+fruits.forEach((fruit, index) => {
+  if (index === 1) {
+    fruits.push('grape');
+  }
+  console.log(fruit);
+});
+
+console.log(fruits);
+```
+o/p:
+```JS
+apple
+banana
+cherry
+[ 'apple', 'banana', 'cherry', 'grape' ]
+```
+
+The forEach method iterates over the array based on its initial state when the loop starts. Even if you modify the array (like adding 'grape') during the iteration, forEach won't visit the newly added elements. It
