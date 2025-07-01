@@ -376,4 +376,5 @@ cherry
 [ 'apple', 'banana', 'cherry', 'grape' ]
 ```
 
-The forEach method iterates over the array based on its initial state when the loop starts. Even if you modify the array (like adding 'grape') during the iteration, forEach won't visit the newly added elements. It
+The array method iterates over the array based on its **initial length** when the loop starts. Even if you modify the array (like adding 'grape') during the iteration, loop won't visit the newly added elements. 
+but pop will effect, because length will decrease 
