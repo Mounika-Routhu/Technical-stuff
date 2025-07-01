@@ -332,3 +332,14 @@ console.log("end");
 2. Assigns a positive value — just sets the value (with a unary +).
 `x =+ 5; // same as x = +5` → assigns positive 5
 🔸 =+ is rarely useful, and can be confusing — avoid it unless you're explicitly using a unary plus.
+
+## loops
+```JS
+for (let i = 5; i >= 0; i--) {
+  if (i % 2 === 0) {
+    console.log(i);
+  }
+}
+```
+
+output => 4 2 0 bcz 0%2 => 0 & 0/2 => 0 reverse is infinity
