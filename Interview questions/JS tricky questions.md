@@ -378,3 +378,29 @@ cherry
 
 The array method iterates over the array based on its **initial length** when the loop starts. Even if you modify the array (like adding 'grape') during the iteration, loop won't visit the newly added elements. 
 but pop will effect, because length will decrease 
+
+## destructuring
+```Js
+const person = { name: "Charlie", age: 30 };
+
+const { name, city = "New York", age: personAge } = person;
+
+console.log(name);
+console.log(city);
+console.log(personAge);
+
+const { a, b, c = 10 } = { a: 1, b: 2 };
+console.log(a, b, c);
+```
+
+o/p:
+```Js
+Charlie
+New York
+30
+1 2 10
+```
+
+city = "New York": Attempts to extract city. Since person does not have a city property, **the default value "New York" is used.**
+age: personAge: Extracts the age property but assigns its value to a **new variable named personAge(alias name).**
+Attempts to extract c. Since the object { a: 1, b: 2 } does not have a c property, **the default value 10 is used for c.**
