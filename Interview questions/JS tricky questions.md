@@ -81,13 +81,16 @@ for (var i = 0; i < 3; i++) {
   })(i);
 }
 ```
-formula to find no. of loops, i values, condition fail(last value of i)
-| Case                           | No. of Loops    | Fails When `i ==` | `i` Values                 |
+**Formula to find no. of loops, i values, condition fail(last value of i)**
+
+| Case                           | No. of Loops    | Fails When `i ==` | `i` Values (Expected)      |
 | ------------------------------ | --------------- | ----------------- | -------------------------- |
 | `i < n`                        | `n - start`     | `n`               | `start, start+1, ..., n-1` |
 | `for (let i = 3; i < 7; i++)`  | `7 - 3 = 4`     | `7`               | `3, 4, 5, 6`               |
+| `for (var i = 3; i < 7; i++)`  | `7 - 3 = 4`     | `7`               |  `7, 7, 7, 7`              |
 | `i <= n`                       | `n - start + 1` | `n + 1`           | `start, start+1, ..., n`   |
 | `for (let i = 3; i <= 7; i++)` | `7 - 3 + 1 = 5` | `8`               | `3, 4, 5, 6, 7`            |
+| `for (var i = 3; i <= 7; i++)` | `7 - 3 + 1 = 5` | `8`               | `8, 8, 8, 8, 8`            |
 
 ## guess it
 ```JS
