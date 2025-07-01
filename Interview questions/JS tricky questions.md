@@ -22,6 +22,15 @@ ans:[2,1,1]
 7. later y = x => x already has a value 1
 8. x gets reassigned with 2
 
+```JS
+Param Scope:       Function Body Scope:
+x = 1              var x;   (ignored, no new var)
+f = () => x        var y = x;  y = 1
+                   x = 2
+
+f() closure captures param scope x=1
+```
+
 ## guess it duplicate function params
 ```JS
 function sum(a, a, c) { // No error
@@ -36,16 +45,7 @@ function sum(a, a, c) { // SyntaxError: Duplicate parameter name not allowed in 
   return a + a + c;
 }
 ```
-
-```JS
-Param Scope:       Function Body Scope:
-x = 1              var x;   (ignored, no new var)
-f = () => x        var y = x;  y = 1
-                   x = 2
-
-f() closure captures param scope x=1
-```
-Another question
+## Scope - Another question
 ```JS
 function scope(){
     let x = 10;
@@ -81,6 +81,14 @@ for (var i = 0; i < 3; i++) {
   })(i);
 }
 ```
+formula to find no. of loops, i values, condition fail(last value of i)
+| Case                           | No. of Loops    | Fails When `i ==` | `i` Values                 |
+| ------------------------------ | --------------- | ----------------- | -------------------------- |
+| `i < n`                        | `n - start`     | `n`               | `start, start+1, ..., n-1` |
+| `for (let i = 3; i < 7; i++)`  | `7 - 3 = 4`     | `7`               | `3, 4, 5, 6`               |
+| `i <= n`                       | `n - start + 1` | `n + 1`           | `start, start+1, ..., n`   |
+| `for (let i = 3; i <= 7; i++)` | `7 - 3 + 1 = 5` | `8`               | `3, 4, 5, 6, 7`            |
+
 ## guess it
 ```JS
 function implicit(){
