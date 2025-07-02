@@ -238,7 +238,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
    2. Conditional Boolean context
    3. Arthemetic operations: `+` to string for concatination, `- / * %` to Number for mathematical evaluation
 
-### == VS === & Implicit coercion in loose equality
+### 1. == VS === & Implicit coercion in loose equality
 1. **`==` (loose equality)**: compares two values for equality **after type coercion**.
 2. **`===` (strict equality)**: compares both **value and type**, **no type coercion**.
 
@@ -277,7 +277,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
    1. == use this, when you expect implicit coercion to happen but be careful as it's risky
    2. === try to use this as this is safe and predictable
 
-### With Conditionals context:
+### 2. With Conditionals context:
 1. for conditional context like `if, while, ?:, !, &&, ||` JS expects a boolean value, so it coerces to Boolean using Boolean(x) — everything is truthy in JS except 7 falsy values.
 2. What is falsy? Any value that is not true & typeof is not Boolean, but behaves like false in a Boolean context (like if, while, etc.)
 3. FINZ - to remember
@@ -286,7 +286,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
    - N: null & undefined
    - Z: 0, -0, 0n(bigInt)
    
-### With Arthmetic operations
+### 3. With Arthmetic operations
 1. The -, *, / operators trigger numeric coercion.
 2. But + is special: if one of the operand is a string, it performs string concatenation instead.
 
