@@ -260,6 +260,8 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 | `object`   | `boolean`           | `object → string` then `string → number`, then compare | `[] == false` → `[]` → `""` → 0, `false → 0` → ✅ `0 == 0` |
 | `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                |
 
+P.S: Any reference will be usually try to convert to primitive, then normal primitive rules will apply
+
 **Why NaN == anything or even itself is false** ?
 1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
 2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
@@ -270,7 +272,8 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 
 ## With Conditionals context:
 1. for conditional context like `if, while, ?:, !, &&, ||` JS expects a boolean value, so it coerces to Boolean using Boolean(x) — everything is truthy in JS except 7 falsy values.
-2. FINZ
+2. What is falsy? Any value that is not true & typeof is not Boolean, but behaves like false in a Boolean context (like if, while, etc.)
+3. FINZ - to remember
    - F: false
    - I: Invisible("")
    - N: null & undefined
