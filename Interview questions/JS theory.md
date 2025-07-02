@@ -238,7 +238,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
    2. Conditional Boolean context
    3. Arthemetic operations: `+` to string for concatination, `- / * %` to Number for mathematical evaluation
 
-## == VS ===
+### == VS === & Implicit coercion in loose equality
 1. **`==` (loose equality)**: compares two values for equality **after type coercion**.
 2. **`===` (strict equality)**: compares both **value and type**, **no type coercion**.
 
@@ -246,21 +246,28 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 1. With == before comparing, JavaScript tries to convert operands((one or both sometimes) to the same type,
 2. There are specific rule defined - **Abstract Equality Comparison rules** in JS
 3. These rules are designed to address common user intensions like string to number when user provides 5 in input box, but sometimes the output can be a bit strange
+   1. `null` is loosely is equal to `undefined`
+   2. `null` is always not equal to anything
+   3. `undefined` is always not equal to anything
+   4. `NaN` is always not equal to anything, not even itself
+   5. `Boolean` always gets coverted to `Number`
+   6. `String` coverts to `Number`, if other operand is `Number`
+   7. Any referece type will first coverts to primitive(usually to string using `.toString()`) then above primitive rules wil apply
+
+**Detailed table with examples for rule explanation**
 
 | A           | B                  | Rule - Coercion Behavior & Flow                                                    | Example Result                                            |
 | ----------- | ------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------- |
 | `null`      | `undefined`        | No coercion; special hardcoded rule                                                   | `null == undefined` → ✅ true                              |
 | `null`      | anything else      | No coercion                                                                 | `null == 0` → ❌ false                                     |
 | `undefined` | anything else      | No coercion                                                                 | `undefined == false` → ❌ false                            |
+| `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                |
 | `boolean`   | anything else      | `boolean → number` then compare                         | `false == "0"` → "0" → 0, false → 0 → ✅ `0 == 0`          |
 | `string`    | `number`           | `string → number`, then compare                                             | `"42" == 42` → `42 == 42` → ✅ true                        |
 | `string`    | `boolean`          | `boolean → number`, `string → number`, then compare                         | `"1" == true` → "1" → 1, true → 1 → ✅ `1 == 1`            |
 | `object`    | `string`           | `object → primitive (toString)`, then string compared                       | `[5] == "5"` → `[5]` → `"5"` → ✅ `"5" == "5"`             |
 | `object`    | `number`           | `object → string`, then `string → number`, then compare                     | `[1] == 1` → `[1]` → `"1"` → 1 → ✅ `1 == 1`               |
 | `object`   | `boolean`           | `object → string` then `string → number`, then compare | `[] == false` → `[]` → `""` → 0, `false → 0` → ✅ `0 == 0` |
-| `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                |
-
-P.S: Any reference will be usually try to convert to primitive, then normal primitive rules will apply
 
 **Why NaN == anything or even itself is false** ?
 1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
@@ -270,7 +277,7 @@ P.S: Any reference will be usually try to convert to primitive, then normal prim
    1. == use this, when you expect implicit coercion to happen but be careful as it's risky
    2. === try to use this as this is safe and predictable
 
-## With Conditionals context:
+### With Conditionals context:
 1. for conditional context like `if, while, ?:, !, &&, ||` JS expects a boolean value, so it coerces to Boolean using Boolean(x) — everything is truthy in JS except 7 falsy values.
 2. What is falsy? Any value that is not true & typeof is not Boolean, but behaves like false in a Boolean context (like if, while, etc.)
 3. FINZ - to remember
@@ -279,7 +286,7 @@ P.S: Any reference will be usually try to convert to primitive, then normal prim
    - N: null & undefined
    - Z: 0, -0, 0n(bigInt)
    
-## With Arthmetic operations
+### With Arthmetic operations
 1. The -, *, / operators trigger numeric coercion.
 2. But + is special: if one of the operand is a string, it performs string concatenation instead.
 
