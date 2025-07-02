@@ -60,20 +60,20 @@ scope();
 
 error bcz var is not block scoped & there is no function, so it will become global variable. but let can't be redeclared, so throws an err saying **syntax err: Identifier 'x' has already been declared**
 
-## print 1 to 5 numbers with 1 sec delay
+## guess the o/p or print 1 to 5 numbers with 1 sec delay
 ```javascript
-for(let x = 1; x < 6; x++){ 
+for(var x = 1; x < 6; x++){ 
     setTimeout(()=>{
         console.log(x)
     }, 1000)
 }
 ```
+o/p: 6 6 6 6 6
+explanation: 
+1. for (var i = 0; i < 3; i++): var has function scope (or global scope if not inside a function). The variable i is declared once for the entire loop. By the time the setTimeout callbacks (which are asynchronous) actually run (after the loop has finished), i has already been incremented to its final value of 3. All three callbacks refer to this same, single i variable and thus log 3.
+2. for (let j = 0; j < 3; j++): let has block scope. In each iteration of the for loop, a new j variable is created. The setTimeout callback inside each iteration "closes over" and captures the value of j for that specific iteration. This is why you see 0, 1, 2.
 
-explanation: if give var i for loop (```for(var x = 1; x < 6; x++)```) here then var is function scoped & all itercations share same reference to x. by the time all setTimeout async function run, variable x will be come 6 hence 6 will be printed for 5 times
-
-if we use let, let is block scoped, for each iteraction a reference is passed to the callback
-
-before ES6 developers used **IIFE**(Immediately Invoked Function Expression) to form a closure for each iteraction
+**before ES6 developers used **IIFE**(Immediately Invoked Function Expression) to form a closure for each iteraction**
 ```JS
 for (var i = 0; i < 3; i++) {
   (function(j) {
