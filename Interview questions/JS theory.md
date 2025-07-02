@@ -231,8 +231,8 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 5. Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
 
 ## Implicit coercion:
-1. Implicit coercion is when JavaScript automatically converts a value from one data type to **Number or String or Boolean**.
-2. without you writing any explicit conversion code like Number(), String(), or Boolean().
+1. Implicit coercion is when JavaScript automatically converts a value from one data type to another data type
+2. Technically it will get coverted to **Number or String or Boolean** without you writing any explicit conversion code like `Number(), String(), or Boolean()`.
 3. This usually happens when JS expects a value of a different type in a given context like below cases
    1. Loose Comparision: In comparison (==, !=), JS coerces both values (using rules) until they’re of the same type — usually Number, String, or Boolean.
    2. Conditional Boolean context
