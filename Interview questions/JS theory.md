@@ -225,10 +225,18 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 
 **where can we see implicit undefined**
 1. Variable declared, not assigned(hoisting)	`let x; console.log(x); // undefined`
-2. * Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
-3. * Object property doesn’t exist	`const user = {}; console.log(user.age); // undefined`
-4. * No return in function	`const doNothing = () => {}; console.log(doNothing()); // undefined`
-5. * Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
+2. Function parameter not provided	`function greet(name) { console.log(name); } greet(); // undefined`
+3. Object property doesn’t exist	`const user = {}; console.log(user.age); // undefined`
+4. No return in function	`const doNothing = () => {}; console.log(doNothing()); // undefined`
+5. Empty slot in array `const arr = [1, , 3]; console.log(arr[1]); // undefined`
+
+## Implicit coercion:
+1. Implicit coercion is when JavaScript automatically converts a value from one data type to **Number or String or Boolean**.
+2. without you writing any explicit conversion code like Number(), String(), or Boolean().
+3. This usually happens when JS expects a value of a different type in a given context like below cases
+   1. Loose Comparision: In comparison (==, !=), JS coerces both values (using rules) until they’re of the same type — usually Number, String, or Boolean.
+   2. Conditional Boolean context
+   3. Arthemetic operations: `+` to string for concatination, `- / * %` to Number for mathematical evaluation
 
 ## == VS ===
 1. **`==` (loose equality)**: compares two values for equality **after type coercion**.
@@ -236,8 +244,8 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 
 **Implicit coercion in loose equality**
 1. With == before comparing, JavaScript tries to convert operands((one or both sometimes) to the same type,
-2. JS understands user intensions & does coercion, but sometimes the output can be a bit strange
-3. There are specific rule defined - Abstract Equality Comparison rules in JS
+2. There are specific rule defined - **Abstract Equality Comparison rules** in JS
+3. These rules are designed to address common user intensions like string to number when user provides 5 in input box, but sometimes the output can be a bit strange
 
 | A           | B                  | Rule - Coercion Behavior & Flow                                                    | Example Result                                            |
 | ----------- | ------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------- |
@@ -252,18 +260,25 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 | `object`   | `boolean`           | `object → string` then `string → number`, then compare | `[] == false` → `[]` → `""` → 0, `false → 0` → ✅ `0 == 0` |
 | `NaN`       | anything           | Always false; `NaN` never equals anything, including itself                 | `NaN == NaN` → ❌ false                |
 
-   **Why NaN == anything or even itself is false** ?
-   1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
-   2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
+**Why NaN == anything or even itself is false** ?
+1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
+2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
 
-3. JavaScript tries hard to make things "work", but sometimes it guesses wrong & output seems wierd. So:
+**Suggestion/recommended way to code:**
    1. == use this, when you expect implicit coercion to happen but be careful as it's risky
    2. === try to use this as this is safe and predictable
 
-## Implicit coercion with arthmetic operations
-1. JavaScript is dynamically typed and tries to be helpful by converting types where it can.
-2. The -, *, / operators trigger numeric coercion.
-3. But + is special: if either operand is a string, it performs string concatenation instead.
+## With Conditionals context:
+1. for conditional context like `if, while, ?:, !, &&, ||` JS expects a boolean value, so it coerces to Boolean using Boolean(x) — everything is truthy in JS except 7 falsy values.
+2. FINZ
+   - F: false
+   - I: Invisible("")
+   - N: null & undefined
+   - Z: 0, -0, 0n(bigInt)
+   
+## With Arthmetic operations
+1. The -, *, / operators trigger numeric coercion.
+2. But + is special: if one of the operand is a string, it performs string concatenation instead.
 
 <img width="657" alt="Screenshot 2025-06-28 at 12 00 32 PM" src="https://github.com/user-attachments/assets/ee5fc88f-2d10-4ced-afb4-30a48ca4c8db" />
 
