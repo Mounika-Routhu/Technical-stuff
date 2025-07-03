@@ -882,7 +882,13 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 | **Cross-Platform** | Write mobile apps using **React Native** — same code style. | Vue Native exists but not widely used. | Uses **Ionic** (separate library, bulkier setup). |
 
 ## Error Boundary:
-Currently, error boundaries must be class components. React might support functional boundaries with hooks like useErrorBoundary in the future (experimental).
+1. Error Boundary is wrapper component, which handles JavaScript runtime errors during rendering and in lifecycle methods of child components.(like, undefined.foo in render)
+2. They don't catch async errors - use try...catch
+    - Syntax/compile-time error
+    - Errors in event handlers
+    - Asynchronous errors (e.g., setTimeout, fetch)
+    - Errors outside React tree (like service workers)
+3. Currently, error boundaries must be class components. React might support functional boundaries with hooks like useErrorBoundary in the future (experimental).
 
 ```JS
 import React from 'react';
@@ -927,8 +933,3 @@ function App() {
   );
 }
 ```
-1. It has some limitations:cant catch below
-   - Errors in event handlers
-   - Asynchronous errors (e.g., setTimeout, fetch)
-   - Errors outside React tree (like service workers)
-2. For async or event errors, use try...catch
