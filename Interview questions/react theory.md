@@ -330,6 +330,7 @@ Note: if dependency array not provided, component will render everytime prop or 
 4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
 5. So, even if component unmounts, window still holds a reference to that obj, hence, can't be garbage collected & leads to memory leak.
 6. **We can also handle this in finally in both try..catch..finally or then()...catch()...finally**
+7. **Advanced: Technically speacking, GC cleans heap objects (non-primitive things). Primitives are removed automatically and immediately as soon as EC for functions & GEC for entire code is removed from call stack after execution**
 
 ## useRef
 1. useRef is a react hook which return a mutable object: {current: initialValue}
