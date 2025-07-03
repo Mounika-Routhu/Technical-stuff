@@ -1997,6 +1997,7 @@ try {
 ## Destructuring:(ES6)
 1. Extracts values from objects or arrays into variables.
 2. Syntax shortcut for accessing multiple properties in one go.
+3. commonly seen in accessing react component propps
 ```
 const user = {
    name: "Mounika",
@@ -2023,7 +2024,7 @@ console.log(first, second) // 1 2
    const [first, ...rest] = [1, 2, 3]; // rest = [2, 3]
    const { a, ...restObj } = { a: 1, b: 2, c: 3 }; // restObj = { b: 2, c: 3 }
 
-   func(...args) // captures all arguments in funtion declaration
+   func(...args) // captures all arguments in funtion declaration, later access as an aray
    ```
 
 ## spread operator(...)(ES6)
