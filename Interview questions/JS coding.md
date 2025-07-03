@@ -17,7 +17,10 @@ const formatDate = (str) => {
 
 console.log(formatDate('2025-06-01T10:00:00'));
 ```
-
+Note: 
+1. new Date("abc") instanceof Date // true
+2. string, null, undefined, NaN => still instance of Date but gives isNaN //false
+   
 ## generate lorem ipsum
 notes: 
 1. ASCII -> A-Z(65-90), a-z(97-122) 
