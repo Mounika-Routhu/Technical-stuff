@@ -1956,6 +1956,7 @@ console.log(add(2, 3));
    2. Tree Shaking (Dead Code Removal): Removes unused exports & imports to reduce final bundle size
    3. Top-Level await: we can use await outside async function.
       -  Prerequisites:
+        
       | Environment | What You Need                              |
       | ----------- | ------------------------------------------ |
       | Node.js     | Node v14.8+ + `"type": "module"` in package.json or `.mjs` extension to JS file |
