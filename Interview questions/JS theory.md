@@ -1939,3 +1939,21 @@ document.getElementById('list').addEventListener('click', (e) => {
 | Prototype Inheritance        | Has prototype chain (`__proto__`)                            | No prototype (clean by default)                                 |
 | Use Case                     | Static structures, JSON-like data                            | Dynamic key-value store, frequent key changes                   |
 
+## ESM
+1. ESM = ECMAScript Modules, introduced in ES6 (2015)
+2. Enables modular code, breaks code into reusable files.
+3. Can be used by `import` & `export`
+```JS
+// utils.js
+export function add(a, b) { return a + b; }
+
+// main.js
+import { add } from './utils.js';
+console.log(add(2, 3));
+```
+4. uses:
+   1. modular code
+   2. Tree Shaking (Dead Code Removal)
+      - Removes unused exports & imports to reduce final bundle size
+   3. Top-Level await: we can use await outside async function
+   - <img width="598" alt="Screenshot 2025-07-04 at 12 03 37 AM" src="https://github.com/user-attachments/assets/9e3a79de-4ee3-4900-aee4-ff61c685f971" />
