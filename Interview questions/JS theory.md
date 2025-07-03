@@ -294,7 +294,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 
 ## var, let, const
 1. In JavaScript, var, let, and const are used to declare variables, but they have some differences in terms of scope and mutability:
-2. var: It is the oldest way to declare a variable in JavaScript. var is function scoped, meaning that it can be accessed from anywhere within the function it is declared in. However, var does not have block scope, which means that it can also be accessed outside the block it was declared in. They are scoped to nearest function if available. var can be **re-declared(only using another var)** and re-assigned. Can be initilized later
+2. var: It is the oldest way to declare a variable in JavaScript. var is function scoped, meaning that it can be accessed from anywhere within the function it is declared in. However, var does not have block scope, which means that it can also be accessed outside the block it was declared in. They are scoped to nearest function if available. var can be **re-declared(only using another var)** and re-assigned. Can be initilized later. Also when created in global scope, it is get added to **global obj**.
 3. let intro in ES6 but it is block-scoped. It can only be accessed within the block it was declared in, including nested blocks. let variables can be reassigned, but not redeclared. Can be initilized later
 4. const intro in ES6 It is also block-scoped and cannot be reassigned or redeclared. However, if the constant is an object or an array, its properties can still be modified. Should be initilized while declaration.
 5. let & const can be function scoped, not technically, function's body is a block, if let & const are declared inside a function, they are scoped to nearest block which is function's body, hence they seem like they are function scoped.
@@ -454,12 +454,14 @@ console.log(message); // "Hello from global"
 ```
 
 ## Implicit global
-1. Implicit global is created when you assign a value to an undeclared identifier(without using var, let, or const) inside a function or block or globally.
-2. JavaScript automatically creates a global variable on the global object (window in browsers).
+1. Implicit global is created when you assign a value to an undeclared identifier(without using var, let, or const) anywhere in the code(inside a function or block or globally).
+2. So JavaScript treats x as a property of the global object at runtime (not compile time)
+3. It’s created only when that line is executed, so there's no hoisting
 
 ```JS
 function implicit(){
     {
+        console.log(x) // reference error // no hoisting for implicit
         x = 10;
         console.log(x) // 10
     }
@@ -505,6 +507,10 @@ function implicit(){
 implicit()
 console.log(x);
 ```
+
+## what can be added to global obj?
+1. var variables declared in global scope
+2. implicit variables in non-strict mode
 
 ## GEC - Global execution context
 1. In JavaScript, the Global Execution Context is the default environment where code is evaluated and executed.
