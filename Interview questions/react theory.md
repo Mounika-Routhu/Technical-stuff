@@ -310,8 +310,9 @@ Note: if dependency array not provided, component will render everytime prop or 
 ## what is memory leak, garbage collection, why is it neccessary to cleanup?
 1. A memory leak is unreleased memory that is no longer in use. This means RAM already reserved some memory but not released, even though it's not being used anywhere. Over time, this unused memory accumulates, which can slow down or crash your app.
 2. Garbage collection (GC) is an automatic process in JavaScript (and many other languages) that:
-  - Detects objects that are no longer accessible by checking if any reference are still available or not(e.g., variables, DOM nodes, functions).
-  - and Frees up memory used by those objects.
+  - removes objects from memory when they are no longer reachable and Frees up memory used by those objects.
+  - "Reachable" means: there is some reference to the object from the current call stack, closure, or global scope.
+
     ```JS
     function createUser() {
       let user = {
@@ -321,10 +322,9 @@ Note: if dependency array not provided, component will render everytime prop or 
       console.log(user.name); // 'Alice'
     
       // After this line, `user` is no longer needed
-      user = null; // manually remove the reference
     }
     ```
-    - When we set user = null, there are no more references to that object.
+    - there are no more references to that object once the function execution is completed.
     - The garbage collector will clean it up automatically in the background.
 3. But, GC only works if there are no references to the object.
 4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
