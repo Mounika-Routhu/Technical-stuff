@@ -160,7 +160,8 @@ The position property in CSS determines how an element is placed in the document
 
 ## when to use pointer-events:none
 1. let's say I have to do list & del icon inside it
-2. when user clicks on del icon I don't want to receive del event instead I want to receive li item so we can this to mute icon(visibly disabled)
+2. and I gave a event handler on ul element using event delegation
+3. when user clicks on del icon I don't want to receive del event instead I want to receive li item so we can this to mute icon(visibly disabled)
 
 
 
