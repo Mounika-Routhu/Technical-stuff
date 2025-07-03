@@ -272,6 +272,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
 **Why NaN == anything or even itself is false** ?
 1. `NaN` means "invalid number", `NaN` can result from `0/0` or `"hello" * 5`.
 2. Are two `NaN`s the same? We can't say. Think of `NaN` as an “unknown value. Two unknowns can't be confirmed as equal.
+3. All comparision with NaN are always false
 
 **Suggestion/recommended way to code:**
    1. == use this, when you expect implicit coercion to happen but be careful as it's risky
@@ -287,7 +288,7 @@ BEST PRACTISE : avoid using undefined manually, so we can identify system implic
    - Z: 0, -0, 0n(bigInt)
    
 ### 3. With Arthmetic operations
-1. The -, *, / operators trigger numeric coercion.
+1. The -, *, /, %, <, > operators trigger numeric coercion.
 2. But + is special: if one of the operand is a string, it performs string concatenation instead.
 
 <img width="657" alt="Screenshot 2025-06-28 at 12 00 32 PM" src="https://github.com/user-attachments/assets/ee5fc88f-2d10-4ced-afb4-30a48ca4c8db" />
