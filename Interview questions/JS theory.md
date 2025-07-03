@@ -2045,3 +2045,28 @@ console.log(first, second) // 1 2
    ```JS
    const max = Math.max(...arr2); // expands to Math.max(1, 2, 3, 4)
    ```
+## Template Literals
+Template literals are string literals uses back tick(``) instead of quotes(""/'') that allow: 
+   - Multiline strings
+   - String interpolation
+   - Embedding expressions
+     
+| Feature               | Example                              | Notes                           |
+| --------------------- | ------------------------------------ | ------------------------------- |
+| **Interpolation**     | \`\${name}\` → `Hello, Mounika`      | Insert variables or expressions |
+| **Multiline support** | \`Line1\nLine2\` → keeps line breaks | No need for `\n` or `+`         |
+| **Expressions**       | \`\${1 + 2}\` → `3`                  | Can include any JS expression   |
+| **Function calls**    | \`\${getName()}\`                    | Call functions inside `${}`     |
+
+
+## Arrow Functions(ES6)
+1. simple syntax () => {return x;}
+2. omit params for args if single
+3. omit {} & return keyword if single return statement
+4. No binding of this needed as it doesn't have it's own this always gets it from lexical scope(where it's defined)
+   
+## Generators(ES6)
+1. Function*
+2. pause by yield
+3. resume by next
+4. Redux saga used these for implementing pausable async code handling
