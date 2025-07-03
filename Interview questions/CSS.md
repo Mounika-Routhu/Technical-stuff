@@ -158,5 +158,9 @@ The position property in CSS determines how an element is placed in the document
 2. position: relative, position aboslute -> left: 50%, top: 50%, transform: translate(-50%, -50%)
 3. flex is easy
 
+## when to use pointer-events:none
+1. let's say I have to do list & del icon inside it
+2. when user clicks on del icon I don't want to receive del event instead I want to receive li item so we can this to mute icon(visibly disabled)
+
 
 
