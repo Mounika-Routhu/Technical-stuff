@@ -1994,7 +1994,7 @@ try {
 ## Garbage collection:
 1. explanined for umount case in react.md
 
-## Destructuring:
+## Destructuring:(ES6)
 1. Extracts values from objects or arrays into variables.
 2. Syntax shortcut for accessing multiple properties in one go.
 ```
@@ -2013,14 +2013,32 @@ console.log(first, second) // 1 2
    const { name: userName } = user;  // Now use `userName` instead of `name`
    console.log(userName) // "Mounika"
    ```
-4. destructing with **default params**: Provides a fallback value if no value or undefined is passed.
+4. destructing with **default params**:(ES6)Provides a fallback value if no value or undefined is passed.
    ```JS
    const { name, age, role="guest" } = user;
    console.log(role)// guest
    ```
-5. destructing with **rest parameter**: Gathers remaining items into an array or object.
+5. destructing with **rest parameter**:(ES6) Gathers remaining items into an array or object or in function declaration.
    ```JS
    const [first, ...rest] = [1, 2, 3]; // rest = [2, 3]
    const { a, ...restObj } = { a: 1, b: 2, c: 3 }; // restObj = { b: 2, c: 3 }
+
+   func(...args) // captures all arguments in funtion declaration
    ```
 
+## spread operator(...)(ES6)
+1. The spread operator ... is used to expand arrays or objects into individual elements or properties.
+2. It is an ES6 feature
+3. uses:
+   1. Shallow copies or merges arrays/objs
+   ```JS
+   const arr1 = [1, 2];
+   const arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]
+
+   const obj1 = { a: 1, b: 2 };
+   const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
+   ```
+   2. Expands elements into function arguments in function invocation
+   ```JS
+   const max = Math.max(...arr2); // expands to Math.max(1, 2, 3, 4)
+   ```
