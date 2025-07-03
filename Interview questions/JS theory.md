@@ -1603,7 +1603,8 @@ console.log(objCopy);
    3. **`Promise.all(iterable)`** — waits for **all promises** to resolve & returns an array of resolved values.; if any promise rejects, it rejects immediately with that reason
    4. **`Promise.allSettled(iterable)`** — waits for **all promises to settle** (resolve or reject) and returns an array of their outcome.  
    5. **`Promise.race(iterable)`** — waits for **the first promise to settle** (resolve or reject) and returns that promise’s outcome.  
-   6. **`Promise.any(iterable)`** — waits for **the first promise to resolve** and returns its value; if all promises reject, it rejects with an **AggregateError**(catch block if exists).  
+   6. **`Promise.any(iterable)`** — waits for **the first promise to resolve** and returns its value; if all promises reject, it rejects with an **AggregateError**(catch block if exists).
+   7. **Aggregate means to collect or group things together**
 
 **NOTE: STOP & READ** If two (or more) promises settle at exactly the same time (e.g., both resolve or reject after 2 seconds), Promise.race will settle with whichever promise’s resolution or rejection the JavaScript engine processes first — practically, that means:
 1. It picks the result of the promise that the event loop happens to handle first.
