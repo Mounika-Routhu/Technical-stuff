@@ -2046,7 +2046,7 @@ console.log(first, second) // 1 2
    const max = Math.max(...arr2); // expands to Math.max(1, 2, 3, 4)
    ```
 ## Template Literals(ES6)
-Template literals are string literals uses back tick(``) instead of quotes(""/'') that allow: 
+Template literals are string literals uses back tick(``) & `${}` to include expressioninstead of quotes(""/'') that allow: 
    - Multiline strings
    - String interpolation
    - Embedding expressions
