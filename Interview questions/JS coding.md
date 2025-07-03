@@ -17,6 +17,8 @@ const formatDate = (str) => {
 
 console.log(formatDate('2025-06-01T10:00:00'));
 ```
+<img width="342" alt="Screenshot 2025-07-04 at 1 44 25 AM" src="https://github.com/user-attachments/assets/0faab711-df37-4014-ba0e-864ef139cbee" />
+
 Note: 
 1. new Date("abc") instanceof Date // true
 2. string, null, undefined, NaN => still instance of Date but gives isNaN //false
