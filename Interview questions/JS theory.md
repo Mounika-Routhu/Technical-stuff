@@ -595,6 +595,11 @@ let saySeeYa = () => {
 9. If a microtask (like a `.then()` handler) queues another microtask, it runs the new microtask after the current one, before moving on to any macrotasks.
 10. This prioritization can delay macrotasks for a long time if microtasks keep chaining — this situation is known as **macrotask starvation**.
 11. Through this system — call stack, Web APIs, task queues, and the event loop — JavaScript can handle asynchronous operations without blocking synchronous code.
+12. Detailed Flow of the Event Loop (Each Tick)
+   1. Run all synchronous code
+   2. Run all microtasks (until the microtask queue is empty)
+   3. **Pick and run 1 macrotask**(so, if we have 2 setTimeouts -> 2nd setTimeout will run in second event tick)
+   4. Go back to step 1 for the next tick
 
 ## How functions are objects in JS
 1. Every function in JavaScript is an object created by the Function constructor, and inherits from `Function.prototype`, which provides methods like `call, apply, and bind`
