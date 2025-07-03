@@ -2054,7 +2054,7 @@ Template literals are string literals uses back tick(``) instead of quotes(""/''
 | Feature               | Example                              | Notes                           |
 | --------------------- | ------------------------------------ | ------------------------------- |
 | **Interpolation**     | \`\${name}\` → `Hello, Mounika`      | Insert variables or expressions |
-| **Multiline support** | \`Line1\nLine2\` → keeps line breaks | No need for `\n` or `+`         |
+| **Multiline support** | \`Line1<br>Line2\` → keeps line breaks | No need for `\n` or `+`         |
 | **Expressions**       | \`\${1 + 2}\` → `3`                  | Can include any JS expression   |
 | **Function calls**    | \`\${getName()}\`                    | Call functions inside `${}`     |
 
