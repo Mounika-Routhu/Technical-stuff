@@ -2009,6 +2009,10 @@ const [first, second] = arr; // Array
 console.log(first, second) // 1 2
 ```
 3. alias name can be give to obj keys `originalKey:aliasKey`, if we intend to refer a obj key value with diff name.
+   ```JS
+   const { name: userName } = user;  // Now use `userName` instead of `name`
+   console.log(userName) // "Mounika"
+   ```
 4. destructing with **default params**: Provides a fallback value if no value or undefined is passed.
    ```JS
    const { name, age, role="guest" } = user;
