@@ -1279,6 +1279,8 @@ console.log(Employee.length); // 1 → because constructor takes one parameter
 2. It lets developers use modern JS features while maintaining backward compatibility.
 3. Example: Older browsers may not support `Array.prototype.includes.` A polyfill would add it if it doesn't exist.
 4. How to implement: You use feature detection: check if a method exists, and if not, define it.
+
+**NOTE: Always use regular function to retain this**
    
 For methods that instances use → polyfill goes on .prototype.
 ```JS
