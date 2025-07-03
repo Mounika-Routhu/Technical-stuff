@@ -1963,6 +1963,60 @@ console.log(add(2, 3));
       | Browser     | `<script type="module">` in HTML           |
       | CommonJS    | ❌ Not supported                            |
 
+## custom errors
+1. Custom errors are user-defined error types that extend the built-in Error class to group domain specific errors(`ValidationError, AuthError, etc.`)
+2. Used for meaningful logging, batter error handling based on `instance of` error & these are resusable
+```JS
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);            // Call parent constructor
+    this.name = 'ValidationError'; // Optional: custom error name
+  }
+}
+
+throw new ValidationError("Invalid input!");
+```
+
+```JS
+try {
+  throw new AuthError("User not logged in");
+} catch (err) {
+  if (err instanceof AuthError) {
+    // handle all auth-related errors here
+  } else if (err instanceof ValidationError) {
+    // handle all input/data validation errors here
+  } else {
+    // fallback for unexpected errors
+    throw err;
+  }
+}
+```
 ## Garbage collection:
-1. explanined in umount in react.md
-2. 
+1. explanined for umount case in react.md
+
+## Destructuring:
+1. Extracts values from objects or arrays into variables.
+2. Syntax shortcut for accessing multiple properties in one go.
+```
+const user = {
+   name: "Mounika",
+   age: null
+};
+const { name, age } = user;  // Object
+console.log(name, age) // "Mounika" null
+const arr = [1,2]
+const [first, second] = arr; // Array
+console.log(first, second) // 1 2
+```
+3. alias name can be give to obj keys `originalKey:aliasKey`, if we intend to refer a obj key value with diff name.
+4. destructing with **default params**: Provides a fallback value if no value or undefined is passed.
+   ```JS
+   const { name, age, role="guest" } = user;
+   console.log(role)// guest
+   ```
+5. destructing with **rest parameter**: Gathers remaining items into an array or object.
+   ```JS
+   const [first, ...rest] = [1, 2, 3]; // rest = [2, 3]
+   const { a, ...restObj } = { a: 1, b: 2, c: 3 }; // restObj = { b: 2, c: 3 }
+   ```
+
