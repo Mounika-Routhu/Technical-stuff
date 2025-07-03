@@ -83,7 +83,7 @@ For example:
 ## Data Types in JavaScript
 JavaScript has two main categories of data types:
 1. Primitive Types - to store simple values
-   1. Stored directly by value
+   1. Stored directly by value in stack memory
    2. Immutable: their value cannot be changed once created(Any modification creates a new value instead of altering the original.)
       ```JS
       let str = "hello";
@@ -92,6 +92,7 @@ JavaScript has two main categories of data types:
       ```
    3. No methods or properties (but JS temporarily “boxes” them to allow method calls)
    4. Compared by value (==)
+   5. No explicit GC neede automatically & immediately removed after GEC/EC removed from call stack
 
 
 | Type                   | Description              | Example                      | `typeof` Result |
@@ -105,7 +106,7 @@ JavaScript has two main categories of data types:
 | **BigInt**             | Arbitrary large integers | `12345678901234567890n`      | `"bigint"`      |
 
 2. Non-Primitive Types/reference values (Objects) - to store complex data
-   1. Stored by reference (variable holds a pointer to the data)
+   1. Stored by reference (variable holds a pointer to the data) in Heap memory, referece is stored in stack
    2. Mutable: properties and contents can be changed
       ```JS
       let arr = [1, 2, 3];
@@ -114,6 +115,7 @@ JavaScript has two main categories of data types:
       ```
    4. Have methods and properties
    5. Compared by reference(===)(two distinct objects with same content are different)
+   6. GC needed to removed these values
   
 | Type                   | Description              | Example                      | `typeof` Result |
 | ---------------------- | ------------------------ | ---------------------------- | --------------- |
