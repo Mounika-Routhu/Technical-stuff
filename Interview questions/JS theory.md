@@ -2051,6 +2051,7 @@ console.log(first, second) // 1 2
    - String interpolation
    - Embedding expressions
 2. Syntax: uses back tick(``) & `${}` to include expression instead of quotes(""/'')
+3. A string literal is a value that's literally written as a string in your code — using quotes. same goes for obj literal({})
      
 | Feature               | Example                              | Notes                           |
 | --------------------- | ------------------------------------ | ------------------------------- |
