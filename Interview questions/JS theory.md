@@ -1953,7 +1953,12 @@ console.log(add(2, 3));
 ```
 4. uses:
    1. modular code
-   2. Tree Shaking (Dead Code Removal)
-      - Removes unused exports & imports to reduce final bundle size
-   3. Top-Level await: we can use await outside async function
-   - <img width="598" alt="Screenshot 2025-07-04 at 12 03 37 AM" src="https://github.com/user-attachments/assets/9e3a79de-4ee3-4900-aee4-ff61c685f971" />
+   2. Tree Shaking (Dead Code Removal): Removes unused exports & imports to reduce final bundle size
+   3. Top-Level await: we can use await outside async function.
+      
+   | Environment | What You Need                              |
+   | ----------- | ------------------------------------------ |
+   | Node.js     | Node v14.8+ + `"type": "module"` in package.json or `.mjs` extension to JS file |
+   | Browser     | `<script type="module">` in HTML           |
+   | CommonJS    | ❌ Not supported                            |
+
