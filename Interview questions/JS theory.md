@@ -1526,7 +1526,7 @@ console.log(objCopy);
 4. Now that we created a promise, we have to consume it using then & catch block(takes callbacks).
    1. .then() gets called if the promise resolves.
    2. .catch() gets called if the promise rejects.
-   3. .finally() runs regardless of success or failure.
+   3. .finally() runs regardless of success or failure - used for cleanup(garbage collection).
       
 ```JS
    promise
@@ -1963,3 +1963,6 @@ console.log(add(2, 3));
       | Browser     | `<script type="module">` in HTML           |
       | CommonJS    | ❌ Not supported                            |
 
+## Garbage collection:
+1. explanined in umount in react.md
+2. 
