@@ -1931,6 +1931,23 @@ document.getElementById('list').addEventListener('click', (e) => {
 | **Map**       | Key-value pairs (any key types)    | Any (including objects) | ✅ Yes               | ❌ No (keys)     | Keys can be anything; better than Object for dynamic or object keys  |
 | **Set**       | Unique list of values              | No keys — values only   | ✅ Yes               | ❌ No (values)   | Automatically removes duplicates; good for fast lookup or uniqueness |
 
+**Note:**
+1. Object keys usually retain insertion order, but numeric keys are sorted before alphabatical. Also in browsers even if we sort it by value we might get it sorted by keys alphabatically, then we use Map.
+2.Practical usage of Map to store metadata like eventHandlers metadata, cache
+
+## weak set/weak map vs set/array
+
+**why the name: it hold weak reference to it's keys/values -> can be GC if no reference**
+
+| Feature                    | `Map` / `Set`                          | `WeakMap` / `WeakSet`                    |
+| -------------------------- | -------------------------------------- | ---------------------------------------- |
+| 🔑 Key/value types allowed | Any type (string, number, object, etc) | ❗ Only **objects/functions**             |
+| ♻️ Garbage collected?      | ❌ **No** — holds strong reference      | ✅ **Yes** — auto removed if unreferenced |
+| 🔄 Can you loop/iterate?   | ✅ Yes (with `for...of`, `.forEach()`)  | ❌ No — not iterable                      |
+| 📏 Check size (`.size`)    | ✅ Yes                                  | ❌ No — not supported                     |
+| 🔍 Use case                | General data storage                   | Temporary tracking of objects            |
+| 🧠 Memory friendly?        | ❌ Can cause memory leaks               | ✅ Frees memory automatically             |
+
 ## ESM
 1. ESM = ECMAScript Modules, introduced in ES6 (2015)
 2. Enables modular code, breaks code into reusable files.
