@@ -162,6 +162,37 @@ The position property in CSS determines how an element is placed in the document
 1. let's say I have to do list & del icon inside it
 2. and I gave a event handler on ul element using event delegation
 3. when user clicks on del icon I don't want to receive del event instead I want to receive li item so we can this to mute icon(visibly disabled)
+4. 
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  padding: 0;
+  list-style: none;
+  outline: 1px solid black;
+}
+
+.container span span {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  border: 1px solid black;
+  display: block;
+}
+
+.container span:nth-child(odd) span:nth-child(odd) {
+  background: lightcoral;
+}
+
+.container span:nth-child(even) span:nth-child(even) {
+  background: lightcoral;
+}
+
 
 
 
