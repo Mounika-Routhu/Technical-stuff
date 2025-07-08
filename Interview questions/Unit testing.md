@@ -1,6 +1,27 @@
 ## Unit Testing:
-Unit testing in React means testing individual components or logic (like a form, button, or utility function) in isolation, to ensure they behave correctly.
+Unit testing in JavaScript involves writing test cases to verify the behavior of individual units of code—typically functions. In my work, I used **Jest**, a popular testing framework developed by Meta. Jest serves as both a **test runner** and an **assertion library**, making it easy to write and organize tests.
 
+To implement unit tests in Jest, we use the `test` (or `it`) function. This function takes two arguments:
+1. A **string** that describes what the test is supposed to verify.
+2. A **callback function** that contains the actual test logic.
+
+Inside the callback, we:
+1. **Invoke** the function under test using specific input values.
+2. **Assert** that the returned output matches the expected result using Jest's `expect()` API.
+
+For example:
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+test('adds two numbers correctly', () => {
+  const result = add(2, 3);
+  expect(result).toBe(5); // Assertion
+});
+
+## Unit Tetsing with React
 ### Tools Used: (default installed with Create React App(CRP))
 1. **Jest** → Test runner and assertion library 
 2. **React Testing Library (RTL)** → To render and test components like a user would
