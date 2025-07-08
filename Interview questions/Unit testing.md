@@ -53,7 +53,7 @@ test('displays greeting message', () => {
 
 **Key concepts**:
 1. getBy -> throws error if element not available in screen
-2. queryby -> doesn't throw error if not available in screen
+2. queryby -> doesn't throw error if not available in screen - better for optional content
 3. findBy -> throws error if element not available in screen & for asycn(promise) operations
 4. fireEvent.methods -> to trigger user event like click, focus, blur etc
 5. unit test coverage -> Unit test coverage refers to how much of your code is tested by unit tests — usually shown as a percentage.
