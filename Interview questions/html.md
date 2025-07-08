@@ -1,6 +1,12 @@
 ## HTML : HyperText Markup Language
 is a **language** used to structure and display text and other media on the web, where text can be linked to other content(**hypertext** i.e hyperlink, and its structure is defined by **markup** tags.
 
+## DOM
+1. DOM stands for Document Object Model. When a browser loads an HTML page, it parses the HTML and builds a tree-like structure, where each element is represented as a JavaScript object. This structure is called the DOM.
+2. The DOM is created before JavaScript is executed, so that JavaScript can access and manipulate the elements using the document object. For example, we can use document.getElementById() or document.querySelector() to select elements and update them dynamically.
+3. Once JavaScript makes changes to the DOM — such as adding, modifying, or removing elements — the browser repaints or reflows the UI to reflect those changes visually.
+4. So in summary, the DOM acts as a live, in-memory representation of the HTML, allowing dynamic interaction and updates through JavaScript.
+
 ## Version
 The current version of HTML is still **HTML5**, and it was finalized in **2014**. However, since its finalization, HTML5 has continued to evolve with **minor updates and improvements** to accommodate **new web technologies and features**.
 
