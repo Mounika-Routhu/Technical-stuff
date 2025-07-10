@@ -944,7 +944,7 @@ function App() {
 | Environment                            | Example                                                            | Batching Before React 18 | Batching in React 18+ |
 | -------------------------------------- | ------------------------------------------------------------------ | ------------------------ | --------------------- |
 | React event handlers                   | `<button onClick={...} />`                                         | ✅ Yes                    | ✅ Yes                 |
-| `setTimeout`, Promises, async/await    | `await fetch(...); setA(1); setB(2);`                              | ❌ No                     | ✅ Yes                 |
 | `useEffect`                            | `useEffect(() => { setA(1); setB(2); }, [])`                       | ✅ Yes                    | ✅ Yes                 |
+| `setTimeout`, Promises -> .then(), async/await    | `await fetch(...); setA(1); setB(2);`                              | ❌ No                     | ✅ Yes                 |
 | Native DOM events (`addEventListener`) | `document.addEventListener("click", () => { setA(1); setB(2); });` | ❌ No                     | ✅ Yes                 |
 
