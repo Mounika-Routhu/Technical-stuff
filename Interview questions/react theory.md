@@ -36,6 +36,206 @@
   - DOM updates happen in the **commit phase**
   - Then the **browser repaints** the UI
 
+## built-in hooks
+1. Hooks are built in functions which allow us to do as follows
+   - `useState`: manage state
+   - `useEffect`: perform side effects
+   - `useContext`: share data between components(avoid prop drilling)
+   - `useReducer`: predictive way to manage complex state
+   - `useCallback`, `useMemo`: optimize performance
+   - `useRef`: work with DOM elements(when no need re-rendering on change of values) 
+   - and many more.
+2. All built-in book have `use` prefix. It's react way of indenfying hooks & apply hook rules
+
+## useState:
+1. useState is a React Hook that adds state to functional components. 
+2. If you want your component to "remember" a value across renders—such as user input, a counter, or a toggle—you can use this hook.
+
+```
+javascript
+const [state, setState] = useState(initialValue);
+```
+  1. state: The current state value.
+  2. setState: A function used to update the state.
+  3. initialValue: The initial value of the state.
+
+3. When you update the state using the setState function, React identifies it & rerender the component. Which eventually updates the UI with the new state values.
+
+### Why we shouldn't update state directly(`count = 5;`)?
+- Directly **mutating the state** will only update the value in that moment, but it won't change the react internal state value, so no rerender will trigger to reflect the state changes in UI.
+- React can only recognise state changes done by setState function.
+- Note: Updating state directly **won't not throw an error**, unless it's a const value(which often is)
+- To **properly update the state** and ensure the UI reflects the changes, you should always use
+- The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
+ 
+### useState - setState - prevstate when multiple state updates
+  1. `set[State](updater);` -> convention to use like `setCount(newValue);`
+  2. **updater:** can either be an object or a function.
+     - **value/expression:** Directly update state.
+     - **Function:** (prevState) => prevState + 1
+  3. It's recommended to use prevState when we update the same state multiple times in a row like below
+     ```JS
+     const [count, setCount] = useState(0);
+     
+     setCount(count + 1);
+     if(true){ //some condition
+       setCount(count + 1);   
+     }
+     ```
+  4. Now the value will be 1 only not 2.
+  5. Because React batches state updates, it groups multiple state changes together into a single re-render, instead of doing one render for each update. This is to improve performance.
+  6. This means React doesn't wait for one state update to finish before starting the next one.
+  7. So when you do setCount(count + 1) multiple times, each one uses the same old count value — not the updated one.
+  8. But `setCount(prev => prev + 1)` uses the latest value each time.
+
+P.S: React batches all state updates inside event handlers or inside useEffect together with 18+ it's batching everywhere(study later)
+
+## useEffect - mount, update, unmount
+1. useEffect is a React Hook that lets you perform **side effects(actions outside component)** in function components. Side effects include tasks like:
+  - Fetching data from an API
+  - Setting up subscriptions (adding event listeners)
+  - Updating the DOM manually (changing title on routing)
+  - Running timers (setTimeout, setIntervals
+2. It replaces lifecycle methods like **componentDidMount**, **componentDidUpdate**, and **componentWillUnmount** from class components.
+3. componentDidMount - empty dependency array - runs once per component lifecycle
+```JS
+useEffect(() => {
+  console.log('Component mounted');
+}, []);
+```
+4. componentDidUpdate - Run when state/props change - can be given in dependency array
+```JS
+useEffect(() => {
+  console.log('Count changed:', count);
+}, [count]);
+```
+5. componentWillUnmount - Cleanup - clean any event listeners or timers to avoid memory leak
+ex: to add event listener when it user clicks escape to close a modal
+
+```JS
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') onClose();
+  };
+  window.addEventListener('keydown', handleKeyDown);
+
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [onClose]);
+
+```
+Note: if dependency array not provided, component will render everytime prop or state changes.
+
+### what is memory leak, garbage collection, why is it neccessary to cleanup?
+1. A memory leak is unreleased memory that is no longer in use. This means RAM already reserved some memory but not released, even though it's not being used anywhere. Over time, this unused memory accumulates, which can slow down or crash your app.
+2. Garbage collection (GC) is an asynchronous automatic process in JavaScript (and many other languages) that:
+  - removes objects from memory when they are no longer reachable and Frees up memory used by those objects.
+  - "Reachable" means: there is some reference to the object from the current call stack, closure, or global scope.
+  - it runs outside of the main JS call stack, in the engine's background system.
+
+    ```JS
+    function createUser() {
+      let user = {
+        name: 'Alice'
+      };
+    
+      console.log(user.name); // 'Alice'
+    
+      // After this line, `user` is no longer needed
+    }
+    ```
+    - there are no more references to that object once the function execution is completed.
+    - The garbage collector will clean it up automatically in the background.
+3. But, GC only works if there are no references to the object.
+4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
+5. So, even if component unmounts, window still holds a reference to that obj, hence, can't be garbage collected & leads to memory leak.
+6. **We can also handle this in finally in both try..catch..finally or then()...catch()...finally**
+7. **Advanced: Technically speacking, GC cleans heap objects (non-primitive things). Primitives are removed automatically and immediately as soon as EC for functions & GEC for entire code is removed from call stack after execution**
+
+## useRef
+1. useRef is a react hook which return a mutable object: {current: initialValue}
+2. syntax : `inputRef = useRef(initialValue);`
+   
+Uses:
+1. to access DOM elements directly - scroll to section, focus an input box on mount
+```JS
+import React, { useRef } from 'react';
+
+const ScrollExample = () => {
+  const sectionRef = useRef();
+  const inputRef = useRef();
+
+  const scrollToSection = () => {
+    sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  return (
+    <>
+      <input ref={inputRef} placeholder="Autofocus input" />;
+      <button onClick={scrollToSection}>Scroll to Section</button>
+      <div style={{ height: '100vh' }}>some long text in between</div>
+      <div ref={sectionRef}>🎯 Target Section</div>
+    </>
+  );
+}
+```
+3. to store form data without causing re-renders - uncontrolled components
+```JS
+import React, { useRef } from 'react';
+
+function UncontrolledForm() {
+  const nameRef = useRef();
+  const emailRef = useRef();
+
+  const handleSubmit = () => {
+    alert(`Name: ${nameRef.current.value}, Email: ${emailRef.current.value}`);
+  };
+
+  return (
+    <>
+      <input ref={nameRef} type="text" placeholder="Enter name" />
+      <input ref={emailRef} type="email" placeholder="Enter email" />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+}
+```
+5. to preserve values over re-renders - counter - perfect for internal tracking.
+```Js
+import React, { useEffect, useRef } from 'react';
+
+function TimerCounter() {
+  const countRef = useRef(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      countRef.current++;
+      console.log('Count:', countRef.current);
+    }, 1000);
+
+    return () => clearInterval(id);
+  }, []);
+
+  return <div>Open the console to see the counter ⏱️</div>;
+}
+```
+
+### controlled components - uncontrolled components
+1. Controlled Component: Where react state manages the input value via setState; updates cause re-renders.
+```JS
+const [name, setName] = useState('');
+<input value={name} onChange={(e) => setName(e.target.value)} />
+```
+2. Uncontrolled Component
+The DOM manages the input; React accesses it via ref without re-rendering - used for form data.
+```
+const nameRef = useRef();
+<input ref={nameRef} />
+```
+
 ## What will be recomputed on re-render?
 - **Recomputed on Every Render:**
   - Functions, variables, and everthing inside return - all child components & JSX code(`<div>Hellow!</div>`)
@@ -272,152 +472,6 @@ const LazyScoreCard = React.lazy(() =>
 );
 ```
 
-## useEffect - mount, update, unmount
-1. useEffect is a React Hook that lets you perform **side effects(actions outside component)** in function components. Side effects include tasks like:
-  - Fetching data from an API
-  - Setting up subscriptions (adding event listeners)
-  - Updating the DOM manually (changing title on routing)
-  - Running timers (setTimeout, setIntervals
-2. It replaces lifecycle methods like **componentDidMount**, **componentDidUpdate**, and **componentWillUnmount** from class components.
-3. componentDidMount - empty dependency array - runs once per component lifecycle
-```JS
-useEffect(() => {
-  console.log('Component mounted');
-}, []);
-```
-4. componentDidUpdate - Run when state/props change - can be given in dependency array
-```JS
-useEffect(() => {
-  console.log('Count changed:', count);
-}, [count]);
-```
-5. componentWillUnmount - Cleanup - clean any event listeners or timers to avoid memory leak
-ex: to add event listener when it user clicks escape to close a modal
-
-```JS
-useEffect(() => {
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape') onClose();
-  };
-  window.addEventListener('keydown', handleKeyDown);
-
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, [onClose]);
-
-```
-Note: if dependency array not provided, component will render everytime prop or state changes.
-
-## what is memory leak, garbage collection, why is it neccessary to cleanup?
-1. A memory leak is unreleased memory that is no longer in use. This means RAM already reserved some memory but not released, even though it's not being used anywhere. Over time, this unused memory accumulates, which can slow down or crash your app.
-2. Garbage collection (GC) is an asynchronous automatic process in JavaScript (and many other languages) that:
-  - removes objects from memory when they are no longer reachable and Frees up memory used by those objects.
-  - "Reachable" means: there is some reference to the object from the current call stack, closure, or global scope.
-  - it runs outside of the main JS call stack, in the engine's background system.
-
-    ```JS
-    function createUser() {
-      let user = {
-        name: 'Alice'
-      };
-    
-      console.log(user.name); // 'Alice'
-    
-      // After this line, `user` is no longer needed
-    }
-    ```
-    - there are no more references to that object once the function execution is completed.
-    - The garbage collector will clean it up automatically in the background.
-3. But, GC only works if there are no references to the object.
-4. If you create a timer, or add event listener that will get attached to window(gloabl obj).
-5. So, even if component unmounts, window still holds a reference to that obj, hence, can't be garbage collected & leads to memory leak.
-6. **We can also handle this in finally in both try..catch..finally or then()...catch()...finally**
-7. **Advanced: Technically speacking, GC cleans heap objects (non-primitive things). Primitives are removed automatically and immediately as soon as EC for functions & GEC for entire code is removed from call stack after execution**
-
-## useRef
-1. useRef is a react hook which return a mutable object: {current: initialValue}
-2. syntax : `inputRef = useRef(initialValue);`
-   
-Uses:
-1. to access DOM elements directly - scroll to section, focus an input box on mount
-```JS
-import React, { useRef } from 'react';
-
-const ScrollExample = () => {
-  const sectionRef = useRef();
-  const inputRef = useRef();
-
-  const scrollToSection = () => {
-    sectionRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
-  return (
-    <>
-      <input ref={inputRef} placeholder="Autofocus input" />;
-      <button onClick={scrollToSection}>Scroll to Section</button>
-      <div style={{ height: '100vh' }}>some long text in between</div>
-      <div ref={sectionRef}>🎯 Target Section</div>
-    </>
-  );
-}
-```
-3. to store form data without causing re-renders - uncontrolled components
-```JS
-import React, { useRef } from 'react';
-
-function UncontrolledForm() {
-  const nameRef = useRef();
-  const emailRef = useRef();
-
-  const handleSubmit = () => {
-    alert(`Name: ${nameRef.current.value}, Email: ${emailRef.current.value}`);
-  };
-
-  return (
-    <>
-      <input ref={nameRef} type="text" placeholder="Enter name" />
-      <input ref={emailRef} type="email" placeholder="Enter email" />
-      <button onClick={handleSubmit}>Submit</button>
-    </>
-  );
-}
-```
-5. to preserve values over re-renders - counter - perfect for internal tracking.
-```Js
-import React, { useEffect, useRef } from 'react';
-
-function TimerCounter() {
-  const countRef = useRef(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      countRef.current++;
-      console.log('Count:', countRef.current);
-    }, 1000);
-
-    return () => clearInterval(id);
-  }, []);
-
-  return <div>Open the console to see the counter ⏱️</div>;
-}
-```
-
-## controlled components - uncontrolled components
-1. Controlled Component: Where react state manages the input value via setState; updates cause re-renders.
-```JS
-const [name, setName] = useState('');
-<input value={name} onChange={(e) => setName(e.target.value)} />
-```
-2. Uncontrolled Component
-The DOM manages the input; React accesses it via ref without re-rendering - used for form data.
-```
-const nameRef = useRef();
-<input ref={nameRef} />
-```
-
 ## Why React doesn't allow multiple elements in return?
 **1. Virtual DOM Efficiency**
 React uses the **Virtual DOM** to compare changes and efficiently update the UI. When a component returns a **single root element**, React can **quickly determine** what changed and apply the update. If there were multiple root elements, React would have to deal with **more complexity** during the **reconciliation** process, slowing down the rendering.
@@ -487,40 +541,6 @@ const MyComponent = () => {
 **Key Differences:**
 - **Class Components** require `this` for state management and lifecycle methods, whereas **Functional Components** use hooks to manage state and side effects in a more concise manner.
 - **Functional Components** are generally preferred in modern React because of their simpler syntax and performance benefits, especially with the introduction of hooks.
-
-## Why we shouldn't update state directly?
-- `count = 5;` -> direct state update
-- Directly **mutating the state** will only update the value in that moment, but it won't change the react internal state value, so no rerender will trigger to reflect the state changes in UI.
-- React can only recognise state changes done by setState function.
-- Note: Updating state directly **won't not throw an error**, unless it's a const value(which often is)
-- To **properly update the state** and ensure the UI reflects the changes, you should always use
-- The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
- 
-## useState - setState - prevstate when multiple state updates
-  1. `set[State](updater);` -> convention to use like `setCount(newValue);`
-  2. **updater:** can either be an object or a function.
-     - **value/expression:** Directly update state.
-     - **Function:** (prevState) => prevState + 1
-  3. It's recommended to use prevState when we update the same state multiple times in a row like below
-     ```JS
-     const [count, setCount] = useState(0);
-     
-     setCount(count + 1);
-     if(true){ //some condition
-       setCount(count + 1);   
-     }
-     ```
-  4. Now the value will be 1 only not 2.
-  5. Because React batches state updates, it groups multiple state changes together into a single re-render, instead of doing one render for each update. This is to improve performance.
-  6. This means React doesn't wait for one state update to finish before starting the next one.
-  7. So when you do setCount(count + 1) multiple times, each one uses the same old count value — not the updated one.
-  8. But `setCount(prev => prev + 1)` uses the latest value each time.
-
-P.S: React batches all state updates inside event handlers or inside useEffect together with 18+ it's batching everywhere(study later)
-**Note:** Interesting fact
-1. in class based componenets setState also gets an optional second component callback - to excecute some logic after state update
-   ```this.setState(updater, [callback]) ```
-2. in functional based we can use ```useEffect``` for such requirement
 
 ## HOC - higher order component
 - A HOC is a function that takes a **component as an argument and returns a new component**.
@@ -650,17 +670,6 @@ Use ```useReducer``` when:
 
 1. **In `useReducer`** : **`type` is not strictly required** by the API, but it is a **common convention** and **recommended** for predictable state management.
 2. **In `Redux`** : **`type` is required** in every action. `type` is a core part of Redux and tells the reducer what action is being performed and how to update the state.
-
-## built-in hooks
-1. Hooks are built in functions which allow us to do as follows
-   - `useState`: manage state
-   - `useEffect`: perform side effects
-   - `useContext`: share data between components(avoid prop drilling)
-   - `useReducer`: predictive way to manage complex state
-   - `useCallback`, `useMemo`: optimize performance
-   - `useRef`: work with DOM elements(when no need re-rendering on change of values) 
-   - and many more.
-2. All built-in book have `use` prefix. It's react way of indenfying hooks & apply hook rules
 
 ## Why React Component Names Should Be Capitalized
 In React, component names must be capitalized to distinguish them from regular HTML elements. Here's why:
