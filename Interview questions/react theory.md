@@ -489,14 +489,17 @@ const MyComponent = () => {
 - **Functional Components** are generally preferred in modern React because of their simpler syntax and performance benefits, especially with the introduction of hooks.
 
 ## Why we shouldn't update state directly?
-- Directly **mutating the state** in React **will not throw an error**, but it will **prevent React from detecting the change**, which leads to **UI inconsistencies**.
+- `count = 5;` -> direct state update
+- Directly **mutating the state** will only update the value in that moment, but it won't change the react internal state value, so no rerender will trigger to reflect the state changes in UI.
+- React can only recognise state changes done by setState function.
+- Note: Updating state directly **won't not throw an error**, unless it's a const value(which often is)
 - To **properly update the state** and ensure the UI reflects the changes, you should always use:
   - The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
   - If new state value depends on previous value => then use updater function or callback in setState:
     ```JS
     setCount(prevCount => prevCount + 1); 
     ```
-    - Because **React batches state updates** and doesn't guarantee immediate updates, using the previous state value (i.e., prevCount) is the safest way to ensure you're updating based on the latest state.
+  - Because **React batches state updates** and doesn't guarantee immediate updates, using the previous state value (i.e., prevCount) is the safest way to ensure you're updating based on the latest state.
 
 ## HOC - higher order component
 - A HOC is a function that takes a **component as an argument and returns a new component**.
