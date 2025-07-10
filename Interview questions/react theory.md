@@ -96,20 +96,21 @@ P.S: React batches all state updates inside event handlers or inside useEffect t
     - Setting up subscriptions (adding event listeners)
     - Updating the DOM manually (changing title on routing)
     - Running timers (setTimeout, setIntervals
-2. It replaces lifecycle methods like **componentDidMount**, **componentDidUpdate**, and **componentWillUnmount** from class components.
-3. componentDidMount - empty dependency array - runs once per component lifecycle
+2. It take 2 parameters -> a callback, dependency array
+3. It replaces lifecycle methods like **componentDidMount**, **componentDidUpdate**, and **componentWillUnmount** from class components.
+4. componentDidMount - empty dependency array - runs once per component lifecycle
 ```JS
 useEffect(() => {
   console.log('Component mounted');
 }, []);
 ```
-4. componentDidUpdate - Run when state/props change - can be given in dependency array
+5. componentDidUpdate - Run when state/props change - can be given in dependency array
 ```JS
 useEffect(() => {
   console.log('Count changed:', count);
 }, [count]);
 ```
-5. componentWillUnmount - Cleanup - clean any event listeners or timers to avoid memory leak
+6. componentWillUnmount - Cleanup - clean any event listeners or timers to avoid memory leak
 ex: to add event listener when it user clicks escape to close a modal
 
 ```JS
