@@ -493,13 +493,34 @@ const MyComponent = () => {
 - Directly **mutating the state** will only update the value in that moment, but it won't change the react internal state value, so no rerender will trigger to reflect the state changes in UI.
 - React can only recognise state changes done by setState function.
 - Note: Updating state directly **won't not throw an error**, unless it's a const value(which often is)
-- To **properly update the state** and ensure the UI reflects the changes, you should always use:
-  - The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
-  - If new state value depends on previous value => then use updater function or callback in setState:
-    ```JS
-    setCount(prevCount => prevCount + 1); 
-    ```
-  - Because **React batches state updates** and doesn't guarantee immediate updates, using the previous state value (i.e., prevCount) is the safest way to ensure you're updating based on the latest state.
+- To **properly update the state** and ensure the UI reflects the changes, you should always use
+- The **state update function** (`setCount`, `setIsloaded` etc.) in **functional components**.
+ 
+## useState - setState - prevstate when multiple state updates
+  1. `set[State](updater);` -> convention to use like `setCount(newValue);`
+  2. **updater:** can either be an object or a function.
+     - **value/expression:** Directly update state.
+     - **Function:** (prevState) => prevState + 1
+  3. It's recommended to use prevState when we update the same state multiple times in a row like below
+     ```JS
+     const [count, setCount] = useState(0);
+     
+     setCount(count + 1);
+     if(true){ //some condition
+       setCount(count + 1);   
+     }
+     ```
+  4. Now the value will be 1 only not 2.
+  5. Because React batches state updates, it groups multiple state changes together into a single re-render, instead of doing one render for each update. This is to improve performance.
+  6. This means React doesn't wait for one state update to finish before starting the next one.
+  7. So when you do setCount(count + 1) multiple times, each one uses the same old count value — not the updated one.
+  8. But `setCount(prev => prev + 1)` uses the latest value each time.
+
+P.S: React batches all state updates inside event handlers or inside useEffect
+**Note:** Interesting fact
+1. in class based componenets setState also gets an optional second component callback - to excecute some logic after state update
+   ```this.setState(updater, [callback]) ```
+2. in functional based we can use ```useEffect``` for such requirement
 
 ## HOC - higher order component
 - A HOC is a function that takes a **component as an argument and returns a new component**.
@@ -540,26 +561,6 @@ function App() {
 export default App;
 ```
 Note: In above example, withAuth is used like a function that's why withAuth(lower case 'w') is valid.
-
-## useState - setState - access prev state
-  1. ```set[State](updater);```
-  2. **updater:** Can either be an object or a function.
-       - **value/expression:** Directly update state.
-       - **Function:** (prevState) => prevState + 1
-  3. It's recommended to use prevState when new state value depends on prevState (eg:increment count)
-  4. Detailed explanation abt why to use prevState:
-     - State updates are asynchronous, and React may batch multiple setState calls together. When this happens, React doesn't immediately apply each state update, which can cause issues if the new state depends on the previous state.
-     - For instance, when you call setCount(count + 1) multiple times, React batches these updates, but it doesn't have the latest state value in each call, so it may apply each setCount with the old state value.
-    
-  ```JS
-const [count, setCount] = useState(0);
-setCount(5);  // Sets the state to 5
-setCount(prevCount => prevCount + 1);  // Increment state based on previous state
-  ```
-**Note:** Interesting fact
-1. in class based componenets setState also gets an optional second component callback - to excecute some logic after state update
-   ```this.setState(updater, [callback]) ```
-2. in functional based we can use ```useEffect``` for such requirement
 
 ## useReducer
 1. useReducer is a hook introduced in React 16.8 & used as an alternative to ```useState```
