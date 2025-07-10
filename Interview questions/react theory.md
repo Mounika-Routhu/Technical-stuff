@@ -959,3 +959,13 @@ function App() {
 | `setTimeout`, Promises -> .then(), async/await    | `await fetch(...); setA(1); setB(2);`                              | ❌ No                     | ✅ Yes                 |
 | Native DOM events (`addEventListener`) | `document.addEventListener("click", () => { setA(1); setB(2); });` | ❌ No                     | ✅ Yes                 |
 
+## Why immutability is important?
+1. Immutability means not modifying the original object/array, but instead creating a new copy with the desired changes. This is imp bcz of following reasons:
+2. React re-renders a component only if the state or props change — and it does this reference quality check incase of objects & arrays
+3. In React.memo, it uses reference equality check to determine whether props changed or not.
+4. So, immutability is imp to make react predicatable, for debugging & to get expected results
+5. Always copy the obj into another var & use it, consider deep copy for nested objects
+   ```JS
+   setItems([...items, newItem]); // for arrays
+   setUserData({ ...data, name: 'Routhu' }); // for objects
+   ```
