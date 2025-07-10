@@ -225,13 +225,14 @@ function TimerCounter() {
 ```
 
 ### controlled components - uncontrolled components
-1. Controlled Component: Where react state manages the input value via setState; updates cause re-renders.
+1. Controlled Component: Components in which DOM elements are controlled by React state via state, setState(event handlers). So that, every change of DOM element will cause a re-render useful for realtime tracking.
+   
 ```JS
 const [name, setName] = useState('');
 <input value={name} onChange={(e) => setName(e.target.value)} />
 ```
-2. Uncontrolled Component
-The DOM manages the input; React accesses it via ref without re-rendering - used for form data.
+2. Uncontrolled Component: Components in which DOM elements are not controlled by react state instead they are controlled by DOM itself, react can access DOM values & change it (if needed) via useRef without causing re-rendering - used for storing temp data of a form before sumbission.
+   
 ```
 const nameRef = useRef();
 <input ref={nameRef} />
