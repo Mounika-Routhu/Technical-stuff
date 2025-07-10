@@ -940,6 +940,7 @@ function App() {
 
 ## React 18+ benefits
 1. Automatic batching: Before 18+, react didn't batched state updates outside react control, now it's batching everywhere increase performance by reducing no. of re-renders
+   
    | Environment                            | Example                                                            | Batching Before React 18 | Batching in React 18+ |
 | -------------------------------------- | ------------------------------------------------------------------ | ------------------------ | --------------------- |
 | React event handlers                   | `<button onClick={...} />`                                         | ✅ Yes                    | ✅ Yes                 |
