@@ -516,7 +516,7 @@ const MyComponent = () => {
   7. So when you do setCount(count + 1) multiple times, each one uses the same old count value — not the updated one.
   8. But `setCount(prev => prev + 1)` uses the latest value each time.
 
-P.S: React batches all state updates inside event handlers or inside useEffect
+P.S: React batches all state updates inside event handlers or inside useEffect together with 18+ it's batching everywhere(study later)
 **Note:** Interesting fact
 1. in class based componenets setState also gets an optional second component callback - to excecute some logic after state update
    ```this.setState(updater, [callback]) ```
@@ -937,3 +937,13 @@ function App() {
   );
 }
 ```
+
+## React 18+ benefits
+1. Automatic batching: Before 18+, react didn't batched state updates outside react control, now it's batching everywhere increase performance by reducing no. of re-renders
+   | Environment                            | Example                                                            | Batching Before React 18 | Batching in React 18+ |
+| -------------------------------------- | ------------------------------------------------------------------ | ------------------------ | --------------------- |
+| React event handlers                   | `<button onClick={...} />`                                         | ✅ Yes                    | ✅ Yes                 |
+| `setTimeout`, Promises, async/await    | `await fetch(...); setA(1); setB(2);`                              | ❌ No                     | ✅ Yes                 |
+| `useEffect`                            | `useEffect(() => { setA(1); setB(2); }, [])`                       | ✅ Yes                    | ✅ Yes                 |
+| Native DOM events (`addEventListener`) | `document.addEventListener("click", () => { setA(1); setB(2); });` | ❌ No                     | ✅ Yes                 |
+
