@@ -92,10 +92,10 @@ P.S: React batches all state updates inside event handlers or inside useEffect t
 
 ## useEffect - mount, update, unmount
 1. useEffect is a React Hook that lets you perform **side effects(actions outside component)** in function components. Side effects include tasks like:
-  - Fetching data from an API
-  - Setting up subscriptions (adding event listeners)
-  - Updating the DOM manually (changing title on routing)
-  - Running timers (setTimeout, setIntervals
+    - Fetching data from an API
+    - Setting up subscriptions (adding event listeners)
+    - Updating the DOM manually (changing title on routing)
+    - Running timers (setTimeout, setIntervals
 2. It replaces lifecycle methods like **componentDidMount**, **componentDidUpdate**, and **componentWillUnmount** from class components.
 3. componentDidMount - empty dependency array - runs once per component lifecycle
 ```JS
@@ -128,9 +128,9 @@ Note: if dependency array not provided, component will render everytime prop or 
 ### what is memory leak, garbage collection, why is it neccessary to cleanup?
 1. A memory leak is unreleased memory that is no longer in use. This means RAM already reserved some memory but not released, even though it's not being used anywhere. Over time, this unused memory accumulates, which can slow down or crash your app.
 2. Garbage collection (GC) is an asynchronous automatic process in JavaScript (and many other languages) that:
-  - removes objects from memory when they are no longer reachable and Frees up memory used by those objects.
-  - "Reachable" means: there is some reference to the object from the current call stack, closure, or global scope.
-  - it runs outside of the main JS call stack, in the engine's background system.
+    - removes objects from memory when they are no longer reachable and Frees up memory used by those objects
+    - "Reachable" means: there is some reference to the object from the current call stack, closure, or global scope.
+    - it runs outside of the main JS call stack, in the engine's background system.
 
     ```JS
     function createUser() {
