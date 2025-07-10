@@ -121,7 +121,7 @@ useEffect(() => {
   window.addEventListener('keydown', handleKeyDown);
 
   return () => window.removeEventListener('keydown', handleKeyDown);
-}, [onClose]);
+}, []);
 
 ```
 Note: if dependency array not provided, component will render everytime prop or state changes.
