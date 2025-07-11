@@ -906,6 +906,7 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
     - Asynchronous errors (e.g., setTimeout, fetch)
     - Errors outside React tree (like service workers)
 5. Currently, error boundaries must be class components. React might support functional boundaries with hooks like useErrorBoundary in the future (experimental).
+6. NOTE: Always wrap the component for which you want handle runtime error not inside component
 
 ```JS
 import React from 'react';
