@@ -50,7 +50,12 @@ Rendering patterns in React refer to **how and when** your app's HTML is generat
 4. **ISR – Incremental Static Regeneration**: A hybrid pattern where static pages are generated at build time, and **some pages are updated on-demand** in the background.
 **Example Tools:** Next.js with `revalidate` in `getStaticProps()`
 
-
+| Pattern | When HTML is rendered | Re-rendered? | Best For | SEO |
+|--------|------------------------|--------------|----------|-----|
+| **CSR** | In browser (client)    | On client nav | Web apps, dashboards | ❌ Poor |
+| **SSR** | On server (per request)| Every request | Dynamic content, SEO pages | ✅ Great |
+| **SSG** | At build time          | On build only | Blogs, docs, static content | ✅ Great |
+| **ISR** | At build + on-demand   | Revalidated | Hybrid sites | ✅ Great |
 
 API
 HTTP
