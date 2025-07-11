@@ -693,7 +693,7 @@ In React, component names must be capitalized to distinguish them from regular H
   - like using hooks outside of these places (e.g., in regular JavaScript functions or class components) would disconnect them from React’s lifecycle, leading to unpredictable behavior.
 
 ## Custom hooks
-1. A custom hook is a function that allows you to **extract and reuse stateful logic or side effects** in a way that is **reusable** across multiple components.
+1. A custom hook is a user defined function that allows you to **extract stateful logic or side effects** so that it is **reusable** across multiple components.
 2. Custom hooks are a powerful feature in React that help in **organizing complex logic outside of components**, making it **easier to share and manage logic.**
    
 **Custom hooks follow a naming convention**: the name of a custom hook should start with the word use (e.g., `useFetch`, `useForm`) to make so that react identify them as hooks & make them follows the rules of hooks.
