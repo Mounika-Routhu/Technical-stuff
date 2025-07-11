@@ -545,9 +545,11 @@ const MyComponent = () => {
 - **Functional Components** are generally preferred in modern React because of their simpler syntax and performance benefits, especially with the introduction of hooks.
 
 ## HOC - higher order component
-- A HOC is a function that takes a **component as an argument and returns a new component**.
-- HOCs **don’t modify the original component** but create a **new enhanced version** of it.
-- They are used to **share logic between components** (e.g., adding authentication, loading spinner, logging, data fetching, theming, etc.)
+1. A Higher-Order Component (HOC) is a function that takes a component as an argument and returns an enhanced version of that component.
+2. HOCs are useful when we want to reuse common UI behavior across multiple components — like logging, authentication, error handling, or theming. Instead of duplicating this behavior in every component, we can extract it into a reusable function.
+3. For example, let's say we want to log multiple times inside a component. We can create a withLogger function that accepts a component and returns a new component that logs a message whenever needed.
+4. Internally, this function returns another function that takes props and renders the original component with the original props & additional behavior injected.
+5. So inner function forms a closure with access to component
 
 ```JS
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
