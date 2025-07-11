@@ -26,6 +26,19 @@
 
 ```
 
+## CDN - Content delivery network
+1. A CDN is a network of distributed servers placed around the world that deliver content (like images, CSS, JS, videos, etc.) faster to users based on their geographic location.
+2. In simple terms, instead of serving all your website files from one central server, a CDN copies and stores those files in many servers worldwide.
+3. So when a user visits your site: They get the content from the nearest CDN server, making your site load faster and reduce server load.
+4. for example, person in india tries they will get from mumbai server or delhi server. US person tries he will get from nearest US server
+5. Uses are, faster, caching, gloabal access - availability, scalability(maintainable) 
+
+```HTML
+<img src="https://your-website.com/assets/mounika.jpg" alt="Profile" /> // local
+
+<img src="https://cdn.jsdelivr.net/gh/username/images/mounika.jpg" alt="Profile" /> // CDN
+```
+
 API
 HTTP
 REST API
