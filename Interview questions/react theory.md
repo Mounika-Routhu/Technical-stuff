@@ -897,13 +897,15 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 | **Cross-Platform** | Write mobile apps using **React Native** — same code style. | Vue Native exists but not widely used. | Uses **Ionic** (separate library, bulkier setup). |
 
 ## Error Boundary:
-1. Error Boundary is wrapper component, which handles JavaScript runtime errors during rendering and in lifecycle methods of child components.(like, undefined.foo in render)
-2. They don't catch async errors - use try...catch
+1. Error Boundary is wrapper component, which handles JavaScript runtime errors during rendering and in lifecycle methods of child components.
+2. For example, when props are null or undefined(not passed) & we are doing some action on it in render phase undefined.toUpperCase() in return(**render phase**)
+3. Or some went wrong in **useEffect** & we throw an error
+4. They don't catch async errors - use try...catch
     - Syntax/compile-time error
     - Errors in event handlers
     - Asynchronous errors (e.g., setTimeout, fetch)
     - Errors outside React tree (like service workers)
-3. Currently, error boundaries must be class components. React might support functional boundaries with hooks like useErrorBoundary in the future (experimental).
+5. Currently, error boundaries must be class components. React might support functional boundaries with hooks like useErrorBoundary in the future (experimental).
 
 ```JS
 import React from 'react';
