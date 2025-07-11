@@ -694,9 +694,11 @@ In React, component names must be capitalized to distinguish them from regular H
 
 ## Custom hooks
 1. A custom hook is a user defined function that allows you to **extract stateful logic or side effects** so that it is **reusable** across multiple components.
-2. Custom hooks are a powerful feature in React that help in **organizing complex logic outside of components**, making it **easier to share and manage logic.**
-   
-**Custom hooks follow a naming convention**: the name of a custom hook should start with the word use (e.g., `useFetch`, `useForm`) to make so that react identify them as hooks & make them follows the rules of hooks.
+2. It is useful in **managing complex logic outside of components**, so that we can concentrate on UI in functional components.
+3. **Custom hooks follow a naming convention**:
+   1. the name of a custom hook should start with `use` (e.g., `useFetch`, `useForm`) so that react identify them as hooks & make them follows the rules of hooks
+   2. Like only use hooks inside functional components(applies state & useffect)
+   3. And only call at top level(not conditional - so it will be predictable by react)
 
 example: useFetch - extract fetching logic seperately & reuse in multiple files
 
@@ -754,10 +756,10 @@ export default Users;
 ```
 
 **How re-render trigger with custom hook?**
-1. When you use a custom hook inside a component, React will track the state or values that the custom hook returns.
-2. If the state inside the custom hook changes (for example, via a setState or dispatch call), it will trigger a rerender of the component using that hook.
+1. Even though the state is declared inside the custom hook, it's tracked as part of the calling component’s state.
+2. So when the state updates, the component re-renders just like it would if useState were used directly inside the component.
    
-**Why Custom Hooks Instead of Regular Functions?** - To access to React’s State and Effects:
+**Why Custom Hooks Instead of Regular Functions?** - To access react hooks like useState & useEffect
 
 **Custom Hooks vs Higher-Order Components (HOCs)**
 
