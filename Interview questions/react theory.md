@@ -969,3 +969,41 @@ function App() {
    setItems([...items, newItem]); // for arrays
    setUserData({ ...data, name: 'Routhu' }); // for objects
    ```
+
+## Keys in react
+1. A key is a **special prop** in React that must be provided for each element in a **dynamically generated list**.
+2. It helps React identify which items have been added, removed, or updated during re-renders.
+3. If you don’t provide a key explicitly, React uses the array index as the default key (i.e., 0, 1, 2…). This can lead to bugs when the list is reordered or changed.
+4. For example, consider a list of student names rendered as <Student /> components, each containing a contentEditable <div>. If you type inside one of the editable areas and then reverse the list, React—relying on index-based keys—will reuse the DOM at that same index, even though the content has logically moved. As a result, your typed content may appear under the wrong student.
+5. `["Mounika", "Rohith", "Krishna"]` => In dom 0 1 2 -> even when we reverse it `["Krishna", "Rohith", "Mounika"]` keys remain same 0, 1, 2. So, react think like no change happened in lit items, so won't change the content editable div.
+6. To prevent this, you should always provide a **stable and unique key** (like an ID or unique name) for each list item. This ensures React can track elements accurately and preserve their state correctly during updates.
+
+```JS
+const Student = ({ name }) => {
+  return (
+    <>
+      <p>Name: {name}</p>
+      <div contentEditable></div>
+    </>
+  );
+};
+
+const App = () => {
+  const [studentList, setStudentList] = useState([
+    'Mounika',
+    'Rohith',
+    'Krishna',
+  ]);
+
+  return (
+    <>
+      <button onClick={(e) => setStudentList([...studentList.reverse()])}>
+        Reverse student order
+      </button>
+      {studentList.map((name) => (
+        <Student key={name} name={name} /> // key is imp
+      ))}
+    </>
+  );
+}
+```
