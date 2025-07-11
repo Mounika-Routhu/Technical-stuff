@@ -899,7 +899,7 @@ SSR is a technique where web pages are rendered on the server and sent as fully 
 ## Error Boundary:
 1. Error Boundary is wrapper component, which handles JavaScript runtime errors during rendering and in lifecycle methods of child components.
 2. For example, when props are null or undefined(not passed) & we are doing some action on it in render phase undefined.toUpperCase() in return(**render phase**)
-3. Or some went wrong in **useEffect** & we throw an error
+3. Or some went wrong in lifecycleMethods(in class based components). But in devlopement **useEffect** & we throw an error this is working but in production it might not work it seems
 4. They don't catch async errors - use try...catch
     - Syntax/compile-time error
     - Errors in event handlers
