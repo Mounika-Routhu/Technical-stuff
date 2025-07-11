@@ -18,12 +18,16 @@
    ```
 2. **Wrap your app in `<BrowserRouter>`**
 ```JS
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
-const App = () => (
+ReactDOM.render(
   <BrowserRouter>
-    {/* Your routes and links go here */}
-  </BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
 );
 ```
 3. **Define Routes using `<Routes>` and `<Route>`**
@@ -32,12 +36,10 @@ Note: route match only pathName not query string(anything after ?)
 import { BrowserRouter } from 'react-router-dom';
 
 const App = () => (
-  <BrowserRouter>
     <Routes>
      <Route path="/" element={<Home />} />
      <Route path="/about" element={<About />} />
    </Routes>
-  </BrowserRouter>
 );
 ```
 
