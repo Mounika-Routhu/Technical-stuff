@@ -39,6 +39,19 @@
 <img src="https://cdn.jsdelivr.net/gh/username/images/mounika.jpg" alt="Profile" /> // CDN
 ```
 
+## rendering patterns
+Rendering patterns in React refer to **how and when** your app's HTML is generated and sent to the user. Each pattern has different trade-offs in terms of **performance, SEO, user experience**, and **content freshness**.
+1. **CSR – Client-Side Rendering**: app loads a blank HTML shell, and all rendering happens in the browser using JavaScript.
+**Example Tools:** Create React App
+2. **SSR – Server-Side Rendering**: HTML is rendered on the server for each request, then sent fully formed to the browser.
+**Example Tools:** Next.js with `getServerSideProps()`
+3. **SSG – Static Site Generation**: The HTML is pre-rendered at build time into static files and served instantly via CDN.
+**Example Tools:** Next.js with `getStaticProps()`, Gatsby
+4. **ISR – Incremental Static Regeneration**: A hybrid pattern where static pages are generated at build time, and **some pages are updated on-demand** in the background.
+**Example Tools:** Next.js with `revalidate` in `getStaticProps()`
+
+
+
 API
 HTTP
 REST API
