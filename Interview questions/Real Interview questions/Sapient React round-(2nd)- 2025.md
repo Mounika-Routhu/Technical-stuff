@@ -24,7 +24,7 @@
    - Hybrid rendering
 16. How do you handle secrets in a `.env` file?
 17. Coding question:
-   - Fetch a list of products from the Fake Store API  
+   - Fetch a list of products from the Fake Store API(https://fakestoreapi.com/carts)
    - Implement sorting of products based on price (ascending/descending)  
    - Sorting option should be selectable from a dropdown
 18. What is routing in React? How do you implement routing?
