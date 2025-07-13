@@ -14,3 +14,19 @@
 14. SEO
 15. PWS applications
 16. validations in CSS
+
+
+_________
+## redux
+1. flow of react
+2. hooks - usereducer
+3. different methods to handle remote data in react
+4. react router
+5. redux
+6. next router
+7. style in css modules, inline styles
+8. testing 
+9. prototypes, flow, react suspense, lazy
+10. JSX to ES6
+11. render prop pattern
+
