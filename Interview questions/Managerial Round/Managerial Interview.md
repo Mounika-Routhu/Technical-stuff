@@ -82,4 +82,8 @@ Tool used: JIRA
 3. While working at Accenture, I cleared a another exam and secured P3 proficiency in React.
 4. Currently at client site Meta, we have an internal recognition system where employees get appreciated through Thanks app & badges. So far, I’ve been received two thanks and 11 badges like Bug Detector, Code Cleaner, and Wiki Enhancer.
 
+## Why you wanted to switch?
+1. I'm very fortunate to have had the opportunity to work on pure development projects. However, in my current project, the development work is almost complete, and now the focus is shifting toward support and maintenance. Since I'm looking for a development role, I explored internal opportunities, but unfortunately, I couldn't find a suitable position. For this reason, I decided to explore new opportunities.
+2. Additionally, I’m also looking to grow financially in my career. So, these are the two main reasons I’m exploring new opportunities.
+
 
