@@ -92,3 +92,6 @@ Tool used: JIRA
 3. In addition to this, I also learned that Sapient offers monthly appraisals to encourage its employees, which reflects its commitment to recognizing and rewarding performance.
 4. With all these points in mind, I feel confident to trust Sapient for a promising career growth, and I’m really looking forward to being a part of it.
 
+## Project lifecycle
+requirement gathering -> planing phase -> implementation pahse -> testing phase -> deployment phase -> maintaining & support phase
+
