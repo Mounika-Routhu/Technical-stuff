@@ -797,13 +797,14 @@ incrementCounter2(); //2
 ```
    4. **Debouncing** - study in later notes
    5. **Throttling** - study in later notes
-   6. **setTimeout** - In setTimeout, **each callback forms a closure** by **remembering variables from its outer scope**, even after the outer function has finished execution.
+   6. **HOC** - Study in react theory
+   7. **setTimeout** - In setTimeout, **each callback forms a closure** by **remembering variables from its outer scope**, even after the outer function has finished execution.
       ```JS
       for (var i = 0; i < 3; i++) {
         setTimeout(() => console.log(i), 1000);
       }
       ```
-   7. once fn - to make a function execute only once - only study if you have time
+   8. once fn - to make a function execute only once - only study if you have time
 
 ## Currying/Function Currying
 1. Currying is a functional programming **technique** where a function with multiple arguments is transformed into a series of functions, each taking one argument at a time.
