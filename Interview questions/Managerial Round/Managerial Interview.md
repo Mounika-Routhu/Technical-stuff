@@ -86,4 +86,9 @@ Tool used: JIRA
 1. I'm very fortunate to have had the opportunity to work on pure development projects. However, in my current project, the development work is almost complete, and now the focus is shifting toward support and maintenance. Since I'm looking for a development role, I explored internal opportunities, but unfortunately, I couldn't find a suitable position. For this reason, I decided to explore new opportunities.
 2. Additionally, I’m also looking to grow financially in my career. So, these are the two main reasons I’m exploring new opportunities.
 
+## Why Sapient?
+1. From the research I did, I got to know that Sapient is expanding its work in AI. It has also partnered with Google Cloud to accelerate the same, which would help someone like me to improve my tech stack, if I'm fortunate enough to be part of such projects.
+2. Also, I came across a post from one of the directors at Sapient stating that Sapient ranked #4 among the top consulting firms in 2025. Last year, it was at #5, and before that, it was 7 places below, this clearly showing a dedication & consistent improvement toward its goals.
+3. In addition to this, I also learned that Sapient offers monthly appraisals to encourage its employees, which reflects its commitment to recognizing and rewarding performance.
+4. With all these points in mind, I feel confident to entrust Sapient for a promising career growth, and I’m really looking forward to being a part of it.
 
