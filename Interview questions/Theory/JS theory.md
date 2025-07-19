@@ -2080,3 +2080,37 @@ console.log(first, second) // 1 2
 2. pause by yield
 3. resume by next
 4. Redux saga used these for implementing pausable async code handling
+
+## Method chaining
+1. Method chaining is a technique where multiple methods are called on the same object, one after another, in a single line.
+This is commonly seen in strings, arrays, and promises.
+2. For example, on a string, we can chain methods like:
+   ```JS
+   "hello".toUpperCase().split("").join("-");
+   ```
+3. On promises:
+   ```JS
+   fetch(url)
+     .then(res => res.json())
+     .then(data => console.log(data))
+     .catch(err => console.error(err));
+   ```
+4. The key idea is: each method returns the same object or a compatible one, allowing the next method to be called directly.
+5. Method chaining can also be manually implemented using classes. In such cases:
+   - A value is initialized in the constructor.
+   - Each method modifies the value and returns this.
+   - This allows chaining more methods on the same instance.
+  
+  ```JS
+  class Calculator {
+  constructor(value = 0) {
+    this.value = value;
+  }
+
+  add(n) { this.value += n; return this; }
+  multiply(n) { this.value *= n; return this; }
+  result() { return this.value; }
+}
+
+const res = new Calculator().add(5).multiply(2).result(); // 10
+  ```
