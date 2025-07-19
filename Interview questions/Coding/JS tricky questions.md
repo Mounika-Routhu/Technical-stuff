@@ -216,8 +216,38 @@ o/p:
 { name : "newName"}
 ```
 
-## promises
+## shallow copy vs deep copy
+Wipro coding
+```JS
+const person1 = {
+  name: "Alice",
+  age: 30,
+  address: {
+    city: "New York",
+    zip: "10001"
+  }
+};
 
+const person2 = { ...person1 };
+
+person2.name = "Bob";
+person2.address.city = "Los Angeles";
+
+console.log("Person 1 Name:", person1.name);               // Alice ✅
+console.log("Person 1 City:", person1.address.city);       // Los Angeles ❌ due to shallow copy
+```
+
+## promises
+Wipro coding
+```JS
+setTimeout(() => console.log(1), 400);
+Promise.resolve(1).then((res) => Promise.resolve(console.log(2)));
+
+console.log(3);
+setTimeout(() => console.log(4), 0);
+console.log(5);
+```
+o/p : 3 5 2 4 1
 ```JS
 Promise.reject("Oops")
   .then(() => console.log("Success"))
