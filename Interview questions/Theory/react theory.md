@@ -547,7 +547,7 @@ const MyComponent = () => {
 ## HOC - higher order component
 1. A Higher-Order Component (HOC) is a function that takes a component as an argument and returns an enhanced version of that component.
 2. HOCs are useful when we want to reuse common UI behavior across multiple components — like logging, authentication, error handling, or theming. Instead of duplicating this behavior in every component, we can extract it into a reusable function.
-3. For example, let's say we want to log multiple times inside a component. We can create a withLogger function that accepts a component and returns a new component that logs a message whenever needed.
+3. For example, let's say we want to log multiple times inside a component. We can create a **withLogger** function that accepts a component and returns a new component that logs a message whenever needed.
 4. Internally, this function returns another function that takes props and renders the original component with the original props & additional behavior injected.
 5. So inner function forms a closure with access to component
 
@@ -1014,3 +1014,8 @@ const App = () => {
   );
 }
 ```
+
+## What are the cases when class-based components are preferred over functional-based components?
+1. Error boundaries
+2. Legacy code
+3. 
