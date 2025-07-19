@@ -1,0 +1,52 @@
+```JS
+import React, { useState } from 'react';
+
+import './style.css';
+
+export default function App() {
+  const [cars, setCars] = useState([
+    {
+      id: 1,
+      color: 'purple',
+      type: 'minivan',
+      model: 'Hatchback',
+    },
+    {
+      id: 2,
+      color: 'red',
+      type: 'station wagon',
+      model: 'Sedan',
+    },
+    {
+      id: 3,
+      color: 'black',
+      type: 'station wagon',
+      model: 'SUV',
+    },
+  ]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleClick = (e) => {
+    console.log(e.target.textContent);
+    let id = e.target.textContent;
+    const item = cars.find((el) => el.id == id);
+    console.log(item);
+    setSelectedItem(item);
+  };
+  return (
+    <>
+      <p>Hey</p>
+      {cars.map((car) => (
+        <button onClick={handleClick}>{car.id}</button>
+      ))}
+      {selectedItem ? (
+        <ul>
+          <li>Color: {selectedItem.color}</li>
+          <li>Model: {selectedItem.model}</li>
+          <li>Type: {selectedItem.type}</li>
+        </ul>
+      ) : null}
+    </>
+  );
+}
+```
