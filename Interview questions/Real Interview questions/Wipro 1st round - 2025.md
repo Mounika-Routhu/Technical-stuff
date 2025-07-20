@@ -6,8 +6,10 @@
 6. What are Middlewares?
 7. Explain uses of Promises
 8. What is destructing
-9. Guess the Output – For Loop, var i = 0 with condition `i < 5`  
-10. Guess the Output – Promise and `setTimeout`  
-11. Guess the Output – Shallow copy deepcopy 
-12. React Coding Question – Render buttons for car objects and show car data on click  
-13. Do you know about TypeScript?
+9. Diff btw flexbox & grid
+10. Explain box model
+11. Guess the Output – For Loop, var i = 0 with condition `i < 5`  
+12. Guess the Output – Promise and `setTimeout`  
+13. Guess the Output – Shallow copy deepcopy 
+14. React Coding Question – Render buttons for car objects and show car data on click  
+15. Do you know about TypeScript?
