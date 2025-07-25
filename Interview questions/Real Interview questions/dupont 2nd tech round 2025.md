@@ -11,3 +11,5 @@
 11. Explain all React hooks.  
 12. Explain Redux flow.  
 13. What is an action in Redux?
+14. Have you ever worked on a project from scratch, explain folder structure
+15. How to make reusable components - atom strcture
