@@ -1018,4 +1018,43 @@ const App = () => {
 ## What are the cases when class-based components are preferred over functional-based components?
 1. Error boundaries
 2. Legacy code
-3. 
+
+## what happens when you run npx create react app <my-app>
+1. npx downloads and runs the create-react-app tool
+   - It scaffolds the project structure in the my-app folder.
+   - It creates files like:
+     - package.json
+     - README.md
+     - .gitignore
+     - public/ and src/ folders
+2. Then it runs npm install automatically.
+   - This is when:
+     - node_modules/ is created
+     - package-lock.json is generated
+     - All dependencies listed in package.json are installed
+
+## Initial npm i to install all dependecies after cloning existing project
+1. When you or your team member does `npm i`(initial setup) npm go & check for `package-lock.json` & installs that package & the actual package files are downloaded and stored here in `node_modules` folder
+
+## Installing new package into project
+1. when we do `npm i axios` npm updates package.json with `axios: "^1.0.0"`(version ranges till 1.9.9 not 2.x.x) & package-lock.json with `axios: "1.2.3"` (exact version)
+then The actual package files are downloaded and stored here in `node_modules` folder
+
+## package.json vs package-lock.json
+**package.json — Declares Acceptable Ranges**
+1. Purpose:
+   - Tells npm and developers what versions of packages are acceptable(^).
+   - I has meta data about project
+   - scripts
+   - dev dependecies
+2. Usefulness:
+  - Helps with future updates like minor bug fixes, performance improvements (npm update)
+  - Useful when starting fresh (no package-lock.json)
+  - Important for publishing libraries (so consumers know what versions are compatible)
+
+**package-lock.json — Locks Exact Versions**
+1. Purpose: Records the exact versions installed, including nested dependencies.
+2. Usefulness:
+  - Ensures consistent installs across machines
+  - Prevents bugs due to unexpected version changes
+  - Speeds up installs and supports security audits
