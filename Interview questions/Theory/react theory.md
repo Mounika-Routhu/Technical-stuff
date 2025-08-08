@@ -1033,6 +1033,11 @@ const App = () => {
      - package-lock.json is generated
      - All dependencies listed in package.json are installed
 
+## What is NPX?
+1. npx is a command-line tool that comes bundled with npm (v5.2.0 and above)
+2. npx lets you run Node.js packages without installing them globally, perfect for one-time tools like create-react-app.
+3. It downloads and executes the package temporarily(deletes after installation), keeping your system clean and always using the latest version.
+
 ## Initial npm i to install all dependecies after cloning existing project
 1. When you or your team member does `npm i`(initial setup) npm go & check for `package-lock.json` & installs that package & the actual package files are downloaded and stored here in `node_modules` folder
 
