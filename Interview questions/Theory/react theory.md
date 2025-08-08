@@ -1032,6 +1032,7 @@ const App = () => {
      - node_modules/ is created
      - package-lock.json is generated
      - All dependencies listed in package.json are installed
+       
 Scaffolding means -> Setting up the initial structure of a project automatically, including folders, files, and basic configurations.
   
 ## What is NPX?
