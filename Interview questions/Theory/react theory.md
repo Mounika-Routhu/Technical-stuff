@@ -1021,7 +1021,7 @@ const App = () => {
 
 ## what happens when you run npx create react app <my-app>
 1. npx downloads and runs the create-react-app tool
-   - It scaffolds the project structure in the my-app folder.
+   - It scaffolds* the project structure in the my-app folder.
    - It creates files like:
      - package.json
      - README.md
@@ -1032,7 +1032,8 @@ const App = () => {
      - node_modules/ is created
      - package-lock.json is generated
      - All dependencies listed in package.json are installed
-
+Scaffolding means -> Setting up the initial structure of a project automatically, including folders, files, and basic configurations.
+  
 ## What is NPX?
 1. npx is a command-line tool that comes bundled with npm (v5.2.0 and above)
 2. npx lets you run Node.js packages without installing them globally, perfect for one-time tools like create-react-app.
