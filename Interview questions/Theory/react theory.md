@@ -1035,9 +1035,9 @@ const App = () => {
        
 Scaffolding means -> Setting up the initial structure of a project automatically, including folders, files, and basic configurations.
   
-## What is NPX?
+## What is NPX?(verify this later)
 1. npx is a command-line tool that comes bundled with npm (v5.2.0 and above)
-2. npx lets you run Node.js packages without installing them globally, perfect for one-time tools like create-react-app.
+2. npx lets you run Node.js packages without installing them permanantly, perfect for one-time tools like create-react-app.
 3. It downloads and executes the package temporarily(deletes after installation), keeping your system clean and always using the latest version.
 
 ## Initial npm i to install all dependecies after cloning existing project
