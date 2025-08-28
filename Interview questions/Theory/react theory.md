@@ -375,7 +375,7 @@ Also, when hook not used, expensiveValue will get computed on every render
 - Another issue is **Reference equality issue** - Reference equality refers to the concept of comparing the memory references of objects, arrays, functions, or other non-primitive data types, rather than comparing their contents.
 - React uses reference equality for re-rendering
 - This issue arises when we don't use dependency array properly & pass unnecssary values to it.
-- Meaning, when I'm using React.memo & using this calllback function as prop & gave [count](or any other unrelated dependency) then child component will render everytime on change of count. This will make React.memo **useless**
+- Meaning, when I'm using React.memo & using this calllback function as prop & gave [count](or any other unrelated dependency) for callBack in parent file(using useCallBack hook to memoize) then child component will render everytime on change of count. This will make React.memo **useless**
 - here we don't need count to be added as a dependency we can directly use prevCount from updater function
 - Including count in the dependency array of useCallback can make sense when the function needs to **update its behavior** based on the updated count value.
 
