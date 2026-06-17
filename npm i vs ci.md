@@ -126,7 +126,7 @@ This allows npm to install a compatible newer version.
 That version gets stored in **`package-lock.json`**.
 
 ### Later in pipeline
-- `npm install` may resolve versions again depending on lock/package state
+- `npm install` may resolve versions again
 - `npm ci` will install the **exact locked version** from the lock file
 
 ---
