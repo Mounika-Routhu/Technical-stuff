@@ -188,13 +188,16 @@ warning.svg
 You can use:
 
 ```jsx
-<WarningIcon className="text-orange-500" />
-```
-
-or:
-
-```jsx
-<WarningIcon width={16} height={16} />
+<WarningIcon
+  width={24}
+  height={24}
+  fill="orange"
+  color="red" // works only with fill="currentColor" inside SVG(not done by SVGR, has to be done manually)
+  stroke="red"
+  strokeWidth={2}
+  className="text-orange-500"
+  aria-label="Warning"
+/>
 ```
 
 ### 3. currentColor
