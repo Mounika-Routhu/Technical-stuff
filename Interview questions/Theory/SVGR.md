@@ -183,8 +183,6 @@ warning.svg
    ↓
 <WarningIcon />
 ```
----
-
 ### 2. Easier Styling
 
 You can use:
@@ -511,7 +509,7 @@ No need to manually update JSX.
 
 ---
 
-## 12. Should we use SVGR always? When SVGR May Not Be Necessary
+## 9. Should we use SVGR always? When SVGR May Not Be Necessary
 SVGR can be used for any SVG, including logos and illustrations.
 However, for purely static graphics, the extra flexibility of a React component is often not needed.
 
@@ -552,7 +550,7 @@ It is simply most valuable when SVGs need to behave like reusable React componen
 ```
 ---
 
-## 13. Final Summary
+## 10. Final Summary
 
 SVGR converts SVG files into React components during build time.
 
